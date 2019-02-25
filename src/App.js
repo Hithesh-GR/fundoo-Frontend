@@ -1,26 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-class App extends Component {
+/******************************************************************************
+ *  @Purpose        : Here will import all the pages by using specific path.
+ *  @file           : App.js        
+ *  @author         : HITHESH G R
+ *  @version        : v0.1
+ *  @since          : 23-02-2019
+ ******************************************************************************/
+import React from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+//import login from "../src/screens/login";
+import registration from "../src/screens/registration";
+// import forgotPassword from "../src/pages/forgotPassword";
+// import resetPassword from "../src/pages/resetPassword";
+// import dashBoard from "../src/pages/dashBoard";
+export default class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <div>
+        <Router>
+          <div className="App">
+            <Route path="/registration" component={registration}></Route>
+            {/*  <Route path="/login" component={login}></Route>
+            <Route path="/forgotPassword" component={forgotPassword}></Route>
+            <Route path="/resetPassword" component={resetPassword}></Route> 
+            <Route path="/dashBoard" component={dashBoard}></Route> */}
+          </div>
+        </Router>
+      </div>  
     );
   }
 }
-export default App;
