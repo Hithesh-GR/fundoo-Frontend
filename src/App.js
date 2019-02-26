@@ -7,11 +7,11 @@
  ******************************************************************************/
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-//import login from "../src/screens/login";
+import login from "../src/screens/login";
 import registration from "../src/screens/registration";
-// import forgotPassword from "../src/pages/forgotPassword";
-// import resetPassword from "../src/pages/resetPassword";
-// import dashBoard from "../src/pages/dashBoard";
+import forgotPassword from "../src/screens/forgotPassword";
+import resetPassword from "../src/screens/resetPassword";
+import dashBoard from "../src/screens/dashBoard";
 export default class App extends React.Component {
   render() {
     return (
@@ -19,10 +19,10 @@ export default class App extends React.Component {
         <Router>
           <div className="App">
             <Route path="/registration" component={registration}></Route>
-            {/*  <Route path="/login" component={login}></Route>
+            <Route path="/login" component={login}></Route>
             <Route path="/forgotPassword" component={forgotPassword}></Route>
             <Route path="/resetPassword" component={resetPassword}></Route> 
-            <Route path="/dashBoard" component={dashBoard}></Route> */}
+            <Route path="/dashBoard" component={dashBoard}></Route>  
           </div>
         </Router>
       </div>  

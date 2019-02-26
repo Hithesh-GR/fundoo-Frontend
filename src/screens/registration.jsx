@@ -3,7 +3,7 @@
  *  @file           : registration.jsx        
  *  @author         : HITHESH G R
  *  @version        : v0.1
- *  @since          : 02-02-2019
+ *  @since          : 23-02-2019
  *********************************************************************************/
 import React from "react";
 import TextField from '@material-ui/core/TextField';
@@ -53,14 +53,14 @@ export default class registration extends React.Component {
                     <div id="outlined-text-input">
                         <TextField
                             label="First name"
-                            type="textField"
+                            //type="textField"
                             //value={this.state.firstName}
                             margin="normal"
                             variant="outlined"
                         />
                         <TextField
                             label="Last name"
-                            type="textField"
+                            //type="textField"
                             //value={this.state.lastName}
                             margin="normal"
                             variant="outlined"
@@ -104,7 +104,6 @@ export default class registration extends React.Component {
                         <Button
                             color="primary"
                             title="click on sign in"
-                            type="submit"
                             onClick={this.signIn}>
                             Sign in
                         </Button>
@@ -112,7 +111,6 @@ export default class registration extends React.Component {
                             variant="contained"
                             title="click on submit"
                             color="primary"
-                            type="submit"
                             onClick={this.loginclick}>
                             Submit
                         </Button>
