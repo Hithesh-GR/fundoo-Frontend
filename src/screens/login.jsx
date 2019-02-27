@@ -1,6 +1,6 @@
 /********************************************************************************
-*  @Purpose         : Create a registration page to register the users .
- *  @file           : registration.jsx        
+ *  @Purpose        : To create a login page for login to the registered account.
+ *  @file           : login.jsx        
  *  @author         : HITHESH G R
  *  @version        : v0.1
  *  @since          : 23-02-2019
@@ -27,21 +27,23 @@ export default class login extends React.Component {
         };
     }
     /**
-     * Takes the registered user emailID
+     * @description:Takes the registered user emailID
      */
     handleEmailChange = event => {
         const email = event.target.value;
         this.setState({ email: email });
     }
     /**
-     * Takes the registered user password 
+     * @description:Takes the registered user password 
      */
-    handlePasswordChange = event => {
-        const password = event.target.value;
-        this.setState({ password: password });
-    }
+    handleChange = prop => event => {
+        this.setState({ [prop]: event.target.value });
+    };
+    handleClickShowPassword = () => {
+        this.setState(state => ({ showPassword: !state.showPassword }));
+    };
     /**
-     * it will submit the login page and checks all the conditions
+     * @description:it will submit the login page and checks all the conditions
      */
     handleSubmit = event => {
         event.preventDefault();
@@ -67,7 +69,7 @@ export default class login extends React.Component {
                 openSnackBar: true,
                 snackBarMessage: "password must be of atleast 6 characters long..!"
             });
-        } 
+        }
         else {
             var data = {
                 email: this.state.email,
@@ -80,7 +82,6 @@ export default class login extends React.Component {
                         openSnackBar: true,
                         snackBarMessage: "Login Successfull!!"
                     });
-                    localStorage.setItem('Sender', this.state.email);
                     this.props.history.push('/dashBoard');
                 })
                 .catch((err) => {
@@ -93,33 +94,26 @@ export default class login extends React.Component {
         }
     };
     /**
-     * redirect or trigger to forgotPasswordPage
+     * @description:redirect or trigger to forgotPasswordPage
      */
     forgotPasswordPage = e => {
         e.preventDefault();
         this.props.history.push('/forgotPassword');
     };
     /**
-     * redirect to registerpage
+     * @description:redirect to registerpage
      */
     registrationclick = e => {
         e.preventDefault();
         this.props.history.push('/registration');
     };
     /**
-     * use to auto close snackBar
+     * @description:use to auto close snackBar
      */
     handleSnackClose = () => {
         this.setState({
             openSnackBar: false
         })
-    };
-    handleChange = prop => event => {
-        this.setState({ [prop]: event.target.value });
-    };
-
-    handleClickShowPassword = () => {
-        this.setState(state => ({ showPassword: !state.showPassword }));
     };
     render() {
         return (

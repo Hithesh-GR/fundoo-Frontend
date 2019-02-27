@@ -68,15 +68,14 @@
     margin-right: 40px;
 }
 
-#outlined-email-input {
+/* #outlined-email-input {
     margin-left: 0px;
     margin-right: 40px;
-}
+} */
 
 input[type=email] {
     width: 390px;
-    height: 50%;
-    padding: 20px 35px;
+    padding: 19px 35px;
 }
 
 #outlined-adornment-password {
@@ -168,7 +167,7 @@ input[type=emaill] {
 #butt {
     margin-left: 69%;
     margin-right: 0%;
-    margin-top: 8%
+    margin-top: 8%;
 }
 
 /**********************for resetPassword css***********************/
@@ -185,4 +184,56 @@ input[type=emaill] {
     margin-top: 9%;
     display: flex;
     justify-content: space-between;
+}
+
+/***********************for dashBoard css***************************/
+
+root {
+    width: 100%;
+}
+
+grow {
+    flex-grow: 1
+}
+
+menuButton {
+    margin-left: -12;
+    margin-right: 20
+}
+
+title {
+    display: 'none';
+    display: 'block'
+}
+
+search {
+    position: 'relative';
+}
+
+searchIcon {
+    height: '100%';
+    position: 'absolute';
+    pointer-events: 'none';
+    display: 'flex';
+    align-items: 'center';
+    justify-content: 'center';
+}
+
+inputRoot {
+    color: 'inherit';
+    width: '100%';
+}
+
+inputInput {
+    width: '100%'
+}
+
+sectionDesktop {
+    display: 'none';
+    display: 'flex';
+}
+
+sectionMobile {
+    display: 'flex';
+    display: 'none';
 }

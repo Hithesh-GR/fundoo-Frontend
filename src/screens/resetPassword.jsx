@@ -1,10 +1,10 @@
-/********************************************************************************
-*  @Purpose         : Create a registration page to register the users .
- *  @file           : registration.jsx        
+/******************************************************************************
+ *  @Purpose        : Create a resetPassword page to reset the new password.
+ *  @file           : resetPassword.jsx        
  *  @author         : HITHESH G R
  *  @version        : v0.1
- *  @since          : 23-02-2019
- *********************************************************************************/
+ *  @since          : 02-02-2019
+ ******************************************************************************/
 import React from "react";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -12,8 +12,11 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
+import Snackbar from '@material-ui/core/Snackbar';
+import CloseIcon from '@material-ui/icons/Close';
+import { resetPassword } from "../services/userServices";
 import "../App.css";
-export default class resetPassword extends React.Component {
+export default class ResetPassword extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,13 +39,67 @@ export default class resetPassword extends React.Component {
         this.setState(state => ({ showPassword1: !state.showPassword1 }));
     };
     /**
-     * it will resets the page or form if we entered wrong fields
+    * @description:it will submit the entered password and checks the all the conditions
+    */
+    handleSubmit = event => {
+        event.preventDefault();
+        if (this.state.password === "") {
+            this.setState({
+                openSnackBar: true,
+                snackBarMessage: "password cannot be empty"
+            });
+        } else if (this.state.newPassword === "") {
+            this.setState({
+                openSnackBar: true,
+                snackBarMessage: "Confirm Password cannot be empty"
+            });
+        } else if (this.state.password.length < 6) {
+            this.setState({
+                openSnackBar: true,
+                snackBarMessage: "password must be of atleast 6 characters long"
+            });
+        } else if (this.state.newPassword.length < 6) {
+            this.setState({
+                openSnackBar: true,
+                snackBarMessage: "Confirm Password must be of atleast 6 characters long"
+            });
+        } else if (this.state.password !== this.state.newPassword) {
+            this.setState({
+                openSnackBar: true,
+                snackBarMessage: "Password and Confirm password must be same"
+            });
+        } else {
+            event.preventDefault();
+            let current_url = window.location.pathname;
+            let verify_user_token = current_url.substr(19);
+            console.log(verify_user_token);
+            console.log("current ", current_url);
+            resetPassword(this.state.password, verify_user_token)
+                .then((response) => {
+                    console.log(response);
+                    this.setState({
+                        openSnackBar: true,
+                        snackBarMessage: "Password changed successfully"
+                    });
+                    this.props.history.push("/login");
+                })
+                .catch((err) => {
+                    console.log(err);
+                    this.setState({
+                        openSnackBar: true,
+                        snackBarMessage: "Please Try Again.."
+                    });
+                });
+        }
+    };
+    /**
+     * @description:it will resets the page or form if we entered wrong fields
      */
     resetForm = () => {
         this.setState(this.baseState);
     };
     /**
-     * use to auto close snackBar
+     * @description:use to auto close snackBar
      */
     handleSnackClose = () => {
         this.setState({
@@ -122,12 +179,39 @@ export default class resetPassword extends React.Component {
                             variant="contained"
                             title="click on submit"
                             color="primary"
-                            onClick={this.loginclick}>
+                            onClick={this.handleSubmit}>
                             Submit
                         </Button>
                     </div>
                 </div>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    open={this.state.openSnackBar}
+                    autoHideDuration={6000}
+                    onClose={this.handleSnackClose}
+                    variant="error"
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={<span id="message-id"> {this.state.snackBarMessage} </span>}
+                    action={[
+                        <div >
+                            <IconButton
+                                key="close"
+                                aria-label="Close"
+                                color="inherit"
+                                onClick={this.handleSnackClose}
+                            >
+                                <CloseIcon />
+                            </IconButton>
+                        </div>
+                    ]}
+                />
             </div>
         );
     }
-} 
+}
+export { ResetPassword };
