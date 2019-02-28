@@ -9,94 +9,136 @@ import React from "react";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
+import { MenuItem } from "@material-ui/core";
+import Avatar from '@material-ui/core/Avatar';
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Paper from "@material-ui/core/Paper";
+import Popper from "@material-ui/core/Popper";
+import MenuList from "@material-ui/core/MenuList";
+import Grow from "@material-ui/core/Grow";
+import SideNavigation from "../components/sideNavigation";
 import "../App.css";
 export default class dashBoard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            anchorEl: null,
-            mobileMoreAnchorEl: null,
+            left: true,
+            open: false
         };
     }
-    handleProfileMenuOpen = event => {
-        this.setState({ anchorEl: event.currentTarget });
+    /**
+     * @description:it will toggle or reback the event
+     */
+    handleToggle = () => {
+        this.setState(state => ({ open: !state.open }));
     };
-
-    handleMenuClose = () => {
-        this.setState({ anchorEl: null });
-        this.handleMobileMenuClose();
+    /**
+     * @description:it will close the current action event
+     */
+    handleClose = event => {
+        if (this.anchorEl.contains(event.target)) {
+            return;
+        }
+        this.setState({ open: false });
     };
-
-    handleMobileMenuOpen = event => {
-        this.setState({ mobileMoreAnchorEl: event.currentTarget });
+    /**
+     * @description:it will redirect to registration page
+     */
+    registrationclick = e => {
+        e.preventDefault();
+        this.props.history.push('/registration');
     };
-
-    handleMobileMenuClose = () => {
-        this.setState({ mobileMoreAnchorEl: null });
+    /**
+     * @description:it will redirect to login page
+     */
+    loginclick = e => {
+        e.preventDefault();
+        this.props.history.push('/login');
     };
-
     render() {
+        const { open } = this.state;
         return (
             <div>
-                <div >
-                    <div >
-                        <AppBar position="static">
-                            <Toolbar>
-                                <IconButton color="inherit" aria-label="Open drawer">
-                                    <MenuIcon />
-                                </IconButton>
-                                <Typography variant="h6" color="inherit" noWrap>
-                                   Keep
-            </Typography>
-                                <div >
-                                    <div >
-                                        <SearchIcon />
-                                    </div>
-                                    <InputBase
-                                        placeholder="Search…"
-
-                                    />
+                <div className="root">
+                    <AppBar position="fixed" color="inherit">
+                        <Toolbar>
+                            <SideNavigation />
+                            <div className="keepImage">
+                                <img src={require("../assets/images/keep_48dp.png")}
+                                    alt="" />
+                            </div>
+                            <div className="fundoTitle">
+                                <span>Fundoo</span>
+                            </div>
+                            <div className="search">
+                                <div className="searchIcon">
+                                    <SearchIcon />
                                 </div>
-
-                                <div >
-                                    <IconButton color="inherit">
-                                        <Badge badgeContent={4} color="secondary">
-                                            <MailIcon />
-                                        </Badge>
-                                    </IconButton>
-                                    <IconButton color="inherit">
-                                        <Badge badgeContent={17} color="secondary">
-                                            <NotificationsIcon />
-                                        </Badge>
-                                    </IconButton>
+                                <div className="searchField">
+                                    <InputBase placeholder="Search" className="inputRoot" />
+                                </div>
+                            </div>
+                            <div className="appList">
+                                <img
+                                    src={require("../assets/images/grid.svg")}
+                                    alt=""
+                                    title="List View"
+                                />
+                            </div>
+                            <div>
+                                <div className="iconButton">
                                     <IconButton
-                                       
+                                        buttonRef={node => {
+                                            this.anchorEl = node;
+                                        }}
+                                        aria-owns={open ? "menu-list-grow" : undefined}
                                         aria-haspopup="true"
-                                        onClick={this.handleProfileMenuOpen}
-                                        color="inherit"
+                                        onClick={this.handleToggle}
                                     >
-                                        <AccountCircle />
+                                        <Avatar
+                                            alt="Remy Sharp"
+                                            src={require("../assets/images/hithu.jpg")}
+                                            title="Fundoo Account:Hithesh G R"
+                                        />
                                     </IconButton>
                                 </div>
-                                <div >
-                                    <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                                        <MoreIcon />
-                                    </IconButton>
-                                </div>
-                            </Toolbar>
-                        </AppBar>
-                       
-                    </div>
-
+                                <Popper
+                                    open={open}
+                                    anchorEl={this.anchorEl}
+                                    transition
+                                    disablePortal
+                                >
+                                    {({ TransitionProps, placement }) => (
+                                        <Grow
+                                            {...TransitionProps}
+                                            id="menu-list-grow"
+                                            style={{
+                                                transformOrigin:
+                                                    placement === "top"
+                                                        ? "center top"
+                                                        : "center top"
+                                            }}
+                                        >
+                                            <Paper>
+                                                <ClickAwayListener onClickAway={this.handleClose}>
+                                                    <MenuList>
+                                                        <MenuItem onClick={this.registrationclick}>
+                                                            Add account
+                                                                </MenuItem>
+                                                        <MenuItem onClick={this.loginclick}>
+                                                            Logout
+                                                            </MenuItem>
+                                                    </MenuList>
+                                                </ClickAwayListener>
+                                            </Paper>
+                                        </Grow>
+                                    )}
+                                </Popper>
+                            </div>
+                        </Toolbar>
+                    </AppBar>
                 </div>
             </div>
         );

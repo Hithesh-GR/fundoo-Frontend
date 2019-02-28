@@ -13,8 +13,10 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import { userLogin } from "../services/userServices";
 import Snackbar from '@material-ui/core/Snackbar';
+import { userLogin } from "../services/userServices";
+//import  Buttons  from "../components/button";
+import  Input  from "../components/input";
 import "../App.css";
 export default class login extends React.Component {
     constructor(props) {
@@ -25,6 +27,7 @@ export default class login extends React.Component {
             snackBarMessage: "",
             showPassword: false,
         };
+        this.handleSubmit=this.handleSubmit.bind(this);
     }
     /**
      * @description:Takes the registered user emailID
@@ -82,7 +85,8 @@ export default class login extends React.Component {
                         openSnackBar: true,
                         snackBarMessage: "Login Successfull!!"
                     });
-                    this.props.history.push('/dashBoard');
+                    window.location.href="/dashBoard";
+                    // this.props.history.push('/dashBoard');
                 })
                 .catch((err) => {
                     console.log(err);
@@ -134,14 +138,11 @@ export default class login extends React.Component {
                         <p>with your Fundoo Account</p>
                     </div>
                     <div id="outlined-email-input1">
-                        <TextField
-                            label="Email"
-                            type="email1"
+                        <Input
+                            label={"Email"}
+                            type={"email1"}
                             value={this.state.email}
                             onChange={this.handleEmailChange}
-                            autoComplete="email"
-                            margin="normal"
-                            variant="outlined"
                         />
                     </div>
                     <div id="outlined-adornment-password1">

@@ -31,7 +31,6 @@ export default class ResetPassword extends React.Component {
     handleChange = prop => event => {
         this.setState({ [prop]: event.target.value });
     };
-
     handleClickShowPassword = () => {
         this.setState(state => ({ showPassword: !state.showPassword }));
     };
