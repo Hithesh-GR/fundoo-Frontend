@@ -184,7 +184,6 @@ export default class registration extends React.Component {
                     <div id="outlined-email-input">
                         <TextField
                             label="Email"
-                            type="email"
                             value={this.state.email}
                             onChange={this.handleuserEmailChange}
                             autoComplete="Email"

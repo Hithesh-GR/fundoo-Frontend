@@ -16,7 +16,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Snackbar from '@material-ui/core/Snackbar';
 import { userLogin } from "../services/userServices";
 //import  Buttons  from "../components/button";
-import  Input  from "../components/input";
+import Input from "../components/input";
 import "../App.css";
 export default class login extends React.Component {
     constructor(props) {
@@ -27,7 +27,7 @@ export default class login extends React.Component {
             snackBarMessage: "",
             showPassword: false,
         };
-        this.handleSubmit=this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     /**
      * @description:Takes the registered user emailID
@@ -85,7 +85,7 @@ export default class login extends React.Component {
                         openSnackBar: true,
                         snackBarMessage: "Login Successfull!!"
                     });
-                    window.location.href="/dashBoard";
+                    window.location.href = "/dashBoard";
                     // this.props.history.push('/dashBoard');
                 })
                 .catch((err) => {
@@ -119,6 +119,11 @@ export default class login extends React.Component {
             openSnackBar: false
         })
     };
+    handleEnter = event => {
+        if (event.keyCode === 13) {
+            alert('Adding....');
+        }
+    };
     render() {
         return (
             <div>
@@ -139,8 +144,8 @@ export default class login extends React.Component {
                     </div>
                     <div id="outlined-email-input1">
                         <Input
-                            label={"Email"}
-                            type={"email1"}
+                        id="email"
+                            label={" Enter your email"}
                             value={this.state.email}
                             onChange={this.handleEmailChange}
                         />
@@ -148,6 +153,7 @@ export default class login extends React.Component {
                     <div id="outlined-adornment-password1">
                         <TextField
                             variant="outlined"
+                            id="password"
                             type={this.state.showPassword ? 'text' : 'password'}
                             label="Enter your password"
                             value={this.state.password}
@@ -188,14 +194,15 @@ export default class login extends React.Component {
                             title="click on submit"
                             color="primary"
                             value="click me"
-                            onClick={this.handleSubmit}>
+                            onClick={this.handleSubmit}
+                            onKeyPress={this.add}>
                             Submit
                         </Button>
                     </div>
                 </div>
                 <Snackbar
                     anchorOrigin={{
-                        vertical: 'top',
+                        vertical: 'bottom',
                         horizontal: 'right',
                     }}
                     open={this.state.openSnackBar}

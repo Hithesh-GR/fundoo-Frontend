@@ -45,7 +45,7 @@ export default class ForgotPassword extends React.Component {
         ) {
             this.setState({
                 openSnackBar: true,
-                snackBarMessage: " Not found email..!"
+                snackBarMessage: " Not valid email..!"
             });
         }
         else {

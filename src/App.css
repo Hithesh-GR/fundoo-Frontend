@@ -68,15 +68,18 @@
     margin-right: 40px;
 }
 
-/* #outlined-email-input {
-    margin-left: 0px;
-    margin-right: 40px;
-} */
-
+#outlined-email-input {
+    margin-left: 0%;
+    margin-right: 0%;
+    width: 100%;
+    padding: 0% 0%;
+    flex-grow: 100%
+}
+/* 
 input[type=email] {
     width: 390px;
     padding: 19px 35px;
-}
+} */
 
 #outlined-adornment-password {
     display: flex;
@@ -98,8 +101,6 @@ input[type=email] {
     display: flex;
     justify-content: space-between;
 }
-
-
 
 /***********************for login css*********************************/
 .form1 {
@@ -124,14 +125,11 @@ input[type=email] {
 }
 
 #outlined-email-input1 {
-    margin-left: 63px;
-    margin-right: 0px;
-    margin-top: 8%
+    margin-left: 22%;
+    margin-right: 0%;
+    margin-top: 8%;
 }
 
-input[type=email1] {
-    padding: 19px 42px;
-}
 
 input[type=password1] {
     width: 200px;
@@ -140,8 +138,8 @@ input[type=password1] {
 }
 
 #outlined-adornment-password1 {
-    margin-left: 63px;
-    margin-right: 0px;
+    margin-left: 22%;
+    margin-right: 93px;
     margin-top: 7%
 }
 
@@ -203,7 +201,6 @@ input[type=emaill] {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 22px
 }
-
 
 .search {
     position: center;
@@ -288,7 +285,6 @@ input[type=emaill] {
     margin: 10,
 }
 
-
 .appbar {
     display: flex;
     width: 100%;
@@ -297,7 +293,6 @@ input[type=emaill] {
 
     padding-bottom: 1px;
 }
-
 
 element.style {
     opacity: 1;
@@ -312,9 +307,7 @@ element.style {
     z-index: -1;
     position: fixed;
     touch-action: none;
-
 }
-
 
 .grow {
     flex-grow: 1
@@ -331,7 +324,6 @@ element.style {
     color: black;
     padding-left: 39px;
 }
-
 
 .inputInput {
     padding-top: 8px;
