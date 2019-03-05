@@ -77,6 +77,13 @@ export default class ForgotPassword extends React.Component {
             openSnackBar: false
         })
     }
+    /**
+     * @description:it will redirect to loginpage
+     */
+    loginclick = event => {
+        event.preventDefault();
+        this.props.history.push("/login");
+    };
     render() {
         return (
             <div>
@@ -98,6 +105,7 @@ export default class ForgotPassword extends React.Component {
                     <div id="outlined-email-inputt">
                         <TextField
                             label="Email"
+                            id="email"
                             type="emaill"
                             value={this.state.email}
                             onChange={this.handleEmailChange}
@@ -107,6 +115,12 @@ export default class ForgotPassword extends React.Component {
                         />
                     </div>
                     <div id="butt" >
+                        <Button
+                            color="primary"
+                            title="click on sign in"
+                            onClick={this.loginclick}>
+                            Sign in
+                        </Button>
                         <Button
                             variant="contained"
                             title="click on submit"

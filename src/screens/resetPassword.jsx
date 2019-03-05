@@ -128,6 +128,7 @@ export default class ResetPassword extends React.Component {
                             variant="outlined"
                             type={this.state.showPassword ? 'text' : 'password'}
                             label="Password"
+                            id="password"
                             value={this.state.password}
                             onChange={this.handleChange('password')}
                             InputProps={{
@@ -149,6 +150,7 @@ export default class ResetPassword extends React.Component {
                             variant="outlined"
                             type={this.state.showPassword1 ? 'text' : 'password'}
                             label="Confirm new"
+                            id="newPassword"
                             value={this.state.newPassword}
                             onChange={this.handleChange('newPassword')}
                             InputProps={{

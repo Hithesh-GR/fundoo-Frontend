@@ -164,9 +164,11 @@ input[type=emaill] {
 }
 
 #butt {
-    margin-left: 69%;
-    margin-right: 0%;
+    margin-left: 9%;
+    margin-right: 10%;
     margin-top: 8%;
+    display: flex;
+    justify-content: space-between;
 }
 
 /**********************for resetPassword css***********************/

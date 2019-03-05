@@ -164,6 +164,7 @@ export default class registration extends React.Component {
                     <div id="outlined-text-input">
                         <TextField
                             label="First name"
+                            id="firstName"
                             //type="textField"
                             value={this.state.firstName}
                             onChange={this.handleuserfirstNameChange}
@@ -173,6 +174,7 @@ export default class registration extends React.Component {
                         />
                         <TextField
                             label="Last name"
+                            id="lastName"
                             //type="textField"
                             value={this.state.lastName}
                             onChange={this.handleuserlastNameChange}
@@ -184,6 +186,7 @@ export default class registration extends React.Component {
                     <div id="outlined-email-input">
                         <TextField
                             label="Email"
+                            id="email"
                             value={this.state.email}
                             onChange={this.handleuserEmailChange}
                             autoComplete="Email"
@@ -194,6 +197,7 @@ export default class registration extends React.Component {
                     <div id="outlined-adornment-password">
                         <TextField
                             variant="outlined"
+                            id="password"
                             type={this.state.showPassword ? 'text' : 'password'}
                             label="Password"
                             value={this.state.password}
@@ -201,6 +205,7 @@ export default class registration extends React.Component {
                         />
                         <TextField
                             variant="outlined"
+                            id="confirm"
                             type={this.state.showPassword ? 'text' : 'password'}
                             label="Confirm"
                             value={this.state.confirm}
