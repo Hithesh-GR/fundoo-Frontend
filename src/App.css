@@ -367,14 +367,15 @@ element.style {
 }
 
 .drawerPaper {
-    width: 40px
+    width: 40px;
+   
 }
 
 .MuiDrawer-paper-61 {
     top: -10px;
     flex: 1 0 auto;
     height: 100%;
-    width: 14%;
+    width: 13.5%;
     margin-top: 73px;
     display: flex;
     z-index: 1200;

@@ -59,6 +59,12 @@ export default class registration extends React.Component {
     handleChange = prop => event => {
         this.setState({ [prop]: event.target.value });
     };
+    handleEnter=event=>{
+        if(event.key==='Enter'){
+            event.preventDefault();
+            this.handleSubmit(event);
+        }
+    };
     /**
      * @description:it will submit the registration page, after all field are filled and checks the all the conditions
      */
@@ -167,6 +173,7 @@ export default class registration extends React.Component {
                             id="firstName"
                             //type="textField"
                             value={this.state.firstName}
+                            onKeyPress={this.handleEnter}
                             onChange={this.handleuserfirstNameChange}
                             autoComplete="firstname"
                             margin="normal"
@@ -177,6 +184,7 @@ export default class registration extends React.Component {
                             id="lastName"
                             //type="textField"
                             value={this.state.lastName}
+                            onKeyPress={this.handleEnter}
                             onChange={this.handleuserlastNameChange}
                             autoComplete="lastname"
                             margin="normal"
@@ -188,6 +196,7 @@ export default class registration extends React.Component {
                             label="Email"
                             id="email"
                             value={this.state.email}
+                            onKeyPress={this.handleEnter}
                             onChange={this.handleuserEmailChange}
                             autoComplete="Email"
                             margin="normal"
@@ -202,6 +211,7 @@ export default class registration extends React.Component {
                             label="Password"
                             value={this.state.password}
                             onChange={this.handleChange('password')}
+                            onKeyPress={this.handleEnter}
                         />
                         <TextField
                             variant="outlined"
@@ -210,6 +220,7 @@ export default class registration extends React.Component {
                             label="Confirm"
                             value={this.state.confirm}
                             onChange={this.handleChange('confirm')}
+                            onKeyPress={this.handleEnter}
                         />
                         <IconButton
                             aria-label="Toggle password visibility"
@@ -251,7 +262,6 @@ export default class registration extends React.Component {
                     }}
                     message={<span id="message-id"> {this.state.snackBarMessage} </span>}
                     action={[
-                        <div >
                             <IconButton
                                 key="close"
                                 aria-label="Close"
@@ -260,7 +270,6 @@ export default class registration extends React.Component {
                             >
                                 <CloseIcon />
                             </IconButton>
-                        </div>
                     ]}
                 />
             </div>

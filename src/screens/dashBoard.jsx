@@ -64,7 +64,7 @@ export default class dashBoard extends React.Component {
                 <div className="root">
                     <AppBar position="fixed" color="inherit">
                         <Toolbar>
-                            <SideNavigation />
+                        <SideNavigation />
                             <div className="keepImage">
                                 <img src={require("../assets/images/keep_48dp.png")}
                                     alt="" />

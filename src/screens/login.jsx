@@ -16,7 +16,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Snackbar from '@material-ui/core/Snackbar';
 import { userLogin } from "../services/userServices";
 //import  Buttons  from "../components/button";
-import Input from "../components/input";
+//import Input from "../components/input";
 import "../App.css";
 export default class login extends React.Component {
     constructor(props) {
@@ -25,10 +25,17 @@ export default class login extends React.Component {
             email: "",
             password: "",
             snackBarMessage: "",
+            errorMessage:"",
             showPassword: false,
+            fields: {
+                email: "",
+                password: ""
+            },
+            errors:{}
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
     /**
      * @description:Takes the registered user emailID
      */
@@ -45,6 +52,12 @@ export default class login extends React.Component {
     handleClickShowPassword = () => {
         this.setState(state => ({ showPassword: !state.showPassword }));
     };
+    handleEnter=event=>{
+        if(event.key==='Enter'){
+            event.preventDefault();
+            this.handleSubmit(event);
+        }
+    };
     /**
      * @description:it will submit the login page and checks all the conditions
      */
@@ -53,7 +66,7 @@ export default class login extends React.Component {
         if (!this.state.email) {
             this.setState({
                 openSnackBar: true,
-                snackBarMessage: "email cannot be empty..!"
+                errorMessage: "email cannot be empty..!"
             });
         } else if (!this.state.password) {
             this.setState({
@@ -85,8 +98,8 @@ export default class login extends React.Component {
                         openSnackBar: true,
                         snackBarMessage: "Login Successfull!!"
                     });
-                    window.location.href = "/dashBoard";
-                    // this.props.history.push('/dashBoard');
+                    // window.location.href = "/dashBoard";
+                    this.props.history.push('/dashBoard');
                 })
                 .catch((err) => {
                     console.log(err);
@@ -119,11 +132,6 @@ export default class login extends React.Component {
             openSnackBar: false
         })
     };
-    handleEnter = event => {
-        if (event.keyCode === 13) {
-            alert('Adding....');
-        }
-    };
     render() {
         return (
             <div>
@@ -143,11 +151,14 @@ export default class login extends React.Component {
                         <p>with your Fundoo Account</p>
                     </div>
                     <div id="outlined-email-input1">
-                        <Input
-                        id="email"
+                        <TextField
+                            id="email"
+                            variant="outlined"
                             label={" Enter your email"}
                             value={this.state.email}
                             onChange={this.handleEmailChange}
+                            onKeyPress={this.handleEnter}
+                            autoComplete="email"
                         />
                     </div>
                     <div id="outlined-adornment-password1">
@@ -157,6 +168,7 @@ export default class login extends React.Component {
                             type={this.state.showPassword ? 'text' : 'password'}
                             label="Enter your password"
                             value={this.state.password}
+                            onKeyPress={this.handleEnter}
                             onChange={this.handleChange('password')}
                             InputProps={{
                                 endAdornment: (
@@ -194,8 +206,7 @@ export default class login extends React.Component {
                             title="click on submit"
                             color="primary"
                             value="click me"
-                            onClick={this.handleSubmit}
-                            onKeyPress={this.add}>
+                            onClick={this.handleSubmit}>
                             Submit
                         </Button>
                     </div>

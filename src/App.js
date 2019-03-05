@@ -17,9 +17,9 @@ export default class App extends React.Component {
     return (
       <div>
         <Router>
-          <div className="App">
-            <Redirect from="/" to="login"/>
+          <div>
             <Route path="/registration" component={registration}></Route>
+            <Route path="/" exact component={login}></Route>
             <Route path="/login" component={login}></Route>
             <Route path="/forgotPassword" component={forgotPassword}></Route>
             <Route path="/resetPassword" component={resetPassword}></Route> 

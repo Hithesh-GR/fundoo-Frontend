@@ -12,7 +12,6 @@ export default class input extends React.Component {
     render() {
         return (
             <TextField
-                type={this.props.type}
                 className={this.props.className}
                 id={this.props.id}
                 name={this.props.name}

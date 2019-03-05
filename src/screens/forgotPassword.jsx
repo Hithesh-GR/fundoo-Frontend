@@ -30,6 +30,12 @@ export default class ForgotPassword extends React.Component {
         const email = event.target.value;
         this.setState({ email: email });
     };
+    handleEnter=event=>{
+        if(event.key==='Enter'){
+            event.preventDefault();
+            this.handleSubmit(event);
+        }
+    };
     /**
      * @description:it will submit the forgotPasswordPage and checks all the conditions
      */
@@ -109,6 +115,7 @@ export default class ForgotPassword extends React.Component {
                             type="emaill"
                             value={this.state.email}
                             onChange={this.handleEmailChange}
+                            onKeyPress={this.handleEnter}
                             autoComplete="email"
                             margin="normal"
                             variant="outlined"

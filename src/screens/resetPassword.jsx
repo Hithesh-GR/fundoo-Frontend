@@ -37,6 +37,12 @@ export default class ResetPassword extends React.Component {
     handleClickShowPassword1 = () => {
         this.setState(state => ({ showPassword1: !state.showPassword1 }));
     };
+    handleEnter=event=>{
+        if(event.key==='Enter'){
+            event.preventDefault();
+            this.handleSubmit(event);
+        }
+    };
     /**
     * @description:it will submit the entered password and checks the all the conditions
     */
@@ -131,6 +137,7 @@ export default class ResetPassword extends React.Component {
                             id="password"
                             value={this.state.password}
                             onChange={this.handleChange('password')}
+                            onKeyPress={this.handleEnter}
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
@@ -153,6 +160,7 @@ export default class ResetPassword extends React.Component {
                             id="newPassword"
                             value={this.state.newPassword}
                             onChange={this.handleChange('newPassword')}
+                            onKeyPress={this.handleEnter}
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
