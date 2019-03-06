@@ -1,5 +1,5 @@
 /*************************************************************************************
- *  @Purpose        : To create dashboard for displaying chatMessages and users list.
+ *  @Purpose        : Here we have to create dashboard.
  *  @file           : dashboard.jsx        
  *  @author         : HITHESH G R
  *  @version        : v0.1

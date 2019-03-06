@@ -11,7 +11,7 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 7.5%;
-    margin-bottom: 5%;
+    margin-bottom: 3.5%;
 }
 
 #font-F {
@@ -115,7 +115,7 @@ input[type=email] {
     margin-left: auto;
     margin-right: auto;
     margin-top: 7.5%;
-    margin-bottom: 5%;
+    margin-bottom: 3.5%;
 }
 
 #fontt {
@@ -368,7 +368,7 @@ element.style {
 
 .drawerPaper {
     width: 40px;
-   
+
 }
 
 .MuiDrawer-paper-61 {
@@ -392,7 +392,7 @@ element.style {
     right: auto;
 }
 
-/************************************Notes********************************************/
+/* ***********************************Notes*******************************************/
 .show {
     justify-content: center;
 
@@ -471,7 +471,7 @@ element.style {
 }
 
 /*******************************************************************/
-#createNoteParent {
+ #createNoteParent {
     margin-left: 5px
 }
 
@@ -526,4 +526,5 @@ element.style {
     margin-top: 100px;
     margin-left: 304px;
 
-}
+} 
+

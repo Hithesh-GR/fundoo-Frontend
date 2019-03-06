@@ -11,7 +11,7 @@ import login from "../src/screens/login";
 import registration from "../src/screens/registration";
 import forgotPassword from "../src/screens/forgotPassword";
 import resetPassword from "../src/screens/resetPassword";
-import dashBoard from "../src/screens/dashBoard";
+import dashBoard from "./screens/dashBoard";
 export default class App extends React.Component {
   render() {
     return (
@@ -23,7 +23,7 @@ export default class App extends React.Component {
             <Route path="/login" component={login}></Route>
             <Route path="/forgotPassword" component={forgotPassword}></Route>
             <Route path="/resetPassword" component={resetPassword}></Route> 
-            <Route path="/dashBoard" component={dashBoard}></Route>  
+            <Route path="/dashBoard" component={dashBoard}></Route>
           </div>
         </Router>
       </div>  
