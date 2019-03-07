@@ -1,147 +1,93 @@
-/*************************************************************************************
- *  @Purpose        : Here we have to create dashboard.
- *  @file           : dashboard.jsx        
- *  @author         : HITHESH G R
- *  @version        : v0.1
- *  @since          : 23-02-2019
- ************************************************************************************/
-import React from "react";
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
-import { MenuItem } from "@material-ui/core";
-import Avatar from '@material-ui/core/Avatar';
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import MenuList from "@material-ui/core/MenuList";
-import Grow from "@material-ui/core/Grow";
-import SideNavigation from "../components/sideNavigation";
-import "../App.css";
-export default class dashBoard extends React.Component {
-    constructor(props) {
-        super(props);
+import React, { Component } from 'react';
+import ShowCards from '../components/showCards';
+import AppbarComponent from '../components/appBar';
+import Cards from '../components/cards';
+class Dashboard extends Component {
+    constructor() {
+        super();
         this.state = {
-            left: true,
-            open: false
-        };
-    }
-    /**
-     * @description:it will toggle or reback the event
-     */
-    handleToggle = () => {
-        this.setState(state => ({ open: !state.open }));
-    };
-    /**
-     * @description:it will close the current action event
-     */
-    handleClose = event => {
-        if (this.anchorEl.contains(event.target)) {
-            return;
+            label: "",
+            cardStyles: false,
+            reminder: false,
+            archive: false,
+            trash: false,
+            searchNote: "",
+            slideCards: false
         }
-        this.setState({ open: false });
-    };
-    /**
-     * @description:it will redirect to registration page
-     */
-    registrationclick = e => {
-        e.preventDefault();
-        this.props.history.push('/registration');
-    };
-    /**
-     * @description:it will redirect to login page
-     */
-    loginclick = e => {
-        e.preventDefault();
-        this.props.history.push('/login');
-    };
+        this.noteToCards = React.createRef();
+        this.handleCardStyle = this.handleCardStyle.bind(this);
+        this.getNewNote = this.getNewNote.bind(this);
+        this.handleNavigation = this.handleNavigation.bind(this);
+        this.getSearchedNotes = this.getSearchedNotes.bind(this);
+        this.slideCards = this.slideCards.bind(this);
+    }
+
+    searchLabels(value) {
+        this.setState({ label: value });
+        console.log("search labels", value);
+        this.noteToCards.current.displayLabelledCards();
+    }
+    getNewNote(newCard) {
+        this.noteToCards.current.displayNewCard(newCard);
+    }
+
+    getSearchedNotes(value) {
+        this.setState({ searchNote: value })
+    }
+
+    slideCards() {
+        this.setState({ slideCards: !this.state.slideCards })
+    }
+
+    handleCardStyle() {
+        this.setState({ cardStyles: !this.state.cardStyles });
+    }
+    handleNavigation(reminder, archive, trash) {
+        console.log("handleNAvigation", reminder, archive, trash);
+
+        if (reminder === true || archive === true || trash === true) {
+
+            this.setState({
+                reminder: reminder,
+                archive: archive,
+                trash: trash
+            })
+        } else {
+            this.setState({
+                reminder: false,
+                archive: false,
+                trash: false
+            })
+        }
+    }
+
+    makeLabelFalse() {
+        this.noteToCards.current.makeLabelFalse();
+    }
     render() {
-        const { open } = this.state;
+        const slidingCards = this.state.slideCards ? "afterSlide" : "beforeSlide"
         return (
-            <div>
-                <div className="root">
-                    <AppBar position="fixed" color="inherit">
-                        <Toolbar>
-                        <SideNavigation />
-                            <div className="keepImage">
-                                <img src={require("../assets/images/keep_48dp.png")}
-                                    alt="" />
-                            </div>
-                            <div className="fundoTitle">
-                                <span>Fundoo</span>
-                            </div>
-                            <div className="search">
-                                <div className="searchIcon">
-                                    <SearchIcon />
-                                </div>
-                                <div className="searchField">
-                                    <InputBase placeholder="Search" className="inputRoot" />
-                                </div>
-                            </div>
-                            <div className="appList">
-                                <img
-                                    src={require("../assets/images/grid.svg")}
-                                    alt=""
-                                    title="List View"
-                                />
-                            </div>
-                            <div>
-                                <div className="iconButton">
-                                    <IconButton
-                                        buttonRef={node => {
-                                            this.anchorEl = node;
-                                        }}
-                                        aria-owns={open ? "menu-list-grow" : undefined}
-                                        aria-haspopup="true"
-                                        onClick={this.handleToggle}
-                                    >
-                                        <Avatar
-                                            alt="Remy Sharp"
-                                            src={require("../assets/images/hithu.jpg")}
-                                            title="Fundoo Account:Hithesh G R"
-                                        />
-                                    </IconButton>
-                                </div>
-                                <Popper
-                                    open={open}
-                                    anchorEl={this.anchorEl}
-                                    transition
-                                    disablePortal
-                                >
-                                    {({ TransitionProps, placement }) => (
-                                        <Grow
-                                            {...TransitionProps}
-                                            id="menu-list-grow"
-                                            style={{
-                                                transformOrigin:
-                                                    placement === "top"
-                                                        ? "center top"
-                                                        : "center top"
-                                            }}
-                                        >
-                                            <Paper>
-                                                <ClickAwayListener onClickAway={this.handleClose}>
-                                                    <MenuList>
-                                                        <MenuItem onClick={this.registrationclick}>
-                                                            Add account
-                                                                </MenuItem>
-                                                        <MenuItem onClick={this.loginclick}>
-                                                            Logout
-                                                            </MenuItem>
-                                                    </MenuList>
-                                                </ClickAwayListener>
-                                            </Paper>
-                                        </Grow>
-                                    )}
-                                </Popper>
-                            </div>
-                        </Toolbar>
-                    </AppBar>
+            <div className={slidingCards}>
+                <AppbarComponent
+                    makeLabelFalse={this.makeLabelFalse}
+                    slideCards={this.slideCards}
+                    searchLabels={this.searchLabels}
+                    notePropsToApp={this.handleCardStyle}
+                    handleNavigation={this.handleNavigation}
+                    getSearchedNotes={this.getSearchedNotes}
+                />
+                <div className="setFixedMargin">
+                    <div id="dashboard">
+                        <ShowCards getNewNote={this.getNewNote} />
+                        <Cards
+                            noteProps={this.state.cardStyles}
+                            searchNote={this.state.searchNote}
+                            ref={this.noteToCards} 
+                            />
+                    </div>
                 </div>
             </div>
-        );
+        )
     }
 }
-export { dashBoard };
+export default Dashboard;

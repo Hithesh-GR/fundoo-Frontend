@@ -98,8 +98,8 @@ export default class login extends React.Component {
                         openSnackBar: true,
                         snackBarMessage: "Login Successfull!!"
                     });
-                    window.location.href = "/dashBoard";
-                    // this.props.history.push('/dashBoard');
+                    // window.location.href = "/dashBoard";
+                    this.props.history.push('/dashBoard');
                 })
                 .catch((err) => {
                     console.log(err);
