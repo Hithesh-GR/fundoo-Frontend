@@ -1,5 +1,6 @@
 
-import axios from 'axios'
+import axios from 'axios';
+
 export function getNotes() {
     return axios('/getNotes', {
         method: "GET",
@@ -11,9 +12,8 @@ export function getNotes() {
         return result;
     })
 }   
+
 export function createNote(data) {
-    console.log("create note call",data);
-    
     return axios('/createNote', {
         method: "POST",
         headers: {
@@ -22,51 +22,7 @@ export function createNote(data) {
         data:data
     })
 }
-export function updateColor(url,data) {
-        
-    return axios(url, {
-        method: "PUT",
-        headers: {
-            "access-token": localStorage.getItem("token")
-        },
-        data:data
-    })
-}
 
-export function updateTitle(url,data) {
-        
-    return axios(url, {
-        method: "PUT",
-        headers: {
-            "access-token": localStorage.getItem("token")
-        },
-        data:data
-    })
-}
-
-export function updateDescription(url,data) {
-        
-    return axios(url, {
-        method: "PUT",
-        headers: {
-            "access-token": localStorage.getItem("token")
-        },
-        data:data
-    })
-}
-
-
-
-export function updatePin(url,data) {
-    
-    return axios(url, {
-        method: "PUT",
-        headers: {
-            "access-token": localStorage.getItem("token")
-        },
-        data:data
-    })
-}
 
 export function setReminder(url,data){
     return axios(url,{
@@ -78,35 +34,6 @@ export function setReminder(url,data){
     })
 }
 
-export function isTrashed(url,data){
-    return axios(url,{
-        method:"PUT",
-        headers: {
-            "access-token": localStorage.getItem("token")
-        },
-        data:data
-    })
-}
-
-export function updateArchiveStatus(url,data){
-    return axios(url,{
-        method:"PUT",
-        headers: {
-            "access-token": localStorage.getItem("token")
-        },
-        data:data
-    })
-}
-
-export function deleteNoteForever(url,data) {
-    return axios(url, {
-        method: "POST",
-        headers: {
-            "access-token": localStorage.getItem("token")
-        },
-        data:data
-    })
-}
 
 export function otherArray(notesData){
     let otherArr = [];

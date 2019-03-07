@@ -16,7 +16,6 @@ import MenuIcon from '@material-ui/icons/Menu'
 import DrawerMenu from '../components/drawerMenu';
 import CardsView from "../components/cardsView";
 import UserProfile from  "../components/userProfile"
-//import SideNavigation from "../components/sideNavigation";
 import "../App.css";
 
 const theme = createMuiTheme({
@@ -74,7 +73,7 @@ export default class dashBoard extends React.Component {
             open: false,
             searchNote:""
         };
-        this.handleAppbar = this.handleAppbar.bind(this);
+        // this.handleAppbar = this.handleAppbar.bind(this);
         this.handleSearchBar = this.handleSearchBar.bind(this);
     }
 
@@ -85,14 +84,14 @@ export default class dashBoard extends React.Component {
     
     handleSearchBar(evt) {
         this.setState({ searchNote: evt.target.value });
-        this.props.getSearchedNotes(evt.target.value)
+         //this.props.getSearchedNotes(evt.target.value)
     }
-    handleAppbar() {
-        this.props.notePropsToApp();
-    }
-    searchLabels(value) {
-        this.props.searchLabels(value)
-    }
+    // handleAppbar() {
+    //     this.props.notePropsToApp();
+    // }
+    // searchLabels(value) {
+    //     this.props.searchLabels(value)
+    // }
     render() {
         // const { open } = this.state;
         return (
@@ -101,7 +100,6 @@ export default class dashBoard extends React.Component {
                 <MuiThemeProvider theme={theme}>
                     <AppBar position="fixed" color="inherit">
                         <Toolbar>
-                        {/* <SideNavigation /> */}
                         <div id="appBarMenu">
                             <div>
                                 <IconButton color="inherit" aria-label="Open drawer" >
@@ -143,9 +141,10 @@ export default class dashBoard extends React.Component {
                         </Toolbar>
                         <DrawerMenu
                         appBarProps={this.state.open}
-                        handleNavigation={this.props.handleNavigation}
-                        searchLabels={(value) => this.searchLabels(value)}
-                        makeLabelFalse={this.props.makeLabelFalse} />
+                        // handleNavigation={this.props.handleNavigation}
+                        // searchLabels={(value) => this.searchLabels(value)}
+                        // makeLabelFalse={this.props.makeLabelFalse} 
+                        />
                     </AppBar>
                     </MuiThemeProvider>
                 </div>

@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
 import { IconButton, Tooltip } from '@material-ui/core';
-
-class CardsView extends Component {
-
+export default class CardsView extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             view: false
         }
         this.handleCardsView = this.handleCardsView.bind(this);
-
     }
-
     handleCardsView(evt) {
         evt.preventDefault();
         this.setState({ view: !this.state.view });
-        this.props.appPropstoCardsView();
+        // this.props.appPropstoCardsView();
     }
 
     render() {
@@ -42,4 +37,3 @@ class CardsView extends Component {
 
     }
 }
-export default CardsView

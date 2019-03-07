@@ -20,45 +20,31 @@ const theme = createMuiTheme({
         useNextVariants: true,
     },
 })
-class CreateNotes extends Component {
+export default class CreateNotes extends Component {
     constructor(props) {
         super(props);
         this.state = {
             openNote: false,
             title: "",
             description: "",
-            color: "rgb(255, 255, 255)",
             reminder: "",
-            pinned: false,
-            image: "",
-            archive: false,
-            trash: false,
             newNote: {}
 
         }
         this.handleTitle = this.handleTitle.bind(this);
         this.handleDescription = this.handleDescription.bind(this);
-        this.handleToggle = this.handleToggle.bind(this);
-        this.handleColor = this.handleColor.bind(this);
-        this.handleArchive = this.handleArchive.bind(this);
+        this.handleToggle = this.handleToggle.bind(this)
         this.handleReminder = this.handleReminder.bind(this);
-        this.handlePinned = this.handlePinned.bind(this);
-
     }
     handleToggle() {
         this.setState({ openNote: !this.state.openNote });
         console.log("pinned", this.state);
 
-        if (this.state.title !== '' || this.state.description !== '' || this.state.color !== "rgb(255, 255, 255)") {
+        if (this.state.title !== '' || this.state.description !== '') {
             const note = {
                 title: this.state.title,
                 description: this.state.description,
                 reminder: this.state.reminder,
-                color: this.state.color,
-                image: this.state.image,
-                archive: this.state.archive,
-                pinned: this.state.pinned,
-                trash: this.state.trash,
             }
 
             createNote(note)
@@ -76,12 +62,7 @@ class CreateNotes extends Component {
             this.setState({
                 title: "",
                 description: "",
-                reminder:"",
-                color: "rgb(255, 255, 255)",
-                image: "",
-                archive: false,
-                pinned: false,
-                trash: false,
+                reminder:""
             })
 
         }
@@ -100,18 +81,6 @@ class CreateNotes extends Component {
         this.setState({ reminder: value })
     }
 
-    handleColor(value) {
-        this.setState({ color: value });
-    }
-
-    handleArchive(value) {
-        this.setState({ archive: value });
-    }
-
-    handlePinned(value) {
-        this.setState({ pinned: value });
-    }
-   
 
     render() {
         return (!this.state.openNote ?
@@ -157,15 +126,13 @@ class CreateNotes extends Component {
                             className="noteInputBase"
                             multiline
                             disableUnderline={true}
-                            placeholder="Take a Note ...."
+                            placeholder="Take a Note..."
                             value={this.state.description}
                             onChange={this.handleDescription}
                         />
                         <div className="cardToolsClose" >
                             <Tools
-                                createNotePropsToTools={this.handleColor}
-                                archiveNote={this.handleArchive}
-                                archiveStatus={this.state.archive} />
+                            />
                             <Button onClick={this.handleToggle}>Close</Button>
                         </div>
                     </Card>
@@ -174,4 +141,4 @@ class CreateNotes extends Component {
         )
     }
 }
-export default CreateNotes;
+

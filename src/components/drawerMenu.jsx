@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { Drawer } from '@material-ui/core';
 import { MenuItem } from '@material-ui/core';
 class DrawerMenu extends Component {
-
     constructor() {
         super();
-
         this.state = {
             open: false,
             navigateReminder: false,
@@ -13,11 +11,7 @@ class DrawerMenu extends Component {
             navigateTrashed: false,
             label: [],
         }
-
-        
     }
-
-    
     async handleNotes() {
         await this.setState({
             navigateReminder: false,
@@ -37,7 +31,6 @@ class DrawerMenu extends Component {
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
     async handleArchived() {
-
         await this.setState({
             navigateReminder: false,
             navigateArchived: true,
@@ -55,7 +48,6 @@ class DrawerMenu extends Component {
         this.props.makeLabelFalse();
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
-
     render() {
         return (
             <div>
@@ -64,7 +56,7 @@ class DrawerMenu extends Component {
                     open={this.props.appBarProps}
                     width={250}
                 >
-                    <MenuItem id="noteMenu" onClick={()=>this.handleNotes()}>
+                    <MenuItem id="noteMenu" onClick={() => this.handleNotes()}>
                         <img src={require('../assets/images/note.svg')} alt="note icon"
                             style={{ marginRight: "50px" }} />
                         Notes
@@ -82,11 +74,7 @@ class DrawerMenu extends Component {
                 </div>
 
                         <div>
-                            <div>
-                                {/* {displayLabels} */}
-                            </div>
                             <MenuItem id="labelMenu" onClick={this.handleEditLabel}>
-
                                 <img src={require('../assets/images/menuEdit.svg')} alt="edit icon"
                                     style={{ marginRight: "50px" }} />
                                 Edit Labels
