@@ -1,15 +1,20 @@
-
+/****************************************************************************************
+ *  @Purpose        : Here we have to create the new Notes.
+ *  @file           : createNotes.jsx       
+ *  @author         : HITHESH G R
+ *  @version        : v0.1
+ *  @since          : 23-02-2019
+ *****************************************************************************************/
 import React, { Component } from 'react';
-import { Input, Card, createMuiTheme, MuiThemeProvider } from '@material-ui/core'
-import Tools from '../components/tools';
+import { Input, Card, createMuiTheme, MuiThemeProvider, Tooltip } from '@material-ui/core'
+import Tools from './tools';
 import { Button } from '@material-ui/core';
 import { createNote } from '../services/noteServices'
-import EditPin from '../components/editPin';
 const theme = createMuiTheme({
     overrides: {
         MuiPaper: {
             rounded: {
-                borderRadius: "10px",
+                borderRadius: "15px",
             },
             elevation1: {
                 boxShadow: "0 3px 5px rgba(0,0,0,0.20)"
@@ -20,7 +25,7 @@ const theme = createMuiTheme({
         useNextVariants: true,
     },
 })
-export default class CreateNotes extends Component {
+export default class createNotes extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -39,14 +44,12 @@ export default class CreateNotes extends Component {
     handleToggle() {
         this.setState({ openNote: !this.state.openNote });
         console.log("pinned", this.state);
-
         if (this.state.title !== '' || this.state.description !== '') {
             const note = {
                 title: this.state.title,
                 description: this.state.description,
                 reminder: this.state.reminder,
             }
-
             createNote(note)
                 .then((result) => {
                     this.setState({
@@ -54,51 +57,43 @@ export default class CreateNotes extends Component {
                     })
                     this.props.getNewNote(this.state.newNote)
                 })
-
                 .catch((error) => {
                     alert(error);
                 })
-
             this.setState({
                 title: "",
                 description: "",
-                reminder:""
+                reminder: ""
             })
-
         }
-
     }
-
     handleTitle(evt) {
         this.setState({ title: evt.target.value })
     }
-
     handleDescription(evt) {
         this.setState({ description: evt.target.value })
     }
-
     handleReminder(value) {
         this.setState({ reminder: value })
     }
-
-
     render() {
         return (!this.state.openNote ?
-
             <MuiThemeProvider theme={theme}>
                 <div id="createNoteParent">
                     <Card className="createNote">
                         <div className="staticCreateNote">
                             <Input
-                                className="noteInputBase"
+                                className="noteInputBase1"
                                 multiline
                                 disableUnderline={true}
-                                placeholder="Take a Note ...."
+                                placeholder="Take a note ...."
                                 readOnly={true}
                                 onClick={this.handleToggle}
                                 value=""
                             />
-                            <img src={require('../assets/images/imageUpload.svg')} alt="upload pic icon" />
+                            <Tooltip title="New note with image">
+                                <img src={require('../assets/images/imageUpload.svg')} alt="upload pic icon" />
+                            </Tooltip>
                         </div>
                     </Card>
                 </div>
@@ -115,18 +110,12 @@ export default class CreateNotes extends Component {
                                 value={this.state.title}
                                 onChange={this.handleTitle}
                             />
-                            <div>
-                                <EditPin
-                                    pinStatus={this.state.pinned}
-                                    cardPropsToPin={this.handlePinned} />
-                            </div>
                         </div>
-
                         <Input
                             className="noteInputBase"
                             multiline
                             disableUnderline={true}
-                            placeholder="Take a Note..."
+                            placeholder="Take a note..."
                             value={this.state.description}
                             onChange={this.handleDescription}
                         />

@@ -1,4 +1,10 @@
-
+/********************************************************************************************
+ *  @Purpose        : Here we have to create the reminder for setting the reminder for note.
+ *  @file           : reminder.jsx       
+ *  @author         : HITHESH G R
+ *  @version        : v0.1
+ *  @since          : 23-02-2019
+ ********************************************************************************************/
 import React, { Component } from 'react';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
@@ -16,9 +22,9 @@ const theme = createMuiTheme({
                 fontSize: "12px",
             }
         },
-        MuiPaper:{
-            root:{
-                zIndex:"1"
+        MuiPaper: {
+            root: {
+                zIndex: "1"
             }
         },
     },
@@ -26,14 +32,12 @@ const theme = createMuiTheme({
         useNextVariants: true,
     },
 })
-
-class Reminder extends Component {
+export default class reminder extends Component {
     state = {
         anchorEl: null,
         open: false,
         placement: null,
     };
-    
     handleClick = placement => event => {
         const { currentTarget } = event;
 
@@ -43,41 +47,9 @@ class Reminder extends Component {
             placement,
         }));
     };
-    handleClose=()=>{
-        this.setState(state=>({open:!state.open}))
+    handleClose = () => {
+        this.setState(state => ({ open: !state.open }))
     }
-    setTodayReminder(note) {
-        this.handleClose();
-        let ampm = parseInt(new Date().getHours()) >= 8 ? "PM" : "AM";
-        console.log("before",note);
-        
-        var date = new Date().toDateString();
-        note.reminder = date+ ", 8 "+ampm;
-        console.log(note.reminder);
-        this.props.reminder(note.reminder,note._id)
-    }
-    setTomorrowReminder(note){
-        this.handleClose();
-        let days=["Mon","Tue","Wed","Thu","Fri","Sat","Sun","Mon"]
-        console.log("before",note);
-        var date = new Date().toDateString();
-        date=date.replace(new Date().getDate().toString(),new Date().getDate()+1);
-        date=date.replace(days[new Date().getDay()-1],days[new Date().getDay()]);
-        note.reminder = date+ ", 8 AM" ;
-        console.log(note.reminder);
-        this.props.reminder(note.reminder,note._id)
-    }
-    setWeeklyReminder(note){
-        this.handleClose();
-        console.log("before",note);
-        var date = new Date().toDateString();
-        date=date.replace((new Date().getDate()),(new Date().getDate()+7));
-        note.reminder = date+ ", 8 AM" ;
-        console.log(note.reminder);
-        this.props.reminder(note.reminder,note._id)
-    }
-
-
     render() {
         const setAMPM = this.props.parentToolsProps;
         const { anchorEl, open, placement } = this.state;
@@ -85,54 +57,43 @@ class Reminder extends Component {
             <MuiThemeProvider theme={theme}>
                 <div>
                     <Tooltip title="Remind me">
-                        <img src={require('../assets/images/reminder.svg')} 
-                        className="reminderIcon" 
-                        onClick={this.handleClick('bottom-start')} alt="remider icon" />
+                        <img src={require('../assets/images/reminder.svg')}
+                            className="reminderIcon"
+                            onClick={this.handleClick('bottom-start')} alt="remider icon" />
                     </Tooltip>
 
-                    <Popper open={open} anchorEl={anchorEl} placement={placement} transition style={{zIndex:1}}>
+                    <Popper open={open} anchorEl={anchorEl} placement={placement} transition style={{ zIndex: 1 }}>
                         {({ TransitionProps }) => (
                             <Fade {...TransitionProps} timeout={350}>
                                 <Paper id="reminderPopper">
-                                <ClickAwayListener onClickAway={this.handleClose}>
-
-                                    <div>
-
-                                        <ListItem className="listRemindr" >Reminder:</ListItem>
-                                        <MenuItem className="currentDate" onClick={()=>this.setTodayReminder(this.props.note)}>
-                                            <div>Later today</div>
-                                            <div>8:00 {setAMPM}</div>
-                                        </MenuItem>
-
-                                        <MenuItem className="currentDate"  onClick={()=>this.setTomorrowReminder(this.props.note)}>
-                                            <div>Tomorrow</div>
-                                            <div>8:00 AM</div>
-                                        </MenuItem>
-
-                                        <MenuItem className="currentDate"  onClick={()=>this.setWeeklyReminder(this.props.note)}>
-                                            <div>Next Week</div>
-                                            <div>Mon, 8:00 AM</div>
-                                        </MenuItem>
-
-                                        <MenuItem className="currentDate">
-                                            <div>Home</div>
-                                            <div>Mumbai</div>
-
-                                        </MenuItem>    
-                                        <MenuItem >Pick place</MenuItem>
-                                       
-                                    </div>
+                                    <ClickAwayListener onClickAway={this.handleClose}>
+                                        <div>
+                                            <ListItem className="listRemindr" >Reminder:</ListItem>
+                                            <MenuItem className="currentDate">
+                                                <div>Later today</div>
+                                                <div>8:00 {setAMPM}</div>
+                                            </MenuItem>
+                                            <MenuItem className="currentDate" >
+                                                <div>Tomorrow</div>
+                                                <div>8:00 AM</div>
+                                            </MenuItem>
+                                            <MenuItem className="currentDate" >
+                                                <div>Next Week</div>
+                                                <div>Mon, 8:00 AM</div>
+                                            </MenuItem>
+                                            <MenuItem className="currentDate">
+                                                <div>Home</div>
+                                                <div>Bangalore</div>
+                                            </MenuItem>
+                                        </div>
                                     </ClickAwayListener>
                                 </Paper>
                             </Fade>
                         )}
                     </Popper>
-
-
-
                 </div>
             </MuiThemeProvider>
         )
     }
 }
-export default Reminder;
+

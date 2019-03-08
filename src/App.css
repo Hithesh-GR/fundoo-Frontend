@@ -75,11 +75,11 @@
     padding: 0% 0%;
     flex-grow: 100%
 }
-/* 
+
 input[type=email] {
     width: 390px;
     padding: 19px 35px;
-} */
+}
 
 #outlined-adornment-password {
     display: flex;
@@ -441,7 +441,7 @@ element.style {
   }
   
   #menu {
-    color: "gray"
+    color: "gray";
   }
   
   #noteMenu {
@@ -502,12 +502,12 @@ element.style {
   }
   
   .createNote {
-    height: 30px;
+    height: 0px;
     width: 500px;
     margin-left: 100px;
     margin-top: 100px;
     text-align: left;
-    padding: 11px;
+    padding: 32px;
     border: 1px solid #dadce0;
   }
   
@@ -541,11 +541,16 @@ element.style {
   
   .staticCreateNote {
     display: flex;
-    flex-direction: row
+    flex-direction: row;
+    margin-top: -3%
   }
   
   .noteInputBase {
-    margin-top: 0px;
+    margin-top: 3%;
+    width: 460px;
+  }
+  .noteInputBase1 {
+    margin-top: 0%;
     width: 460px;
   }
   
@@ -630,13 +635,13 @@ element.style {
   .cardToolsClose {
     display: flex;
     justify-content: space-between;
+    margin-top: 5.5%
   }
   
   .cardTools {
     width: 200px;
     display: flex;
     justify-content: space-between;
-    /* visibility: hidden; */
   }
   
   .listCards:hover .cardTools {
@@ -658,7 +663,8 @@ element.style {
   
   .createNotePinIcon {
     display: flex;
-    flex-direction: row
+    flex-direction: row;
+    margin-top: -5%
   }
   
   div .listRemindr {

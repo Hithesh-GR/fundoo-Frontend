@@ -195,6 +195,7 @@ export default class registration extends React.Component {
                         <TextField
                             label="Email"
                             id="email"
+                            type="email"
                             value={this.state.email}
                             onKeyPress={this.handleEnter}
                             onChange={this.handleuserEmailChange}

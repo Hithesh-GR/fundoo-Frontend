@@ -25,13 +25,13 @@ export default class login extends React.Component {
             email: "",
             password: "",
             snackBarMessage: "",
-            errorMessage:"",
+            errorMessage: "",
             showPassword: false,
             fields: {
                 email: "",
                 password: ""
             },
-            errors:{}
+            errors: {}
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -47,13 +47,17 @@ export default class login extends React.Component {
      * @description:Takes the registered user password 
      */
     handleChange = prop => event => {
-        this.setState({ [prop]: event.target.value });
+        try {
+            this.setState({ [prop]: event.target.value });
+        } catch (err) {
+            console.log("result", err);
+        }
     };
     handleClickShowPassword = () => {
         this.setState(state => ({ showPassword: !state.showPassword }));
     };
-    handleEnter=event=>{
-        if(event.key==='Enter'){
+    handleEnter = event => {
+        if (event.key === 'Enter') {
             event.preventDefault();
             this.handleSubmit(event);
         }

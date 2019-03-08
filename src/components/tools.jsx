@@ -1,3 +1,10 @@
+/****************************************************************************************
+ *  @Purpose        : Here we have to create the tools that required in creating a note.
+ *  @file           : tools.jsx       
+ *  @author         : HITHESH G R
+ *  @version        : v0.1
+ *  @since          : 23-02-2019
+ *****************************************************************************************/
 import React, { Component } from 'react';
 import Reminder from '../components/reminder'
 class Tools extends Component {

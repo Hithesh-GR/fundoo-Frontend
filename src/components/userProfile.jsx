@@ -1,6 +1,13 @@
+/****************************************************************************************
+ *  @Purpose        : Here we have to create the user profile.
+ *  @file           : userProfile.jsx       
+ *  @author         : HITHESH G R
+ *  @version        : v0.1
+ *  @since          : 23-02-2019
+ *****************************************************************************************/
 import React, { Component } from 'react'
 import Popper from '@material-ui/core/Popper';
-import { IconButton, MenuItem, Paper, Tooltip, Avatar } from '@material-ui/core'
+import { IconButton, MenuItem, Paper, Avatar } from '@material-ui/core'
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import MenuList from "@material-ui/core/MenuList";
 import Grow from "@material-ui/core/Grow";
@@ -27,13 +34,13 @@ export default class UserProfile extends Component {
         }
         this.setState({ open: false });
     };
-     /**
-     * @description:it will redirect to registration page
-     */
+    /**
+    * @description:it will redirect to registration page
+    */
     registrationclick = e => {
         e.preventDefault();
         // this.props.history.push('/registration');
-        window.location.href="/registration";
+        window.location.href = "/registration";
     };
     /**
      * @description:it will redirect to login page
@@ -41,64 +48,64 @@ export default class UserProfile extends Component {
     loginclick = e => {
         e.preventDefault();
         // this.props.props.history.push('/login');
-        window.location.href="/login";
+        window.location.href = "/login";
     };
     render() {
         const { open } = this.state;
-            return (
-                <div>
-                    <div className="iconButton">
-                        <IconButton
-                            buttonRef={node => {
-                                this.anchorEl = node;
-                            }}
-                            aria-owns={open ? "menu-list-grow" : undefined}
-                            aria-haspopup="true"
-                            onClick={this.handleToggle1}
-                        >
-                            <Avatar
-                                alt="Remy Sharp"
-                                src={require("../assets/images/hithu.jpg")}
-                                title="Fundoo Account:Hithesh G R"
-                            />
-                        </IconButton>
-                    </div>
-                    <Popper
-                        open={open}
-                        anchorEl={this.anchorEl}
-                        transition
-                        disablePortal
+        return (
+            <div>
+                <div className="iconButton">
+                    <IconButton
+                        buttonRef={node => {
+                            this.anchorEl = node;
+                        }}
+                        aria-owns={open ? "menu-list-grow" : undefined}
+                        aria-haspopup="true"
+                        onClick={this.handleToggle1}
                     >
-                        {({ TransitionProps, placement }) => (
-                            <Grow
-                                {...TransitionProps}
-                                id="menu-list-grow"
-                                style={{
-                                    transformOrigin:
-                                        placement === "top"
-                                            ? "center top"
-                                            : "center top"
-                                }}
-                            >
-                                <Paper>
-                                    <ClickAwayListener onClickAway={this.handleClose}>
-                                        <MenuList>
-                                            <MenuItem onClick={this.registrationclick}>
-                                                Add account
-                            </MenuItem>
-                                            <MenuItem onClick={this.loginclick}>
-                                                Logout
-                        </MenuItem>
-                                        </MenuList>
-                                    </ClickAwayListener>
-                                </Paper>
-                            </Grow>
-                        )}
-                    </Popper>
+                        <Avatar
+                            alt="Remy Sharp"
+                            src={require("../assets/images/hithu.jpg")}
+                            title="Fundoo Account:Hithesh G R"
+                        />
+                    </IconButton>
                 </div>
+                <Popper
+                    open={open}
+                    anchorEl={this.anchorEl}
+                    transition
+                    disablePortal
+                >
+                    {({ TransitionProps, placement }) => (
+                        <Grow
+                            {...TransitionProps}
+                            id="menu-list-grow"
+                            style={{
+                                transformOrigin:
+                                    placement === "top"
+                                        ? "center top"
+                                        : "center top"
+                            }}
+                        >
+                            <Paper>
+                                <ClickAwayListener onClickAway={this.handleClose}>
+                                    <MenuList>
+                                        <MenuItem onClick={this.registrationclick}>
+                                            Add account
+                                            </MenuItem>
+                                        <MenuItem onClick={this.loginclick}>
+                                            Logout
+                                            </MenuItem>
+                                    </MenuList>
+                                </ClickAwayListener>
+                            </Paper>
+                        </Grow>
+                    )}
+                </Popper>
+            </div>
 
-            )
-        
+        )
+
     }
 }
 

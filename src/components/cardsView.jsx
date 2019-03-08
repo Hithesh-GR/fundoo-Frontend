@@ -1,6 +1,13 @@
+/*******************************************************************************************************
+ *  @Purpose        : Here we have to create the cards view for displaying cards in list and grid view.
+ *  @file           : cardsView.jsx       
+ *  @author         : HITHESH G R
+ *  @version        : v0.1
+ *  @since          : 23-02-2019
+ *******************************************************************************************************/
 import React, { Component } from 'react';
 import { IconButton, Tooltip } from '@material-ui/core';
-export default class CardsView extends Component {
+export default class cardsView extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,24 +20,23 @@ export default class CardsView extends Component {
         this.setState({ view: !this.state.view });
         // this.props.appPropstoCardsView();
     }
-
     render() {
-        return(
+        return (
             this.state.view ?
-            <div>
-                <IconButton id="cardViewIcon">
-                    <Tooltip title="List View" onClick={this.handleCardsView}>
-                        <img src={require('../assets/images/view-agenda.svg')} alt="grid icon" />
-                    </Tooltip>
-                </IconButton>
-            </div>
+                <div>
+                    <IconButton id="cardViewIcon">
+                        <Tooltip title="List View" onClick={this.handleCardsView}>
+                            <img src={require('../assets/images/view-agenda.svg')} alt="grid icon" />
+                        </Tooltip>
+                    </IconButton>
+                </div>
                 :
                 <div>
-                <IconButton id="cardViewIcon">
-                    <Tooltip title="Grid View" onClick={this.handleCardsView}>
-                        <img src={require('../assets/images/view-grid.svg')} alt="grid icon" />
-                    </Tooltip>
-                </IconButton>
+                    <IconButton id="cardViewIcon">
+                        <Tooltip title="Grid View" onClick={this.handleCardsView}>
+                            <img src={require('../assets/images/view-grid.svg')} alt="grid icon" />
+                        </Tooltip>
+                    </IconButton>
                 </div>
 
         )
