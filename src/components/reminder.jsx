@@ -38,17 +38,30 @@ export default class reminder extends Component {
         open: false,
         placement: null,
     };
+    /**
+     * @description:it handles the onclick on reminder event
+     */
     handleClick = placement => event => {
-        const { currentTarget } = event;
-
-        this.setState(state => ({
-            anchorEl: currentTarget,
-            open: state.placement !== placement || !state.open,
-            placement,
-        }));
+        try {
+            const { currentTarget } = event;
+            this.setState(state => ({
+                anchorEl: currentTarget,
+                open: state.placement !== placement || !state.open,
+                placement,
+            }));
+        } catch (err) {
+            console.log("error at handleClick in reminder");
+        }
     };
+    /**
+     * @description:it handles the close the current event
+     */
     handleClose = () => {
-        this.setState(state => ({ open: !state.open }))
+        try {
+            this.setState(state => ({ open: !state.open }))
+        } catch (err) {
+            console.log("error at handleClose in reminder");
+        }
     }
     render() {
         const setAMPM = this.props.parentToolsProps;

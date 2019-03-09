@@ -40,8 +40,12 @@ export default class login extends React.Component {
      * @description:Takes the registered user emailID
      */
     handleEmailChange = event => {
-        const email = event.target.value;
-        this.setState({ email: email });
+        try {
+            const email = event.target.value;
+            this.setState({ email: email });
+        } catch (err) {
+            console.log("error at handleEmailChange in login");
+        }
     }
     /**
      * @description:Takes the registered user password 
@@ -50,91 +54,115 @@ export default class login extends React.Component {
         try {
             this.setState({ [prop]: event.target.value });
         } catch (err) {
-            console.log("result", err);
+            console.log("error at handleChange in login");
         }
     };
     handleClickShowPassword = () => {
-        this.setState(state => ({ showPassword: !state.showPassword }));
+        try {
+            this.setState(state => ({ showPassword: !state.showPassword }));
+        } catch (err) {
+            console.log("error at handleClickShowPassword in login");
+        }
     };
     handleEnter = event => {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            this.handleSubmit(event);
+        try {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                this.handleSubmit(event);
+            }
+        } catch (err) {
+            console.log("error at handleEnter in login");
         }
     };
     /**
      * @description:it will submit the login page and checks all the conditions
      */
     handleSubmit = event => {
-        event.preventDefault();
-        if (!this.state.email) {
-            this.setState({
-                openSnackBar: true,
-                errorMessage: "email cannot be empty..!"
-            });
-        } else if (!this.state.password) {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "password cannot be empty..!"
-            });
-        } else if (
-            !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.email)
-        ) {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "Invalid email..!"
-            });
-        } else if (this.state.password.length < 6) {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "password must be of atleast 6 characters long..!"
-            });
-        }
-        else {
-            var data = {
-                email: this.state.email,
-                password: this.state.password
-            }
-            userLogin(data)
-                .then((response) => {
-                    console.log(response);
-                    this.setState({
-                        openSnackBar: true,
-                        snackBarMessage: "Login Successfull!!"
-                    });
-                    // window.location.href = "/dashBoard";
-                    this.props.history.push('/dashBoard');
-                })
-                .catch((err) => {
-                    console.log(err);
-                    this.setState({
-                        openSnackBar: true,
-                        snackBarMessage: "Login failed!!"
-                    });
+        try {
+            event.preventDefault();
+            if (!this.state.email) {
+                this.setState({
+                    openSnackBar: true,
+                    errorMessage: "email cannot be empty..!"
                 });
+            } else if (!this.state.password) {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "password cannot be empty..!"
+                });
+            } else if (
+                !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.email)
+            ) {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "Invalid email..!"
+                });
+            } else if (this.state.password.length < 6) {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "password must be of atleast 6 characters long..!"
+                });
+            }
+            else {
+                var data = {
+                    email: this.state.email,
+                    password: this.state.password
+                }
+                userLogin(data)
+                    .then((response) => {
+                        console.log(response);
+                        this.setState({
+                            openSnackBar: true,
+                            snackBarMessage: "Login Successfull!!"
+                        });
+                        // window.location.href = "/dashBoard";
+                        this.props.history.push('/dashBoard');
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        this.setState({
+                            openSnackBar: true,
+                            snackBarMessage: "Login failed!!"
+                        });
+                    });
+            }
+        } catch (err) {
+            console.log("error at handleSubmit in login");
         }
     };
     /**
      * @description:redirect or trigger to forgotPasswordPage
      */
     forgotPasswordPage = e => {
-        e.preventDefault();
-        this.props.history.push('/forgotPassword');
+        try {
+            e.preventDefault();
+            this.props.history.push('/forgotPassword');
+        } catch (err) {
+            console.log("error at forgotPasswordPage in login");
+        }
     };
     /**
      * @description:redirect to registerpage
      */
     registrationclick = e => {
-        e.preventDefault();
-        this.props.history.push('/registration');
+        try {
+            e.preventDefault();
+            this.props.history.push('/registration');
+        } catch (err) {
+            console.log("error at registrationclick in login");
+        }
     };
     /**
      * @description:use to auto close snackBar
      */
     handleSnackClose = () => {
-        this.setState({
-            openSnackBar: false
-        })
+        try {
+            this.setState({
+                openSnackBar: false
+            })
+        } catch (err) {
+            console.log("error at handleSnackClose in login");
+        }
     };
     render() {
         return (

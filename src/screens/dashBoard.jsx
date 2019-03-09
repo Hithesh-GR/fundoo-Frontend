@@ -18,14 +18,36 @@ export default class dashBoard extends Component {
         this.getNewNote = this.getNewNote.bind(this);
         this.slideCards = this.slideCards.bind(this);
     }
+    /**
+     * @description:it creates the new created note
+     * @param {*getting created newCard} newCard 
+     */
     getNewNote(newCard) {
-        this.noteToCards.current.displayNewCard(newCard);
+        try {
+            this.noteToCards.current.displayNewCard(newCard);
+        } catch (err) {
+            console.log("error at getNewNote in dashBoard");
+        }
     }
+    /**
+     * @description:it performs the card action
+     */
     slideCards() {
-        this.setState({ slideCards: !this.state.slideCards })
+        try {
+            this.setState({ slideCards: !this.state.slideCards })
+        } catch (err) {
+            console.log("error at slideCards in dashBoard");
+        }
     }
+    /**
+     * @description:it handles the cards style
+     */
     handleCardStyle() {
-        this.setState({ cardStyles: !this.state.cardStyles });
+        try {
+            this.setState({ cardStyles: !this.state.cardStyles });
+        } catch (err) {
+            console.log("error at handleCardStyle in dashBoard");
+        }
     }
     render() {
         const slidingCards = this.state.slideCards ? "afterSlide" : "beforeSlide"

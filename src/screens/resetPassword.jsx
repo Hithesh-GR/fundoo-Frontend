@@ -28,88 +28,128 @@ export default class ResetPassword extends React.Component {
         };
         this.baseState = this.state;
     }
+    /**
+     * @description:it handles to change the states
+     */
     handleChange = prop => event => {
-        this.setState({ [prop]: event.target.value });
+        try {
+            this.setState({ [prop]: event.target.value });
+        } catch (err) {
+            console.log("error at handleChange in resetPassword");
+        }
     };
+    /**
+     * @description:it will displays the entered password 
+     */
     handleClickShowPassword = () => {
-        this.setState(state => ({ showPassword: !state.showPassword }));
+        try {
+            this.setState(state => ({ showPassword: !state.showPassword }));
+        } catch (err) {
+            console.log("error at handleClickShowPassword in resetPassword");
+        }
     };
+    /**
+     * @description:it will displays the entered password 
+     */
     handleClickShowPassword1 = () => {
-        this.setState(state => ({ showPassword1: !state.showPassword1 }));
+        try {
+            this.setState(state => ({ showPassword1: !state.showPassword1 }));
+        } catch (err) {
+            console.log("error at handleClickShowPassword1 in resetPassword");
+        }
     };
-    handleEnter=event=>{
-        if(event.key==='Enter'){
-            event.preventDefault();
-            this.handleSubmit(event);
+    /**
+     * @description:it handles the enter button from keyboard
+     */
+    handleEnter = event => {
+        try {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                this.handleSubmit(event);
+            }
+        } catch (err) {
+            console.log("error at handleEnter in resetPassword");
         }
     };
     /**
     * @description:it will submit the entered password and checks the all the conditions
     */
     handleSubmit = event => {
-        event.preventDefault();
-        if (this.state.password === "") {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "password cannot be empty"
-            });
-        } else if (this.state.newPassword === "") {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "Confirm Password cannot be empty"
-            });
-        } else if (this.state.password.length < 6) {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "password must be of atleast 6 characters long"
-            });
-        } else if (this.state.newPassword.length < 6) {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "Confirm Password must be of atleast 6 characters long"
-            });
-        } else if (this.state.password !== this.state.newPassword) {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "Password and Confirm password must be same"
-            });
-        } else {
+        try {
             event.preventDefault();
-            let current_url = window.location.pathname;
-            let verify_user_token = current_url.substr(19);
-            console.log(verify_user_token);
-            console.log("current ", current_url);
-            resetPassword(this.state.password, verify_user_token)
-                .then((response) => {
-                    console.log(response);
-                    this.setState({
-                        openSnackBar: true,
-                        snackBarMessage: "Password changed successfully"
-                    });
-                    this.props.history.push("/login");
-                })
-                .catch((err) => {
-                    console.log(err);
-                    this.setState({
-                        openSnackBar: true,
-                        snackBarMessage: "Please Try Again.."
-                    });
+            if (this.state.password === "") {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "password cannot be empty"
                 });
+            } else if (this.state.newPassword === "") {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "Confirm Password cannot be empty"
+                });
+            } else if (this.state.password.length < 6) {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "password must be of atleast 6 characters long"
+                });
+            } else if (this.state.newPassword.length < 6) {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "Confirm Password must be of atleast 6 characters long"
+                });
+            } else if (this.state.password !== this.state.newPassword) {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "Password and Confirm password must be same"
+                });
+            } else {
+                event.preventDefault();
+                let current_url = window.location.pathname;
+                let verify_user_token = current_url.substr(19);
+                console.log(verify_user_token);
+                console.log("current ", current_url);
+                resetPassword(this.state.password, verify_user_token)
+                    .then((response) => {
+                        console.log(response);
+                        this.setState({
+                            openSnackBar: true,
+                            snackBarMessage: "Password changed successfully"
+                        });
+                        this.props.history.push("/login");
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        this.setState({
+                            openSnackBar: true,
+                            snackBarMessage: "Please Try Again.."
+                        });
+                    });
+            }
+        } catch (err) {
+            console.log("error at handleSubmit in resetPassword");
         }
     };
     /**
      * @description:it will resets the page or form if we entered wrong fields
      */
     resetForm = () => {
-        this.setState(this.baseState);
+        try {
+            this.setState(this.baseState);
+        } catch (err) {
+            console.log("error at resetForm in resetPassword");
+        }
     };
     /**
      * @description:use to auto close snackBar
      */
     handleSnackClose = () => {
-        this.setState({
-            openSnackBar: false
-        })
+        try {
+            this.setState({
+                openSnackBar: false
+            })
+        } catch (err) {
+            console.log("error at handleSnackClose in resetPassword");
+        }
     };
     render() {
         return (

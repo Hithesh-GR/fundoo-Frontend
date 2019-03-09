@@ -33,122 +33,164 @@ export default class registration extends React.Component {
     * @description:Takes the firstname
     */
     handleuserfirstNameChange = event => {
-        const firstName = event.target.value;
-        this.setState({ firstName: firstName });
+        try {
+            const firstName = event.target.value;
+            this.setState({ firstName: firstName });
+        } catch (err) {
+            console.log("error at handleuserfirstNameChange in registration");
+        }
     };
     /**
      * @description:takes the lastname
      */
     handleuserlastNameChange = event => {
-        const lastName = event.target.value;
-        this.setState({ lastName: lastName });
+        try {
+            const lastName = event.target.value;
+            this.setState({ lastName: lastName });
+        } catch (err) {
+            console.log("error at handleuserlastNameChange in registration");
+        }
     };
     /**
      * @description:takes the email
      */
     handleuserEmailChange = event => {
-        const email = event.target.value;
-        this.setState({ email: email });
+        try {
+            const email = event.target.value;
+            this.setState({ email: email });
+        } catch (err) {
+            console.log("error at handleuserEmailChange in registration");
+        }
     };
     /**
-    * @description:takes the password
-    */
+     * @description:it will displays the entered password 
+     */
     handleClickShowPassword = () => {
-        this.setState(state => ({ showPassword: !state.showPassword }));
+        try {
+            this.setState(state => ({ showPassword: !state.showPassword }));
+        } catch (err) {
+            console.log("error at handleClickShowPassword in registration");
+        }
     };
+    /**
+     * @description:it handles to change the states
+     */
     handleChange = prop => event => {
-        this.setState({ [prop]: event.target.value });
+        try {
+            this.setState({ [prop]: event.target.value });
+        } catch (err) {
+            console.log("error at handleChange in registration");
+        }
     };
-    handleEnter=event=>{
-        if(event.key==='Enter'){
-            event.preventDefault();
-            this.handleSubmit(event);
+    /**
+     * @description:it handles the enter button from keyboard
+     */
+    handleEnter = event => {
+        try {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                this.handleSubmit(event);
+            }
+        } catch (err) {
+            console.log("error at handleEnter in registration");
         }
     };
     /**
      * @description:it will submit the registration page, after all field are filled and checks the all the conditions
      */
     handleSubmit = event => {
-        event.preventDefault();
-        if (this.state.firstName === "") {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "firstName cannot be empty..!"
-            });
-        } else if (this.state.lastName === "") {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "lastName cannot be empty..!"
-            });
-        } else if (this.state.email === "") {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "email cannot be empty..!"
-            });
-        } else if (!/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.email)) {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "Invalid email..!"
-            });
-        } else if (this.state.password === "") {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "password cannot be empty..!"
-            });
-        } else if (this.state.password.length < 6) {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "password must be of atleast 6 characters long..!"
-            });
-        } else if (this.state.confirm === "") {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "Confirm password cannot be empty..!"
-            });
-        } else if (this.state.password !== this.state.confirm) {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "password and confirm password must be same..!"
-            });
-        } else {
-            var data = {
-                firstname: this.state.firstName,
-                lastname: this.state.lastName,
-                email: this.state.email,
-                password: this.state.password
-            }
-            userRegister(data)
-                .then((response) => {
-                    console.log("response==>", response);
-                    this.setState({
-                        openSnackBar: true,
-                        snackBarMessage: "Registered Successfully!!"
-                    });
-                    this.props.history.push("/login");
-                })
-                .catch((err) => {
-                    console.log(err);
-                    this.setState({
-                        openSnackBar: true,
-                        snackBarMessage: "Register Failed"
-                    });
+        try {
+            event.preventDefault();
+            if (this.state.firstName === "") {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "firstName cannot be empty..!"
                 });
+            } else if (this.state.lastName === "") {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "lastName cannot be empty..!"
+                });
+            } else if (this.state.email === "") {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "email cannot be empty..!"
+                });
+            } else if (!/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.email)) {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "Invalid email..!"
+                });
+            } else if (this.state.password === "") {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "password cannot be empty..!"
+                });
+            } else if (this.state.password.length < 6) {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "password must be of atleast 6 characters long..!"
+                });
+            } else if (this.state.confirm === "") {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "Confirm password cannot be empty..!"
+                });
+            } else if (this.state.password !== this.state.confirm) {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "password and confirm password must be same..!"
+                });
+            } else {
+                var data = {
+                    firstname: this.state.firstName,
+                    lastname: this.state.lastName,
+                    email: this.state.email,
+                    password: this.state.password
+                }
+                userRegister(data)
+                    .then((response) => {
+                        console.log("response==>", response);
+                        this.setState({
+                            openSnackBar: true,
+                            snackBarMessage: "Registered Successfully!!"
+                        });
+                        this.props.history.push("/login");
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        this.setState({
+                            openSnackBar: true,
+                            snackBarMessage: "Register Failed"
+                        });
+                    });
+            }
+        } catch (err) {
+            console.log("error at handleSubmit in registration");
         }
     };
     /**
      * @description:it will redirect to loginpage
      */
     loginclick = event => {
-        event.preventDefault();
-        this.props.history.push("/login");
+        try {
+            event.preventDefault();
+            this.props.history.push("/login");
+        } catch (err) {
+            console.log("error at loginclick in registration");
+        }
     };
     /**
      * @description:use to auto close snackBar
      */
     handleSnackClose = () => {
-        this.setState({
-            openSnackBar: false
-        })
+        try {
+            this.setState({
+                openSnackBar: false
+            })
+        } catch (err) {
+            console.log("error at handleSnackClose in registration");
+        }
     };
     render() {
         return (
@@ -263,14 +305,14 @@ export default class registration extends React.Component {
                     }}
                     message={<span id="message-id"> {this.state.snackBarMessage} </span>}
                     action={[
-                            <IconButton
-                                key="close"
-                                aria-label="Close"
-                                color="inherit"
-                                onClick={this.handleSnackClose}
-                            >
-                                <CloseIcon />
-                            </IconButton>
+                        <IconButton
+                            key="close"
+                            aria-label="Close"
+                            color="inherit"
+                            onClick={this.handleSnackClose}
+                        >
+                            <CloseIcon />
+                        </IconButton>
                     ]}
                 />
             </div>

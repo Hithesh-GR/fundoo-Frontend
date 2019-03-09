@@ -23,32 +23,48 @@ export default class UserProfile extends Component {
      * @description:it will toggle or reback the event
      */
     handleToggle1 = () => {
-        this.setState(state => ({ open: !state.open }));
+        try {
+            this.setState(state => ({ open: !state.open }));
+        } catch (err) {
+            console.log("error at handleToggle1 in userProfile");
+        }
     };
     /**
      * @description:it will close the current action event
      */
     handleClose = event => {
-        if (this.anchorEl.contains(event.target)) {
-            return;
+        try {
+            if (this.anchorEl.contains(event.target)) {
+                return;
+            }
+            this.setState({ open: false });
+        } catch (err) {
+            console.log("error at handleClose in userProfile");
         }
-        this.setState({ open: false });
     };
     /**
     * @description:it will redirect to registration page
     */
     registrationclick = e => {
-        e.preventDefault();
-        // this.props.history.push('/registration');
-        window.location.href = "/registration";
+        try {
+            e.preventDefault();
+            // this.props.history.push('/registration');
+            window.location.href = "/registration";
+        } catch (err) {
+            console.log("error at registrationclick in userProfile");
+        }
     };
     /**
      * @description:it will redirect to login page
      */
     loginclick = e => {
-        e.preventDefault();
-        // this.props.props.history.push('/login');
-        window.location.href = "/login";
+        try {
+            e.preventDefault();
+            // this.props.props.history.push('/login');
+            window.location.href = "/login";
+        } catch (err) {
+            console.log("error at loginclick in userProfile");
+        }
     };
     render() {
         const { open } = this.state;

@@ -15,10 +15,18 @@ export default class cardsView extends Component {
         }
         this.handleCardsView = this.handleCardsView.bind(this);
     }
+    /**
+     * @description:it handle the list and grid view event
+     * @param {*event for viewing the cardViewIcon} evt 
+     */
     handleCardsView(evt) {
-        evt.preventDefault();
-        this.setState({ view: !this.state.view });
-        // this.props.appPropstoCardsView();
+        try {
+            evt.preventDefault();
+            this.setState({ view: !this.state.view });
+            // this.props.appPropstoCardsView();
+        } catch (err) {
+            console.log("error at handleCardsView in cardsView");
+        }
     }
     render() {
         return (

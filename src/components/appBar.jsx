@@ -70,12 +70,27 @@ export default class appBar extends React.Component {
         };
         this.handleSearchBar = this.handleSearchBar.bind(this);
     }
+    /**
+     * @description:it will toggle the menu bar
+     */
     handleToggle = () => {
-        this.props.slideCards();
-        this.setState({ open: !this.state.open });
+        try {
+            this.props.slideCards();
+            this.setState({ open: !this.state.open });
+        } catch (err) {
+            console.log("error at handleToggle in appBar");
+        }
     }
+    /**
+     * @description:it will handle the search bar event
+     * @param {event for search input} evt 
+     */
     handleSearchBar(evt) {
-        this.setState({ searchNote: evt.target.value });
+        try {
+            this.setState({ searchNote: evt.target.value });
+        } catch (err) {
+            console.log("error at handleSearchBar in appBar");
+        }
     }
     render() {
         // const { open } = this.state;

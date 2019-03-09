@@ -17,7 +17,6 @@ class Tools extends Component {
     render() {
         const setNoteTime = parseInt(new Date().getHours()) >= 8 ? "PM" : "AM";
         return (
-
             <div>
                 <div className="cardTools">
                     <Reminder parentToolsProps={setNoteTime}

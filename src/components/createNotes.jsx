@@ -41,40 +41,71 @@ export default class createNotes extends Component {
         this.handleToggle = this.handleToggle.bind(this)
         this.handleReminder = this.handleReminder.bind(this);
     }
-    handleToggle() {
-        this.setState({ openNote: !this.state.openNote });
-        console.log("pinned", this.state);
-        if (this.state.title !== '' || this.state.description !== '') {
-            const note = {
-                title: this.state.title,
-                description: this.state.description,
-                reminder: this.state.reminder,
-            }
-            createNote(note)
-                .then((result) => {
-                    this.setState({
-                        newNote: result.data.data
-                    })
-                    this.props.getNewNote(this.state.newNote)
-                })
-                .catch((error) => {
-                    alert(error);
-                })
-            this.setState({
-                title: "",
-                description: "",
-                reminder: ""
-            })
+    /**
+     * @description:it will handle the title event
+     * @param {*event for title} evt 
+     */
+    handleTitle(evt) {
+        try {
+            this.setState({ title: evt.target.value })
+        } catch (err) {
+            console.log("error at handleTitle in createNotes");
         }
     }
-    handleTitle(evt) {
-        this.setState({ title: evt.target.value })
-    }
+    /**
+     * @description:it will handle the description event
+     * @param {*event for description} evt 
+     */
     handleDescription(evt) {
-        this.setState({ description: evt.target.value })
+        try {
+            this.setState({ description: evt.target.value })
+        } catch (err) {
+            console.log("error at handleDescription in createNotes");
+        }
     }
+    /**
+     * @description:it will handle the reminder event
+     * @param {*value for reminder} value 
+     */
     handleReminder(value) {
-        this.setState({ reminder: value })
+        try {
+            this.setState({ reminder: value })
+        } catch (err) {
+            console.log("error at handleReminder in createNotes");
+        }
+    }
+    /**
+     * @description:it will handle the creating a new note
+     */
+    handleToggle() {
+        try {
+            this.setState({ openNote: !this.state.openNote });
+            console.log("pinned", this.state);
+            if (this.state.title !== '' || this.state.description !== '') {
+                const note = {
+                    title: this.state.title,
+                    description: this.state.description,
+                    reminder: this.state.reminder,
+                }
+                createNote(note)
+                    .then((result) => {
+                        this.setState({
+                            newNote: result.data.data
+                        })
+                        this.props.getNewNote(this.state.newNote)
+                    })
+                    .catch((error) => {
+                        alert(error);
+                    })
+                this.setState({
+                    title: "",
+                    description: "",
+                    reminder: ""
+                })
+            }
+        } catch (err) {
+            console.log("error at handleToggle in createNotes");
+        }
     }
     render() {
         return (!this.state.openNote ?

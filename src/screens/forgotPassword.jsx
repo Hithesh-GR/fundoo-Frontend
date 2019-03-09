@@ -27,68 +27,91 @@ export default class ForgotPassword extends React.Component {
      * @description:it will takes the forgot password user email
      */
     handleEmailChange = event => {
-        const email = event.target.value;
-        this.setState({ email: email });
+        try {
+            const email = event.target.value;
+            this.setState({ email: email });
+        } catch (err) {
+            console.log("error at handleEmailChange in forgotPassword");
+        }
     };
-    handleEnter=event=>{
-        if(event.key==='Enter'){
-            event.preventDefault();
-            this.handleSubmit(event);
+    /**
+     * @description:it handles the enter button from keyboard
+     */
+    handleEnter = event => {
+        try {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                this.handleSubmit(event);
+            }
+        } catch (err) {
+            console.log("error at handleEnter in forgotPassword");
         }
     };
     /**
      * @description:it will submit the forgotPasswordPage and checks all the conditions
      */
     handleSubmit = event => {
-        event.preventDefault();
-        if (this.state.email === "") {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "Email  empty..!"
-            });
-        } else if (
-            !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.email)
-        ) {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: " Not valid email..!"
-            });
-        }
-        else {
-            var data = {
-                email: this.state.email
-            }
-            forgotPassword(data)
-                .then((response) => {
-                    console.log(response);
-                    this.setState({
-                        openSnackBar: true,
-                        snackBarMessage: " Please check your email.."
-                    });
-                })
-                .catch((err) => {
-                    console.log(err);
-                    this.setState({
-                        openSnackBar: true,
-                        snackBarMessage: " User Not Found.."
-                    });
+        try {
+            event.preventDefault();
+            if (this.state.email === "") {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "Email  empty..!"
                 });
+            } else if (
+                !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.email)
+            ) {
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: " Not valid email..!"
+                });
+            }
+            else {
+                var data = {
+                    email: this.state.email
+                }
+                forgotPassword(data)
+                    .then((response) => {
+                        console.log(response);
+                        this.setState({
+                            openSnackBar: true,
+                            snackBarMessage: " Please check your email.."
+                        });
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        this.setState({
+                            openSnackBar: true,
+                            snackBarMessage: " User Not Found.."
+                        });
+                    });
+            }
+        } catch (err) {
+            console.log("error at handleSubmit in forgotPassword");
         }
     };
     /**
      * @description:use to auto close snackBar
      */
     handleSnackClose = () => {
-        this.setState({
-            openSnackBar: false
-        })
+        try {
+            this.setState({
+                openSnackBar: false
+            })
+        } catch (err) {
+            console.log("error at handleSnackClose in forgotPassword");
+        }
     }
     /**
      * @description:it will redirect to loginpage
      */
     loginclick = event => {
-        event.preventDefault();
-        this.props.history.push("/login");
+        try {
+            event.preventDefault();
+            this.props.history.push("/login");
+        } catch (err) {
+            console.log("error at loginclick in forgotPassword");
+        }
     };
     render() {
         return (
