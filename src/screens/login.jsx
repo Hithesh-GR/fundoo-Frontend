@@ -35,7 +35,6 @@ export default class login extends React.Component {
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
     /**
      * @description:Takes the registered user emailID
      */
@@ -57,6 +56,9 @@ export default class login extends React.Component {
             console.log("error at handleChange in login");
         }
     };
+    /**
+     * @description:it will displays the entered password 
+     */
     handleClickShowPassword = () => {
         try {
             this.setState(state => ({ showPassword: !state.showPassword }));
@@ -64,6 +66,9 @@ export default class login extends React.Component {
             console.log("error at handleClickShowPassword in login");
         }
     };
+    /**
+     * @description:it handles the enter button from keyboard
+     */
     handleEnter = event => {
         try {
             if (event.key === 'Enter') {
@@ -115,7 +120,9 @@ export default class login extends React.Component {
                             openSnackBar: true,
                             snackBarMessage: "Login Successfull!!"
                         });
-                        // window.location.href = "/dashBoard";
+                        localStorage.setItem('username', response.data.result.firstName)
+                        localStorage.setItem('email', response.data.result.email)
+
                         this.props.history.push('/dashBoard');
                     })
                     .catch((err) => {

@@ -143,8 +143,8 @@ export default class registration extends React.Component {
                 });
             } else {
                 var data = {
-                    firstname: this.state.firstName,
-                    lastname: this.state.lastName,
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName,
                     email: this.state.email,
                     password: this.state.password
                 }
