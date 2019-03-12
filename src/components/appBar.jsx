@@ -139,9 +139,9 @@ export default class appBar extends React.Component {
                                     <UserProfile />
                                 </div>
                             </Toolbar>
-                            <DrawerMenu
+                            {/* <DrawerMenu
                                 appBarProps={this.state.open}
-                            />
+                            /> */}
                         </AppBar>
                     </MuiThemeProvider>
                 </div>

@@ -56,7 +56,7 @@ export default class Logout extends Component {
     handlelogout = event => {
         try {
             event.preventDefault();
-            this.props.props.props.history.push("/login");
+            this.props.props.history.push("/login");
         } catch (err) {
             console.log("error at registrationclick in userProfile");
         }

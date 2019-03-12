@@ -9,7 +9,8 @@ import React, { Component } from 'react';
 import { Input, Card, createMuiTheme, MuiThemeProvider, Tooltip } from '@material-ui/core'
 import Tools from './tools';
 import { Button } from '@material-ui/core';
-import { createNote } from '../services/noteServices'
+import { createNote } from '../services/noteServices';
+import EditPin from '../components/editPin';
 const theme = createMuiTheme({
     overrides: {
         MuiPaper: {
@@ -33,13 +34,20 @@ export default class createNotes extends Component {
             title: "",
             description: "",
             reminder: "",
+            color: "rgb(255, 255, 255)",
+            pinned: false,
+            image: "",
+            archive: false,
+            trash: false,
             newNote: {}
-
         }
         this.handleTitle = this.handleTitle.bind(this);
         this.handleDescription = this.handleDescription.bind(this);
-        this.handleToggle = this.handleToggle.bind(this)
+        this.handleToggle = this.handleToggle.bind(this);
+        this.handleColor = this.handleColor.bind(this);
+        this.handleArchive = this.handleArchive.bind(this);
         this.handleReminder = this.handleReminder.bind(this);
+        this.handlePinned = this.handlePinned.bind(this);
     }
     /**
      * @description:it will handle the title event
@@ -74,18 +82,35 @@ export default class createNotes extends Component {
             console.log("error at handleReminder in createNotes");
         }
     }
+    handleColor(value) {
+        this.setState({ color: value });
+    }
+
+    handleArchive(value) {
+        this.setState({ archive: value });
+    }
+
+    handlePinned(value) {
+        this.setState({ pinned: value });
+    }
+
     /**
      * @description:it will handle the creating a new note
      */
     handleToggle() {
         try {
             this.setState({ openNote: !this.state.openNote });
-            console.log("pinned", this.state);
-            if (this.state.title !== '' || this.state.description !== '') {
+            console.log("pinned", this.state.openNote);
+            if (this.state.title !== '' || this.state.description !== '' || this.state.color !== "rgb(255, 255, 255)") {
                 const note = {
                     title: this.state.title,
                     description: this.state.description,
                     reminder: this.state.reminder,
+                    color: this.state.color,
+                    image: this.state.image,
+                    archive: this.state.archive,
+                    pinned: this.state.pinned,
+                    trash: this.state.trash,
                 }
                 createNote(note)
                     .then((result) => {
@@ -100,7 +125,12 @@ export default class createNotes extends Component {
                 this.setState({
                     title: "",
                     description: "",
-                    reminder: ""
+                    reminder: "",
+                    color: "rgb(255, 255, 255)",
+                    image: "",
+                    archive: false,
+                    pinned: false,
+                    trash: false
                 })
             }
         } catch (err) {
@@ -135,11 +165,16 @@ export default class createNotes extends Component {
                     <Card className="createNote1" style={{ backgroundColor: this.state.color }}>
                         <div className="createNotePinIcon">
                             <Input
-                                className="titleInput"
+                                className="noteInputBase"
+                                multiline
                                 disableUnderline={true}
                                 placeholder="Title"
                                 value={this.state.title}
                                 onChange={this.handleTitle}
+                            />
+                            <EditPin
+                                pinStatus={this.state.pinned}
+                                cardPropsToPin={this.handlePinned}
                             />
                         </div>
                         <Input
@@ -152,6 +187,9 @@ export default class createNotes extends Component {
                         />
                         <div className="cardToolsClose" >
                             <Tools
+                                createNotePropsToTools={this.handleColor}
+                                archiveNote={this.handleArchive}
+                                archiveStatus={this.state.archive}
                             />
                             <Button onClick={this.handleToggle}>Close</Button>
                         </div>
