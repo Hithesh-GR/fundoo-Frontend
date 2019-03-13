@@ -16,7 +16,7 @@ const colorCodesAndNames = [{ name: "white", colorCode: "rgb(255, 255, 255)" },
 { name: "darkBlue", colorCode: "rgb(174, 203, 250)" },
 { name: "gray", colorCode: "rgb(232, 234, 237)" }
 ]
-class ColorPallete extends Component {
+export default class ColorPallete extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,17 +24,17 @@ class ColorPallete extends Component {
 
         }
         this.handleToggle = this.handleToggle.bind(this);
-        // this.handleMouseEnter = this.handleMouseEnter.bind(this);
+        this.handleMouseEnter = this.handleMouseEnter.bind(this);
         // this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.handleColor = this.handleColor.bind(this);
     }
-    // handleMouseEnter() {
-    //     this.setState({ open: true });
-    //     // this.props.handleToggle(!this.state.open)
-    // }
+    handleMouseEnter() {
+        this.setState({ open: true });
+        // this.props.handleToggle(!this.state.open)
+    }
     // handleMouseLeave() {
     //     this.setState({ open: false });
-    //     // this.props.handleToggle(!this.state.open)
+    //      this.props.handleToggle(!this.state.open)
     // }
     closePopper() {
         this.setState({
@@ -51,25 +51,24 @@ class ColorPallete extends Component {
         this.props.handleToggle(!this.state.open)
     }
     render() {
-
         const changeCardColor = colorCodesAndNames.map((colorKey) =>
-
             <Tooltip title={colorKey.name}>
                 <IconButton style={{ backgroundColor: colorKey.colorCode, "margin": "2px", }}
                     value={colorKey.colorCode}
-                    onClick={this.handleColor}>
+                    onClick={this.handleColor}
+                    >
                 </IconButton>
             </Tooltip>
         );
-
         return (
-
             <div>
                 <Tooltip title="Change Color">
                     <img src={require('../assets/images/pallete.svg')}
                         className="colorPalleteIcon"
                         alt="change color"
                         onClick={this.handleToggle}
+                        onMouseEnter={this.handleMouseEnter}
+                        onM
                     />
                 </Tooltip>
                 <div>
@@ -79,15 +78,13 @@ class ColorPallete extends Component {
                                 {changeCardColor}
                             </Card>
                         </ClickAwayListener>
-
                         : null}
                 </div>
             </div>
-
         )
     }
 }
-export default ColorPallete;
+
 
 
 

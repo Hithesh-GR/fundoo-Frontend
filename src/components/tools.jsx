@@ -9,8 +9,8 @@ import React, { Component } from 'react';
 import Reminder from '../components/reminder';
 import ColorBox from '../components/colorBox';
 import UploadImage from '../components/uploadImage';
-import Archive from '../components/archive';
-import MoreOptions from '../components/moreOptions';
+// import Archive from '../components/archive';
+// import MoreOptions from '../components/moreOptions';
 export default class Tools extends Component {
     constructor(props) {
         super(props);
@@ -31,6 +31,7 @@ export default class Tools extends Component {
                         reminder={this.props.reminder}
                         note={this.props.note}
                     />
+                    {/* <Collaborator /> */}
                     <ColorBox
                         handleToggle={this.handleToggle}
                         toolsPropsToColorpallete={this.props.createNotePropsToTools}
@@ -40,7 +41,7 @@ export default class Tools extends Component {
                         uploadImage={this.props.uploadImage}
                         note={this.props.note}
                     />
-                    <Archive
+                    {/* <Archive
                         archiveNote={this.props.archiveNote}
                         noteID={this.props.noteID}
                         archiveStatus={this.props.archiveStatus}
@@ -49,7 +50,7 @@ export default class Tools extends Component {
                         addLabelToNote={this.props.addLabelToNote}
                         trashNote={this.props.trashNote}
                         noteID={this.props.noteID}
-                    />
+                    /> */}
                 </div>
             </div>
         )

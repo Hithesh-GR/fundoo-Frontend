@@ -2,8 +2,9 @@
 import React, { Component } from 'react';
 import { Card, Chip, MuiThemeProvider, createMuiTheme, Tooltip, Avatar } from '@material-ui/core';
 import Tools from '../components/tools';
-import { getNotes, updateColor, updatePin, setReminder, isTrashed, updateArchiveStatus, deleteNoteForever, updateTitle, updateDescription } from '../services/noteServices';
+// import { getNotes, updateColor, updatePin, setReminder, isTrashed, updateArchiveStatus, deleteNoteForever, updateTitle, updateDescription } from '../services/noteServices';
 import EditPin from '../components/editPin';
+import {getNotes} from "../services/noteServices"
 import ClockIcon from '../components/clockIcon';
 import { otherArray } from '../services/noteServices';
 import DialogBox from '../components/dialogBox';
@@ -43,15 +44,15 @@ export default class Notes extends Component {
         }
         this.cardsToDialogBox = React.createRef();
         this.handleClick = this.handleClick.bind(this);
-        this.getColor = this.getColor.bind(this);
-        this.pinNote = this.pinNote.bind(this);
-        this.reminderNote = this.reminderNote.bind(this);
-        this.trashNote = this.trashNote.bind(this);
-        this.archiveNote = this.archiveNote.bind(this);
-        this.deleteNote = this.deleteNote.bind(this);
-        this.editTitle = this.editTitle.bind(this);
-        this.editDescription = this.editDescription.bind(this);
-        this.closeEditBox = this.closeEditBox.bind(this);
+        // this.getColor = this.getColor.bind(this);
+        // this.pinNote = this.pinNote.bind(this);
+        // this.reminderNote = this.reminderNote.bind(this);
+        // this.trashNote = this.trashNote.bind(this);
+        // this.archiveNote = this.archiveNote.bind(this);
+        // this.deleteNote = this.deleteNote.bind(this);
+        // this.editTitle = this.editTitle.bind(this);
+        // this.editDescription = this.editDescription.bind(this);
+        // this.closeEditBox = this.closeEditBox.bind(this);
     }
     async handleClick(note) {
         await this.setState({ open: true })
@@ -72,182 +73,182 @@ export default class Notes extends Component {
                 alert(error)
             });
     }
-    getColor(value, noteId) {
-        const color = {
-            noteID: noteId,
-            color: value
-        }
-        updateColor('/updateColor', color)
-            .then((result) => {
-                let newArray = this.state.notes
-                for (let i = 0; i < newArray.length; i++) {
-                    if (newArray[i].note._id === noteId) {
-                        newArray[i].note.color = result.data.data;
-                        this.setState({
-                            notes: newArray
-                        })
-                    }
-                }
-            })
-            .catch((error) => {
-                alert(error)
-            });
-    }
-    editTitle(value, noteId) {
-        const title = {
-            noteID: noteId,
-            title: value
-        }
-        updateTitle('/editTitle', title)
-            .then((result) => {
-                let newArray = this.state.notes
-                for (let i = 0; i < newArray.length; i++) {
-                    if (newArray[i].note._id === noteId) {
-                        newArray[i].note.title = result.data.data;
-                        this.setState({
-                            notes: newArray
-                        })
+    // getColor(value, noteId) {
+    //     const color = {
+    //         noteID: noteId,
+    //         color: value
+    //     }
+    //     updateColor('/updateColor', color)
+    //         .then((result) => {
+    //             let newArray = this.state.notes
+    //             for (let i = 0; i < newArray.length; i++) {
+    //                 if (newArray[i].note._id === noteId) {
+    //                     newArray[i].note.color = result.data.data;
+    //                     this.setState({
+    //                         notes: newArray
+    //                     })
+    //                 }
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             alert(error)
+    //         });
+    // }
+    // editTitle(value, noteId) {
+    //     const title = {
+    //         noteID: noteId,
+    //         title: value
+    //     }
+    //     updateTitle('/editTitle', title)
+    //         .then((result) => {
+    //             let newArray = this.state.notes
+    //             for (let i = 0; i < newArray.length; i++) {
+    //                 if (newArray[i].note._id === noteId) {
+    //                     newArray[i].note.title = result.data.data;
+    //                     this.setState({
+    //                         notes: newArray
+    //                     })
 
-                    }
-                }
+    //                 }
+    //             }
 
-            })
-    }
-    editDescription(value, noteId) {
-        const description = {
-            noteID: noteId,
-            description: value
-        }
-        updateDescription('/editDescription', description)
-            .then((result) => {
-                let newArray = this.state.notes
-                for (let i = 0; i < newArray.length; i++) {
-                    if (newArray[i].note._id === noteId) {
-                        newArray[i].note.description = result.data.data;
-                        this.setState({
-                            notes: newArray
-                        })
+    //         })
+    // }
+    // editDescription(value, noteId) {
+    //     const description = {
+    //         noteID: noteId,
+    //         description: value
+    //     }
+    //     updateDescription('/editDescription', description)
+    //         .then((result) => {
+    //             let newArray = this.state.notes
+    //             for (let i = 0; i < newArray.length; i++) {
+    //                 if (newArray[i].note._id === noteId) {
+    //                     newArray[i].note.description = result.data.data;
+    //                     this.setState({
+    //                         notes: newArray
+    //                     })
 
-                    }
-                }
-            })
-    }
-    trashNote(noteId) {
-        const trash = {
-            noteID: noteId
-        }
-        isTrashed('/isTrashed', trash)
-            .then((result) => {
-                let newArray = this.state.notes
+    //                 }
+    //             }
+    //         })
+    // }
+    // trashNote(noteId) {
+    //     const trash = {
+    //         noteID: noteId
+    //     }
+    //     isTrashed('/isTrashed', trash)
+    //         .then((result) => {
+    //             let newArray = this.state.notes
 
-                for (let i = 0; i < newArray.length; i++) {
-                    if (newArray[i].note._id === noteId) {
-                        newArray[i].note.trash = result.data.data;
-                        newArray[i].note.pinned = false;
-                        newArray[i].note.archive = false
-                        this.setState({
-                            notes: newArray,
+    //             for (let i = 0; i < newArray.length; i++) {
+    //                 if (newArray[i].note._id === noteId) {
+    //                     newArray[i].note.trash = result.data.data;
+    //                     newArray[i].note.pinned = false;
+    //                     newArray[i].note.archive = false
+    //                     this.setState({
+    //                         notes: newArray,
 
-                        })
-                    }
+    //                     })
+    //                 }
 
-                }
+    //             }
 
-            })
-            .catch((error) => {
-                alert(error)
-            });
-    }
-    deleteNote(noteId) {
-        const obj = {
-            noteID: noteId,
-        }
-        deleteNoteForever('/deleteNote', obj)
-            .then((result) => {
-                let newArray = this.state.notes
-                for (let i = 0; i < newArray.length; i++) {
-                    if (newArray[i].note._id === obj.noteID) {
-                        newArray.splice(i, 1);
-                        this.setState({
-                            notes: newArray
-                        })
-                    }
-                }
-            })
-            .catch((error) => {
-                console.log(error)
-                alert(error)
-            });
-    }
-    pinNote(value, noteId) {
-        const isPinned = {
-            noteID: noteId,
-            pinned: value
-        }
-        updatePin('/isPinned', isPinned)
-            .then((result) => {
-                let newArray = this.state.notes
-                for (let i = 0; i < newArray.length; i++) {
-                    if (newArray[i].note._id === noteId) {
-                        newArray[i].note.archive = false;
-                        newArray[i].note.trash = false;
-                        newArray[i].note.pinned = result.data.data;
-                        this.setState({
-                            notes: newArray
-                        })
-                    }
-                }
+    //         })
+    //         .catch((error) => {
+    //             alert(error)
+    //         });
+    // }
+    // deleteNote(noteId) {
+    //     const obj = {
+    //         noteID: noteId,
+    //     }
+    //     deleteNoteForever('/deleteNote', obj)
+    //         .then((result) => {
+    //             let newArray = this.state.notes
+    //             for (let i = 0; i < newArray.length; i++) {
+    //                 if (newArray[i].note._id === obj.noteID) {
+    //                     newArray.splice(i, 1);
+    //                     this.setState({
+    //                         notes: newArray
+    //                     })
+    //                 }
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //             alert(error)
+    //         });
+    // }
+    // pinNote(value, noteId) {
+    //     const isPinned = {
+    //         noteID: noteId,
+    //         pinned: value
+    //     }
+    //     updatePin('/isPinned', isPinned)
+    //         .then((result) => {
+    //             let newArray = this.state.notes
+    //             for (let i = 0; i < newArray.length; i++) {
+    //                 if (newArray[i].note._id === noteId) {
+    //                     newArray[i].note.archive = false;
+    //                     newArray[i].note.trash = false;
+    //                     newArray[i].note.pinned = result.data.data;
+    //                     this.setState({
+    //                         notes: newArray
+    //                     })
+    //                 }
+    //             }
 
-            })
-            .catch((error) => {
-                alert(error)
-            });
-    }
-    reminderNote(value, noteId) {
-        const reminder = {
-            noteID: noteId,
-            reminder: value
-        }
-        setReminder('/reminder', reminder)
-            .then((result) => {
-                let newArray = this.state.notes
-                for (let i = 0; i < newArray.length; i++) {
-                    if (newArray[i].note._id === noteId) {
-                        newArray[i].note.reminder = result.data.data;
+    //         })
+    //         .catch((error) => {
+    //             alert(error)
+    //         });
+    // }
+    // reminderNote(value, noteId) {
+    //     const reminder = {
+    //         noteID: noteId,
+    //         reminder: value
+    //     }
+    //     setReminder('/reminder', reminder)
+    //         .then((result) => {
+    //             let newArray = this.state.notes
+    //             for (let i = 0; i < newArray.length; i++) {
+    //                 if (newArray[i].note._id === noteId) {
+    //                     newArray[i].note.reminder = result.data.data;
 
-                        this.setState({
-                            notes: newArray
-                        })
-                    }
-                }
-            })
-            .catch((error) => {
-                alert(error)
-            });
-    }
-    archiveNote(value, noteId) {
-        const isArchived = {
-            noteID: noteId,
-            archive: value
-        }
-        updateArchiveStatus('/isArchived', isArchived)
-            .then((result) => {
-                let newArray = this.state.notes
-                for (let i = 0; i < newArray.length; i++) {
-                    if (newArray[i].note._id === noteId) {
-                        newArray[i].note.archive = result.data.data;
-                        newArray[i].note.pinned = false;
-                        newArray[i].note.trash = false;
-                        this.setState({
-                            notes: newArray
-                        })
-                    }
-                }
-            })
-            .catch((error) => {
-                alert(error)
-            });
-    }
+    //                     this.setState({
+    //                         notes: newArray
+    //                     })
+    //                 }
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             alert(error)
+    //         });
+    // }
+    // archiveNote(value, noteId) {
+    //     const isArchived = {
+    //         noteID: noteId,
+    //         archive: value
+    //     }
+    //     updateArchiveStatus('/isArchived', isArchived)
+    //         .then((result) => {
+    //             let newArray = this.state.notes
+    //             for (let i = 0; i < newArray.length; i++) {
+    //                 if (newArray[i].note._id === noteId) {
+    //                     newArray[i].note.archive = result.data.data;
+    //                     newArray[i].note.pinned = false;
+    //                     newArray[i].note.trash = false;
+    //                     this.setState({
+    //                         notes: newArray
+    //                     })
+    //                 }
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             alert(error)
+    //         });
+    // }
     displayNewCard(newCard) {
         this.setState({
             notes: [...this.state.notes, newCard]

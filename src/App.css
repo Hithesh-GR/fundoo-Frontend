@@ -515,7 +515,7 @@ element.style {
   margin-left: 100px;
   margin-top: 100px;
   text-align: left;
-  padding: 20px;
+  padding: 22px;
   border: 1px solid #dadce0;
 }
 
@@ -526,7 +526,7 @@ element.style {
   margin-top: 100px;
   border-radius: 10px;
   text-align: left;
-  padding: 20px;
+  padding: 10px;
   border: 1px solid #dadce0;
 }
 
@@ -801,22 +801,13 @@ div .currentDate {
     max-width: 800px;
   }
 
-  .createNote {
+  #createNoteParent {
     margin-left: 5px
   }
 
-  .createNote1 {
-    margin-left: 5px;
-    width: 0%;
-    
-  } */
-
-  #createNoteParent {
-    margin-left: 5px
-  } */
-
    #cardsViewDiv {
-        margin-left: -90px
+        margin-left: 20%;
+        background-color: #202124;
     } 
    #cardViewIcon {
     display: none
@@ -874,25 +865,12 @@ div .currentDate {
   .setFixedMargin {
     margin-left: auto;
     max-width: 800px;
-  } */
-
-  .createNote {
-    width: auto;
-    margin-left: 5px
-  }
-
-  .createNote1 {
-    width: auto;
-    margin-left: 5px
   } 
 
    #createNoteParent {
     margin-left: 5px
   } 
 
-  #cardsViewDiv {
-        margin-left: -90px
-    }
    #cardViewIcon {
     display: none
   }
@@ -952,25 +930,10 @@ div .currentDate {
     margin-right: auto
   } 
 
-  .createNote {
-    margin-left: auto;
-    max-width: 530px;
-    margin-right: auto;
-  }
-
-  .createNote1 {
-    margin-left: auto;
-    max-width: 530px;
-    margin-right: auto;
-  } 
-
    #createNoteParent {
     margin-left: auto
   } 
-
- #cardsViewDiv {
-        margin-left: -90px
-    } 
+} 
 
   .listCards {
     width: auto;
@@ -995,7 +958,7 @@ div .currentDate {
     justify-content: center;
     flex-wrap: wrap
   }
-} 
+
 
  .App {
     text-align: center;

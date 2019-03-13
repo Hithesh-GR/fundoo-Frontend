@@ -20,7 +20,6 @@ import '../App.css';
 * @description:This method is used to Logout ui.. 
 */
 export default class Logout extends Component {
-
     state = {
         anchorEl: null,
         open: false,
@@ -56,7 +55,7 @@ export default class Logout extends Component {
     handlelogout = event => {
         try {
             event.preventDefault();
-            this.props.props.history.push("/login");
+            this.props.props.props.history.push("/login");
         } catch (err) {
             console.log("error at registrationclick in userProfile");
         }
@@ -137,7 +136,7 @@ export default class Logout extends Component {
                 <div className="iconButton">
                     <IconButton id="userProfileIcon">
                         <Tooltip
-                           title={"Fundoo Account   :" + localStorage.getItem('username')}>
+                            title={"Fundoo Account   :" + localStorage.getItem('username')}>
                             <Avatar style={{ width: "40px", height: "40px", backgroundColor: "blur" }} onClick={this.handleClick('bottom-end')} >
                                 {this.state.profilePic !== "" ?
                                     <img style={{

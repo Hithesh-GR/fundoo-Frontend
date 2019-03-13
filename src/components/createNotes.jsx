@@ -6,11 +6,12 @@
  *  @since          : 23-02-2019
  *****************************************************************************************/
 import React, { Component } from 'react';
-import { Input, Card, createMuiTheme, MuiThemeProvider, Tooltip } from '@material-ui/core'
+import { Input, Card, createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 import Tools from './tools';
 import { Button } from '@material-ui/core';
 import { createNote } from '../services/noteServices';
 import EditPin from '../components/editPin';
+import UploadImage from './uploadImage';
 const theme = createMuiTheme({
     overrides: {
         MuiPaper: {
@@ -103,6 +104,7 @@ export default class createNotes extends Component {
             console.log("pinned", this.state.openNote);
             if (this.state.title !== '' || this.state.description !== '' || this.state.color !== "rgb(255, 255, 255)") {
                 const note = {
+                    userId:localStorage.getItem('userId'),
                     title: this.state.title,
                     description: this.state.description,
                     reminder: this.state.reminder,
@@ -114,6 +116,8 @@ export default class createNotes extends Component {
                 }
                 createNote(note)
                     .then((result) => {
+                        console.log("result=>=",result);
+                        
                         this.setState({
                             newNote: result.data.data
                         })
@@ -152,9 +156,7 @@ export default class createNotes extends Component {
                                 onClick={this.handleToggle}
                                 value=""
                             />
-                            <Tooltip title="New note with image">
-                                <img src={require('../assets/images/imageUpload.svg')} alt="upload pic icon" />
-                            </Tooltip>
+                            <UploadImage/>
                         </div>
                     </Card>
                 </div>

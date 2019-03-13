@@ -136,12 +136,12 @@ export default class appBar extends React.Component {
                                     <CardsView appPropstoCardsView={this.handleAppbar} />
                                 </div>
                                 <div>
-                                    <UserProfile />
+                                    <UserProfile props={this.props}/>
                                 </div>
                             </Toolbar>
-                            {/* <DrawerMenu
+                            <DrawerMenu
                                 appBarProps={this.state.open}
-                            /> */}
+                            />
                         </AppBar>
                     </MuiThemeProvider>
                 </div>

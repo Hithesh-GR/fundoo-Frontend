@@ -10,8 +10,8 @@ import CreateNote from '../components/createNotes';
 import Notes from '../components/notes'
 import AppbarComponent from '../components/appBar';
 export default class dashBoard extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             label: "",
             cardStyles: false,
@@ -91,6 +91,7 @@ export default class dashBoard extends Component {
         return (
             <div className={slidingCards}>
                 <AppbarComponent
+                    props={this.props}
                     makeLabelFalse={this.makeLabelFalse}
                     slideCards={this.slideCards}
                     searchLabels={this.searchLabels}
@@ -104,8 +105,8 @@ export default class dashBoard extends Component {
                         <Notes
                             noteProps={this.state.cardStyles}
                             searchNote={this.state.searchNote}
-                            ref={this.noteToCards} 
-                            />
+                            ref={this.noteToCards}
+                        />
                     </div>
                 </div>
             </div>

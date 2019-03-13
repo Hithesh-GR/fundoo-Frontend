@@ -25,13 +25,7 @@ export default class login extends React.Component {
             email: "",
             password: "",
             snackBarMessage: "",
-            errorMessage: "",
-            showPassword: false,
-            fields: {
-                email: "",
-                password: ""
-            },
-            errors: {}
+            showPassword: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -88,7 +82,7 @@ export default class login extends React.Component {
             if (!this.state.email) {
                 this.setState({
                     openSnackBar: true,
-                    errorMessage: "email cannot be empty..!"
+                    snackBarMessage: "email cannot be empty..!"
                 });
             } else if (!this.state.password) {
                 this.setState({
@@ -115,14 +109,15 @@ export default class login extends React.Component {
                 }
                 userLogin(data)
                     .then((response) => {
-                        console.log(response);
+                        console.log("response====>", response);
                         this.setState({
                             openSnackBar: true,
                             snackBarMessage: "Login Successfull!!"
                         });
                         localStorage.setItem('username', response.data.result.firstName)
                         localStorage.setItem('email', response.data.result.email)
-
+                        localStorage.setItem('userId', response.data.result._id)
+                        localStorage.setItem('token', response.data.token.token)
                         this.props.history.push('/dashBoard');
                     })
                     .catch((err) => {
