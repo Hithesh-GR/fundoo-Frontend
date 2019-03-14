@@ -149,6 +149,11 @@ input[type=password1] {
   margin-top: 9%;
   display: flex;
   justify-content: space-between;
+
+}
+
+#sentenceCase{
+  text-transform: none;
 }
 
 /*************************for forgotPassword css********************/
@@ -515,7 +520,7 @@ element.style {
   margin-left: 100px;
   margin-top: 100px;
   text-align: left;
-  padding: 22px;
+  padding: 20px;
   border: 1px solid #dadce0;
 }
 
@@ -526,7 +531,7 @@ element.style {
   margin-top: 100px;
   border-radius: 10px;
   text-align: left;
-  padding: 10px;
+  padding: 20px;
   border: 1px solid #dadce0;
 }
 
@@ -595,8 +600,9 @@ element.style {
 
 #profilebutton {
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
 }
+
 .cards {
   width: 240px;
   margin-top: 20px;
@@ -710,7 +716,7 @@ div .currentDate {
 #moreOptionsMenu {
   font-family: arial;
   font-size: 15px;
-  height: 8px;
+  height: 5%;
 }
 
 #editLabelTextField {
@@ -790,8 +796,6 @@ div .currentDate {
 
   }
 
-
-
   #searchInputBase {
     display: none
   }
@@ -805,15 +809,16 @@ div .currentDate {
     margin-left: 5px
   }
 
-   #cardsViewDiv {
-        margin-left: 20%;
-        background-color: #202124;
-    } 
-   #cardViewIcon {
+  #cardsViewDiv {
+    margin-left: 20%;
+    background-color: #202124;
+  }
+
+  #cardViewIcon {
     display: none
   }
 
-   .listCards {
+  .listCards {
     width: 500px;
     margin-left: 7px;
     margin-top: 50px;
@@ -829,14 +834,14 @@ div .currentDate {
     text-align: left;
     padding: 10px;
     border-radius: 10px;
-  } 
+  }
 
- .CardsView {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap
-    } 
- } 
+  .CardsView {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap
+  }
+}
 
 @media only screen and (min-width:536px) and (max-width:600px) {
   #appBarIcons {
@@ -865,13 +870,10 @@ div .currentDate {
   .setFixedMargin {
     margin-left: auto;
     max-width: 800px;
-  } 
+  }
 
-   #createNoteParent {
-    margin-left: 5px
-  } 
 
-   #cardViewIcon {
+  #cardViewIcon {
     display: none
   }
 
@@ -891,14 +893,14 @@ div .currentDate {
     text-align: left;
     padding: 10px;
     border-radius: 10px;
-  } */
+  }
 
-  .CardsView {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap
-    } 
-} 
+  */ .CardsView {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap
+  }
+}
 
 @media only screen and (min-width:601px) and (max-width:774px) {
   #appBarIcons {
@@ -928,41 +930,37 @@ div .currentDate {
     margin-left: auto;
     max-width: 800px;
     margin-right: auto
-  } 
-
-   #createNoteParent {
-    margin-left: auto
-  } 
-} 
-
-  .listCards {
-    width: auto;
-    margin-left: auto;
-    margin-top: 50px;
-    text-align: left;
-    padding: 11px;
   }
+}
 
-  .cards {
-    width: 240px;
-    margin-top: 20px;
-    margin-left: 5px;
-    padding-top: 15px;
-    text-align: left;
-    padding: 10px;
-    border-radius: 10px;
-  }
+.listCards {
+  width: auto;
+  margin-left: auto;
+  margin-top: 50px;
+  text-align: left;
+  padding: 11px;
+}
 
-  .CardsView {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap
-  }
+.cards {
+  width: 240px;
+  margin-top: 20px;
+  margin-left: 5px;
+  padding-top: 15px;
+  text-align: left;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.CardsView {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap
+}
 
 
- .App {
-    text-align: center;
-  } 
+.App {
+  text-align: center;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -992,6 +990,4 @@ div .currentDate {
   to {
     transform: rotate(360deg);
   }
-} 
-
-
+}

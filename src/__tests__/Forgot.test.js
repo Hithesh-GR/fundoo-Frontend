@@ -5,7 +5,7 @@ import {
     render
 } from 'enzyme';
 import ForgotPassword from '../screens/forgotPassword';
-import setup from '../setupTest'
+import '../setupTest'
 /**
  * describe what we are testing
  **/

@@ -220,6 +220,7 @@ export default class login extends React.Component {
                     </div>
                     <div id="buttn1">
                         <Button
+                            id="sentenceCase"
                             size="small"
                             color="primary"
                             onClick={this.forgotPasswordPage}>
@@ -228,6 +229,7 @@ export default class login extends React.Component {
                     </div>
                     <div id="buttn1" >
                         <Button
+                            id="sentenceCase"
                             size="small"
                             color="primary"
                             title="click on create account"
@@ -235,6 +237,7 @@ export default class login extends React.Component {
                             Create account
                         </Button>
                         <Button
+                            id="sentenceCase"
                             size="small"
                             variant="contained"
                             title="click on submit"

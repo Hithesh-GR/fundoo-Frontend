@@ -146,12 +146,14 @@ export default class ForgotPassword extends React.Component {
                     </div>
                     <div id="butt" >
                         <Button
+                            id="sentenceCase"
                             color="primary"
                             title="click on sign in"
                             onClick={this.loginclick}>
                             Sign in
                         </Button>
                         <Button
+                            id="sentenceCase"
                             variant="contained"
                             title="click on submit"
                             color="primary"

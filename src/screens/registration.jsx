@@ -277,12 +277,14 @@ export default class registration extends React.Component {
                         </div>
                     <div id="buttn" >
                         <Button
+                        id="sentenceCase"
                             color="primary"
                             title="click on sign in"
                             onClick={this.loginclick}>
                             Sign in
                         </Button>
                         <Button
+                       id= "sentenceCase"
                             variant="contained"
                             title="click on submit"
                             color="primary"

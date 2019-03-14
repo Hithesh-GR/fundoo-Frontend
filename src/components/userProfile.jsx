@@ -71,20 +71,34 @@ export default class Logout extends Component {
             console.log("error at loginclick in userProfile");
         }
     };
+    /**
+     * @description:
+     */
     triggerInputFile() {
-        this.fileInput.click();
+        try {
+            this.fileInput.click();
+        } catch (err) {
+            console.log("error at triggerInputFile in userProfile");
+        }
     }
+    /**
+     * @description:
+     */
     handleClick = placement => event => {
-        const { currentTarget } = event;
-        this.setState(state => ({
-            anchorEl: currentTarget,
-            open: state.placement !== placement || !state.open,
-            placement,
-        }));
+        try {
+            const { currentTarget } = event;
+            this.setState(state => ({
+                anchorEl: currentTarget,
+                open: state.placement !== placement || !state.open,
+                placement,
+            }));
+        } catch (err) {
+            console.log("error at handleClick in userProfile");
+        }
     };
     render() {
         const { anchorEl, open, placement } = this.state;
-        // const { classes } = this.props;
+        //const { classes } = this.props;
         const userDetails = localStorage.getItem('username');
         const initial = userDetails.substring(0, 1);
         return (

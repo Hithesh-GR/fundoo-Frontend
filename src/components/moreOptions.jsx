@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import { MenuItem, Popper, Paper, Fade, Tooltip, ClickAwayListener, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
-
-
 const theme = createMuiTheme({
     overrides: {
         MuiPaper: {
             root: {
                 margin: "0px",
+                zIndex: "1"
             },
-
         },
     },
     typography: {
         useNextVariants: true,
     },
 })
-class MoreOptions extends Component {
+export default class MoreOptions extends Component {
     constructor() {
         super();
         this.state = {
@@ -64,17 +62,14 @@ class MoreOptions extends Component {
                             alt="more options icon" />
 
                     </Tooltip>
-
-                    <Popper open={open} anchorEl={anchorEl} placement={'right'} transition style={{ position: "fixed" }}>
+                    <Popper open={open} anchorEl={anchorEl} placement={'bottom-start'} transition style={{ zIndex: 1 }}>
                         {({ TransitionProps }) => (
                             <Fade {...TransitionProps} timeout={0}>
                                 <Paper className="moreOptionsPopper" >
                                     <ClickAwayListener onClickAway={() => this.closeLabelPopper()}>
-                                        <div id="selectMoreOptions">
-
-                                            <MenuItem id="moreOptionsMenu" onClick={this.handleTrashedNotes}>Delete Note</MenuItem>
-                                            <MenuItem id="moreOptionsMenu" onClick={this.handleLabelsOnNote}>Add Label</MenuItem>
-
+                                        <div id="moreOptionsMenu">
+                                            <MenuItem onClick={this.handleLabelsOnNote}>Add Label</MenuItem>
+                                            <MenuItem onClick={this.handleTrashedNotes}>Delete Note</MenuItem>
                                         </div>
                                     </ClickAwayListener>
                                 </Paper>
@@ -82,10 +77,9 @@ class MoreOptions extends Component {
                         )}
                     </Popper>
 
-                  
+
                 </div>
             </MuiThemeProvider>
         )
     }
 }
-export default MoreOptions;

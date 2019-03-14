@@ -46,7 +46,12 @@ const theme = createMuiTheme({
                 display: "flex",
                 justifyContent: "space-between",
                 width: "100%"
-            }
+            },
+            root: {
+                position: "absolute",
+                alignItems: "center",
+                border: "1px solid #E0E0E0"
+            },
         },
         MuiMenuItem: {
             root: {
@@ -133,10 +138,12 @@ export default class appBar extends React.Component {
                                     </div>
                                 </div>
                                 <div className="appList">
-                                    <CardsView appPropstoCardsView={this.handleAppbar} />
+                                    <CardsView
+                                        appPropstoCardsView={this.handleAppbar}
+                                    />
                                 </div>
                                 <div>
-                                    <UserProfile props={this.props}/>
+                                    <UserProfile props={this.props} />
                                 </div>
                             </Toolbar>
                             <DrawerMenu

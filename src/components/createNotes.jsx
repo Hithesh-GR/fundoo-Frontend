@@ -94,7 +94,6 @@ export default class createNotes extends Component {
     handlePinned(value) {
         this.setState({ pinned: value });
     }
-
     /**
      * @description:it will handle the creating a new note
      */
@@ -116,12 +115,12 @@ export default class createNotes extends Component {
                 }
                 createNote(note)
                     .then((result) => {
-                        console.log("result=>=",result);
+                        console.log("result from back-end====>",result);
                         
                         this.setState({
                             newNote: result.data.data
                         })
-                        this.props.getNewNote(this.state.newNote)
+                        // this.props.getNewNote(this.state.newNote)
                     })
                     .catch((error) => {
                         alert(error);
