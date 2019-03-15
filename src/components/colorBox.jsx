@@ -1,8 +1,15 @@
-
+/*****************************************************************************************************
+ *  @Purpose        : Here we have to set the color for note
+ *  @file           : colorBox.jsx       
+ *  @author         : HITHESH G R
+ *  @version        : v0.1
+ *  @since          : 23-02-2019
+ *****************************************************************************************************/
 import React, { Component } from 'react';
 import { IconButton, Tooltip, Card, ClickAwayListener } from '@material-ui/core';
-
-
+/**
+ * @description:it will define the color using rgb-color code
+ */
 const colorCodesAndNames = [{ name: "white", colorCode: "rgb(255, 255, 255)" },
 { name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
 { name: "purple", colorCode: "rgb(215, 174, 251)" },
@@ -21,34 +28,61 @@ export default class ColorPallete extends Component {
         super(props);
         this.state = {
             open: false
-
         }
         this.handleToggle = this.handleToggle.bind(this);
         this.handleMouseEnter = this.handleMouseEnter.bind(this);
         // this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.handleColor = this.handleColor.bind(this);
     }
+    /**
+     * @description:it will display the color box when mouse entered into the color icon
+     */
     handleMouseEnter() {
-        this.setState({ open: true });
-        // this.props.handleToggle(!this.state.open)
+        try {
+            this.setState({ open: true });
+            // this.props.handleToggle(!this.state.open)
+        } catch (err) {
+            console.log("error at handleMouseEnter in colorBox");
+        }
     }
     // handleMouseLeave() {
     //     this.setState({ open: false });
     //      this.props.handleToggle(!this.state.open)
     // }
+    /**
+     * @description:it will close the color popper box
+     */
     closePopper() {
-        this.setState({
-            open: false
-        })
+        try {
+            this.setState({
+                open: false
+            })
+        } catch (err) {
+            console.log("error at closePopper in colorBox");
+        }
     }
-    handleColor(evt) {
-        console.log("changing color", this.props.noteID)
-        this.props.toolsPropsToColorpallete(evt.target.value, this.props.noteID);
-
+    /**
+     * @description:it will handle the selecting color event
+     * @param {*changing color event} event 
+     */
+    handleColor(event) {
+        try {
+            console.log("changing color", this.props.noteID)
+            this.props.toolsPropsToColorpallete(event.target.value, this.props.noteID);
+        } catch (err) {
+            console.log("error at handleColor in colorBox");
+        }
     }
+    /**
+     * @description:it will toggle the color icon
+     */
     handleToggle() {
-        this.setState({ open: !this.state.open });
-        this.props.handleToggle(!this.state.open)
+        try {
+            this.setState({ open: !this.state.open });
+            this.props.handleToggle(!this.state.open)
+        } catch (err) {
+            console.log("error at handleToggle in colorBox");
+        }
     }
     render() {
         const changeCardColor = colorCodesAndNames.map((colorKey) =>
@@ -56,7 +90,7 @@ export default class ColorPallete extends Component {
                 <IconButton style={{ backgroundColor: colorKey.colorCode, "margin": "2px", }}
                     value={colorKey.colorCode}
                     onClick={this.handleColor}
-                    >
+                >
                 </IconButton>
             </Tooltip>
         );

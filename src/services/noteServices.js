@@ -11,63 +11,25 @@ import axios from 'axios';
  * @param {*used to send data or note to server} data 
  */
 export function createNote(data) {
-    console.log("data from front-end==>",data);
-    
-    return axios('/createNote', {
-        method: "POST",
+    console.log("create note data from front-end==>", data);
+    return axios.post('/createNote', {
         headers: {
             "token": localStorage.getItem("token")
         },
         data: data
     })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export function getNotes() {
-//     return axios('/getNotes', {
-//         method: "GET",
-//         headers: {
-//             "token": localStorage.getItem("token")
-//         }
-//     }).then(function (response) {
-//         const result = response.data.data;
-//         return result;
-//     })
-// }
-
+/**
+ * 
+ */
+export function getNotes() {
+    console.log("get notes from front-end");
+    return axios.get('/getNotes', {
+        headers: {
+            "token": localStorage.getItem("token")
+        }
+    }).then(function (response) {
+        const result = response.data.data;
+        return result;
+    })
+}

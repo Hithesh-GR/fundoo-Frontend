@@ -19,6 +19,9 @@ export default class Tools extends Component {
         }
         this.handleToggle = this.handleToggle.bind(this);
     }
+    /**
+     * @description:it will toggle color event
+     */
     handleToggle() {
         try {
             this.setState({ open: !this.state.open });
@@ -31,7 +34,9 @@ export default class Tools extends Component {
         return (
             <div>
                 <div className="cardTools">
-                    <Reminder parentToolsProps={setNoteTime}
+                    <Reminder
+                        handleToggle={this.handleToggle}
+                        parentToolsProps={setNoteTime}
                         reminder={this.props.reminder}
                         note={this.props.note}
                     />
@@ -45,14 +50,9 @@ export default class Tools extends Component {
                         note={this.props.note}
                     />
                     <Archive
-                        archiveNote={this.props.archiveNote}
-                        noteID={this.props.noteID}
-                        archiveStatus={this.props.archiveStatus}
                     />
                     <MoreOptions
-                        // addLabelToNote={this.props.addLabelToNote}
-                        // trashNote={this.props.trashNote}
-                        // noteID={this.props.noteID}
+                        handleToggle={this.handleToggle}
                     />
                 </div>
             </div>

@@ -150,7 +150,7 @@ export default class registration extends React.Component {
                 }
                 userRegister(data)
                     .then((response) => {
-                        console.log("response==>", response);
+                        console.log("registration response from back-end===>", response);
                         this.setState({
                             openSnackBar: true,
                             snackBarMessage: "Registered Successfully!!"

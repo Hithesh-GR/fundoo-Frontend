@@ -20,12 +20,15 @@ import '../App.css';
 * @description:This method is used to Logout ui.. 
 */
 export default class Logout extends Component {
-    state = {
-        anchorEl: null,
-        open: false,
-        placement: null,
-        profilePic: ""
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            anchorEl: null,
+            open: false,
+            placement: null,
+            profilePic: ""
+        };
+    }
     /**
     * @description:it will toggle or reback the event
     */
@@ -72,7 +75,7 @@ export default class Logout extends Component {
         }
     };
     /**
-     * @description:
+     * @description:it trigger the event and enter into our file
      */
     triggerInputFile() {
         try {
@@ -82,7 +85,19 @@ export default class Logout extends Component {
         }
     }
     /**
-     * @description:
+     * @description:it will upload the image
+     * @param {*} evt 
+     */
+    uploadImage(evt) {
+        try {
+            console.log("upload image", evt.target.files[0]);
+            this.props.uploadImage(evt.target.files[0], this.props.note._id)
+        } catch (err) {
+            console.log("error at uploadImage in userProfile");
+        }
+    }
+    /**
+     * @description:it will open the userProfile
      */
     handleClick = placement => event => {
         try {
@@ -112,7 +127,7 @@ export default class Logout extends Component {
                                         <div id="userProfileDetails">
                                             <IconButton id="avatar">
                                                 <Tooltip title="Change Profile">
-                                                    <Avatar style={{ width: "80px", height: "80px", backgroundColor: "blur" }}
+                                                    <Avatar style={{ width: "100px", height: "100px", backgroundColor: "blur" }}
                                                         onClick={() => { this.triggerInputFile() }}>
                                                         {this.state.profilePic !== "" ?
                                                             <img style={{
@@ -151,7 +166,7 @@ export default class Logout extends Component {
                     <IconButton id="userProfileIcon">
                         <Tooltip
                             title={"Fundoo Account   :" + localStorage.getItem('username')}>
-                            <Avatar style={{ width: "40px", height: "40px", backgroundColor: "blur" }} onClick={this.handleClick('bottom-end')} >
+                            <Avatar style={{ width: "35px", height: "35px", backgroundColor: "blur" }} onClick={this.handleClick('bottom-end')} >
                                 {this.state.profilePic !== "" ?
                                     <img style={{
                                         width: "40px", height: "40px"

@@ -12,31 +12,12 @@ export default class dashBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            label: "",
             cardStyles: false,
-            reminder: false,
-            archive: false,
-            trash: false,
             slideCards: false
         }
         this.handleCardStyle = this.handleCardStyle.bind(this);
-        // this.getNewNote = this.getNewNote.bind(this);
         this.slideCards = this.slideCards.bind(this);
     }
-    makeLabelFalse() {
-        this.noteToCards.current.makeLabelFalse();
-    }
-    /**
-     * @description:it creates the new created note
-     * @param {*getting created newCard} newCard 
-     */
-    // getNewNote(newCard) {
-    //     try {
-    //         this.noteToCards.current.displayNewCard(newCard);
-    //     } catch (err) {
-    //         console.log("error at getNewNote in dashBoard");
-    //     }
-    // }
     /**
      * @description:it performs the card action
      */
@@ -68,9 +49,8 @@ export default class dashBoard extends Component {
                 />
                 <div className="setFixedMargin">
                     <div id="dashboard">
-                        <CreateNote 
-                        // getNewNote={this.getNewNote}
-                         />
+                        <CreateNote
+                        />
                     </div>
                 </div>
             </div>

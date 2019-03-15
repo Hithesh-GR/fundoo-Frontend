@@ -109,7 +109,7 @@ export default class login extends React.Component {
                 }
                 userLogin(data)
                     .then((response) => {
-                        console.log("response====>", response);
+                        console.log("login response from back-end====>", response);
                         this.setState({
                             openSnackBar: true,
                             snackBarMessage: "Login Successfull!!"

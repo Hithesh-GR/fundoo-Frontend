@@ -1,11 +1,9 @@
 import React from 'react';
 import {
-    shallow,
-    mount,
-    render
+    shallow
 } from 'enzyme';
 import ResetPassword from '../screens/resetPassword';
-import setup from '../setupTest'
+import '../setupTest'
 /**
  * describe what we are testing
  **/

@@ -1,8 +1,6 @@
 import React from 'react';
 import {
-    shallow,
-    mount,
-    render
+    shallow
 } from 'enzyme';
 import Registration from '../screens/registration';
 import '../setupTest'

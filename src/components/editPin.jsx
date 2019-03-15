@@ -1,3 +1,10 @@
+/*****************************************************************************************************
+ *  @Purpose        : Here we can perform pin and unpin the notes.
+ *  @file           : editPin.jsx       
+ *  @author         : HITHESH G R
+ *  @version        : v0.1
+ *  @since          : 23-02-2019
+ *****************************************************************************************************/
 import React, { Component } from 'react';
 import { Tooltip } from '@material-ui/core';
 export default class EditPin extends Component {
@@ -8,16 +15,30 @@ export default class EditPin extends Component {
         }
         this.handleClick = this.handleClick.bind(this);
     }
+    /**
+     * @description:it will shows the pin status whether it is pinned or not
+     */
     componentWillMount() {
-        if (typeof this.props.pinStatus !== "undefined") {
-            this.setState({
-                isPinned: this.props.pinStatus
-            })
+        try {
+            if (typeof this.props.pinStatus !== "undefined") {
+                this.setState({
+                    isPinned: this.props.pinStatus
+                })
+            }
+        } catch (err) {
+            console.log("error at componentWillMount in editPin");
         }
     }
+    /**
+     * @description:it will handles the pin event
+     */
     async handleClick() {
-        await this.setState({ isPinned: !this.state.isPinned });
-        this.props.cardPropsToPin(this.state.isPinned, this.props.noteID)
+        try {
+            await this.setState({ isPinned: !this.state.isPinned });
+            this.props.cardPropsToPin(this.state.isPinned, this.props.noteID)
+        } catch (err) {
+            console.log("error at handleClick in editPin");
+        }
     }
     render() {
         return (

@@ -1,8 +1,12 @@
-
+/*****************************************************************************************************
+ *  @Purpose        : Here we will archive the created notes
+ *  @file           : archive.jsx       
+ *  @author         : HITHESH G R
+ *  @version        : v0.1
+ *  @since          : 23-02-2019
+ *****************************************************************************************************/
 import React, { Component } from 'react';
 import { Snackbar, Button, IconButton, Tooltip } from '@material-ui/core';
-
-
 class Archive extends Component {
     constructor(props) {
         super(props);
@@ -10,25 +14,35 @@ class Archive extends Component {
             open: false,
             isArchived: false
         }
-
     }
-
+    /**
+     * @description:it will shows the archive status whether it is archived or not
+     */
     componentWillMount() {
-        if (typeof this.props.archiveStatus !== "undefined") {
-            this.setState({
-                isArchived: this.props.archiveStatus
-            })
+        try {
+            if (typeof this.props.archiveStatus !== "undefined") {
+                this.setState({
+                    isArchived: this.props.archiveStatus
+                })
+            }
+        } catch (err) {
+            console.log("error at componentWillMount in archive");
         }
     }
+    /**
+     * @description:it will handles the archive event
+     */
     async handleArchive() {
-        await this.setState({ isArchived: !this.state.isArchived });
-        this.props.archiveNote(this.state.isArchived, this.props.noteID)
-
+        try {
+            await this.setState({ isArchived: !this.state.isArchived });
+            this.props.archiveNote(this.state.isArchived, this.props.noteID)
+        } catch (err) {
+            console.log("error at handleArchive in archive");
+        }
     }
     render() {
         return (
             this.state.isArchived ?
-
                 <div>
                     <img src={require('../assets/images/unarchive.svg')}
                         onClick={() =>
@@ -36,7 +50,6 @@ class Archive extends Component {
                         }
                         alt="archive note icon"
                         className="archiveIcon" />
-
                     <Snackbar
                         anchorOrigin={{
                             vertical: 'bottom',

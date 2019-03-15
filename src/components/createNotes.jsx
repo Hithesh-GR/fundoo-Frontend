@@ -40,7 +40,6 @@ export default class createNotes extends Component {
             image: "",
             archive: false,
             trash: false,
-            newNote: {}
         }
         this.handleTitle = this.handleTitle.bind(this);
         this.handleDescription = this.handleDescription.bind(this);
@@ -83,16 +82,38 @@ export default class createNotes extends Component {
             console.log("error at handleReminder in createNotes");
         }
     }
+    /**
+     * @description:it will handle the color event
+     * @param {*value for color} value 
+     */
     handleColor(value) {
-        this.setState({ color: value });
+        try {
+            this.setState({ color: value });
+        } catch (err) {
+            console.log("error at handleColor in createNotes");
+        }
     }
-
+    /**
+     * @description:it will handle the archive event
+     * @param {*value for archive} value 
+     */
     handleArchive(value) {
-        this.setState({ archive: value });
+        try {
+            this.setState({ archive: value });
+        } catch (err) {
+            console.log("error at handleArchive in createNotes");
+        }
     }
-
+    /**
+     * @description:it will handle the pinned event
+     * @param {*value for pinned} value 
+     */
     handlePinned(value) {
-        this.setState({ pinned: value });
+        try {
+            this.setState({ pinned: value });
+        } catch (err) {
+            console.log("error at handlePinned in createNotes");
+        }
     }
     /**
      * @description:it will handle the creating a new note
@@ -103,7 +124,7 @@ export default class createNotes extends Component {
             console.log("pinned", this.state.openNote);
             if (this.state.title !== '' || this.state.description !== '' || this.state.color !== "rgb(255, 255, 255)") {
                 const note = {
-                    userId:localStorage.getItem('userId'),
+                    userId: localStorage.getItem('userId'),
                     title: this.state.title,
                     description: this.state.description,
                     reminder: this.state.reminder,
@@ -115,8 +136,8 @@ export default class createNotes extends Component {
                 }
                 createNote(note)
                     .then((result) => {
-                        console.log("result from back-end====>",result);
-                        
+                        console.log("create note result from back-end====>", result);
+
                         this.setState({
                             newNote: result.data.data
                         })
@@ -151,11 +172,12 @@ export default class createNotes extends Component {
                                 multiline
                                 disableUnderline={true}
                                 placeholder="Take a note ...."
+                                id="description"
                                 readOnly={true}
                                 onClick={this.handleToggle}
                                 value=""
                             />
-                            <UploadImage/>
+                            <UploadImage />
                         </div>
                     </Card>
                 </div>
@@ -169,6 +191,7 @@ export default class createNotes extends Component {
                                 className="noteInputBase"
                                 multiline
                                 disableUnderline={true}
+                                id="title"
                                 placeholder="Title"
                                 value={this.state.title}
                                 onChange={this.handleTitle}
@@ -183,6 +206,7 @@ export default class createNotes extends Component {
                             multiline
                             disableUnderline={true}
                             placeholder="Take a note..."
+                            id="description"
                             value={this.state.description}
                             onChange={this.handleDescription}
                         />

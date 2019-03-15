@@ -218,7 +218,6 @@ export default class ResetPassword extends React.Component {
                     <div id="butn" >
                         <Button
                             id="sentenceCase"
-                           
                             color="primary"
                             title="click on reset"
                             onClick={this.resetForm}>

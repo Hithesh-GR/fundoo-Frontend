@@ -1,5 +1,5 @@
 /****************************************************************************************
- *  @Purpose        : 
+ *  @Purpose        : Here we will upload the image to new note and created note.
  *  @file           : uploadImage.jsx       
  *  @author         : HITHESH G R
  *  @version        : v0.1
@@ -8,6 +8,9 @@
 import React, { Component } from 'react';
 import { Tooltip } from '@material-ui/core';
 export default class UploadImage extends Component {
+    /**
+     * @description:it trigger the event and enter into our file
+     */
     triggerInputFile() {
         try {
             this.fileInput.click();
@@ -15,12 +18,16 @@ export default class UploadImage extends Component {
             console.log("error at triggerInputFile in uploadImage");
         }
     }
+    /**
+     * @description:it will upload the image
+     * @param {*} evt 
+     */
     uploadImage(evt) {
         try {
             console.log("upload image", evt.target.files[0]);
             this.props.uploadImage(evt.target.files[0], this.props.note._id)
         } catch (err) {
-            console.log("error at uploadImage in uploadImage");
+            console.log("error at uploadImage");
         }
     }
     render() {
