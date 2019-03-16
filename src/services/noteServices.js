@@ -12,18 +12,19 @@ import axios from 'axios';
  */
 export function createNote(data) {
     console.log("create note data from front-end==>", data);
-    return axios.post('/createNote', {
-        headers: {
-            "token": localStorage.getItem("token")
-        },
-        data: data
-    })
+    var headers = {
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem("token")
+    }
+    return axios.post('/createNote',
+        data, {headers: headers}
+    )
 }
 /**
- * 
+ * @description:To get the created notes
  */
 export function getNotes() {
-    console.log("get notes from front-end");
+    console.log("*----get notes from front-end----*");
     return axios.get('/getNotes', {
         headers: {
             "token": localStorage.getItem("token")
@@ -33,3 +34,38 @@ export function getNotes() {
         return result;
     })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

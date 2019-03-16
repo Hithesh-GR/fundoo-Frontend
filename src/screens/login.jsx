@@ -18,6 +18,7 @@ import { userLogin } from "../services/userServices";
 //import  Buttons  from "../components/button";
 //import Input from "../components/input";
 import "../App.css";
+const jwt = require('jsonwebtoken');
 export default class login extends React.Component {
     constructor(props) {
         super(props);
@@ -110,15 +111,37 @@ export default class login extends React.Component {
                 userLogin(data)
                     .then((response) => {
                         console.log("login response from back-end====>", response);
-                        this.setState({
-                            openSnackBar: true,
-                            snackBarMessage: "Login Successfull!!"
-                        });
-                        localStorage.setItem('username', response.data.result.firstName)
-                        localStorage.setItem('email', response.data.result.email)
-                        localStorage.setItem('userId', response.data.result._id)
-                        localStorage.setItem('token', response.data.token.token)
-                        this.props.history.push('/dashBoard');
+                       
+                        jwt.verify(response.data, 'secretkey-auth', (err, decoded) => {
+                            if (err) {
+                                console.log("token invalid--->");
+
+                            } else {
+                                console.log("decoded data==>", decoded.payload);
+
+                                localStorage.setItem('username', decoded.payload.username);
+                                localStorage.setItem('email', decoded.payload.email);
+                                localStorage.setItem('userId', decoded.payload.user_id);
+                                localStorage.setItem('token', response.data);
+                                this.setState({
+                                    openSnackBar: true,
+                                    snackBarMessage: "Login Successfull!!"
+                                });
+                              
+                                this.props.history.push("/dashBoard");
+
+                           }
+
+                        })
+
+
+
+
+                        // localStorage.setItem('username', response.data.result.firstName)
+                        // localStorage.setItem('email', response.data.result.email)
+                        // localStorage.setItem('userId', response.data.result._id)
+                        // localStorage.setItem('token', response.data.token.token)
+                        // this.props.history.push('/dashBoard');
                     })
                     .catch((err) => {
                         console.log(err);
@@ -279,3 +302,5 @@ export default class login extends React.Component {
     }
 }
 export { login };
+
+

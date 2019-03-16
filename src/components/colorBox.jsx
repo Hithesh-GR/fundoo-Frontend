@@ -11,17 +11,17 @@ import { IconButton, Tooltip, Card, ClickAwayListener } from '@material-ui/core'
  * @description:it will define the color using rgb-color code
  */
 const colorCodesAndNames = [{ name: "white", colorCode: "rgb(255, 255, 255)" },
-{ name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
-{ name: "purple", colorCode: "rgb(215, 174, 251)" },
-{ name: "red", colorCode: "rgb(242, 139, 130)" },
-{ name: "Teal", colorCode: "rgb(167, 255, 235)" },
-{ name: "pink", colorCode: "rgb(253, 207, 232)" },
-{ name: "orange", colorCode: "rgb(251, 188, 4)" },
-{ name: "blue", colorCode: "rgb(203, 240, 248)" },
-{ name: "brown", colorCode: "rgb(230, 201, 168)" },
-{ name: "yellow", colorCode: "rgb(255, 244, 117)" },
-{ name: "darkBlue", colorCode: "rgb(174, 203, 250)" },
-{ name: "gray", colorCode: "rgb(232, 234, 237)" }
+{ name: "red", colorCode: "rgb(255,0,0)" },
+{ name: "hot pink", colorCode: "rgb(255,105,180)" },
+{ name: "lime", colorCode: "rgb(0,255,0)" },
+{ name: "cyan", colorCode: "rgb(0, 255, 255)" },
+{ name: "tomato", colorCode: "rgb(255,99,71)" },
+{ name: "dark orange", colorCode: "rgb(255,140,0)" },
+{ name: "blue", colorCode: "rgb(0,0,255)" },
+{ name: "maroon", colorCode: "rgb(128,0,0)" },
+{ name: "gold", colorCode: "rgb(255, 215,0)" },
+{ name: "royal blue", colorCode: "rgb(65,105,225)" },
+{ name: "silver", colorCode: "rgb(192,192,192)" }
 ]
 export default class ColorPallete extends Component {
     constructor(props) {

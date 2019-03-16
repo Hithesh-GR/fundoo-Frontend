@@ -811,7 +811,7 @@ div .currentDate {
 
   #cardsViewDiv {
     margin-left: 20%;
-    background-color: #202124;
+    background-color: #194ce6;
   }
 
   #cardViewIcon {
@@ -834,12 +834,6 @@ div .currentDate {
     text-align: left;
     padding: 10px;
     border-radius: 10px;
-  }
-
-  .CardsView {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap
   }
 }
 
@@ -894,13 +888,7 @@ div .currentDate {
     padding: 10px;
     border-radius: 10px;
   }
-
-  */ .CardsView {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap
-  }
-}
+ }
 
 @media only screen and (min-width:601px) and (max-width:774px) {
   #appBarIcons {
@@ -950,13 +938,6 @@ div .currentDate {
   padding: 10px;
   border-radius: 10px;
 }
-
-.CardsView {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap
-}
-
 
 .App {
   text-align: center;

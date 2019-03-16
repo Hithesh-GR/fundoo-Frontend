@@ -273,7 +273,7 @@ export default class registration extends React.Component {
                         </IconButton>
                     </div>
                     <div id="font1">
-                        Use 6 or more characters with a mix of letters, numbers & symbols
+                        Use 6 or more characters
                         </div>
                     <div id="buttn" >
                         <Button

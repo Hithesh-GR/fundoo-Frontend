@@ -7,6 +7,7 @@
  *****************************************************************************************/
 import React, { Component } from 'react';
 import CreateNote from '../components/createNotes';
+import Notes from '../components/notes';
 import AppbarComponent from '../components/appBar';
 export default class dashBoard extends Component {
     constructor(props) {
@@ -15,8 +16,10 @@ export default class dashBoard extends Component {
             cardStyles: false,
             slideCards: false
         }
+        this.noteToCards = React.createRef();
         this.handleCardStyle = this.handleCardStyle.bind(this);
         this.slideCards = this.slideCards.bind(this);
+        this.getNewNote = this.getNewNote.bind(this);
     }
     /**
      * @description:it performs the card action
@@ -38,6 +41,17 @@ export default class dashBoard extends Component {
             console.log("error at handleCardStyle in dashBoard");
         }
     }
+    /**
+     * @description:it display the new note
+     * @param {*get new card or note} newCard 
+     */
+    getNewNote(newCard) {
+        try {
+            this.noteToCards.current.displayNewCard(newCard);
+        } catch (err) {
+            console.log("error at getNewNote in dashBoard");
+        }
+    }
     render() {
         const slidingCards = this.state.slideCards ? "afterSlide" : "beforeSlide"
         return (
@@ -50,6 +64,11 @@ export default class dashBoard extends Component {
                 <div className="setFixedMargin">
                     <div id="dashboard">
                         <CreateNote
+                            getNewNote={this.getNewNote}
+                        />
+                        <Notes
+                            noteProps={this.state.cardStyles}
+                            ref={this.noteToCards}
                         />
                     </div>
                 </div>
