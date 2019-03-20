@@ -52,9 +52,15 @@ export default class Tools extends Component {
                         note={this.props.note}
                     />
                     <Archive
+                        archiveNote={this.props.archiveNote}
+                        noteID={this.props.noteID}
+                        archiveStatus={this.props.archiveStatus}
                     />
                     <MoreOptions
                         handleToggle={this.handleToggle}
+                        addLabelToNote={this.props.addLabelToNote}
+                        trashNote={this.props.trashNote}
+                        noteID={this.props.noteID}
                     />
                 </div>
             </div>

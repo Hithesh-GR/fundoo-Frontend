@@ -13,8 +13,53 @@ export default class drawerMenu extends Component {
         super();
         this.state = {
             open: false,
+
+            navigateReminder: false,
+            navigateArchived: false,
+            navigateTrashed: false,
+            label: [],
         }
     }
+
+    async handleNotes() {
+        await this.setState({
+            navigateReminder: false,
+            navigateArchived: false,
+            navigateTrashed: false,
+        })
+        this.props.makeLabelFalse();
+        this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
+    }
+    async handleReminder() {
+        await this.setState({
+            navigateReminder: true,
+            navigateArchived: false,
+            navigateTrashed: false
+        })
+        this.props.makeLabelFalse();
+        this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
+    }
+    async handleArchived() {
+
+        await this.setState({
+            navigateReminder: false,
+            navigateArchived: true,
+            navigateTrashed: false
+        })
+        this.props.makeLabelFalse();
+        this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
+    }
+    async handleTrashed() {
+        await this.setState({
+            navigateReminder: false,
+            navigateArchived: false,
+            navigateTrashed: true
+        })
+        this.props.makeLabelFalse();
+        this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
+    }
+
+
     render() {
         return (
             <div>
@@ -23,12 +68,12 @@ export default class drawerMenu extends Component {
                     open={this.props.appBarProps}
                     width={300}
                 >
-                    <MenuItem id="noteMenu" >
+                    <MenuItem id="noteMenu" onClick={()=>this.handleNotes()}>
                         <img src={require('../assets/images/note.svg')} alt="note icon"
                             style={{ marginRight: "50px" }} />
                         Notes
                     </MenuItem>
-                    <MenuItem id="reminderMenu" >
+                    <MenuItem id="reminderMenu" onClick={()=>this.handleReminder()}>
                         <img src={require('../assets/images/menuReminder.svg')} alt="reminder icon"
                             style={{ marginRight: "50px" }} />
                         Reminders
@@ -38,19 +83,19 @@ export default class drawerMenu extends Component {
                             LABELS
                         </div>
                         <div>
-                            <MenuItem id="labelMenu" >
+                            <MenuItem id="labelMenu"  onClick={this.handleEditLabel}>
                                 <img src={require('../assets/images/menuEdit.svg')} alt="edit icon"
                                     style={{ marginRight: "50px" }} />
                                 Edit Labels
                             </MenuItem>
                         </div>
                     </div>
-                    <MenuItem id="archiveMenu"  >
+                    <MenuItem id="archiveMenu"  onClick={()=>this.handleArchived()}>
                         <img src={require('../assets/images/menuArchive.svg')} alt="archive icon"
                             style={{ marginRight: "50px" }} />
                         Archive
                     </MenuItem>
-                    <MenuItem id="trashIcon" >
+                    <MenuItem id="trashIcon" onClick={()=>this.handleTrashed()}>
                         <img src={require('../assets/images/menuTrash.svg')} alt="trash icon"
                             style={{ marginRight: "50px" }} />
                         Trash

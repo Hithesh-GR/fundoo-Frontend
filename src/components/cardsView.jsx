@@ -23,7 +23,7 @@ export default class cardsView extends Component {
         try {
             evt.preventDefault();
             this.setState({ view: !this.state.view });
-            // this.props.appPropstoCardsView();
+            this.props.appPropstoCardsView();
         } catch (err) {
             console.log("error at handleCardsView in cardsView");
         }

@@ -37,6 +37,17 @@ export function getNotes() {
 
 
 
+export function otherArray(notesData){
+    let otherArr = [];
+    for (let i = 0; i < notesData; i++) {
+        if (!notesData[i].note.pinned && !notesData[i].note.archive && !notesData[i].note.trash) {
+            otherArr.push(notesData[i]);
+        }
+    }
+    return otherArr;
+}
+
+
 
 
 

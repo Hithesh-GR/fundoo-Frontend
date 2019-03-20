@@ -45,7 +45,8 @@ const theme = createMuiTheme({
             regular: {
                 display: "flex",
                 justifyContent: "space-between",
-                width: "100%"
+                width: "100%",
+                backgroundColor:"white"
             },
             root: {
                 position: "absolute",
@@ -74,6 +75,8 @@ export default class appBar extends React.Component {
             searchNote: ""
         };
         this.handleSearchBar = this.handleSearchBar.bind(this);
+
+        this.handleAppbar = this.handleAppbar.bind(this);
     }
     /**
      * @description:it will toggle the menu bar
@@ -93,10 +96,26 @@ export default class appBar extends React.Component {
     handleSearchBar(evt) {
         try {
             this.setState({ searchNote: evt.target.value });
+            this.props.getSearchedNotes(evt.target.value);
         } catch (err) {
             console.log("error at handleSearchBar in appBar");
         }
     }
+
+
+    handleRefresh(evt) {
+        evt.preventDefault();
+        window.location.reload();
+    }
+
+    handleAppbar() {
+        this.props.notePropsToApp();
+    }
+
+    searchLabels(value) {
+        this.props.searchLabels(value)
+    }
+
     render() {
         // const { open } = this.state;
         return (
@@ -148,7 +167,11 @@ export default class appBar extends React.Component {
                             </Toolbar>
                             <DrawerMenu
                                 appBarProps={this.state.open}
-                            />
+
+                                handleNavigation={this.props.handleNavigation}
+                                searchLabels={(value) => this.searchLabels(value)}
+                                makeLabelFalse={this.props.makeLabelFalse} 
+                                />
                         </AppBar>
                     </MuiThemeProvider>
                 </div>

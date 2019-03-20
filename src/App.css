@@ -152,7 +152,7 @@ input[type=password1] {
 
 }
 
-#sentenceCase{
+#sentenceCase {
   text-transform: none;
 }
 
@@ -193,6 +193,23 @@ input[type=emaill] {
 }
 
 /***********************for dashBoard css***************************/
+#CreateNote2 {
+  /* height: 156px; */
+  width: 500px;
+  margin-left: 100px;
+  margin-top: 25px;
+  text-align: left;
+  padding: 20px;
+  border: 1px solid #dadce0;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.20);
+}
+
+#displaycontentdiv {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3%
+}
 
 .root {
   display: "flex"
@@ -888,7 +905,7 @@ div .currentDate {
     padding: 10px;
     border-radius: 10px;
   }
- }
+}
 
 @media only screen and (min-width:601px) and (max-width:774px) {
   #appBarIcons {

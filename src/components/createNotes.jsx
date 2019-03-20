@@ -40,6 +40,7 @@ export default class createNotes extends Component {
             image: "",
             archive: false,
             trash: false,
+            newNote: {}
         }
         this.handleTitle = this.handleTitle.bind(this);
         this.handleDescription = this.handleDescription.bind(this);
