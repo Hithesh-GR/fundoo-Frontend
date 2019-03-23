@@ -17,7 +17,9 @@ export function createNote(data) {
         'token': localStorage.getItem("token")
     }
     return axios.post('/createNote',
-        data, {headers: headers}
+        data, {
+            headers: headers
+        }
     )
 }
 /**
@@ -29,54 +31,57 @@ export function getNotes() {
         headers: {
             "token": localStorage.getItem("token")
         }
-    }).then(function (response) {
-        const result = response.data.data;
-        return result;
     })
 }
-
-
-
-export function otherArray(notesData){
-    let otherArr = [];
-    for (let i = 0; i < notesData; i++) {
-        if (!notesData[i].note.pinned && !notesData[i].note.archive && !notesData[i].note.trash) {
-            otherArr.push(notesData[i]);
-        }
+/**
+ * @description:
+ * @param {*} url 
+ * @param {*} data 
+ */
+export function updateColor(data) {
+    var headers = {
+        'Content-Type': 'application/json',
+        "token": localStorage.getItem("token")
     }
-    return otherArr;
+    return axios.put('/updateColor',
+        data, {
+            headers: headers
+        }
+    )
 }
 
+export function updateArchiveStatus(data) {
+    var headers = {
+        "token": localStorage.getItem("token")
+    }
+    return axios.put('/isArchived',
+        data, {
+            headers: headers
+        }
+    )
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export function isTrashed(url, data) {
+    return axios.put(url, {
+        headers: {
+            "token": localStorage.getItem("token")
+        },
+        data: data
+    })
+}
+/**
+ * @description:
+ * @param {*} url 
+ * @param {*} data 
+ */
+export function deleteNoteForever(url, data) {
+    var headers = {
+        'Content-Type': 'application/json',
+        "token": localStorage.getItem("token")
+    }
+    return axios.delete(url,
+        data, {
+            headers: headers
+        }
+    )
+}

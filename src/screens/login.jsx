@@ -15,8 +15,6 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Snackbar from '@material-ui/core/Snackbar';
 import { userLogin } from "../services/userServices";
-//import  Buttons  from "../components/button";
-//import Input from "../components/input";
 import "../App.css";
 const jwt = require('jsonwebtoken');
 export default class login extends React.Component {
@@ -111,14 +109,11 @@ export default class login extends React.Component {
                 userLogin(data)
                     .then((response) => {
                         console.log("login response from back-end====>", response);
-                       
                         jwt.verify(response.data, 'secretkey-auth', (err, decoded) => {
                             if (err) {
                                 console.log("token invalid--->");
-
                             } else {
                                 console.log("decoded data==>", decoded.payload);
-
                                 localStorage.setItem('username', decoded.payload.username);
                                 localStorage.setItem('email', decoded.payload.email);
                                 localStorage.setItem('userId', decoded.payload.user_id);
@@ -127,21 +122,9 @@ export default class login extends React.Component {
                                     openSnackBar: true,
                                     snackBarMessage: "Login Successfull!!"
                                 });
-                              
                                 this.props.history.push("/dashBoard");
-
-                           }
-
+                            }
                         })
-
-
-
-
-                        // localStorage.setItem('username', response.data.result.firstName)
-                        // localStorage.setItem('email', response.data.result.email)
-                        // localStorage.setItem('userId', response.data.result._id)
-                        // localStorage.setItem('token', response.data.token.token)
-                        // this.props.history.push('/dashBoard');
                     })
                     .catch((err) => {
                         console.log(err);

@@ -40,7 +40,6 @@ export default class drawerMenu extends Component {
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
     async handleArchived() {
-
         await this.setState({
             navigateReminder: false,
             navigateArchived: true,

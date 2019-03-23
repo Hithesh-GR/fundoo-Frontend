@@ -6,7 +6,8 @@
  *  @since          : 23-02-2019
  *****************************************************************************************************/
 import React, { Component } from 'react';
-import { IconButton, Tooltip, Card, ClickAwayListener } from '@material-ui/core';
+import { IconButton, Tooltip, Card } from '@material-ui/core';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 /**
  * @description:it will define the color using rgb-color code
  */

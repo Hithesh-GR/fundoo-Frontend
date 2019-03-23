@@ -122,7 +122,7 @@ export default class createNotes extends Component {
     handleToggle() {
         try {
             this.setState({ openNote: !this.state.openNote });
-            console.log("pinned", this.state.openNote);
+            // console.log("pinned", this.state.openNote);
             if (this.state.title !== '' || this.state.description !== '' || this.state.color !== "rgb(255, 255, 255)") {
                 const note = {
                     userId: localStorage.getItem('userId'),
@@ -137,10 +137,9 @@ export default class createNotes extends Component {
                 }
                 createNote(note)
                     .then((result) => {
-                        console.log("create note result from back-end====>", result);
-
+                        console.log("create note result from back-end====>", result.data.data);
                         this.setState({
-                            newNote: result.data.data
+                            newNote: result.data.data.note
                         })
                         this.props.getNewNote(this.state.newNote)
                     })
@@ -197,10 +196,12 @@ export default class createNotes extends Component {
                                 value={this.state.title}
                                 onChange={this.handleTitle}
                             />
-                            <EditPin
-                                pinStatus={this.state.pinned}
-                                cardPropsToPin={this.handlePinned}
-                            />
+                            <div>
+                                <EditPin
+                                    pinStatus={this.state.pinned}
+                                    cardPropsToPin={this.handlePinned}
+                                />
+                            </div>
                         </div>
                         <Input
                             className="noteInputBase"
@@ -213,6 +214,7 @@ export default class createNotes extends Component {
                         />
                         <div className="cardToolsClose" >
                             <Tools
+                                reminder={this.handleReminder}
                                 createNotePropsToTools={this.handleColor}
                                 archiveNote={this.handleArchive}
                                 archiveStatus={this.state.archive}

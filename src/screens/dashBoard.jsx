@@ -29,6 +29,8 @@ export default class dashBoard extends Component {
 
         this.handleNavigation = this.handleNavigation.bind(this);
         this.getSearchedNotes = this.getSearchedNotes.bind(this);
+        this.searchLabels = this.searchLabels.bind(this);
+        this.makeLabelFalse = this.makeLabelFalse.bind(this);
     }
     /**
      * @description:it performs the card action
@@ -54,7 +56,9 @@ export default class dashBoard extends Component {
      * @description:it display the new note
      * @param {*get new card or note} newCard 
      */
-    getNewNote(newCard) {
+    getNewNote (newCard) {
+        console.log("new card",newCard);
+        
         try {
             this.noteToCards.current.displayNewCard(newCard);
         } catch (err) {
@@ -123,6 +127,10 @@ export default class dashBoard extends Component {
                             ref={this.noteToCards}
 
                             searchNote={this.state.searchNote}
+                            labelValue={this.state.label}
+                            navigateReminder={this.state.reminder}
+                            navigateArchived={this.state.archive}
+                            navigateTrashed={this.state.trash}
                         />
                     </div>
                 </div>

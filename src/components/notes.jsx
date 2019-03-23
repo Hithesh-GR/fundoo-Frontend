@@ -1,205 +1,17 @@
-// /*****************************************************************************************************
-//  *  @Purpose        : 
-//  *  @file           : notes.jsx       
-//  *  @author         : HITHESH G R
-//  *  @version        : v0.1
-//  *  @since          : 23-02-2019
-//  *****************************************************************************************************/
-// import React, { Component } from 'react';
-// import { Card, MuiThemeProvider, createMuiTheme} from '@material-ui/core';
-// // import { Chip,Tooltip, Avatar } from '@material-ui/core';
-// import { getNotes } from '../services/noteServices';
-// import Tools from '../components/tools';
-// import EditPin from '../components/editPin';
-// import DialogBox from '../components/dialogBox';
-// // import ClockIcon from '../components/clockIcon';
-// import { otherArray } from '../services/noteServices';
-// const theme = createMuiTheme({
-//     overrides: {
-//         MuiPaper: {
-//             elevation1: {
-//                 boxShadow: "0px"
-//             }
-//         },
-//     },
-//     typography: {
-//         useNextVariants: true,
-//     },
-// })
-// export default class Cards extends Component {
-//     constructor() {
-//         super();
-//         this.state = {
-//             open: false,
-//             notes: [],
-//             label: false
-//         }
-//         this.cardsToDialogBox = React.createRef();
-
-//         this.handleClick = this.handleClick.bind(this);
-//         this.closeEditBox = this.closeEditBox.bind(this);
-//     }
-//     async handleClick(note) {
-//         await this.setState({ open: true })
-//         this.cardsToDialogBox.current.getData(note);
-//     }
-//     closeEditBox() {
-//         this.setState({ open: false })
-//     }
-//     componentDidMount() {
-//         getNotes()
-//             .then((result) => {
-//                 this.setState({
-//                     notes: result
-//                 })
-//                 console.log("getNotes result from back-end", result);
-//             })
-//             .catch((error) => {
-//                 alert(error)
-//             });
-//     }
-//     displayNewCard(newCard) {
-//         this.setState({
-//             notes: [...this.state.notes, newCard]
-//         })
-//     }
-
-//     render() {
-
-//         let cardsView = this.props.noteProps ? "cards" : "listCards";
-
-//         let otherArr = otherArray(this.state.notes);
-//         return (
-//             <MuiThemeProvider theme={theme}>
-//                 <div className="CardsView">
-
-//                     {Object.keys(otherArr).map((key) => {
-//                         console.log("otherArr", otherArr[key].note);
-
-//                         return (
-//                             <div key={key} id="cardsViewDiv">
-//                                 <Card className={cardsView}
-//                                     style={{ backgroundColor: otherArr[key].note.color, borderRadius: "10px", border: "1px solid #dadce0" }}
-//                                 >
-//                                     <div >
-//                                         <div>
-//                                             {otherArr[key].note.image !== "" ?
-//                                                 <img style={{
-//                                                     maxWidth: "100%",
-//                                                     height: "auto"
-//                                                 }} src={otherArr[key].note.image} alt="cardImage"></img>
-//                                                 : null}
-//                                         </div>
-//                                         <div style={{ display: "flex", justifyContent: "space-between" }}>
-//                                             <b onClick={() => this.handleClick(otherArr[key].note)} >
-//                                                 {otherArr[key].note.title}
-//                                             </b>
-
-//                                             <EditPin cardPropsToPin={this.pinNote}
-//                                                 noteID={otherArr[key].note._id}
-//                                                 pinStatus={otherArr[key].note.pinned}
-//                                             />
-//                                         </div>
-
-//                                         <DialogBox
-//                                             ref={this.cardsToDialogBox}
-//                                             parentProps={this.state.open}
-//                                             handleEdit={this.handleClick}
-//                                             closeEditBox={this.closeEditBox}
-//                                             note={otherArr[key].note}
-//                                             editTitle={this.editTitle}
-//                                             editDescription={this.editDescription}
-//                                             createNotePropsToTools={this.getColor}
-
-//                                         />
-
-//                                         <div onClick={this.handleClick}>
-//                                             {otherArr[key].note.description}
-//                                         </div>
-
-//                                         {/* <div style={{ display: "flex", flexDirection: "row" }}>
-//                                                     {otherArr[key].collab.length > 0 ?
-//                                                         // eslint-disable-next-line
-//                                                         otherArr[key].collab.map((collabKey, index) => {
-//                                                             if (otherArr[key].owner.firstName !== "") {
-
-//                                                                 return (
-//                                                                     <div style={{ margin: "3px" }} key={index} >
-//                                                                         {collabKey.userName !== localStorage.getItem('emailId') && otherArr[key].owner !== undefined ?
-//                                                                             <Tooltip title={collabKey.firstName + " " + collabKey.lastName + " (" + collabKey.userName + ")"}>
-//                                                                                 <Avatar style={{ height: "30px", width: "30px", backgroundColor: "rgb(0,0,0,.10)" }}>
-//                                                                                     {collabKey.firstName.substring(0, 1)}
-//                                                                                 </Avatar>
-//                                                                             </Tooltip>
-//                                                                             : <Tooltip title={otherArr[key].owner.firstName + " " + otherArr[key].owner.lastName + " (" + otherArr[key].owner.userName + ")"}>
-//                                                                                 <Avatar style={{ height: "30px", width: "30px", backgroundColor: "rgb(0,0,0,.10)" }}>
-//                                                                                     {otherArr[key].owner.firstName.substring(0, 1)}
-//                                                                                 </Avatar>
-//                                                                             </Tooltip>
-//                                                                         }
-//                                                                     </div>
-//                                                                 )
-//                                                             }
-
-//                                                         })
-//                                                         : null
-//                                                     }
-//                                                 </div> */}
-
-//                                         {/* {otherArr[key].note.reminder ?
-
-//                                             <Chip icon={<ClockIcon />}
-//                                                 label={otherArr[key].note.reminder}
-//                                                 onDelete={() => this.reminderNote('', otherArr[key].note._id)}
-//                                             />
-//                                             :
-//                                             null
-//                                         } */}
-//                                     </div>
-
-//                                     <div className="noteicons">
-//                                         <Tools
-//                                             createNotePropsToTools={this.getColor}
-//                                             collab={otherArr[key].collab}
-//                                             owner={otherArr[key].owner}
-//                                             archiveNote={this.archiveNote}
-//                                             noteID={otherArr[key].note._id}
-//                                             archiveStatus={otherArr[key].note.archive}
-//                                             reminder={this.reminderNote}
-//                                             note={otherArr[key].note}
-//                                             trashNote={this.trashNote}
-//                                         />
-//                                     </div>
-
-//                                 </Card>
-//                             </div>
-//                         )
-//                     })}
-
-//                 </div>
-
-
-
-//             </MuiThemeProvider>
-
-//         )
-
-//     }
-
-// }
-
-
-
+/*****************************************************************************************************
+ *  @Purpose        : 
+ *  @file           : notes.jsx       
+ *  @author         : HITHESH G R
+ *  @version        : v0.1
+ *  @since          : 23-02-2019
+ *****************************************************************************************************/
 import React, { Component } from 'react';
-import { Card, Chip, MuiThemeProvider, createMuiTheme, Tooltip, Avatar } from '@material-ui/core';
+import { Card } from '@material-ui/core';
 import Tools from '../components/tools';
-import { getNotes, updateColor, updatePin, setReminder, isTrashed, updateArchiveStatus, deleteNoteForever, updateTitle, updateDescription } from '../services/noteServices';
-// import EditPin from './Pinned';
-// import ClockIcon from './clockIcon';
-//  import { otherArray } from '../services/noteServices';
-// import DialogBox from '../components/dialogBox';
+import ArchivedNavigator from "../components/sideNavigation/archivedNavigator"
+import { getNotes, updateColor, deleteNoteForever, updateArchiveStatus } from '../services/noteServices';
+// import { otherArray } from '../services/noteServices';
 import '../App.css';
-// import { red } from '@material-ui/core/colors';
 export default class Cards extends Component {
     constructor() {
         super();
@@ -208,13 +20,14 @@ export default class Cards extends Component {
             notes: [],
             label: false
         }
+        this.cardsToDialogBox = React.createRef();
     }
 
     componentDidMount() {
         getNotes()
             .then((result) => {
                 this.setState({
-                    notes: result
+                    notes: result.data.data
                 })
                 console.log("getNotes result from back-end", result);
             })
@@ -222,34 +35,159 @@ export default class Cards extends Component {
                 alert(error)
             });
     }
-    render() {
-        return (
-            <div>
-                {
-                    Object.keys(this.state.notes).slice(0).reverse().map((key) => {
-                        console.log("=====================", this.state.notes[0].color);
-                        return (
-                            <div>
-                                <Card id="CreateNote2" style={{ backgroundColor: this.state.notes[key].color }}>
-                                    <div >
-                                        <div>
-                                            <b> {this.state.notes[key].title}</b>
-                                        </div>
-                                        <div>
-                                            {this.state.notes[key].description}
-                                        </div >
-                                        <div id="displaycontentdiv">
-                                            <Tools />
-                                        </div>
-                                    </div>
 
-                                </Card>
-                            </div>
-                        )
-                    })
+    getColor = (value, noteId) => {
+        const color = {
+            noteID: noteId,
+            color: value
+        }
+        updateColor(color)
+            .then((result) => {
+                let newArray = this.state.notes;
+                for (let i = 0; i < newArray.length; i++) {
+                    if (newArray[i]._id === noteId) {
+                        newArray[i].color = result.data.data;
+                        this.setState({
+                            notes: newArray
+                        })
+                    }
                 }
-            </div>
-        );
+            })
+            .catch((error) => {
+                alert(error)
+            });
+    }
+
+    archiveNote = (value, noteId) => {
+        const isArchived = {
+            noteID: noteId,
+            archive: value
+        }
+        updateArchiveStatus(isArchived)
+            .then((result) => {
+                let newArray = this.state.notes
+                for (let i = 0; i < newArray.length; i++) {
+                    if (newArray[i]._id === noteId) {
+                        newArray[i].archive = result.data.data;
+                        newArray[i].pinned = false;
+                        newArray[i].trash = false;
+                        this.setState({
+                            notes: newArray
+                        })
+                    }
+                }
+            })
+            .catch((error) => {
+                alert(error)
+            });
+    }
+
+    deleteNote = (noteId) => {
+        const obj = {
+            noteID: noteId,
+        }
+        deleteNoteForever('/deleteNote', obj)
+            .then((result) => {
+                let newArray = this.state.notes
+                for (let i = 0; i < newArray.length; i++) {
+                    if (newArray[i].note._id === obj.noteID) {
+                        newArray.splice(i, 1);
+                        this.setState({
+                            notes: newArray
+                        })
+                    }
+                }
+            })
+            .catch((error) => {
+                alert(error)
+            });
+    }
+
+    displayNewCard(newCard) {
+        // console.log("newCard", newCard.note);
+        this.setState({
+            notes: [...this.state.notes, newCard]
+        })
+    }
+    render() {
+        // let cardsView = this.props.noteProps ? "listCards" : "cards";
+        if ((this.props.searchNote !== "" || this.state.label) && (!this.props.navigateArchived
+            && !this.props.navigateReminder && !this.props.navigateTrashed)) {
+            return (
+                <ArchivedNavigator
+                    // addLabelToNote={this.addLabelToNote}
+                    // archiveArray={archiveArray(this.state.notes)}
+                    // pinNote={this.pinNote}
+                    // othersArray={otherArray}
+                    // deleteLabelFromNote={this.deleteLabelFromNote}
+                    // getColor={this.getColor}
+                    // noteProps={this.props.noteProps}
+                    // reminder={this.reminderNote}
+                    // trashNote={this.trashNote}
+                    archiveNote={this.archiveNote}
+                // uploadImage={this.uploadImage} 
+                />
+            )
+        }
+        else {
+            return (
+                <div >
+                    {
+                        Object.keys(this.state.notes).slice(0).reverse().map((key) => {
+                            // console.log("=====================", this.state.notes[0].color);
+                            return (
+                                <div>
+                                    <Card id="CreateNote2" style={{ backgroundColor: this.state.notes[key].color }}>
+                                        <div >
+                                            <div>
+                                                <b> {this.state.notes[key].title}</b>
+                                            </div>
+                                            <div>
+                                                {this.state.notes[key].description}
+                                            </div >
+
+                                            <div id="displaycontentdiv">
+                                                <Tools
+                                                    createNotePropsToTools={this.getColor}
+                                                    // deleteLabelFromNote={this.deleteLabelFromNote}
+                                                    // collab={otherArr[key].collab}
+                                                    // owner={otherArr[key].owner}
+                                                    // addLabelToNote={this.addLabelToNote}
+                                                    archiveNote={this.archiveNote}
+                                                    noteID={this.state.notes[key]._id}
+                                                    archiveStatus={this.state.notes[key].archive}
+                                                // reminder={this.reminderNote}
+                                                // note={otherArr[key].note}
+                                                // trashNote={this.trashNote}
+                                                // uploadImage={this.uploadImage}
+                                                />
+                                            </div>
+
+                                        </div>
+
+                                    </Card>
+                                </div>
+
+                            )
+                        })
+                    }
+                </div>
+            );
+        }
     }
 }
 
+
+
+// import React, { Component } from 'react';
+// import { Card, Chip, Tooltip, Avatar } from '@material-ui/core';
+// import Tools from '../components/tools';
+// import EditPin from '../components/editPin';
+// import DialogBox from '../components/dialogBox';
+// import PinAndOthers from '../components/notePin';
+// import { getNotes, updateColor, updatePin, setReminder, isTrashed, updateArchiveStatus, deleteNoteForever, updateTitle, updateDescription, saveLabel, updateImages } from '../services/noteServices'
+// import ArchivedNavigator from "../components/sideNavigation/archivedNavigator"
+// import ReminderNavigator from '../components/sideNavigation/reminderNavigator';
+// import TrashNavigator from '../components/sideNavigation/trashedNavigator';
+// import { archiveArray, otherArray, trashArray, remiderArray, pinArray } from '../services/noteServices';
+// import SearchedNotes from '../components/searchNote';
