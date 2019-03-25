@@ -211,6 +211,9 @@ input[type=emaill] {
   margin-top: 3%
 }
 
+#dashboard1{
+  margin-top: 10%;
+}
 .root {
   display: "flex"
 }
@@ -578,6 +581,7 @@ element.style {
 .noteInputBase {
   margin-top: 3%;
   width: 460px;
+  overflow: "-webkit-paged-x";
 }
 
 .noteInputBase1 {

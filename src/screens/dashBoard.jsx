@@ -10,12 +10,11 @@ import CreateNote from '../components/createNotes';
 import Notes from '../components/notes';
 import AppbarComponent from '../components/appBar';
 export default class dashBoard extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             cardStyles: false,
             slideCards: false,
-
             label: "",
             reminder: false,
             archive: false,
@@ -56,9 +55,9 @@ export default class dashBoard extends Component {
      * @description:it display the new note
      * @param {*get new card or note} newCard 
      */
-    getNewNote (newCard) {
-        console.log("new card",newCard);
-        
+    getNewNote(newCard) {
+        console.log("new card", newCard);
+
         try {
             this.noteToCards.current.displayNewCard(newCard);
         } catch (err) {
@@ -96,11 +95,9 @@ export default class dashBoard extends Component {
             })
         }
     }
-
     makeLabelFalse() {
         this.noteToCards.current.makeLabelFalse();
     }
-
     render() {
         const slidingCards = this.state.slideCards ? "afterSlide" : "beforeSlide"
         return (
@@ -110,29 +107,35 @@ export default class dashBoard extends Component {
                         props={this.props}
                         slideCards={this.slideCards}
                         notePropsToApp={this.handleCardStyle}
-
-                        makeLabelFalse={this.makeLabelFalse}
-                        searchLabels={this.searchLabels}
                         handleNavigation={this.handleNavigation}
-                        getSearchedNotes={this.getSearchedNotes}
                     />
                 </div>
                 <div className="setFixedMargin">
-                    <div id="dashboard">
-                        <CreateNote
-                            getNewNote={this.getNewNote}
-                        />
-                        <Notes
-                            noteProps={this.state.cardStyles}
-                            ref={this.noteToCards}
+                    {this.state.archive || this.state.trash ?
+                        <div id="dashboard1">
+                            <Notes
+                                noteProps={this.state.cardStyles}
+                                ref={this.noteToCards}
+                                navigateArchived={this.state.archive}
+                                navigateReminder={this.state.reminder}
+                                navigateTrashed={this.state.trash}
+                            />
+                        </div>
+                        :
+                        <div id="dashboard">
+                            <CreateNote
+                                getNewNote={this.getNewNote}
+                            />
+                            <Notes
+                                noteProps={this.state.cardStyles}
+                                ref={this.noteToCards}
+                                navigateArchived={this.state.archive}
+                                navigateReminder={this.state.reminder}
+                                navigateTrashed={this.state.trash}
 
-                            searchNote={this.state.searchNote}
-                            labelValue={this.state.label}
-                            navigateReminder={this.state.reminder}
-                            navigateArchived={this.state.archive}
-                            navigateTrashed={this.state.trash}
-                        />
-                    </div>
+                            />
+                        </div>
+                    }
                 </div>
             </div>
         )

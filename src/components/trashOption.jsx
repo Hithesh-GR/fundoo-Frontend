@@ -9,10 +9,9 @@ class TrashOptions extends Component {
             open: false,
             placement: null,
         }
-        this.clickMoreOptions = this.clickMoreOptions.bind(this);
     }
 
-    clickMoreOptions(event) {
+    clickMoreOptions = (event) => {
         const { currentTarget } = event;
 
         this.setState(state => ({

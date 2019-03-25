@@ -46,7 +46,7 @@ const theme = createMuiTheme({
                 display: "flex",
                 justifyContent: "space-between",
                 width: "100%",
-                backgroundColor:"white"
+                backgroundColor: "white"
             },
             root: {
                 position: "absolute",
@@ -70,7 +70,7 @@ export default class appBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            left: true,
+            left: false,
             open: false,
             searchNote: ""
         };
@@ -170,8 +170,8 @@ export default class appBar extends React.Component {
 
                                 handleNavigation={this.props.handleNavigation}
                                 searchLabels={(value) => this.searchLabels(value)}
-                                makeLabelFalse={this.props.makeLabelFalse} 
-                                />
+                                makeLabelFalse={this.props.makeLabelFalse}
+                            />
                         </AppBar>
                     </MuiThemeProvider>
                 </div>

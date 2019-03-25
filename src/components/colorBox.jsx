@@ -31,21 +31,21 @@ export default class ColorPallete extends Component {
             open: false
         }
         this.handleToggle = this.handleToggle.bind(this);
-        this.handleMouseEnter = this.handleMouseEnter.bind(this);
+        // this.handleMouseEnter = this.handleMouseEnter.bind(this);
         // this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.handleColor = this.handleColor.bind(this);
     }
     /**
      * @description:it will display the color box when mouse entered into the color icon
      */
-    handleMouseEnter() {
-        try {
-            this.setState({ open: true });
-            // this.props.handleToggle(!this.state.open)
-        } catch (err) {
-            console.log("error at handleMouseEnter in colorBox");
-        }
-    }
+    // handleMouseEnter() {
+    //     try {
+    //         this.setState({ open: true });
+    //         // this.props.handleToggle(!this.state.open)
+    //     } catch (err) {
+    //         console.log("error at handleMouseEnter in colorBox");
+    //     }
+    // }
     // handleMouseLeave() {
     //     this.setState({ open: false });
     //      this.props.handleToggle(!this.state.open)

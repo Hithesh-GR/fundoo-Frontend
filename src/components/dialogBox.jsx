@@ -7,7 +7,7 @@ const theme = createMuiTheme({
         MuiDialog: {
             paperWidthSm: {
                 width: "600px",
-                height: "200px",
+                // height: "200px",
                 // paddingLeft: "20px",
                 // paddingRight: "10px",
                 margin: "0px",
@@ -18,6 +18,14 @@ const theme = createMuiTheme({
     typography: {
         useNextVariants: true,
     },
+    backCover: {
+        position: 'absolute',
+        marginTop: 20,
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+    }
 })
 class DialogBox extends Component {
     constructor(props) {
@@ -50,7 +58,7 @@ class DialogBox extends Component {
                 description: note.description,
             })
         }
-        console.log("bambjasjajasas", this.props.note);
+        console.log("get data from dialogue", this.props.note);
     }
     closeDialogPopper(e) {
         this.props.closeEditBox(e);
@@ -60,12 +68,13 @@ class DialogBox extends Component {
         return (
             <MuiThemeProvider theme={theme}>
                 <Dialog
+                className="dialogview"
                     id="editDialogBox"
                     open={this.props.parentProps}
                     noteID={this.props.noteID}
 
                 >
-                    <div style={{ backgroundColor: this.props.note.color }} >
+                    <div style={{ backgroundColor: this.props.color }} >
                         <DialogTitle>Edit Note</DialogTitle>
                         <div className="editDialog">
                             <Input

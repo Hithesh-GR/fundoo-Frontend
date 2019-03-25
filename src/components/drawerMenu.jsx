@@ -13,21 +13,19 @@ export default class drawerMenu extends Component {
         super();
         this.state = {
             open: false,
-
             navigateReminder: false,
             navigateArchived: false,
             navigateTrashed: false,
             label: [],
         }
     }
-
     async handleNotes() {
         await this.setState({
             navigateReminder: false,
             navigateArchived: false,
             navigateTrashed: false,
         })
-        this.props.makeLabelFalse();
+        // this.props.makeLabelFalse();
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
     async handleReminder() {
@@ -36,7 +34,7 @@ export default class drawerMenu extends Component {
             navigateArchived: false,
             navigateTrashed: false
         })
-        this.props.makeLabelFalse();
+        // this.props.makeLabelFalse();
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
     async handleArchived() {
@@ -45,7 +43,7 @@ export default class drawerMenu extends Component {
             navigateArchived: true,
             navigateTrashed: false
         })
-        this.props.makeLabelFalse();
+        // this.props.makeLabelFalse();
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
     async handleTrashed() {
@@ -54,7 +52,7 @@ export default class drawerMenu extends Component {
             navigateArchived: false,
             navigateTrashed: true
         })
-        this.props.makeLabelFalse();
+        // this.props.makeLabelFalse();
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
 
@@ -67,12 +65,12 @@ export default class drawerMenu extends Component {
                     open={this.props.appBarProps}
                     width={300}
                 >
-                    <MenuItem id="noteMenu" onClick={()=>this.handleNotes()}>
+                    <MenuItem id="noteMenu" onClick={() => this.handleNotes()}>
                         <img src={require('../assets/images/note.svg')} alt="note icon"
                             style={{ marginRight: "50px" }} />
                         Notes
                     </MenuItem>
-                    <MenuItem id="reminderMenu" onClick={()=>this.handleReminder()}>
+                    <MenuItem id="reminderMenu" onClick={() => this.handleReminder()}>
                         <img src={require('../assets/images/menuReminder.svg')} alt="reminder icon"
                             style={{ marginRight: "50px" }} />
                         Reminders
@@ -82,19 +80,19 @@ export default class drawerMenu extends Component {
                             LABELS
                         </div>
                         <div>
-                            <MenuItem id="labelMenu"  onClick={this.handleEditLabel}>
+                            <MenuItem id="labelMenu" onClick={this.handleEditLabel}>
                                 <img src={require('../assets/images/menuEdit.svg')} alt="edit icon"
                                     style={{ marginRight: "50px" }} />
                                 Edit Labels
                             </MenuItem>
                         </div>
                     </div>
-                    <MenuItem id="archiveMenu"  onClick={()=>this.handleArchived()}>
+                    <MenuItem id="archiveMenu" onClick={() => this.handleArchived()}>
                         <img src={require('../assets/images/menuArchive.svg')} alt="archive icon"
                             style={{ marginRight: "50px" }} />
                         Archive
                     </MenuItem>
-                    <MenuItem id="trashIcon" onClick={()=>this.handleTrashed()}>
+                    <MenuItem id="trashIcon" onClick={() => this.handleTrashed()}>
                         <img src={require('../assets/images/menuTrash.svg')} alt="trash icon"
                             style={{ marginRight: "50px" }} />
                         Trash

@@ -30,8 +30,6 @@ export default class MoreOptions extends Component {
         }
         this.moreOptionsToAddLabels = React.createRef();
         this.clickMoreOptions = this.clickMoreOptions.bind(this);
-        this.handleTrashedNotes = this.handleTrashedNotes.bind(this);
-        this.handleLabelsOnNote = this.handleLabelsOnNote.bind(this);
     }
     /**
      * @description:it will open the more options event and in that 
@@ -53,7 +51,7 @@ export default class MoreOptions extends Component {
     /**
      * @description:it will handle trashed notes
      */
-    handleTrashedNotes() {
+    handleTrashedNote = () => {
         try {
             this.props.trashNote(this.props.noteID);
         } catch (err) {
@@ -75,7 +73,7 @@ export default class MoreOptions extends Component {
     /**
      * @description:it will handle add label to notes
      */
-    handleLabelsOnNote(event) {
+    handleLabelsOnNote = (event) => {
         try {
             this.setState({
                 open: false
@@ -102,7 +100,7 @@ export default class MoreOptions extends Component {
                                 <Paper className="moreOptionsPopper" >
                                     <ClickAwayListener onClickAway={() => this.closeLabelPopper()}>
                                         <div id="moreOptionsMenu">
-                                            <MenuItem id="moreOptionsMenu" onClick={this.handleTrashedNotes}>Delete Note</MenuItem>
+                                            <MenuItem id="moreOptionsMenu" onClick={this.handleTrashedNote}>Delete Note</MenuItem>
                                             <MenuItem id="moreOptionsMenu" onClick={this.handleLabelsOnNote}>Add Label</MenuItem>
                                         </div>
                                     </ClickAwayListener>
