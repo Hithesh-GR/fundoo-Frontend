@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Chip, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
-// import EditPin from '../components/editPin';
+import EditPin from '../components/editPin';
 import Tools from '../components/tools';
 const theme = createMuiTheme({
     overrides: {
@@ -29,30 +29,58 @@ export default class ReminderNavigator extends Component {
         let cardsView = this.props.noteProps ? "listCards" : "cards";
         return (
             <MuiThemeProvider theme={theme}>
-                <label style={{ fontFamily: "georgia", fontSize: "15px", color: "grey", marginRight: "760px" }}>REMINDERS</label>
-                <div className="CardsView" style={{ marginBottom: "30px" }}>
+                <label style={{ fontFamily: "georgia", fontSize: "18px", color: "grey", marginRight: "760px" }}>REMINDERS</label>
+                <div className="CardsView" >
                     {this.props.remiderArray.map((key) => {
                         return (
-                            <Card id="CreateNote2" style={{ backgroundColor: key.color }}>
+                            <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "10px", border: "1px solid #dadce0" }} >
                                 <div >
                                     <div>
-                                        <b> {key.title}</b>
+                                        {key.image !== "" ?
+                                            <img style={{
+                                                maxWidth: "100%",
+                                                height: "auto"
+                                            }} src={key.image} alt="cardImage"></img>
+                                            :
+                                            null}
+                                    </div>
+                                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                        <b>{key.title}</b>
+                                        <EditPin cardPropsToPin={this.props.pinNote}
+                                            noteID={key._id}
+                                            pinStatus={key.pinned}
+                                        />
                                     </div>
                                     <div>
                                         {key.description}
                                     </div >
-
-                                    <div id="displaycontentdiv">
-                                        <Tools
-                                            createNotePropsToTools={this.props.getColor}
-                                            note={key}
-                                            noteID={key._id}
-                                            reminder={this.props.reminderNote}
-                                            // trashNote={this.props.trashNote}
-                                            archiveNote={this.props.archiveNote}
-                                        />
-                                    </div>
+                                    {key.reminder !== "" ?
+                                        <Chip
+                                            label={key.reminder}
+                                            onDelete={() => this.props.reminder("", key._id)} />
+                                        :
+                                        null}
+                                    {key.label.length > 0 ?
+                                        key.label.map((key1) =>
+                                            <Chip
+                                                label={key1}
+                                                onDelete={() => this.props.deleteLabelFromNote(key1, key._id)}
+                                            />
+                                        )
+                                        :
+                                        null}
                                 </div>
+                                <div id="displaycontentdiv">
+                                    <Tools
+                                        createNotePropsToTools={this.props.getColor}
+                                        note={key}
+                                        noteID={key._id}
+                                        reminder={this.props.reminderNote}
+                                        trashNote={this.props.trashNote}
+                                        archiveNote={this.props.archiveNote}
+                                    />
+                                </div>
+
                             </Card>
                             // <Card className={cardsView} style={{ backgroundColor: key.note.color, borderRadius: "10px", border: "1px solid #dadce0" }} >
                             //     <div>

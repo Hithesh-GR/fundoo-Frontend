@@ -39,6 +39,7 @@ export function getNotes() {
  * @param {*} data 
  */
 export function updateColor(data) {
+    console.log("color data from front-end==>", data);
     var headers = {
         'Content-Type': 'application/json',
         "token": localStorage.getItem("token")
@@ -54,6 +55,7 @@ export function updateColor(data) {
  * @param {*} data 
  */
 export function updateArchiveStatus(data) {
+    console.log("arcive data from front-end==>", data);
     var headers = {
         "token": localStorage.getItem("token")
     }
@@ -68,6 +70,7 @@ export function updateArchiveStatus(data) {
  * @param {*} data 
  */
 export function isTrashed(data) {
+    console.log("trash data from front-end==>", data);
     var headers = {
         "token": localStorage.getItem("token")
     }
@@ -83,11 +86,12 @@ export function isTrashed(data) {
  * @param {*} data 
  */
 export function deleteNoteForever(url, data) {
+    console.log("delete note data from front-end==>", data);
     var headers = {
         'Content-Type': 'application/json',
         "token": localStorage.getItem("token")
     }
-    return axios.delete(url,
+    return axios.post(url,
         data, {
             headers: headers
         }
@@ -98,6 +102,7 @@ export function deleteNoteForever(url, data) {
  * @param {*} data 
  */
 export function setReminder(data) {
+    console.log("reminder data from front-end==>", data);
     var headers = {
         "token": localStorage.getItem("token")
     }
@@ -155,7 +160,7 @@ export function trashArray(notesData) {
     let trashArr = [];
     for (let i = 0; i < notesData.length; i++) {
         if (notesData[i].trash) {
-            trashArr.push(notesData[i]);            
+            trashArr.push(notesData[i]);
         }
     }
     return trashArr;

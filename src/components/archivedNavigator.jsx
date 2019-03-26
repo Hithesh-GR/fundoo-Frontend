@@ -1,8 +1,8 @@
 
 
 import React, { Component } from 'react';
-import { Card, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-// import EditPin from '../components/editPin';
+import { Card, MuiThemeProvider, createMuiTheme, Chip } from '@material-ui/core';
+import EditPin from '../components/editPin';
 import Tools from '../components/tools';
 const theme = createMuiTheme({
     overrides: {
@@ -29,7 +29,7 @@ class ArchivedNavigator extends Component {
         let cardsView = this.props.noteProps ? "listCards" : "cards";
         return (
             <MuiThemeProvider theme={theme}>
-                <label style={{ fontFamily: "georgia", fontSize: "15px", color: "grey", marginRight: "760px" }}>ARCHIVE</label>
+                <label style={{ fontFamily: "georgia", fontSize: "18px", color: "grey", marginRight: "760px" }}>ARCHIVE</label>
                 <div className="CardsView">
                     {this.props.archiveArray.map((key) => {
                         return (
@@ -44,7 +44,8 @@ class ArchivedNavigator extends Component {
                             //         <div style={{ display: "flex", justifyContent: "space-between" }}>
                             //             <b>{key.title}</b>
 
-                            //             <EditPin cardPropsToPin={this.props.pinNote}
+                            //             <EditPin
+                            //                 cardPropsToPin={this.props.pinNote}
                             //                 noteID={key._id}
                             //                 pinStatus={key.pinned}
                             //             />
@@ -73,25 +74,31 @@ class ArchivedNavigator extends Component {
 
                             //     </div>
                             //     <div className="noteicons">
-                            //         <Tools createNotePropsToTools={this.props.getColor}
-                            // addLabelToNote={this.props.addLabelToNote}
+                            //         <Tools
+                            //             createNotePropsToTools={this.props.getColor}
+                            //             // addLabelToNote={this.props.addLabelToNote}
                             //             note={key}
                             //             noteID={key._id}
                             //             reminder={this.props.reminder}
                             //             trashNote={this.props.trashNote}
                             //             archiveStatus={key.archive}
                             //             archiveNote={this.props.archiveNote}
-
                             //         />
-
                             //     </div>
                             // </Card>
-                            <Card id="CreateNote2" style={{ backgroundColor: key.color }}>
+                            <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "10px", border: "1px solid #dadce0" }}>
                                 <div >
                                     <div>
+                                        {key.image !== "" ?
+                                            <img className="commonImg"
+                                                src={key.image} alt="cardImage"></img>
+                                            :
+                                            null}
+                                    </div>
+                                    <div style={{ display: "flex", justifyContent: "space-between" }}>
                                         <b> {key.title}</b>
                                     </div>
-                                    <div>
+                                    <div style={{ paddingBottom: "10px", paddingTop: "10px" }}>
                                         {key.description}
                                     </div >
 

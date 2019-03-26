@@ -132,7 +132,6 @@ export default class dashBoard extends Component {
                                 navigateArchived={this.state.archive}
                                 navigateReminder={this.state.reminder}
                                 navigateTrashed={this.state.trash}
-
                             />
                         </div>
                     }

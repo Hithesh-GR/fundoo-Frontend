@@ -110,14 +110,13 @@ export default class Cards extends Component {
             });
     }
 
-    trashNote(noteId) {
+    trashNote = (noteId) => {
         const trash = {
             noteID: noteId
         }
         isTrashed(trash)
             .then((result) => {
                 let newArray = this.state.notes
-
                 for (let i = 0; i < newArray.length; i++) {
                     if (newArray[i]._id === noteId) {
                         newArray[i].trash = result.data.data;
@@ -142,7 +141,7 @@ export default class Cards extends Component {
             .then((result) => {
                 let newArray = this.state.notes
                 for (let i = 0; i < newArray.length; i++) {
-                    if (newArray[i].note._id === obj.noteID) {
+                    if (newArray[i]._id === obj.noteID) {
                         newArray.splice(i, 1);
                         this.setState({
                             notes: newArray
@@ -161,8 +160,7 @@ export default class Cards extends Component {
         })
     }
     render() {
-        // let cardsView = this.props.noteProps ? "listCards" : "cards";
-
+        let notesArray = otherArray(this.state.notes);
         if (this.props.navigateArchived) {
             return (
                 <ArchivedNavigator
@@ -211,20 +209,28 @@ export default class Cards extends Component {
             )
         }
         else {
-            let notesArray = otherArray(this.state.notes);
+            let cardsView = this.props.noteProps ? "listCards" : "cards";
             return (
-                <div >
+                <div className="CardsView"  >
                     {
                         Object.keys(notesArray).slice(0).reverse().map((key) => {
-                            // console.log("=====================", this.state.notes[0].color);
                             return (
-                                <div>
-                                    <Card id="CreateNote2" style={{ backgroundColor: notesArray[key].color }}>
+                                <div key={key} id="cardsViewDiv">
+                                    <Card className={cardsView} style={{ backgroundColor: notesArray[key].color, borderRadius: "10px", border: "1px solid #dadce0" }}>
                                         <div >
-                                            <div>
+                                            {/* <div>
+                                                {notesArray[key].image !== "" ?
+                                                    <img style={{
+                                                        maxWidth: "100%",
+                                                        height: "auto"
+                                                    }} src={notesArray[key].image} alt="cardImage"></img>
+                                                    :
+                                                    null}
+                                            </div> */}
+                                            <div style={{ display: "flex", justifyContent: "space-between" }}>
                                                 <b> {notesArray[key].title}</b>
                                             </div>
-                                            <div>
+                                            <div style={{ paddingBottom: "10px", paddingTop: "10px" }}>
                                                 {notesArray[key].description}
                                             </div >
                                             {/* <DialogBox
@@ -248,7 +254,7 @@ export default class Cards extends Component {
                                                     noteID={notesArray[key]._id}
                                                     archiveStatus={notesArray[key].archive}
                                                     reminder={this.reminderNote}
-                                                    // note={noteArray[key].note}
+                                                    note={notesArray[key].note}
                                                     trashNote={this.trashNote}
                                                 // uploadImage={this.uploadImage}
                                                 />
@@ -265,17 +271,3 @@ export default class Cards extends Component {
     }
 }
 
-
-
-// import React, { Component } from 'react';
-// import { Card, Chip, Tooltip, Avatar } from '@material-ui/core';
-// import Tools from '../components/tools';
-// import EditPin from '../components/editPin';
-// import DialogBox from '../components/dialogBox';
-// import PinAndOthers from '../components/notePin';
-// import { getNotes, updateColor, updatePin, setReminder, isTrashed, updateArchiveStatus, deleteNoteForever, updateTitle, updateDescription, saveLabel, updateImages } from '../services/noteServices'
-// import ArchivedNavigator from "../components/sideNavigation/archivedNavigator"
-// import ReminderNavigator from '../components/sideNavigation/reminderNavigator';
-// import TrashNavigator from '../components/sideNavigation/trashedNavigator';
-// import { archiveArray, otherArray, trashArray, remiderArray, pinArray } from '../services/noteServices';
-// import SearchedNotes from '../components/searchNote';

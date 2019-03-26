@@ -20,7 +20,7 @@ export default class TrashNavigator extends Component {
         let cardsView = this.props.noteProps ? "listCards" : "cards";
         return (
             <MuiThemeProvider theme={theme}>
-                <label style={{ fontFamily: "georgia", fontSize: "15px", color: "grey", marginRight: "760px" }}>TRASH</label>
+                <label style={{ fontFamily: "cursive", fontSize: "18px", color: "grey", marginRight: "760px" }}>TRASH</label>
                 <div className="CardsView" >
                     {this.props.trashArray.map((key) => {
                         return (
@@ -36,8 +36,8 @@ export default class TrashNavigator extends Component {
                                 <TrashOptions
                                     restore={this.props.trashNote}
                                     noteID={key._id}
-                                    deleteNote={this.props.deleteNote} 
-                                    />
+                                    deleteNote={this.props.deleteNote}
+                                />
                             </Card>
                         )
                     })

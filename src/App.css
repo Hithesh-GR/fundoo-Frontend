@@ -211,9 +211,10 @@ input[type=emaill] {
   margin-top: 3%
 }
 
-#dashboard1{
+#dashboard1 {
   margin-top: 10%;
 }
+
 .root {
   display: "flex"
 }
@@ -624,15 +625,6 @@ element.style {
   justify-content: space-around;
 }
 
-.cards {
-  width: 240px;
-  margin-top: 20px;
-  padding-top: 15px;
-  text-align: left;
-  padding: 10px;
-  border-radius: 10px;
-}
-
 .cards:hover .cardTools {
   visibility: visible;
   box-shadow: 2px 2px 2px 2px solid gray
@@ -646,21 +638,14 @@ element.style {
   margin-right: 10px;
   margin-left: 10px;
   margin-top: 10px;
-  margin-bottom: 10px
+  margin-bottom: 10px;
+  justify-content: space-between;
 }
 
 .CardsView {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap
-}
-
-.listCards {
-  width: 500px;
-  margin-left: 100px;
-  margin-top: 50px;
-  text-align: left;
-  padding: 11px;
 }
 
 .afterSlide {
@@ -831,7 +816,7 @@ div .currentDate {
   }
 
   #cardsViewDiv {
-    margin-left: 20%;
+    margin-left: 0%;
     background-color: #194ce6;
   }
 
@@ -841,20 +826,24 @@ div .currentDate {
 
   .listCards {
     width: 500px;
-    margin-left: 7px;
-    margin-top: 50px;
+    margin-left: 100px;
+    margin-top: 25px;
     text-align: left;
-    padding: 11px;
+    padding: 20px;
+    border: 1px solid #dadce0;
+    border-radius: 10px;
+    justify-content: space-between
   }
 
   .cards {
-    width: 500px;
-    margin-top: 20px;
-    margin-left: 7px;
+    width: 240px;
+    margin-top: 25px;
+    /* margin-left: 5px; */
     padding-top: 15px;
     text-align: left;
-    padding: 10px;
+    padding: 7px;
     border-radius: 10px;
+    justify-content: space-between
   }
 }
 
@@ -893,21 +882,25 @@ div .currentDate {
   }
 
   .listCards {
-    width: auto;
-    margin-left: 7px;
-    margin-top: 50px;
+    width: 500px;
+    margin-left: 100px;
+    margin-top: 25px;
     text-align: left;
-    padding: 11px;
+    padding: 20px;
+    border: 1px solid #dadce0;
+    border-radius: 10px;
+    justify-content: space-between
   }
 
   .cards {
-    width: auto;
-    margin-top: 20px;
-    margin-left: 7px;
+    width: 240px;
+    margin-top: 25px;
+    /* margin-left: 5px; */
     padding-top: 15px;
     text-align: left;
-    padding: 10px;
+    padding: 7px;
     border-radius: 10px;
+    justify-content: space-between
   }
 }
 
@@ -942,22 +935,35 @@ div .currentDate {
   }
 }
 
+/* 
 .listCards {
   width: auto;
   margin-left: auto;
   margin-top: 50px;
   text-align: left;
   padding: 11px;
+} */
+
+.listCards {
+  width: 500px;
+  margin-left: 100px;
+  margin-top: 25px;
+  text-align: left;
+  padding: 20px;
+  border: 1px solid #dadce0;
+  border-radius: 10px;
+  justify-content: space-between
 }
 
 .cards {
   width: 240px;
-  margin-top: 20px;
-  margin-left: 5px;
+  margin-top: 25px;
+  /* margin-left: 5px; */
   padding-top: 15px;
   text-align: left;
-  padding: 10px;
+  padding: 7px;
   border-radius: 10px;
+  justify-content: space-between
 }
 
 .App {
