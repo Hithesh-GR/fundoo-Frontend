@@ -6,7 +6,7 @@
  *  @since          : 23-02-2019
  *****************************************************************************************/
 import React, { Component } from 'react';
-import { Input, Card, createMuiTheme, MuiThemeProvider } from '@material-ui/core'
+import { Input, Card, createMuiTheme, MuiThemeProvider, Chip } from '@material-ui/core'
 import Tools from './tools';
 import { Button } from '@material-ui/core';
 import { createNote } from '../services/noteServices';
@@ -212,6 +212,13 @@ export default class createNotes extends Component {
                             value={this.state.description}
                             onChange={this.handleDescription}
                         />
+                        {this.state.reminder ?
+                            <Chip
+                                label={this.state.reminder}
+                                onDelete={() => this.reminderNote}
+                                />
+                            :
+                            null}
                         <div className="cardToolsClose" >
                             <Tools
                                 reminder={this.handleReminder}

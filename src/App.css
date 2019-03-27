@@ -216,7 +216,8 @@ input[type=emaill] {
 }
 
 .root {
-  display: "flex"
+  display: "flex";
+  flex-wrap: wrap
 }
 
 .keepImage {
@@ -645,7 +646,7 @@ element.style {
 .CardsView {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap
+  flex-wrap: wrap;
 }
 
 .afterSlide {

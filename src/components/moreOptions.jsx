@@ -61,7 +61,7 @@ export default class MoreOptions extends Component {
     /**
      * @description:it will close the color popper box
      */
-    closeLabelPopper() {
+    closeLabelPopper = () => {
         try {
             this.setState({
                 open: false

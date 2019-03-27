@@ -63,38 +63,32 @@ export default class reminder extends Component {
             console.log("error at handleClose in reminder");
         }
     }
-
-    setTodayReminder(note) {
+    setTodayReminder = () => {
         this.handleClose();
         let ampm = parseInt(new Date().getHours()) >= 8 ? "PM" : "AM";
-        console.log("before", note);
         var date = new Date().toDateString();
-        note.reminder = date + ", 8 " + ampm;
-        console.log(note.reminder);
-        this.props.reminder(note.reminder, note._id)
+        var reminder1 = date + ", 8 " + ampm;
+        console.log("today reminder data=====>", reminder1);
+        this.props.reminder(reminder1, this.props.noteID)
     }
-    setTomorrowReminder(note) {
+    setTomorrowReminder = () => {
         this.handleClose();
         let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon"]
-        console.log("before", note);
         var date = new Date().toDateString();
         date = date.replace(new Date().getDate().toString(), new Date().getDate() + 1);
         date = date.replace(days[new Date().getDay() - 1], days[new Date().getDay()]);
-        note.reminder = date + ", 8 AM";
-        console.log(note.reminder);
-        this.props.reminder(note.reminder, note._id)
+        var reminder1 = date + ", 8 AM";
+        console.log("tomorow reminder data====>", reminder1);
+        this.props.reminder(reminder1, this.props.noteID)
     }
-    setWeeklyReminder(note) {
+    setWeeklyReminder = () => {
         this.handleClose();
-        console.log("before", note);
         var date = new Date().toDateString();
-        date = date.replace((new Date().getDate()), (new Date().getDate() + 7));
-        note.reminder = date + ", 8 AM";
-        console.log(note.reminder);
-        this.props.reminder(note.reminder, note._id)
+        date = date.replace(new Date().getDate().toString(), (new Date().getDate() + 7));
+        var reminder1 = date + ", 8 AM";
+        console.log("weekly reminder data=====>", reminder1);
+        this.props.reminder(reminder1, this.props.noteID)
     }
-
-
     render() {
         const setAMPM = this.props.parentToolsProps;
         const { anchorEl, open, placement } = this.state;
@@ -106,7 +100,6 @@ export default class reminder extends Component {
                             className="reminderIcon"
                             onClick={this.handleClick('bottom-start')} alt="remider icon" />
                     </Tooltip>
-
                     <Popper open={open} anchorEl={anchorEl} placement={placement} transition style={{ zIndex: 1 }}>
                         {({ TransitionProps }) => (
                             <Fade {...TransitionProps} timeout={350}>
@@ -114,15 +107,15 @@ export default class reminder extends Component {
                                     <ClickAwayListener onClickAway={this.handleClose}>
                                         <div>
                                             <ListItem className="listRemindr" >Reminder:</ListItem>
-                                            <MenuItem className="currentDate" onClick={() => this.setTodayReminder}>
+                                            <MenuItem className="currentDate" onClick={() => this.setTodayReminder()}>
                                                 <div>Later today</div>
                                                 <div>8:00 {setAMPM}</div>
                                             </MenuItem>
-                                            <MenuItem className="currentDate" onClick={() => this.setTomorrowReminder}>
+                                            <MenuItem className="currentDate" onClick={() => this.setTomorrowReminder()}>
                                                 <div>Tomorrow</div>
                                                 <div>8:00 AM</div>
                                             </MenuItem>
-                                            <MenuItem className="currentDate" onClick={() => this.setWeeklyReminder}>
+                                            <MenuItem className="currentDate" onClick={() => this.setWeeklyReminder()}>
                                                 <div>Next Week</div>
                                                 <div>Mon, 8:00 AM</div>
                                             </MenuItem>
@@ -141,4 +134,3 @@ export default class reminder extends Component {
         )
     }
 }
-

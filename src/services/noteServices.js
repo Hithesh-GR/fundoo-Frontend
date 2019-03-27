@@ -85,13 +85,13 @@ export function isTrashed(data) {
  * @param {*} url 
  * @param {*} data 
  */
-export function deleteNoteForever(url, data) {
+export function deleteNoteForever(data) {
     console.log("delete note data from front-end==>", data);
     var headers = {
         'Content-Type': 'application/json',
         "token": localStorage.getItem("token")
     }
-    return axios.post(url,
+    return axios.post('/deleteNote',
         data, {
             headers: headers
         }
@@ -106,11 +106,31 @@ export function setReminder(data) {
     var headers = {
         "token": localStorage.getItem("token")
     }
-    return axios.put('/setReminder',
+    return axios.put('/reminder',
         data, {
             headers: headers
         }
     )
+}
+
+export function updateTitle(url,data) {
+    return axios(url, {
+        method: "PUT",
+        headers: {
+            "token": localStorage.getItem("token")
+        },
+        data:data
+    })
+}
+export function updateDescription(url,data) {
+        
+    return axios(url, {
+        method: "PUT",
+        headers: {
+            "token": localStorage.getItem("token")
+        },
+        data:data
+    })
 }
 /********************************************************************************/
 /**

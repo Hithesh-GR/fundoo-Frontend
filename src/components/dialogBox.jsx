@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Dialog, DialogTitle, Input, Button, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Tools from '../components/tools';
-import EditPin from '../components/editPin';
+// import EditPin from '../components/editPin';
 const theme = createMuiTheme({
     overrides: {
         MuiDialog: {
@@ -46,8 +46,8 @@ class DialogBox extends Component {
         await this.setState({ description: evt.target.value })
     }
     async handleToggle(e) {
-        await this.props.editTitle(this.state.title, this.state.note._id)
-        await this.props.editDescription(this.state.description, this.state.note._id)
+        await this.props.editTitle(this.state.title, this.state._id)
+        await this.props.editDescription(this.state.description, this.state._id)
         this.props.closeEditBox(e);
     }
     getData(note) {
@@ -64,15 +64,14 @@ class DialogBox extends Component {
         this.props.closeEditBox(e);
     }
     render() {
-        console.log("note on dialog----", this.props.note.color);
+        console.log("note on dialog----", this.props.color);
         return (
             <MuiThemeProvider theme={theme}>
                 <Dialog
-                className="dialogview"
+                    className="dialogview"
                     id="editDialogBox"
                     open={this.props.parentProps}
                     noteID={this.props.noteID}
-
                 >
                     <div style={{ backgroundColor: this.props.color }} >
                         <DialogTitle>Edit Note</DialogTitle>
@@ -84,7 +83,7 @@ class DialogBox extends Component {
                                 value={this.state.title}
                                 onChange={this.handleTitleClick}
                             />
-                            <EditPin />
+                            {/* <EditPin /> */}
                         </div>
 
                         <Input
@@ -97,9 +96,7 @@ class DialogBox extends Component {
 
                         <div style={{ display: "flex", flexDirection: 'row' }}>
                             <Tools />
-
                             <Button id="doneButton" onClick={this.handleToggle.bind(this)}>Close</Button>
-
                         </div>
                     </div>
                 </Dialog>

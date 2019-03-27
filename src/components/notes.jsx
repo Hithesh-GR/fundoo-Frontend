@@ -6,15 +6,35 @@
  *  @since          : 23-02-2019
  *****************************************************************************************************/
 import React, { Component } from 'react';
-import { Card } from '@material-ui/core';
+import { Card, Chip, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Tools from '../components/tools';
 import ArchivedNavigator from "../components/archivedNavigator";
 import ReminderNavigator from "../components/reminderNavigator";
 import TrashNavigator from '../components/trashedNavigator';
-import { getNotes, updateColor, deleteNoteForever, updateArchiveStatus, setReminder, isTrashed } from '../services/noteServices';
+import { getNotes, updateColor, deleteNoteForever, updateArchiveStatus, setReminder, isTrashed, updateDescription, updateTitle } from '../services/noteServices';
 import { otherArray, archiveArray, remiderArray, trashArray } from '../services/noteServices';
-// import DialogBox from '../components/dialogBox'
+import DialogBox from '../components/dialogBox';
 import '../App.css';
+const theme = createMuiTheme({
+    overrides: {
+        MuiChip: {
+            root: {
+                fontSize: 14,
+                marginTop: 20,
+                height: 25,
+                backgroundColor: "rgba(0, 0, 0, 0.10)",
+                padding: 0
+            },
+            deleteIcon: {
+                width: 20,
+                height: 20
+            }
+        },
+    },
+    typography: {
+        useNextVariants: true,
+    },
+})
 export default class Cards extends Component {
     constructor() {
         super();
@@ -25,10 +45,10 @@ export default class Cards extends Component {
         }
         this.cardsToDialogBox = React.createRef();
     }
-    // async handleClick(note) {
-    //     await this.setState({ open: true })
-    //     this.cardsToDialogBox.current.getData(note);
-    // }
+    async handleClick(note) {
+        await this.setState({ open: true })
+        this.cardsToDialogBox.current.getData(note);
+    }
     componentDidMount() {
         getNotes()
             .then((result) => {
@@ -110,6 +130,49 @@ export default class Cards extends Component {
             });
     }
 
+    editTitle(value, noteId) {
+        const title = {
+            noteID: noteId,
+            title: value
+        }
+        updateTitle('/editTitle', title)
+            .then((result) => {
+                let newArray = this.state.notes
+                for (let i = 0; i < newArray.length; i++) {
+                    if (newArray[i]._id === noteId) {
+                        newArray[i].title = result.data.data;
+                        this.setState({
+                            notes: newArray
+                        })
+                    }
+                }
+            })
+            .catch((error) => {
+                alert(error)
+            });
+    }
+    editDescription(value, noteId) {
+        const description = {
+            noteID: noteId,
+            description: value
+        }
+        updateDescription('/editDescription', description)
+            .then((result) => {
+                let newArray = this.state.notes
+                for (let i = 0; i < newArray.length; i++) {
+                    if (newArray[i]._id === noteId) {
+                        newArray[i].description = result.data.data;
+                        this.setState({
+                            notes: newArray
+                        })
+                    }
+                }
+            })
+            .catch((error) => {
+                alert(error)
+            });
+    }
+
     trashNote = (noteId) => {
         const trash = {
             noteID: noteId
@@ -137,7 +200,7 @@ export default class Cards extends Component {
         const obj = {
             noteID: noteId,
         }
-        deleteNoteForever('/deleteNote', obj)
+        deleteNoteForever(obj)
             .then((result) => {
                 let newArray = this.state.notes
                 for (let i = 0; i < newArray.length; i++) {
@@ -172,7 +235,7 @@ export default class Cards extends Component {
                     getColor={this.getColor}
                     noteProps={this.props.noteProps}
                     reminder={this.reminderNote}
-                    // trashNote={this.trashNote}
+                    trashNote={this.trashNote}
                     archiveNote={this.archiveNote}
                 // uploadImage={this.uploadImage} 
                 />
@@ -189,8 +252,8 @@ export default class Cards extends Component {
                     getColor={this.getColor}
                     noteProps={this.props.noteProps}
                     reminder={this.reminderNote}
-                // trashNote={this.trashNote}
-                // uploadImage={this.uploadImage} 
+                    trashNote={this.trashNote}
+                    archiveNote={this.archiveNote}
                 />
             )
         }
@@ -211,38 +274,48 @@ export default class Cards extends Component {
         else {
             let cardsView = this.props.noteProps ? "listCards" : "cards";
             return (
-                <div className="CardsView"  >
-                    {
-                        Object.keys(notesArray).slice(0).reverse().map((key) => {
-                            return (
-                                <div key={key} id="cardsViewDiv">
-                                    <Card className={cardsView} style={{ backgroundColor: notesArray[key].color, borderRadius: "10px", border: "1px solid #dadce0" }}>
-                                        <div >
-                                            {/* <div>
-                                                {notesArray[key].image !== "" ?
-                                                    <img style={{
-                                                        maxWidth: "100%",
-                                                        height: "auto"
-                                                    }} src={notesArray[key].image} alt="cardImage"></img>
+                <MuiThemeProvider theme={theme}>
+                    <div className="CardsView"  >
+                        {
+                            Object.keys(notesArray).slice(0).reverse().map((key) => {
+                                return (
+                                    <div key={key} id="cardsViewDiv">
+                                        <Card className={cardsView} style={{ backgroundColor: notesArray[key].color, borderRadius: "10px", border: "1px solid #dadce0" }}>
+                                            <div >
+                                                <div>
+                                                    {notesArray[key].image !== "" ?
+                                                        <img style={{
+                                                            maxWidth: "100%",
+                                                            height: "auto"
+                                                        }} src={notesArray[key].image} alt="cardImage"></img>
+                                                        :
+                                                        null}
+                                                </div>
+                                                <div onClick={this.handleClick} style={{ display: "flex", justifyContent: "space-between" }}>
+                                                    <b> {notesArray[key].title}</b>
+                                                </div>
+                                                <DialogBox
+                                                    ref={this.cardsToDialogBox}
+                                                    parentProps={this.state.open}
+                                                    handleEdit={this.handleClick}
+                                                    closeEditBox={this.closeEditBox}
+                                                    note={notesArray[key].note}
+                                                    editTitle={this.editTitle}
+                                                    editDescription={this.editDescription}
+                                                    createNotePropsToTools={this.getColor}
+                                                />
+                                                <div onClick={this.handleClick} style={{ paddingBottom: "10px", paddingTop: "10px" }}>
+                                                    {notesArray[key].description}
+                                                </div >
+
+                                                {notesArray[key].reminder ?
+                                                    <Chip
+                                                        label={notesArray[key].reminder}
+                                                        onDelete={() => this.reminderNote('', notesArray[key]._id)}
+                                                    />
                                                     :
                                                     null}
-                                            </div> */}
-                                            <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                                <b> {notesArray[key].title}</b>
                                             </div>
-                                            <div style={{ paddingBottom: "10px", paddingTop: "10px" }}>
-                                                {notesArray[key].description}
-                                            </div >
-                                            {/* <DialogBox
-                                                ref={this.cardsToDialogBox}
-                                                parentProps={this.state.open}
-                                                handleEdit={this.handleClick}
-                                                closeEditBox={this.closeEditBox}
-                                                note={notesArray[key].note}
-                                                editTitle={this.editTitle}
-                                                editDescription={this.editDescription}
-                                                createNotePropsToTools={this.getColor}
-                                            /> */}
                                             <div id="displaycontentdiv">
                                                 <Tools
                                                     createNotePropsToTools={this.getColor}
@@ -259,13 +332,14 @@ export default class Cards extends Component {
                                                 // uploadImage={this.uploadImage}
                                                 />
                                             </div>
-                                        </div>
-                                    </Card>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+
+                                        </Card>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </MuiThemeProvider>
             );
         }
     }

@@ -39,7 +39,7 @@ export default class Tools extends Component {
                         handleToggle={this.handleToggle}
                         parentToolsProps={setNoteTime}
                         reminder={this.props.reminder}
-                        note={this.props.note}
+                        noteID={this.props.noteID}
                     />
                     <Collaborator />
                     <ColorBox
@@ -49,7 +49,7 @@ export default class Tools extends Component {
                     />
                     <UploadImage
                         uploadImage={this.props.uploadImage}
-                        note={this.props.note}
+                        noteID={this.props.noteID}
                     />
                     <Archive
                         archiveNote={this.props.archiveNote}

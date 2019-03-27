@@ -117,7 +117,6 @@ export default class dashBoard extends Component {
                                 noteProps={this.state.cardStyles}
                                 ref={this.noteToCards}
                                 navigateArchived={this.state.archive}
-                                navigateReminder={this.state.reminder}
                                 navigateTrashed={this.state.trash}
                             />
                         </div>
