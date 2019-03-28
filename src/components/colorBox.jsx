@@ -103,7 +103,6 @@ export default class ColorPallete extends Component {
                         alt="change color"
                         onClick={this.handleToggle}
                         onMouseEnter={this.handleMouseEnter}
-                        onM
                     />
                 </Tooltip>
                 <div>

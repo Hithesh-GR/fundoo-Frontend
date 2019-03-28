@@ -53,6 +53,7 @@ export default class MoreOptions extends Component {
      */
     handleTrashedNote = () => {
         try {
+            this.closeLabelPopper();
             this.props.trashNote(this.props.noteID);
         } catch (err) {
             console.log("error at handleTrashedNotes in moreOptions");

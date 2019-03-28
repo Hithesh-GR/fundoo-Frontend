@@ -216,7 +216,7 @@ export default class createNotes extends Component {
                             <Chip
                                 label={this.state.reminder}
                                 onDelete={() => this.reminderNote}
-                                />
+                            />
                             :
                             null}
                         <div className="cardToolsClose" >

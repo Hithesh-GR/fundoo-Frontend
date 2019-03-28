@@ -647,6 +647,7 @@ element.style {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  /* float: left; */
 }
 
 .afterSlide {
@@ -959,9 +960,10 @@ div .currentDate {
 .cards {
   width: 240px;
   margin-top: 25px;
-  /* margin-left: 5px; */
+  /* margin-left: 50px; */
   padding-top: 15px;
   text-align: left;
+  /* right: 150px; */
   padding: 7px;
   border-radius: 10px;
   justify-content: space-between

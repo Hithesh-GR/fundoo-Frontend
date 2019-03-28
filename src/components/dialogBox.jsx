@@ -27,13 +27,13 @@ const theme = createMuiTheme({
         right: 0,
     }
 })
-class DialogBox extends Component {
+export default class DialogBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
             note: "",
             title: "",
-            description: "",
+            description: ""
         }
         this.handleTitleClick = this.handleTitleClick.bind(this);
         this.handleDescClick = this.handleDescClick.bind(this);
@@ -55,16 +55,16 @@ class DialogBox extends Component {
             this.setState({
                 note: note,
                 title: note.title,
-                description: note.description,
+                description: note.description
             })
         }
-        console.log("get data from dialogue", this.props.note);
+        console.log("get data from dialogue", this.props.color);
     }
     closeDialogPopper(e) {
         this.props.closeEditBox(e);
     }
     render() {
-        console.log("note on dialog----", this.props.color);
+        console.log("note on dialog----", this.state.color);
         return (
             <MuiThemeProvider theme={theme}>
                 <Dialog
@@ -80,6 +80,7 @@ class DialogBox extends Component {
                                 className="editTitleInput"
                                 disableUnderline={true}
                                 placeholder="Title"
+                                multiline
                                 value={this.state.title}
                                 onChange={this.handleTitleClick}
                             />
@@ -104,4 +105,3 @@ class DialogBox extends Component {
         )
     }
 }
-export default DialogBox;

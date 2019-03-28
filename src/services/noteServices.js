@@ -113,24 +113,40 @@ export function setReminder(data) {
     )
 }
 
-export function updateTitle(url,data) {
-    return axios(url, {
-        method: "PUT",
-        headers: {
-            "token": localStorage.getItem("token")
-        },
-        data:data
-    })
+export function updateTitle(data) {
+    var headers = {
+        "token": localStorage.getItem("token")
+    }
+    return axios.put('/editTitle',
+        data, {
+            headers: headers
+        }
+    )
 }
-export function updateDescription(url,data) {
-        
-    return axios(url, {
-        method: "PUT",
-        headers: {
-            "token": localStorage.getItem("token")
-        },
-        data:data
-    })
+export function updateDescription(data) {
+    var headers = {
+        "token": localStorage.getItem("token")
+    }
+    return axios.put('/editDescription',
+        data, {
+            headers: headers
+        }
+    )
+}
+/**
+ * 
+ * @param {*} data 
+ */
+export function updatePin(data) {
+    console.log("pinned data from front-end==>", data);
+    var headers = {
+        "token": localStorage.getItem("token")
+    }
+    return axios.put('/isPinned',
+        data, {
+            headers: headers
+        }
+    )
 }
 /********************************************************************************/
 /**
@@ -184,4 +200,17 @@ export function trashArray(notesData) {
         }
     }
     return trashArr;
+}
+/**
+ * 
+ * @param {*} notesData 
+ */
+export function pinArray(notesData) {
+    let pinArr = [];
+    for (let i = 0; i < notesData.length; i++) {
+        if (notesData[i].pinned) {
+            pinArr.push(notesData[i]);
+        }
+    }
+    return pinArr;
 }

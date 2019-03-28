@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Chip, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
-// import EditPin from '../components/editPin';
+import EditPin from '../components/editPin';
 import Tools from '../components/tools';
 const theme = createMuiTheme({
     overrides: {
@@ -31,9 +31,9 @@ export default class ReminderNavigator extends Component {
                 <div className="CardsView" >
                     {this.props.remiderArray.map((key) => {
                         return (
-                            <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "10px", border: "1px solid #dadce0" }} >
+                            <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0" }} >
                                 <div >
-                                    <div>
+                                    {/* <div>
                                         {key.image !== "" ?
                                             <img style={{
                                                 maxWidth: "100%",
@@ -41,14 +41,14 @@ export default class ReminderNavigator extends Component {
                                             }} src={key.image} alt="cardImage"></img>
                                             :
                                             null}
-                                    </div>
+                                    </div> */}
                                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                                         <b>{key.title}</b>
-                                        {/* <EditPin 
-                                        cardPropsToPin={this.props.pinNote}
+                                        <EditPin
+                                            cardPropsToPin={this.props.pinNote}
                                             noteID={key._id}
                                             pinStatus={key.pinned}
-                                        /> */}
+                                        />
                                     </div>
                                     <div style={{ paddingBottom: "10px", paddingTop: "10px" }}>
                                         {key.description}

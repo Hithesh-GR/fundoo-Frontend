@@ -24,7 +24,7 @@ export default class TrashNavigator extends Component {
                 <div className="CardsView" >
                     {this.props.trashArray.map((key) => {
                         return (
-                            <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "10px", border: "1px solid #dadce0" }} >
+                            <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0" }} >
                                 <div>
                                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                                         <b>{key.title}</b>
