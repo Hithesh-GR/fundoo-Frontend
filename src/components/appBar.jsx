@@ -101,21 +101,16 @@ export default class appBar extends React.Component {
             console.log("error at handleSearchBar in appBar");
         }
     }
-
-
-    handleRefresh(evt) {
-        evt.preventDefault();
-        window.location.reload();
-    }
-
+    // handleRefresh(evt) {
+    //     evt.preventDefault();
+    //     window.location.reload();
+    // }
     handleAppbar() {
         this.props.notePropsToApp();
     }
-
-    searchLabels(value) {
-        this.props.searchLabels(value)
-    }
-
+    // searchLabels(value) {
+    //     this.props.searchLabels(value)
+    // }
     render() {
         // const { open } = this.state;
         return (
@@ -167,9 +162,8 @@ export default class appBar extends React.Component {
                             </Toolbar>
                             <DrawerMenu
                                 appBarProps={this.state.open}
-
                                 handleNavigation={this.props.handleNavigation}
-                                searchLabels={(value) => this.searchLabels(value)}
+                                // searchLabels={(value) => this.searchLabels(value)}
                                 makeLabelFalse={this.props.makeLabelFalse}
                             />
                         </AppBar>

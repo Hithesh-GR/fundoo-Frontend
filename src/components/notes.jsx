@@ -17,6 +17,7 @@ import DialogBox from '../components/dialogBox';
 import EditPin from '../components/editPin';
 import PinAndOthers from '../components/notePin';
 import '../App.css';
+// import clockIcon from '../assets/images/clockIcon.svg';
 const theme = createMuiTheme({
     overrides: {
         MuiChip: {
@@ -42,14 +43,18 @@ export default class Cards extends Component {
         super();
         this.state = {
             open: false,
+            open1:false,
             notes: [],
             label: false
         }
         this.cardsToDialogBox = React.createRef();
     }
     handleClick = (note) => {
-        this.setState({ open: true })
+        this.setState({ open1: true })
         this.cardsToDialogBox.current.getData(note);
+    }
+    closeEditBox=(e)=>{
+        this.setState({ open1:false})
     }
     componentDidMount() {
         getNotes()
@@ -137,6 +142,8 @@ export default class Cards extends Component {
             noteID: noteId,
             title: value
         }
+        console.log("title-->",title);
+        
         updateTitle(title)
             .then((result) => {
                 let newArray = this.state.notes
@@ -244,13 +251,11 @@ export default class Cards extends Component {
                 alert(error)
             });
     }
-
     displayNewCard = (newCard) => {
         this.setState({
             notes: [...this.state.notes, newCard]
         })
     }
-
     render() {
         let notesArray = otherArray(this.state.notes);
         if (this.props.navigateArchived) {
@@ -270,7 +275,6 @@ export default class Cards extends Component {
                 />
             )
         }
-
         else if (this.props.navigateReminder) {
             return (
                 <ReminderNavigator
@@ -287,7 +291,6 @@ export default class Cards extends Component {
                 />
             )
         }
-
         else if (this.props.navigateTrashed) {
             return (
                 <TrashNavigator
@@ -302,7 +305,6 @@ export default class Cards extends Component {
                 />
             )
         }
-
         else {
             let cardsView = this.props.noteProps ? "listCards" : "cards";
             return (
@@ -339,7 +341,7 @@ export default class Cards extends Component {
                                                         :
                                                         null} */}
                                                     </div>
-                                                    <div onClick={this.handleClick} style={{ display: "flex", justifyContent: "space-between" }}>
+                                                    <div onClick={() => this.handleClick(notesArray[key])} style={{ display: "flex", justifyContent: "space-between" }}>
                                                         <b> {notesArray[key].title}</b>
                                                         <EditPin
                                                             cardPropsToPin={this.pinNote}
@@ -349,7 +351,7 @@ export default class Cards extends Component {
                                                     </div>
                                                     <DialogBox
                                                         ref={this.cardsToDialogBox}
-                                                        parentProps={this.state.open}
+                                                        parentProps={this.state.open1}
                                                         handleEdit={this.handleClick}
                                                         closeEditBox={this.closeEditBox}
                                                         note={notesArray[key].note}
@@ -357,17 +359,19 @@ export default class Cards extends Component {
                                                         editDescription={this.editDescription}
                                                         createNotePropsToTools={this.getColor}
                                                     />
-                                                    <div onClick={this.handleClick} style={{ paddingBottom: "10px", paddingTop: "10px" }}>
+                                                    <div onClick={() => this.handleClick(notesArray[key])} style={{ paddingBottom: "10px", paddingTop: "10px" }}>
                                                         {notesArray[key].description}
                                                     </div >
-
-                                                    {notesArray[key].reminder ?
-                                                        <Chip
-                                                            label={notesArray[key].reminder}
-                                                            onDelete={() => this.reminderNote('', notesArray[key]._id)}
-                                                        />
-                                                        :
-                                                        null}
+                                                    <div>
+                                                        {/* <img src={clockIcon} alt="clockIcon" /> */}
+                                                        {notesArray[key].reminder ?
+                                                            <Chip
+                                                                label={notesArray[key].reminder}
+                                                                onDelete={() => this.reminderNote('', notesArray[key]._id)}
+                                                            />
+                                                            :
+                                                            null}
+                                                    </div>
                                                 </div>
                                                 <div id="displaycontentdiv">
                                                     <Tools
@@ -385,7 +389,6 @@ export default class Cards extends Component {
                                                     // uploadImage={this.uploadImage}
                                                     />
                                                 </div>
-
                                             </Card>
                                         </div>
                                     )
@@ -394,7 +397,6 @@ export default class Cards extends Component {
                         </div>
                     }
                 </MuiThemeProvider>
-
             );
         }
     }

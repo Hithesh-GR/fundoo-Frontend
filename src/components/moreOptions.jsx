@@ -12,7 +12,7 @@ const theme = createMuiTheme({
         MuiPaper: {
             root: {
                 margin: "0px",
-                zIndex: "1"
+                zIndex: "9999"
             },
         },
     },
@@ -95,7 +95,7 @@ export default class MoreOptions extends Component {
                             className="moreOptionsIcon"
                             alt="more options icon" />
                     </Tooltip>
-                    <Popper open={open} anchorEl={anchorEl} placement={'bottom-start'} transition style={{ zIndex: 1 }}>
+                    <Popper open={open} anchorEl={anchorEl} placement={'bottom-start'} transition style={{ zIndex: 9999 }}>
                         {({ TransitionProps }) => (
                             <Fade {...TransitionProps} timeout={0}>
                                 <Paper className="moreOptionsPopper" >

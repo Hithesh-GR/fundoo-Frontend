@@ -51,68 +51,8 @@ export default class ArchivedNavigator extends Component {
                     <div className="CardsView">
                         {this.props.archiveArray.map((key) => {
                             return (
-                                // <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "10px", border: "1px solid #dadce0" }} >
-                                //     <div>
-                                //         <div>
-                                //             {key.image !== "" ?
-                                //                 <img className="commonImg"
-                                //                     src={key.image} alt="cardImage"></img>
-                                //                 : null}
-                                //         </div>
-                                //         <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                //             <b>{key.title}</b>
-
-                                //             <EditPin
-                                //                 cardPropsToPin={this.props.pinNote}
-                                //                 noteID={key._id}
-                                //                 pinStatus={key.pinned}
-                                //             />
-                                //         </div>
-                                //         <div>
-                                //             {key.description}
-                                //         </div>
-                                //         {key.reminder ?
-
-                                //             <Chip
-                                //                 label={key.reminder}
-                                //                 onDelete={() => this.props.reminder("", key._id)} />
-                                //             :
-                                //             null}
-                                //         {key.label.length > 0 ?
-                                //             key.label.map((key1) =>
-
-                                //                 <Chip
-                                //                     label={key1}
-                                //                     onDelete={() => this.props.deleteLabelFromNote(key1, key._id)}
-                                //                 />
-
-                                //             )
-                                //             :
-                                //             null}
-
-                                //     </div>
-                                //     <div className="noteicons">
-                                //         <Tools
-                                //             createNotePropsToTools={this.props.getColor}
-                                //             // addLabelToNote={this.props.addLabelToNote}
-                                //             note={key}
-                                //             noteID={key._id}
-                                //             reminder={this.props.reminder}
-                                //             trashNote={this.props.trashNote}
-                                //             archiveStatus={key.archive}
-                                //             archiveNote={this.props.archiveNote}
-                                //         />
-                                //     </div>
-                                // </Card>
                                 <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0" }}>
                                     <div >
-                                        {/* <div>
-                                            {key.image !== "" ?
-                                                <img className="commonImg"
-                                                    src={key.image} alt="cardImage"></img>
-                                                :
-                                                null}
-                                        </div> */}
                                         <div style={{ display: "flex", justifyContent: "space-between" }}>
                                             <b> {key.title}</b>
                                             <EditPin
@@ -134,7 +74,6 @@ export default class ArchivedNavigator extends Component {
                                     <div id="displaycontentdiv">
                                         <Tools
                                             createNotePropsToTools={this.props.getColor}
-                                            // addLabelToNote={this.props.addLabelToNote}
                                             note={key}
                                             noteID={key._id}
                                             reminder={this.props.reminder}

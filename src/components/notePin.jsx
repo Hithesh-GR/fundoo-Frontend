@@ -4,7 +4,7 @@ import Tools from '../components/tools';
 import EditPin from '../components/editPin';
 export default class PinAndOthers extends Component {
     render() {
-        let cardsView = this.props.noteProps ? "cards" : "listCards";
+        let cardsView = this.props.noteProps ? "listCards" : "cards";
         return (
             <div>
                 <label style={{ fontFamily: "georgia", fontSize: "15px", color: "grey", marginRight: "760px" }}>PINNED</label>
@@ -23,7 +23,8 @@ export default class PinAndOthers extends Component {
                                     </div>
                                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                                         <b>{key.title}</b>
-                                        <EditPin cardPropsToPin={this.props.pinNote}
+                                        <EditPin
+                                            cardPropsToPin={this.props.pinNote}
                                             noteID={key._id}
                                             pinStatus={key.pinned}
                                         />

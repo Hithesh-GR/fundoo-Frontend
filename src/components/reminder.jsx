@@ -100,7 +100,7 @@ export default class reminder extends Component {
                             className="reminderIcon"
                             onClick={this.handleClick('bottom-start')} alt="remider icon" />
                     </Tooltip>
-                    <Popper open={open} anchorEl={anchorEl} placement={placement} transition style={{ zIndex: 1 }}>
+                    <Popper open={open} anchorEl={anchorEl} placement={placement} transition style={{ zIndex: 9999 }}>
                         {({ TransitionProps }) => (
                             <Fade {...TransitionProps} timeout={350}>
                                 <Paper id="reminderPopper">

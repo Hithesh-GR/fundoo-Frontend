@@ -421,6 +421,15 @@ element.style {
 
 /*****************************************************************************************************************/
 
+
+#dialogbox {
+  padding: 0px;
+  height: "auto";
+  border: 1px solid #dadce0;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.20);
+}
+
 #appbar {
   background-color: white;
   box-shadow: 0 0;
@@ -580,6 +589,14 @@ element.style {
   margin-top: -3%
 }
 
+
+.dialogInputBase {
+  margin-top: 5%;
+  width: 460px;
+  overflow: "-webkit-paged-x";
+  height: "auto";
+}
+
 .noteInputBase {
   margin-top: 3%;
   width: 460px;
@@ -599,11 +616,13 @@ element.style {
 .colorPalleteCard {
   position: absolute;
   max-width: 116px;
+  /* margin-left: 26.5%;
+  margin-top: -4%; */
   padding: 3px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  z-index: 2;
+  z-index: 9999;
   transition: 5s;
 }
 
@@ -660,6 +679,12 @@ element.style {
 }
 
 .cardToolsClose {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5.5%
+}
+
+.cardToolsDialog {
   display: flex;
   justify-content: space-between;
   margin-top: 5.5%
