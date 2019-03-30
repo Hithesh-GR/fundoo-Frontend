@@ -81,14 +81,14 @@ export default class reminder extends Component {
         console.log("tomorow reminder data====>", reminder1);
         this.props.reminder(reminder1, this.props.noteID)
     }
-    setWeeklyReminder = () => {
-        this.handleClose();
-        var date = new Date().toDateString();
-        date = date.replace(new Date().getDate().toString(), (new Date().getDate() + 7));
-        var reminder1 = date + ", 8 AM";
-        console.log("weekly reminder data=====>", reminder1);
-        this.props.reminder(reminder1, this.props.noteID)
-    }
+    // setWeeklyReminder = () => {
+    //     this.handleClose();
+    //     var date = new Date().toDateString();
+    //     date = date.replace(new Date().getDate().toString(), (new Date().getDate() + 7));
+    //     var reminder1 = date + ", 8 AM";
+    //     console.log("weekly reminder data=====>", reminder1);
+    //     this.props.reminder(reminder1, this.props.noteID)
+    // }
     render() {
         const setAMPM = this.props.parentToolsProps;
         const { anchorEl, open, placement } = this.state;
@@ -115,10 +115,10 @@ export default class reminder extends Component {
                                                 <div>Tomorrow</div>
                                                 <div>8:00 AM</div>
                                             </MenuItem>
-                                            <MenuItem className="currentDate" onClick={() => this.setWeeklyReminder()}>
+                                            {/* <MenuItem className="currentDate" onClick={() => this.setWeeklyReminder()}>
                                                 <div>Next Week</div>
                                                 <div>Mon, 8:00 AM</div>
-                                            </MenuItem>
+                                            </MenuItem> */}
                                             <MenuItem className="currentDate">
                                                 <div>Home</div>
                                                 <div>Bangalore</div>

@@ -15,7 +15,6 @@ export default class dashBoard extends Component {
         this.state = {
             cardStyles: false,
             slideCards: false,
-            label: "",
             reminder: false,
             archive: false,
             trash: false,
@@ -25,11 +24,8 @@ export default class dashBoard extends Component {
         this.handleCardStyle = this.handleCardStyle.bind(this);
         this.slideCards = this.slideCards.bind(this);
         this.getNewNote = this.getNewNote.bind(this);
-
         this.handleNavigation = this.handleNavigation.bind(this);
         this.getSearchedNotes = this.getSearchedNotes.bind(this);
-        this.searchLabels = this.searchLabels.bind(this);
-        this.makeLabelFalse = this.makeLabelFalse.bind(this);
     }
     /**
      * @description:it performs the card action
@@ -64,20 +60,9 @@ export default class dashBoard extends Component {
             console.log("error at getNewNote in dashBoard");
         }
     }
-
-
-    searchLabels(value) {
-        this.setState({ label: value });
-        console.log("search labels", value);
-        this.noteToCards.current.displayLabelledCards();
-    }
-
-
     getSearchedNotes(value) {
         this.setState({ searchNote: value })
     }
-
-
     handleNavigation(reminder, archive, trash) {
         console.log("handleNAvigation", reminder, archive, trash);
         if (reminder === true || archive === true || trash === true) {
@@ -95,9 +80,6 @@ export default class dashBoard extends Component {
             })
         }
     }
-    makeLabelFalse() {
-        this.noteToCards.current.makeLabelFalse();
-    }
     render() {
         const slidingCards = this.state.slideCards ? "afterSlide" : "beforeSlide"
         return (
@@ -108,16 +90,18 @@ export default class dashBoard extends Component {
                         slideCards={this.slideCards}
                         notePropsToApp={this.handleCardStyle}
                         handleNavigation={this.handleNavigation}
+                        getSearchedNotes={this.getSearchedNotes}
                     />
                 </div>
                 <div className="setFixedMargin">
-                    {this.state.archive || this.state.trash ?
+                    {this.state.archive || this.state.trash || this.state.searchNote ?
                         <div id="dashboard1">
                             <Notes
                                 noteProps={this.state.cardStyles}
                                 ref={this.noteToCards}
                                 navigateArchived={this.state.archive}
                                 navigateTrashed={this.state.trash}
+                                searchNote={this.state.searchNote}
                             />
                         </div>
                         :
@@ -131,6 +115,7 @@ export default class dashBoard extends Component {
                                 navigateArchived={this.state.archive}
                                 navigateReminder={this.state.reminder}
                                 navigateTrashed={this.state.trash}
+                                searchNote={this.state.searchNote}
                             />
                         </div>
                     }

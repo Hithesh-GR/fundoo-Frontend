@@ -2,69 +2,52 @@ import React, { Component } from 'react';
 import { Card, Chip } from '@material-ui/core';
 import EditPin from '../components/editPin';
 import Tools from '../components/tools';
-
-class SearchedNotes extends Component {
+export default class SearchedNotes extends Component {
     render() {
         let cardsView = this.props.noteProps ? "listCards" : "cards";
         return (
             <div>
-                <label style={{ fontFamily: "georgia", fontSize: "15px", color: "grey", marginRight: "668px" }}>SEARCHED NOTES</label>
-                <div className="CardsView" style={{ marginBottom: "30px" }}>
+                <label style={{ fontFamily: "georgia", fontSize: "15px", color: "grey", marginRight: "660px" }}>SEARCHED NOTES</label>
+                <div className="CardsView" >
                     {this.props.searchNote.map((key) => {
                         return (
-                            <Card className={cardsView} style={{ backgroundColor: key.note.color }} >
+                            <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0" }} >
                                 <div>
-
                                     <div>
-                                        {key.note.img !== "" ?
+                                        {key.image !== "" ?
                                             <img style={{
                                                 maxWidth: "100%",
                                                 height: "auto"
-                                            }} src={key.note.img} alt="cardImage"></img>
+                                            }} src={key.image} alt="cardImage"></img>
                                             : null}
                                     </div>
                                     <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                        <b>{key.note.title}</b>
-                                        <EditPin cardPropsToPin={this.props.pinNote}
-                                            noteID={key.note._id}
-                                            pinStatus={key.note.pinned}
+                                        <b>{key.title}</b>
+                                        <EditPin
+                                            cardPropsToPin={this.props.pinNote}
+                                            noteID={key._id}
+                                            pinStatus={key.pinned}
                                         />
                                     </div>
-
-                                    <div>
-                                        {key.note.description}
+                                    <div style={{ paddingBottom: "10px", paddingTop: "10px" }}>
+                                        {key.description}
                                     </div>
-
-                                    {key.note.remindMe !== "" ?
+                                    {key.reminder ?
                                         <Chip
-                                             label={key.note.remindMe}
-                                            onDelete={() => this.props.reminder("", key.note._id)} />
+                                            label={key.reminder}
+                                            onDelete={() => this.props.reminder("", key._id)} />
                                         :
                                         null}
-
-                                    {key.note.label.length > 0 ?
-                                        key.note.label.map((key1) =>
-
-                                            <Chip
-                                                label={key1}
-                                                onDelete={() => this.props.deleteLabelFromNote(key1, key.note._id)}
-                                            />
-
-                                        )
-                                        :
-                                        null}
-
                                 </div>
-
-                                <div className="noteicons">
-                                    <Tools createNotePropsToTools={this.props.getColor}
-                                        deleteLabelFromNote={this.props.deleteLabelFromNote}
-                                        addLabelToNote={this.props.addLabelToNote}
-                                        note={key.note}
-                                        noteID={key.note._id}
+                                <div id="displaycontentdiv">
+                                    <Tools
+                                        createNotePropsToTools={this.props.getColor}
+                                        note={key}
+                                        noteID={key._id}
                                         reminder={this.props.reminderNote}
                                         trashNote={this.props.trashNote}
                                         archiveNote={this.props.archiveNote}
+                                        archiveStatus={key.archive}
                                         uploadImage={this.props.uploadImage}
                                     />
 
@@ -79,4 +62,3 @@ class SearchedNotes extends Component {
         )
     }
 }
-export default SearchedNotes;

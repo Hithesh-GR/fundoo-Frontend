@@ -55,7 +55,7 @@ export function updateColor(data) {
  * @param {*} data 
  */
 export function updateArchiveStatus(data) {
-    console.log("arcive data from front-end==>", data);
+    console.log("archive data from front-end==>", data);
     var headers = {
         "token": localStorage.getItem("token")
     }
@@ -143,6 +143,20 @@ export function updatePin(data) {
         "token": localStorage.getItem("token")
     }
     return axios.put('/isPinned',
+        data, {
+            headers: headers
+        }
+    )
+}
+/**
+ * 
+ * @param {*} data 
+ */
+export function updateImages(data) {
+    var headers = {
+        "token": localStorage.getItem("token"),
+    }
+    return axios.put('/uploadImage',
         data, {
             headers: headers
         }

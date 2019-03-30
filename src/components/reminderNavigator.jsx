@@ -33,7 +33,7 @@ export default class ReminderNavigator extends Component {
                         return (
                             <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0" }} >
                                 <div >
-                                    {/* <div>
+                                    <div>
                                         {key.image !== "" ?
                                             <img style={{
                                                 maxWidth: "100%",
@@ -41,7 +41,7 @@ export default class ReminderNavigator extends Component {
                                             }} src={key.image} alt="cardImage"></img>
                                             :
                                             null}
-                                    </div> */}
+                                    </div>
                                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                                         <b>{key.title}</b>
                                         <EditPin
@@ -59,16 +59,6 @@ export default class ReminderNavigator extends Component {
                                             onDelete={() => this.props.reminder("", key._id)} />
                                         :
                                         null}
-
-                                    {/* {key.label.length > 0 ?
-                                        key.label.map((key1) =>
-                                            <Chip
-                                                label={key1}
-                                                onDelete={() => this.props.deleteLabelFromNote(key1, key._id)}
-                                            />
-                                        )
-                                        :
-                                        null} */}
                                 </div>
                                 <div id="displaycontentdiv">
                                     <Tools

@@ -25,7 +25,7 @@ const theme = createMuiTheme({
 
         }
     },
-     typography: {
+    typography: {
         useNextVariants: true,
     },
 })
@@ -102,7 +102,7 @@ export default class DialogBox extends Component {
                             onChange={this.handleDescClick}
                         />
 
-                        <div className="cardToolsDialog">
+                        <div className="cardToolsClose">
                             <Tools
                                 createNotePropsToTools={this.props.getColor}
                                 // note={key}

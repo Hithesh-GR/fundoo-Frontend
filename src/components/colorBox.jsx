@@ -6,7 +6,7 @@
  *  @since          : 23-02-2019
  *****************************************************************************************************/
 import React, { Component } from 'react';
-import { IconButton, Tooltip, Card, Popper, Fade, Paper } from '@material-ui/core';
+import { IconButton, Tooltip, Card } from '@material-ui/core';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 /**
  * @description:it will define the color using rgb-color code
@@ -87,7 +87,6 @@ export default class ColorPallete extends Component {
         }
     }
     render() {
-        const { anchorEl, open } = this.state;
         const changeCardColor = colorCodesAndNames.map((colorKey) =>
             <Tooltip title={colorKey.name}>
                 <IconButton style={{ backgroundColor: colorKey.colorCode, "margin": "2px", }}
@@ -116,25 +115,6 @@ export default class ColorPallete extends Component {
                         </ClickAwayListener>
                         : null}
                 </div>
-                {/* <Popper open={open} anchorEl={anchorEl} placement={'bottom-start'} transition style={{ zIndex: 9999 }}>
-                    {({ TransitionProps }) => (
-                        <Fade {...TransitionProps} timeout={0}>
-                            <Paper >
-                                <ClickAwayListener onClick={() => this.closePopper()}>
-                                    <div>
-                                        {this.state.open ?
-                                            // <ClickAwayListener onClick={() => this.closePopper()}>
-                                            <Card >
-                                                {changeCardColor}
-                                            </Card>
-                                            // </ClickAwayListener>
-                                            : null}
-                                    </div>
-                                </ClickAwayListener>
-                            </Paper>
-                        </Fade>
-                    )}
-                </Popper> */}
             </div>
         )
     }

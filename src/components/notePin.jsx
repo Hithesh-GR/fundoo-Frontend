@@ -14,12 +14,12 @@ export default class PinAndOthers extends Component {
                             <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0" }} >
                                 <div>
                                     <div>
-                                        {/* {key.note.img !== "" ?
+                                        {key.image !== "" ?
                                             <img style={{
                                                 maxWidth: "100%",
                                                 height: "auto"
-                                            }} src={key.note.img} alt="cardImage"></img>
-                                            : null} */}
+                                            }} src={key.image} alt="cardImage"></img>
+                                            : null}
                                     </div>
                                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                                         <b>{key.title}</b>
@@ -39,21 +39,10 @@ export default class PinAndOthers extends Component {
                                         />
                                         :
                                         null}
-                                    {/* {keylabel.length > 0 ?
-                                        key.label.map((key1) =>
-                                            <Chip
-                                                label={key1}
-                                                onDelete={() => this.props.deleteLabelFromNote(key1, key._id)}
-                                            />
-                                        )
-                                        :
-                                        null} */}
                                 </div>
                                 <div className="noteicons">
                                     <Tools
                                         createNotePropsToTools={this.props.createNotePropsToTools}
-                                        // deleteLabelFromNote={this.props.deleteLabelFromNote}
-                                        // addLabelToNote={this.props.addLabelToNote}
                                         archiveNote={this.props.archiveNote}
                                         noteID={key._id}
                                         archiveStatus={key.archive}
@@ -74,12 +63,12 @@ export default class PinAndOthers extends Component {
                             <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0" }} >
                                 <div>
                                     <div>
-                                        {/* {key.image !== "" ?
+                                        {key.image !== "" ?
                                             <img style={{
                                                 maxWidth: "100%",
                                                 height: "auto"
                                             }} src={key.image} alt="cardImage"></img>
-                                            : null} */}
+                                            : null}
                                     </div>
                                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                                         <b>{key.title}</b>
@@ -98,24 +87,15 @@ export default class PinAndOthers extends Component {
                                         />
                                         :
                                         null}
-                                    {/* {key.label.length > 0 ?
-                                        key.label.map((key1) =>
-                                            <Chip
-                                                label={key1}
-                                                onDelete={() => this.props.deleteLabelFromNote(key1, key._id)}
-                                            />
-                                        )
-                                        :
-                                        null} */}
                                 </div>
                                 <div className="noteicons">
-                                    <Tools createNotePropsToTools={this.props.getColor}
-                                        // addLabelToNote={this.props.addLabelToNote}
-                                        // deleteLabelFromNote={this.props.deleteLabelFromNote}
+                                    <Tools
+                                        createNotePropsToTools={this.props.getColor}
                                         note={key}
                                         noteID={key._id}
                                         reminder={this.props.reminder}
                                         archiveNote={this.props.archiveNote}
+                                        archiveStatus={key.archive}
                                         trashNote={this.props.trashNote}
                                         uploadImage={this.props.uploadImage}
                                     />

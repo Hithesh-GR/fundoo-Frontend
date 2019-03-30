@@ -88,10 +88,10 @@ export default class Logout extends Component {
      * @description:it will upload the image
      * @param {*} evt 
      */
-    uploadImage(evt) {
+    uploadImage = (evt) => {
         try {
             console.log("upload image", evt.target.files[0]);
-            this.props.uploadImage(evt.target.files[0], this.props.note._id)
+            this.props.uploadImage(evt.target.files[0], this.props._id)
         } catch (err) {
             console.log("error at uploadImage in userProfile");
         }
@@ -121,13 +121,12 @@ export default class Logout extends Component {
                 <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={350}>
-                            <Paper id="papperlogout">
+                            <Paper style={{ width:"100%",marginLeft:"10%" }}>
                                 <ClickAwayListener onClickAway={this.handleToggle}>
-                                    <div style={{ width: "280px", padding: "15px", marginTop: "13px" }}>
+                                    <div style={{ width: "280px", padding: "15px", marginTop: "1px" }}>
                                         <div id="userProfileDetails">
-                                            <IconButton id="avatar">
                                                 <Tooltip title="Change Profile">
-                                                    <Avatar style={{ width: "100px", height: "100px", backgroundColor: "blur" }}
+                                                    <Avatar style={{ width: "100px", height: "100px", marginLeft: "90px", backgroundColor: "blur" }}
                                                         onClick={() => { this.triggerInputFile() }}>
                                                         {this.state.profilePic !== "" ?
                                                             <img style={{
@@ -143,10 +142,9 @@ export default class Logout extends Component {
                                                         />
                                                     </Avatar>
                                                 </Tooltip>
-                                            </IconButton>
-                                            <span style={{ marginTop: "-1px", marginLeft: "20px" }}>
-                                                <p style={{ marginBottom: "0px" }}>{userDetails}<br></br> </p>
-                                                <small style={{ marginBottom: "0px" }}>{localStorage.getItem('email')} </small>
+                                            <span style={{ marginTop: "30%", marginLeft: "-42%" }}>
+                                               <center><b>  <p> {userDetails} </p>  </b></center> 
+                                            {localStorage.getItem('email')} 
                                             </span>
                                         </div>
                                         <Divider />

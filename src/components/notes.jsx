@@ -11,11 +11,12 @@ import Tools from '../components/tools';
 import ArchivedNavigator from "../components/archivedNavigator";
 import ReminderNavigator from "../components/reminderNavigator";
 import TrashNavigator from '../components/trashedNavigator';
-import { getNotes, updateColor, deleteNoteForever, updateArchiveStatus, setReminder, isTrashed, updateDescription, updateTitle, updatePin } from '../services/noteServices';
+import { getNotes, updateColor, deleteNoteForever, updateArchiveStatus, setReminder, isTrashed, updateDescription, updateTitle, updatePin, updateImages } from '../services/noteServices';
 import { otherArray, archiveArray, remiderArray, trashArray, pinArray } from '../services/noteServices';
 import DialogBox from '../components/dialogBox';
 import EditPin from '../components/editPin';
 import PinAndOthers from '../components/notePin';
+import SearchedNotes from '../components/searchNote';
 import '../App.css';
 // import clockIcon from '../assets/images/clockIcon.svg';
 const theme = createMuiTheme({
@@ -43,7 +44,7 @@ export default class Cards extends Component {
         super();
         this.state = {
             open: false,
-            open1:false,
+            open1: false,
             notes: [],
             label: false
         }
@@ -53,8 +54,8 @@ export default class Cards extends Component {
         this.setState({ open1: true })
         this.cardsToDialogBox.current.getData(note);
     }
-    closeEditBox=(e)=>{
-        this.setState({ open1:false})
+    closeEditBox = (e) => {
+        this.setState({ open1: false })
     }
     componentDidMount() {
         getNotes()
@@ -68,7 +69,6 @@ export default class Cards extends Component {
                 alert(error)
             });
     }
-
     getColor = (value, noteId) => {
         const color = {
             noteID: noteId,
@@ -90,7 +90,6 @@ export default class Cards extends Component {
                 alert(error)
             });
     }
-
     archiveNote = (value, noteId) => {
         const isArchived = {
             noteID: noteId,
@@ -114,7 +113,6 @@ export default class Cards extends Component {
                 alert(error)
             });
     }
-
     reminderNote = (value, noteId) => {
         const reminder = {
             noteID: noteId,
@@ -136,14 +134,13 @@ export default class Cards extends Component {
                 alert(error)
             });
     }
-
     editTitle = (value, noteId) => {
         const title = {
             noteID: noteId,
             title: value
         }
-        console.log("title-->",title);
-        
+        console.log("title-->", title);
+
         updateTitle(title)
             .then((result) => {
                 let newArray = this.state.notes
@@ -160,7 +157,6 @@ export default class Cards extends Component {
                 alert(error)
             });
     }
-
     editDescription = (value, noteId) => {
         const description = {
             noteID: noteId,
@@ -182,7 +178,6 @@ export default class Cards extends Component {
                 alert(error)
             });
     }
-
     trashNote = (noteId) => {
         const trash = {
             noteID: noteId
@@ -205,7 +200,26 @@ export default class Cards extends Component {
                 alert(error)
             });
     }
-
+    uploadImage = (value, noteId) => {
+        console.log("image:------------", value);
+        let data = new FormData();
+        data.append('image', value);
+        data.append('noteID', noteId);
+        console.log("request", data);
+        updateImages(data)
+            .then((result) => {
+                console.log("result", result.data.data)
+                let newArray = this.state.notes
+                for (let i = 0; i < newArray.length; i++) {
+                    if (newArray[i]._id === noteId) {
+                        newArray[i].image = result.data.data;
+                        this.setState({
+                            notes: newArray
+                        })
+                    }
+                }
+            })
+    }
     pinNote = (value, noteId) => {
         const isPinned = {
             noteID: noteId,
@@ -230,7 +244,6 @@ export default class Cards extends Component {
                 alert(error)
             });
     }
-
     deleteNote = (noteId) => {
         const obj = {
             noteID: noteId,
@@ -258,36 +271,55 @@ export default class Cards extends Component {
     }
     render() {
         let notesArray = otherArray(this.state.notes);
-        if (this.props.navigateArchived) {
+
+        if ((this.props.searchNote !== "") && (!this.props.navigateArchived
+            && !this.props.navigateReminder && !this.props.navigateTrashed)) {
+            let searchNote;
+            if (this.props.searchNote !== "") {
+                searchNote = this.state.notes.filter(
+                    obj => obj.title.includes(this.props.searchNote) ||
+                        obj.description.includes(this.props.searchNote)
+                )
+            }
             return (
-                <ArchivedNavigator
-                    // addLabelToNote={this.addLabelToNote}
-                    archiveArray={archiveArray(this.state.notes)}
-                    pinNote={this.pinNote}
-                    othersArray={otherArray}
-                    // deleteLabelFromNote={this.deleteLabelFromNote}
+                <SearchedNotes
+                    searchNote={searchNote}
                     getColor={this.getColor}
                     noteProps={this.props.noteProps}
                     reminder={this.reminderNote}
                     trashNote={this.trashNote}
                     archiveNote={this.archiveNote}
-                // uploadImage={this.uploadImage} 
+                    uploadImage={this.uploadImage}
+                />
+            )
+        }
+        else if (this.props.navigateArchived) {
+            return (
+                <ArchivedNavigator
+                    archiveArray={archiveArray(this.state.notes)}
+                    pinNote={this.pinNote}
+                    othersArray={otherArray}
+                    getColor={this.getColor}
+                    noteProps={this.props.noteProps}
+                    reminder={this.reminderNote}
+                    trashNote={this.trashNote}
+                    archiveNote={this.archiveNote}
+                    uploadImage={this.uploadImage}
                 />
             )
         }
         else if (this.props.navigateReminder) {
             return (
                 <ReminderNavigator
-                    // addLabelToNote={this.addLabelToNote}
                     remiderArray={remiderArray(this.state.notes)}
                     pinNote={this.pinNote}
                     othersArray={otherArray(this.state.notes)}
-                    // deleteLabelFromNote={this.deleteLabelFromNote}
                     getColor={this.getColor}
                     noteProps={this.props.noteProps}
                     reminder={this.reminderNote}
                     trashNote={this.trashNote}
                     archiveNote={this.archiveNote}
+                    uploadImage={this.uploadImage}
                 />
             )
         }
@@ -296,7 +328,6 @@ export default class Cards extends Component {
                 <TrashNavigator
                     trashArray={trashArray(this.state.notes)}
                     pinNote={this.pinNote}
-                    // deleteLabelFromNote={this.deleteLabelFromNote}
                     othersArray={otherArray(this.state.notes)}
                     getColor={this.getColor}
                     noteProps={this.props.noteProps}
@@ -312,8 +343,6 @@ export default class Cards extends Component {
                     {pinArray(this.state.notes).length !== 0 ?
                         <PinAndOthers
                             createNotePropsToTools={this.getColor}
-                            // addLabelToNote={this.addLabelToNote}
-                            // deleteLabelFromNote={this.deleteLabelFromNote}
                             pinArray={pinArray(this.state.notes)}
                             pinNote={this.pinNote}
                             othersArray={otherArray(this.state.notes)}
@@ -333,13 +362,13 @@ export default class Cards extends Component {
                                             <Card className={cardsView} style={{ backgroundColor: notesArray[key].color, borderRadius: "15px", border: "1px solid #dadce0" }}>
                                                 <div >
                                                     <div>
-                                                        {/* {notesArray[key].image !== "" ?
-                                                        <img style={{
-                                                            maxWidth: "100%",
-                                                            height: "auto"
-                                                        }} src={notesArray[key].image} alt="cardImage"></img>
-                                                        :
-                                                        null} */}
+                                                        {notesArray[key].image !== "" ?
+                                                            <img style={{
+                                                                maxWidth: "100%",
+                                                                height: "auto"
+                                                            }} src={notesArray[key].image} alt="cardImage"></img>
+                                                            :
+                                                            null}
                                                     </div>
                                                     <div onClick={() => this.handleClick(notesArray[key])} style={{ display: "flex", justifyContent: "space-between" }}>
                                                         <b> {notesArray[key].title}</b>
@@ -376,17 +405,13 @@ export default class Cards extends Component {
                                                 <div id="displaycontentdiv">
                                                     <Tools
                                                         createNotePropsToTools={this.getColor}
-                                                        // deleteLabelFromNote={this.deleteLabelFromNote}
-                                                        // collab={noteArray[key].collab}
-                                                        // owner={noteArray[key].owner}
-                                                        // addLabelToNote={this.addLabelToNote}
                                                         archiveNote={this.archiveNote}
                                                         noteID={notesArray[key]._id}
                                                         archiveStatus={notesArray[key].archive}
                                                         reminder={this.reminderNote}
                                                         note={notesArray[key].note}
                                                         trashNote={this.trashNote}
-                                                    // uploadImage={this.uploadImage}
+                                                        uploadImage={this.uploadImage}
                                                     />
                                                 </div>
                                             </Card>

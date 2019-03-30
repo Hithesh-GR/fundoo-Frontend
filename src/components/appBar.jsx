@@ -75,7 +75,6 @@ export default class appBar extends React.Component {
             searchNote: ""
         };
         this.handleSearchBar = this.handleSearchBar.bind(this);
-
         this.handleAppbar = this.handleAppbar.bind(this);
     }
     /**
@@ -101,16 +100,13 @@ export default class appBar extends React.Component {
             console.log("error at handleSearchBar in appBar");
         }
     }
-    // handleRefresh(evt) {
-    //     evt.preventDefault();
-    //     window.location.reload();
-    // }
+    handleRefresh(evt) {
+        evt.preventDefault();
+        window.location.reload();
+    }
     handleAppbar() {
         this.props.notePropsToApp();
     }
-    // searchLabels(value) {
-    //     this.props.searchLabels(value)
-    // }
     render() {
         // const { open } = this.state;
         return (
@@ -151,11 +147,25 @@ export default class appBar extends React.Component {
                                         />
                                     </div>
                                 </div>
+                                <div className="refresh">
+                                    <IconButton id="refreshIcon">
+                                        <Tooltip title="refresh" onClick={this.handleRefresh}>
+                                            <img src={require('../assets/images/refresh.png')} alt="refresh icon" />
+                                        </Tooltip>
+                                    </IconButton>
+                                </div>
                                 <div className="appList">
                                     <CardsView
                                         appPropstoCardsView={this.handleAppbar}
                                     />
                                 </div>
+                                {/* <div>
+                                    <IconButton id="settingsIcon">
+                                        <Tooltip title="Settings" >
+                                            <img src={require('../assets/images/gear.png')} alt="setting icon" />
+                                        </Tooltip>
+                                    </IconButton>
+                                </div> */}
                                 <div>
                                     <UserProfile props={this.props} />
                                 </div>

@@ -267,7 +267,7 @@ input[type=emaill] {
 }
 
 .iconButton {
-  margin-left: -20%;
+  margin-left: -25%;
 }
 
 .container1 {
@@ -311,7 +311,8 @@ input[type=emaill] {
 }
 
 .avatar {
-  margin: 10,
+  margin: 10%;
+  margin-top: 10%;
 }
 
 .appbar {
@@ -420,7 +421,9 @@ element.style {
 }
 
 /*****************************************************************************************************************/
-
+#refreshIcon {
+  margin-left: 195%;
+}
 
 #dialogbox {
   padding: 0px;
@@ -475,7 +478,7 @@ element.style {
 }
 
 #userProfileIcon {
-  margin-left: 200px;
+  margin-left: 100px;
 }
 
 #account {
@@ -825,8 +828,7 @@ div .currentDate {
   }
 
   #papperlogout {
-    width: 100%;
-
+    width: 10%;
   }
 
   #searchInputBase {
@@ -886,7 +888,7 @@ div .currentDate {
   }
 
   #userProfileIcon {
-    margin-left: 0px
+    margin-left: -100px
   }
 
   #searchBar {
