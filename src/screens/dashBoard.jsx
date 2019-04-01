@@ -53,7 +53,6 @@ export default class dashBoard extends Component {
      */
     getNewNote(newCard) {
         console.log("new card", newCard);
-
         try {
             this.noteToCards.current.displayNewCard(newCard);
         } catch (err) {

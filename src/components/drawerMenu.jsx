@@ -15,8 +15,7 @@ export default class drawerMenu extends Component {
             open: false,
             navigateReminder: false,
             navigateArchived: false,
-            navigateTrashed: false,
-            label: [],
+            navigateTrashed: false
         }
     }
     async handleNotes() {
@@ -25,7 +24,6 @@ export default class drawerMenu extends Component {
             navigateArchived: false,
             navigateTrashed: false,
         })
-        // this.props.makeLabelFalse();
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
     async handleReminder() {
@@ -34,7 +32,6 @@ export default class drawerMenu extends Component {
             navigateArchived: false,
             navigateTrashed: false
         })
-        // this.props.makeLabelFalse();
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
     async handleArchived() {
@@ -43,7 +40,6 @@ export default class drawerMenu extends Component {
             navigateArchived: true,
             navigateTrashed: false
         })
-        // this.props.makeLabelFalse();
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
     async handleTrashed() {
@@ -52,11 +48,8 @@ export default class drawerMenu extends Component {
             navigateArchived: false,
             navigateTrashed: true
         })
-        // this.props.makeLabelFalse();
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
-
-
     render() {
         return (
             <div>
@@ -80,7 +73,7 @@ export default class drawerMenu extends Component {
                             LABELS
                         </div>
                         <div>
-                            <MenuItem id="labelMenu" onClick={this.handleEditLabel}>
+                            <MenuItem id="labelMenu">
                                 <img src={require('../assets/images/menuEdit.svg')} alt="edit icon"
                                     style={{ marginRight: "50px" }} />
                                 Edit Labels

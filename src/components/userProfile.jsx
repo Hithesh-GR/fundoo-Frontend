@@ -15,6 +15,7 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Tooltip from '@material-ui/core/Tooltip';
 import Fade from '@material-ui/core/Fade';
 import { Button } from '@material-ui/core';
+import { uploadProfilePic } from "../services/userServices";
 import '../App.css';
 /**
 * @description:This method is used to Logout ui.. 
@@ -77,24 +78,38 @@ export default class Logout extends Component {
     /**
      * @description:it trigger the event and enter into our file
      */
-    triggerInputFile() {
+    triggerInputFile = () => {
         try {
             this.fileInput.click();
         } catch (err) {
             console.log("error at triggerInputFile in userProfile");
         }
     }
+    componentDidMount() {
+        if (localStorage.getItem("profilePic") !== 'undefined') {
+            this.setState({
+                profilePic: localStorage.getItem("profilePic")
+            })
+        }
+    }
     /**
      * @description:it will upload the image
-     * @param {*} evt 
+     * @param {*} e
      */
-    uploadImage = (evt) => {
-        try {
-            console.log("upload image", evt.target.files[0]);
-            this.props.uploadImage(evt.target.files[0], this.props._id)
-        } catch (err) {
-            console.log("error at uploadImage in userProfile");
-        }
+    uploadImage = (e) => {
+        let data = new FormData();
+        console.log("image:------------", e.target.files[0]);
+        data.append('image', e.target.files[0]);
+        uploadProfilePic(data)
+            .then((result) => {
+                console.log("profile", result.data.data);
+
+                this.setState({
+                    profilePic: result.data.data
+                })
+            }).catch((err) => {
+                alert(err);
+            })
     }
     /**
      * @description:it will open the userProfile
@@ -113,18 +128,23 @@ export default class Logout extends Component {
     };
     render() {
         const { anchorEl, open, placement } = this.state;
-        //const { classes } = this.props;
         const userDetails = localStorage.getItem('username');
+        // const userDetails = localStorage.getItem('email');
         const initial = userDetails.substring(0, 1);
-        return (
-            <div>
-                <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
-                    {({ TransitionProps }) => (
-                        <Fade {...TransitionProps} timeout={350}>
-                            <Paper style={{ width:"100%",marginLeft:"10%" }}>
-                                <ClickAwayListener onClickAway={this.handleToggle}>
-                                    <div style={{ width: "280px", padding: "15px", marginTop: "1px" }}>
-                                        <div id="userProfileDetails">
+        if (localStorage.getItem('token1') !== "true")
+            return (
+                this.props.props.props.history.push("/login")
+            )
+        else {
+            return (
+                <div>
+                    <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
+                        {({ TransitionProps }) => (
+                            <Fade {...TransitionProps} timeout={350}>
+                                <Paper style={{ width: "100%", marginLeft: "10%" }}>
+                                    <ClickAwayListener onClickAway={this.handleToggle}>
+                                        <div style={{ width: "280px", padding: "15px", marginTop: "1px" }}>
+                                            <div id="userProfileDetails">
                                                 <Tooltip title="Change Profile">
                                                     <Avatar style={{ width: "100px", height: "100px", marginLeft: "90px", backgroundColor: "blur" }}
                                                         onClick={() => { this.triggerInputFile() }}>
@@ -142,41 +162,42 @@ export default class Logout extends Component {
                                                         />
                                                     </Avatar>
                                                 </Tooltip>
-                                            <span style={{ marginTop: "30%", marginLeft: "-42%" }}>
-                                               <center><b>  <p> {userDetails} </p>  </b></center> 
-                                            {localStorage.getItem('email')} 
-                                            </span>
+                                                <span style={{ marginTop: "30%", marginLeft: "-42%" }}>
+                                                    <center><b>  <p> {userDetails} </p>  </b></center>
+                                                    {localStorage.getItem('email')}
+                                                </span>
+                                            </div>
+                                            <Divider />
+                                            <div id="profilebutton">
+                                                <Button
+                                                    onClick={this.handleregister}>Add account</Button>
+                                                <Button
+                                                    onClick={this.handlelogout}>Sign out</Button>
+                                            </div>
                                         </div>
-                                        <Divider />
-                                        <div id="profilebutton">
-                                            <Button
-                                                onClick={this.handleregister}>Add account</Button>
-                                            <Button
-                                                onClick={this.handlelogout}>Sign out</Button>
-                                        </div>
-                                    </div>
-                                </ClickAwayListener>
-                            </Paper>
-                        </Fade>
-                    )}
-                </Popper>
-                <div className="iconButton">
-                    <IconButton id="userProfileIcon">
-                        <Tooltip
-                            title={"Fundoo Account   :" + localStorage.getItem('username')}>
-                            <Avatar style={{ width: "35px", height: "35px", backgroundColor: "blur" }} onClick={this.handleClick('bottom-end')} >
-                                {this.state.profilePic !== "" ?
-                                    <img style={{
-                                        width: "40px", height: "40px"
-                                    }} src={this.state.profilePic} alt="change Profile pic"></img>
-                                    :
-                                    initial
-                                }
-                            </Avatar>
-                        </Tooltip>
-                    </IconButton>
+                                    </ClickAwayListener>
+                                </Paper>
+                            </Fade>
+                        )}
+                    </Popper>
+                    <div className="iconButton">
+                        <IconButton id="userProfileIcon">
+                            <Tooltip
+                                title={"Fundoo Account   :" + localStorage.getItem('username')}>
+                                <Avatar style={{ width: "35px", height: "35px", backgroundColor: "blur" }} onClick={this.handleClick('bottom-end')} >
+                                    {this.state.profilePic !== "" ?
+                                        <img style={{
+                                            width: "40px", height: "40px"
+                                        }} src={this.state.profilePic} alt="change Profile pic"></img>
+                                        :
+                                        initial
+                                    }
+                                </Avatar>
+                            </Tooltip>
+                        </IconButton>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }

@@ -18,11 +18,14 @@ export default class Archive extends Component {
             snackBarMessage: "",
             openSnackBar: false,
         }
+
+        this.handleArchive=this.handleArchive.bind(this)
     }
-    handleArchive = () => {
+  async  handleArchive (){
+        console.log("(this.props.archiveStatusd", this.state.isArchived);
         if (this.props.archiveStatus === false) {
-            this.state.isArchived = true;
-          //  this.setState({ open: true });
+           // this.state.isArchived = true;
+          await this.setState({ isArchived: true });
             this.setState({
                 openSnackBar: true,
                 snackBarMessage: "Note Archived"
@@ -31,8 +34,8 @@ export default class Archive extends Component {
             this.props.archiveNote(this.state.isArchived, this.props.noteID)
         }
         else {
-            this.state.isArchived = false;
-          //  this.setState({ open: false });
+          //  this.state.isArchived = false;
+            this.setState({ isArchived: false });
             console.log(" this.state.isArchived changle else", this.state.isArchived);
             this.props.archiveNote(this.state.isArchived, this.props.noteID)
         }

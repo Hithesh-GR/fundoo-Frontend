@@ -11,18 +11,18 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 /**
  * @description:it will define the color using rgb-color code
  */
-const colorCodesAndNames = [{ name: "white", colorCode: "rgb(255, 255, 255)" },
-{ name: "red", colorCode: "rgb(255,0,0)" },
-{ name: "hot pink", colorCode: "rgb(255,105,180)" },
-{ name: "lime", colorCode: "rgb(0,255,0)" },
-{ name: "cyan", colorCode: "rgb(0, 255, 255)" },
-{ name: "tomato", colorCode: "rgb(255,99,71)" },
-{ name: "dark orange", colorCode: "rgb(255,140,0)" },
-{ name: "blue", colorCode: "rgb(0,0,255)" },
-{ name: "maroon", colorCode: "rgb(128,0,0)" },
-{ name: "gold", colorCode: "rgb(255, 215,0)" },
-{ name: "royal blue", colorCode: "rgb(65,105,225)" },
-{ name: "silver", colorCode: "rgb(192,192,192)" }
+const colorCodesAndNames = [{ name: "default", colorCode: "rgb(255, 255, 255)" },
+{ name: "Red", colorCode: "rgb(242,139,130)" },
+{ name: "Orange", colorCode: "rgb(247,188,2)" },
+{ name: "Yellow", colorCode: "rgb(252,244,117)" },
+{ name: "Green", colorCode: "rgb(204,255,143)" },
+{ name: "Teal", colorCode: "rgb(167,255,235)" },
+{ name: "Blue", colorCode: "rgb(203,240,248)" },
+{ name: "Dark Blue", colorCode: "rgb(174,203,250)" },
+{ name: "Purple", colorCode: "rgb(215,174,251)" },
+{ name: "Pink", colorCode: "rgb(251,207,232)" },
+{ name: "Brown", colorCode: "rgb(230,201,168)" },
+{ name: "Gray", colorCode: "rgb(232,234,237)" }
 ]
 export default class ColorPallete extends Component {
     constructor(props) {
@@ -88,8 +88,8 @@ export default class ColorPallete extends Component {
     }
     render() {
         const changeCardColor = colorCodesAndNames.map((colorKey) =>
-            <Tooltip title={colorKey.name}>
-                <IconButton style={{ backgroundColor: colorKey.colorCode, "margin": "2px", }}
+            <Tooltip title={colorKey.name} style={{ zIndex: "9999" }}>
+                <IconButton style={{ backgroundColor: colorKey.colorCode, "margin": "2px", zIndex: "9999" }}
                     value={colorKey.colorCode}
                     onClick={this.handleColor}
                 >

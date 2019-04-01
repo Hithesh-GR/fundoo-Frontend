@@ -11,7 +11,7 @@ export default class PinAndOthers extends Component {
                 <div className="CardsView" style={{ marginBottom: "30px" }}>
                     {this.props.pinArray.map((key) => {
                         return (
-                            <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0" }} >
+                            <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }} >
                                 <div>
                                     <div>
                                         {key.image !== "" ?
@@ -60,7 +60,7 @@ export default class PinAndOthers extends Component {
                 <div className="CardsView">
                     {this.props.othersArray.map((key) => {
                         return (
-                            <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0" }} >
+                            <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }} >
                                 <div>
                                     <div>
                                         {key.image !== "" ?
@@ -72,7 +72,8 @@ export default class PinAndOthers extends Component {
                                     </div>
                                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                                         <b>{key.title}</b>
-                                        <EditPin cardPropsToPin={this.props.pinNote}
+                                        <EditPin
+                                            cardPropsToPin={this.props.pinNote}
                                             noteID={key._id}
                                             pinStatus={key.pinned}
                                         />

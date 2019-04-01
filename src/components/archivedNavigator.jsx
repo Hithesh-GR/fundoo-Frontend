@@ -51,7 +51,7 @@ export default class ArchivedNavigator extends Component {
                     <div className="CardsView">
                         {this.props.archiveArray.map((key) => {
                             return (
-                                <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0" }}>
+                                <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }}>
                                     <div >
                                         <div style={{ display: "flex", justifyContent: "space-between" }}>
                                             <b> {key.title}</b>

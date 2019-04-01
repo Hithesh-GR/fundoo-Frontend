@@ -25,7 +25,7 @@ export default class UploadImage extends Component {
     uploadImage(evt) {
         try {
             console.log("upload image", evt.target.files[0]);
-            this.props.uploadImage(evt.target.files[0], this.props.note._id)
+            this.props.uploadImage(evt.target.files[0], this.props._id)
         } catch (err) {
             console.log("error at uploadImage");
         }

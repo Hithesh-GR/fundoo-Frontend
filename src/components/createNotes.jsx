@@ -22,6 +22,19 @@ const theme = createMuiTheme({
                 boxShadow: "0 3px 5px rgba(0,0,0,0.20)"
             }
         },
+        MuiChip: {
+            root: {
+                fontSize: 14,
+                marginTop: 20,
+                height: 25,
+                backgroundColor: "rgba(0, 0, 0, 0.10)",
+                padding: 0
+            },
+            deleteIcon: {
+                width: 20,
+                height: 20
+            }
+        },
     },
     typography: {
         useNextVariants: true,
@@ -115,6 +128,9 @@ export default class createNotes extends Component {
         } catch (err) {
             console.log("error at handlePinned in createNotes");
         }
+    }
+    reminderNote = () => {
+        this.setState({ reminder: "" })
     }
     /**
      * @description:it will handle the creating a new note
@@ -215,7 +231,7 @@ export default class createNotes extends Component {
                         {this.state.reminder ?
                             <Chip
                                 label={this.state.reminder}
-                                onDelete={() => this.reminderNote}
+                                onDelete={() => this.reminderNote()}
                             />
                             :
                             null}
@@ -234,4 +250,3 @@ export default class createNotes extends Component {
         )
     }
 }
-
