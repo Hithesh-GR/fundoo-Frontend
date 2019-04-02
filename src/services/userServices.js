@@ -52,7 +52,7 @@ export function uploadProfilePic(data) {
     var headers = {
         "token": localStorage.getItem("token")
     }
-    return axios.put('/setProfilePic',
+    return axios.post('/setProfilePic',
         data, {
             headers: headers
         }

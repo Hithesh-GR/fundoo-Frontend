@@ -100,7 +100,8 @@ export default class ColorPallete extends Component {
             <div>
                 <Tooltip title="Change Color">
                     <img src={require('../assets/images/pallete.svg')}
-                        className="colorPalleteIcon"
+                        // className="colorPalleteIcon"
+                        className="toolBtn"
                         alt="change color"
                         onClick={this.handleToggle}
                         onMouseEnter={this.handleMouseEnter}

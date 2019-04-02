@@ -97,7 +97,8 @@ export default class reminder extends Component {
                 <div>
                     <Tooltip title="Remind me">
                         <img src={require('../assets/images/reminder.svg')}
-                            className="reminderIcon"
+                            // className="reminderIcon"
+                            className="toolBtn"
                             onClick={this.handleClick('bottom-start')} alt="remider icon" />
                     </Tooltip>
                     <Popper open={open} anchorEl={anchorEl} placement={placement} transition style={{ zIndex: 9999 }}>

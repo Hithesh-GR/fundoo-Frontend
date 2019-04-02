@@ -7,9 +7,9 @@ const theme = createMuiTheme({
         MuiDialog: {
             paper: {
                 borderRadius: "20px",
-                boxShadow: "0 3px 5px rgba(0, 0, 0, 0.20)",
+                // boxShadow: "0 3px 5px rgba(0, 0, 0, 0.20)",
                 overflowY: "inherit",
-                border: "1px solid #dadce0",
+                border: "none",
             }
         },
         MuiBackdrop:
@@ -27,9 +27,11 @@ const theme = createMuiTheme({
         },
         MuiChip: {
             root: {
-                fontSize: 10,
-                height: 20,
-                backgroundColor: "rgba(0, 0, 0, 0.10)"
+                fontSize: "12px",
+                height: "30px",
+                backgroundColor: "rgba(0, 0, 0, 0.10)",
+                cursor: "zoom-in",
+                marginTop: "15px"
             }
         },
     },
@@ -67,6 +69,7 @@ export default class DialogBox extends Component {
         this.props.closeEditBox(e);
     }
     getData(note) {
+        console.log('dad' + note);
         console.log("note in dialog==>", note);
         if (note.title !== undefined || note.description !== undefined) {
             this.setState({
@@ -81,11 +84,12 @@ export default class DialogBox extends Component {
             })
         }
     }
+
     closeDialogPopper = (e) => {
         this.props.closeEditBox(e);
     }
 
-    reminder = () => {
+    reminder1 = () => {
         this.setState({ reminder: "" })
         this.props.reminder('', this.state._id)
     }
@@ -95,27 +99,24 @@ export default class DialogBox extends Component {
 
     }
     archiveNote = (value, noteID) => {
-        console.log("archive value in dialog========>",value);
+        console.log("archive value in dialog========>", value);
         this.setState({ archive: value })
         this.props.archiveNote(value, noteID)
-       this.props.closeEditBox();
+        this.props.closeEditBox();
     }
     reminder = (value, noteID) => {
         this.setState({ reminder: value })
         this.props.reminder(value, noteID);
     }
-    // trashNote = (noteID) => {
-    //     this.props.trashNote(noteID);
-    //     this.props.closeEditBox();
-    // }
+    trashNote = (noteID) => {
+        this.props.trashNote(noteID);
+        this.props.closeEditBox();
+    }
     ispinned = (value, noteID) => {
         this.setState({ pinned: value })
         this.props.ispinned(value, noteID);
     }
-
     render() {
-         console.log("note on dialog titlettttttttttttttttttttttttttttt----", this.state.title)
-      
         return (
             <MuiThemeProvider theme={theme}>
                 <Dialog
@@ -124,7 +125,7 @@ export default class DialogBox extends Component {
                 // noteID={this.props.noteID}
                 >
                     <div id="dialogbox" style={{ backgroundColor: this.state.color }} >
-                        <div>
+                        <div className="createNotePinIcon">
                             <Input
                                 className="dialogInputBase"
                                 disableUnderline={true}
@@ -133,11 +134,13 @@ export default class DialogBox extends Component {
                                 value={this.state.title}
                                 onChange={this.handleTitleClick}
                             />
-                            <EditPin
-                                initialpinstatus={this.state.pinned}
-                                noteID={this.state._id}
-                                pinstatus={this.ispinned}
-                            />
+                            <div>
+                                <EditPin
+                                    initialpinstatus={this.state.pinned}
+                                    noteID={this.state._id}
+                                    pinstatus={this.ispinned}
+                                />
+                            </div>
                         </div>
                         <div>
                             <Input
@@ -152,7 +155,7 @@ export default class DialogBox extends Component {
                         {this.state.reminder ?
                             <Chip id="chipcss"
                                 label={this.state.reminder}
-                                onDelete={() => this.reminder()}
+                                onDelete={() => this.reminder1()}
                             />
                             :
                             null}
@@ -163,9 +166,7 @@ export default class DialogBox extends Component {
                                 reminder={this.reminder}
                                 archiveStatus={this.state.archive}
                                 archiveNote={this.archiveNote}
-                                // trashNote={this.trashNote}
-                                // archiveStatus={this.state.archive}
-                                // archiveNote={this.archiveNote}
+                                trashNote={this.trashNote}
                             />
                             <Button id="doneButton" onClick={this.handleToggle.bind(this)}>Close</Button>
                         </div>

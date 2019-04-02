@@ -250,3 +250,4 @@ export default class createNotes extends Component {
         )
     }
 }
+export { createNotes };

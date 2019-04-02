@@ -208,7 +208,8 @@ input[type=emaill] {
 #displaycontentdiv {
   display: flex;
   justify-content: space-between;
-  margin-top: 3%
+  margin-top: 3%;
+  visibility: hidden;
 }
 
 #dashboard1 {
@@ -425,11 +426,21 @@ element.style {
   margin-left: 195%;
 }
 
+.DispCont:hover #displaycontentdiv .noteicons {
+  visibility: visible;
+}
+
+.toolBtn{
+  color: #202124;
+  opacity: .71;
+  margin: 0 3px;
+}
+
 #dialogbox {
   padding: 0px;
   height: "auto";
   border: 1px solid #dadce0;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.20);
 }
 
@@ -594,8 +605,8 @@ element.style {
 
 
 .dialogInputBase {
-  margin-top: 5%;
-  width: 460px;
+  margin-top: 0%;
+  width: 460%;
   overflow: "-webkit-paged-x";
   height: "auto";
 }

@@ -143,14 +143,15 @@ export default class Logout extends Component {
                             <Fade {...TransitionProps} timeout={350}>
                                 <Paper style={{ width: "100%", marginLeft: "10%" }}>
                                     <ClickAwayListener onClickAway={this.handleToggle}>
-                                        <div style={{ width: "280px", padding: "15px", marginTop: "1px" }}>
+                                        <div style={{ width: "280px", padding: "15px", marginTop: "5px" }}>
                                             <div id="userProfileDetails">
                                                 <Tooltip title="Change Profile">
-                                                    <Avatar style={{ width: "100px", height: "100px", marginLeft: "90px", backgroundColor: "blur" }}
+                                                    <Avatar style={{ width: "100px", height: "100px", marginTop: "10px", backgroundColor: "blur" }}
                                                         onClick={() => { this.triggerInputFile() }}>
                                                         {this.state.profilePic !== "" ?
                                                             <img style={{
-                                                                width: "80px", height: "80px"
+                                                                width: "-webkit-fill-available",
+                                                                height: "-webkit-fill-available"
                                                             }} src={this.state.profilePic} alt="change Profile pic"></img>
                                                             :
                                                             <b style={{ fontSize: "33px" }}>{initial}</b>
@@ -162,8 +163,8 @@ export default class Logout extends Component {
                                                         />
                                                     </Avatar>
                                                 </Tooltip>
-                                                <span style={{ marginTop: "30%", marginLeft: "-42%" }}>
-                                                    <center><b>  <p> {userDetails} </p>  </b></center>
+                                                <span style={{ marginTop: "10%", marginLeft: "12%" }}>
+                                                    <b>   {userDetails}   </b>
                                                     {localStorage.getItem('email')}
                                                 </span>
                                             </div>

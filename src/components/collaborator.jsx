@@ -27,10 +27,12 @@ export default class Collaborator extends Component {
     render() {
         return (
             <MuiThemeProvider theme={theme}>
-                <Tooltip title="Collaborator">
-                    <img src={notePerson} alt="Add Person icon"
-                    />
-                </Tooltip>
+                <div className="toolBtn">
+                    <Tooltip title="Collaborator">
+                        <img src={notePerson} alt="Add Person icon"
+                        />
+                    </Tooltip>
+                </div>
             </MuiThemeProvider>
         )
     }

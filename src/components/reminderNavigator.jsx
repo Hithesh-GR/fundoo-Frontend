@@ -32,7 +32,7 @@ export default class ReminderNavigator extends Component {
                     {this.props.remiderArray.map((key) => {
                         return (
                             <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }} >
-                                <div >
+                                <div className= "DispCont" >
                                     <div>
                                         {key.image !== "" ?
                                             <img style={{

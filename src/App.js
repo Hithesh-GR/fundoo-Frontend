@@ -12,6 +12,7 @@ import registration from "../src/screens/registration";
 import forgotPassword from "../src/screens/forgotPassword";
 import resetPassword from "../src/screens/resetPassword";
 import dashBoard from "./screens/dashBoard";
+import  reminder  from './components/createNotes';
 export default class App extends React.Component {
   render() {
     return (
@@ -24,6 +25,7 @@ export default class App extends React.Component {
             <Route path="/forgotPassword" component={forgotPassword}></Route>
             <Route path="/resetPassword" component={resetPassword}></Route> 
             <Route path="/dashBoard" component={dashBoard}></Route>
+            <Route path="/reminder" component={reminder}></Route>
           </div>
         </Router>
       </div>  

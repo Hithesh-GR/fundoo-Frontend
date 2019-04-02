@@ -92,7 +92,7 @@ export default class Archive extends Component {
                     />
                 </div>
                 :
-                <div>
+                <div className="toolBtn">
                     <Tooltip title="Archive Note" onClick={
                         this.handleArchive
                     }>

@@ -35,7 +35,8 @@ export default class UploadImage extends Component {
             <span>
                 <Tooltip title="Upload Image">
                     <img src={require('../assets/images/imageUpload.svg')}
-                        className="uploadImage"
+                        // className="uploadImage"
+                        className="toolBtn"
                         alt="upload pic icon"
                         onClick={() => { this.triggerInputFile() }} />
                 </Tooltip>

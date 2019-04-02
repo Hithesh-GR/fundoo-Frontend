@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, Chip } from '@material-ui/core';
 import Tools from '../components/tools';
 import EditPin from '../components/editPin';
+import DialogBox from '../components/dialogBox';
 export default class PinAndOthers extends Component {
     render() {
         let cardsView = this.props.noteProps ? "listCards" : "cards";
@@ -12,7 +13,7 @@ export default class PinAndOthers extends Component {
                     {this.props.pinArray.map((key) => {
                         return (
                             <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }} >
-                                <div>
+                                <div className= "DispCont">
                                     <div>
                                         {key.image !== "" ?
                                             <img style={{
@@ -55,13 +56,29 @@ export default class PinAndOthers extends Component {
                             </Card>)
                     })
                     }
+                    <DialogBox
+                        ispinned={this.props.ispinned}
+                        ref={this.props.cardsToDialogBox}
+                        parentProps={this.props.open1}
+                        handleEdit={this.props.handleClick}
+                        closeEditBox={this.props.closeEditBox}
+                        // note={notesArray[key].note}
+                        archiveNote={this.props.archiveNote}
+                        reminder={this.props.reminderNote}
+                        trashNote={this.props.trashNote}
+                        // noteID={notesArray[key]._id}
+                        // archiveStatus={notesArray[key].archive}
+                        editTitle={this.props.editTitle}
+                        editDescription={this.props.editDescription}
+                        createNotePropsToTools={this.props.getColor}
+                    />
                 </div>
                 <label style={{ fontFamily: "georgia", fontSize: "15px", color: "grey", marginRight: "760px" }}>OTHERS</label>
                 <div className="CardsView">
                     {this.props.othersArray.map((key) => {
                         return (
                             <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }} >
-                                <div>
+                                <div className= "DispCont">
                                     <div>
                                         {key.image !== "" ?
                                             <img style={{
@@ -105,6 +122,22 @@ export default class PinAndOthers extends Component {
                         )
                     })
                     }
+                    <DialogBox
+                        ispinned={this.props.ispinned}
+                        ref={this.props.cardsToDialogBox}
+                        parentProps={this.props.open1}
+                        handleEdit={this.props.handleClick}
+                        closeEditBox={this.props.closeEditBox}
+                        // note={notesArray[key].note}
+                        archiveNote={this.props.archiveNote}
+                        reminder={this.props.reminderNote}
+                        trashNote={this.props.trashNote}
+                        // noteID={notesArray[key]._id}
+                        // archiveStatus={notesArray[key].archive}
+                        editTitle={this.props.editTitle}
+                        editDescription={this.props.editDescription}
+                        createNotePropsToTools={this.props.getColor}
+                    />
                 </div>
             </div>
         )

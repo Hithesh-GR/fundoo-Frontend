@@ -51,9 +51,10 @@ export default class Cards extends Component {
         this.cardsToDialogBox = React.createRef();
     }
     async handleClick(note) {
+        console.log('note data ' + note);
         console.log("note--------------------->", note);
+        this.cardsToDialogBox.current.getData(note);;
         await this.setState({ open1: true })
-     this.cardsToDialogBox.current.getData(note);
     }
     closeEditBox = (e) => {
         this.setState({ open1: false })
@@ -361,7 +362,7 @@ export default class Cards extends Component {
                                     return (
                                         <div key={key}>
                                             <Card className={cardsView} style={{ backgroundColor: notesArray[key].color, borderRadius: "15px", border: "1px solid #dadce0" }}>
-                                                <div >
+                                                <div className= "DispCont" >
                                                     <div>
                                                         {notesArray[key].image !== "" ?
                                                             <img style={{
@@ -372,46 +373,13 @@ export default class Cards extends Component {
                                                             null}
                                                     </div>
                                                     <div style={{ display: "flex", justifyContent: "space-between", wordBreak: "break-word" }}>
-                                                        <b onClick={()=>this.handleClick(notesArray[key])}> {notesArray[key].title}</b>
+                                                        <b onClick={() => this.handleClick(notesArray[key])}> {notesArray[key].title}</b>
                                                         <EditPin
                                                             cardPropsToPin={this.pinNote}
                                                             noteID={notesArray[key]._id}
                                                             pinStatus={notesArray[key].pinned}
                                                         />
                                                     </div>
-                                                    <DialogBox
-                                                        reminder={this.reminderNote}
-                                                        ref={this.cardsToDialogBox}
-                                                        // archiveStatus={pin[key].archive}
-                                                        parentProps={this.state.open1}
-                                                        closeEditBox={this.closeEditBox}
-                                                        archiveNote={this.archiveNote}
-                                                        editTitle={this.editTitle}
-                                                        editDescription={this.editDescription}
-                                                        createNotePropsToTools={this.getColor}
-                                                        trashNote={this.trashNote}
-                                                    //ispinned={this.ispinned}
-
-
-
-
-
-
-
-                                                    // ref={this.cardsToDialogBox}
-                                                    // parentProps={this.state.open1}
-                                                    // handleEdit={this.handleClick}
-                                                    // closeEditBox={this.closeEditBox}
-                                                    // note={notesArray[key].note}
-                                                    // archiveNote={this.archiveNote}
-                                                    // //reminder={this.reminderNote}
-                                                    // trashNote={this.trashNote}
-                                                    // noteID={notesArray[key]._id}
-                                                    // archiveStatus={notesArray[key].archive}
-                                                    // editTitle={this.editTitle}
-                                                    // editDescription={this.editDescription}
-                                                    // createNotePropsToTools={this.getColor}
-                                                    />
                                                     <div onClick={() => this.handleClick(notesArray[key])} style={{ paddingBottom: "10px", paddingTop: "10px", wordBreak: "break-word" }}>
                                                         {notesArray[key].description}
                                                     </div >
@@ -445,6 +413,22 @@ export default class Cards extends Component {
                             }
                         </div>
                     }
+                    <DialogBox
+                        ispinned={this.ispinned}
+                        ref={this.cardsToDialogBox}
+                        parentProps={this.state.open1}
+                        handleEdit={this.handleClick}
+                        closeEditBox={this.closeEditBox}
+                        // note={notesArray[key].note}
+                        archiveNote={this.archiveNote}
+                        reminder={this.reminderNote}
+                        trashNote={this.trashNote}
+                        // noteID={notesArray[key]._id}
+                        // archiveStatus={notesArray[key].archive}
+                        editTitle={this.editTitle}
+                        editDescription={this.editDescription}
+                        createNotePropsToTools={this.getColor}
+                    />
                 </MuiThemeProvider>
             );
         }

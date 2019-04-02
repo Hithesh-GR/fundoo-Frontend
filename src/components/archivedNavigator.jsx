@@ -3,6 +3,7 @@ import { Card, MuiThemeProvider, createMuiTheme, Chip, Snackbar, IconButton } fr
 import CloseIcon from '@material-ui/icons/Close';
 import EditPin from '../components/editPin';
 import Tools from '../components/tools';
+import DialogBox from '../components/dialogBox';
 const theme = createMuiTheme({
     overrides: {
         MuiChip: {
@@ -52,7 +53,7 @@ export default class ArchivedNavigator extends Component {
                         {this.props.archiveArray.map((key) => {
                             return (
                                 <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }}>
-                                    <div >
+                                    <div className= "DispCont" >
                                         <div style={{ display: "flex", justifyContent: "space-between" }}>
                                             <b> {key.title}</b>
                                             <EditPin
@@ -86,6 +87,22 @@ export default class ArchivedNavigator extends Component {
                             )
                         })
                         }
+                        <DialogBox
+                            ispinned={this.props.ispinned}
+                            ref={this.props.cardsToDialogBox}
+                            parentProps={this.props.open1}
+                            handleEdit={this.props.handleClick}
+                            closeEditBox={this.props.closeEditBox}
+                            // note={notesArray[key].note}
+                            archiveNote={this.props.archiveNote}
+                            reminder={this.props.reminderNote}
+                            trashNote={this.props.trashNote}
+                            // noteID={notesArray[key]._id}
+                            // archiveStatus={notesArray[key].archive}
+                            editTitle={this.props.editTitle}
+                            editDescription={this.props.editDescription}
+                            createNotePropsToTools={this.props.getColor}
+                        />
                     </div>
                     <Snackbar
                         anchorOrigin={{
