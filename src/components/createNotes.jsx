@@ -219,15 +219,17 @@ export default class createNotes extends Component {
                                 />
                             </div>
                         </div>
-                        <Input
-                            className="noteInputBase"
-                            multiline
-                            disableUnderline={true}
-                            placeholder="Take a note..."
-                            id="description"
-                            value={this.state.description}
-                            onChange={this.handleDescription}
-                        />
+                        <div>
+                            <Input
+                                className="noteInputBase"
+                                multiline
+                                disableUnderline={true}
+                                placeholder="Take a note..."
+                                id="description"
+                                value={this.state.description}
+                                onChange={this.handleDescription}
+                            />
+                        </div>
                         {this.state.reminder ?
                             <Chip
                                 label={this.state.reminder}

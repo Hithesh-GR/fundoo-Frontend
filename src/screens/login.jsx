@@ -111,13 +111,14 @@ export default class login extends React.Component {
                         console.log("login response from back-end====>", response);
                         jwt.verify(response.data, 'secretkey-auth', (err, decoded) => {
                             if (err) {
-                                console.log("token invalid--->");
+                                console.log("token invalid--->",decoded);
                             } else {
                                 console.log("decoded data==>", decoded.payload);
                                 localStorage.setItem('username', decoded.payload.username);
                                 localStorage.setItem('email', decoded.payload.email);
                                 localStorage.setItem('userId', decoded.payload.user_id);
                                 localStorage.setItem('token', response.data);
+                                localStorage.setItem('profilePic', decoded.payload.profilePic);
                                 this.setState({
                                     openSnackBar: true,
                                     snackBarMessage: "Login Successfull!!"

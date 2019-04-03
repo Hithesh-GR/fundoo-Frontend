@@ -156,7 +156,7 @@ export function updateImages(data) {
     var headers = {
         "token": localStorage.getItem("token"),
     }
-    return axios.post('/uploadImage',
+    return axios.put('/uploadImage',
         data, {
             headers: headers
         }

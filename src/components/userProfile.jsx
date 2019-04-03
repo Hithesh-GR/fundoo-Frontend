@@ -103,7 +103,7 @@ export default class Logout extends Component {
         uploadProfilePic(data)
             .then((result) => {
                 console.log("profile", result.data.data);
-
+                localStorage.setItem('profilePic', result.data.data);
                 this.setState({
                     profilePic: result.data.data
                 })
@@ -146,7 +146,7 @@ export default class Logout extends Component {
                                         <div style={{ width: "280px", padding: "15px", marginTop: "5px" }}>
                                             <div id="userProfileDetails">
                                                 <Tooltip title="Change Profile">
-                                                    <Avatar style={{ width: "100px", height: "100px", marginTop: "10px", backgroundColor: "blur" }}
+                                                    <Avatar style={{ width: "100px", height: "100px", marginTop: "8px", backgroundColor: "blur" }}
                                                         onClick={() => { this.triggerInputFile() }}>
                                                         {this.state.profilePic !== "" ?
                                                             <img style={{
@@ -188,7 +188,8 @@ export default class Logout extends Component {
                                 <Avatar style={{ width: "35px", height: "35px", backgroundColor: "blur" }} onClick={this.handleClick('bottom-end')} >
                                     {this.state.profilePic !== "" ?
                                         <img style={{
-                                            width: "40px", height: "40px"
+                                            width: "-webkit-fill-available",
+                                            height: "-webkit-fill-available"
                                         }} src={this.state.profilePic} alt="change Profile pic"></img>
                                         :
                                         initial

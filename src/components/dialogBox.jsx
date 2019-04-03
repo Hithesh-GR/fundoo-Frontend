@@ -120,6 +120,7 @@ export default class DialogBox extends Component {
         return (
             <MuiThemeProvider theme={theme}>
                 <Dialog
+                    style={{ overflow: "scroll" }}
                     aria-labelledby="responsive-dialog-title"
                     open={this.props.parentProps}
                 // noteID={this.props.noteID}

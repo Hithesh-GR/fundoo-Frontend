@@ -24,6 +24,7 @@ export default class registration extends React.Component {
             email: "",
             password: "",
             confirm: "",
+            profilePic: "",
             snackBarMessage: "",
             showPassword: false
         };
@@ -146,7 +147,8 @@ export default class registration extends React.Component {
                     firstName: this.state.firstName,
                     lastName: this.state.lastName,
                     email: this.state.email,
-                    password: this.state.password
+                    password: this.state.password,
+                    profilePic: this.state.profilePic
                 }
                 userRegister(data)
                     .then((response) => {
@@ -277,14 +279,14 @@ export default class registration extends React.Component {
                         </div>
                     <div id="buttn" >
                         <Button
-                        id="sentenceCase"
+                            id="sentenceCase"
                             color="primary"
                             title="click on sign in"
                             onClick={this.loginclick}>
                             Sign in
                         </Button>
                         <Button
-                       id= "sentenceCase"
+                            id="sentenceCase"
                             variant="contained"
                             title="click on submit"
                             color="primary"

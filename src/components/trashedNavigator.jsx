@@ -19,9 +19,9 @@ export default class TrashNavigator extends Component {
     render() {
         let cardsView = this.props.noteProps ? "listCards" : "cards";
         return (
-            <MuiThemeProvider theme={theme}>
+            <MuiThemeProvider theme={theme} >
                 <label style={{ fontFamily: "cursive", fontSize: "18px", color: "grey", marginRight: "760px" }}>TRASH</label>
-                <div className="CardsView" >
+                <div className="CardsView"  >
                     {this.props.trashArray.map((key) => {
                         return (
                             <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }} >
