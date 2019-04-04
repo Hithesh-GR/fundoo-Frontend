@@ -53,7 +53,16 @@ export default class ArchivedNavigator extends Component {
                         {this.props.archiveArray.map((key) => {
                             return (
                                 <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }}>
-                                    <div className= "DispCont" >
+                                    <div className="DispCont" >
+                                        <div>
+                                            {key.image !== "" ?
+                                                <img style={{
+                                                    maxWidth: "100%",
+                                                    height: "auto"
+                                                }} src={key.image} alt="cardImage"></img>
+                                                :
+                                                null}
+                                        </div>
                                         <div style={{ display: "flex", justifyContent: "space-between" }}>
                                             <b> {key.title}</b>
                                             <EditPin
@@ -81,6 +90,7 @@ export default class ArchivedNavigator extends Component {
                                             trashNote={this.props.trashNote}
                                             archiveStatus={key.archive}
                                             archiveNote={this.props.archiveNote}
+                                            uploadImage={this.props.uploadImage}
                                         />
                                     </div>
                                 </Card>

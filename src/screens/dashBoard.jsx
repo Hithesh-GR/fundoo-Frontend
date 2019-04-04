@@ -18,7 +18,8 @@ export default class dashBoard extends Component {
             reminder: false,
             archive: false,
             trash: false,
-            searchNote: ""
+            searchNote: "",
+            image:""
         }
         this.noteToCards = React.createRef();
         this.handleCardStyle = this.handleCardStyle.bind(this);
@@ -115,6 +116,7 @@ export default class dashBoard extends Component {
                                 navigateReminder={this.state.reminder}
                                 navigateTrashed={this.state.trash}
                                 searchNote={this.state.searchNote}
+                                uploadImage={this.state.image}
                             />
                         </div>
                     }

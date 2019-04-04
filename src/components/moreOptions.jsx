@@ -21,8 +21,8 @@ const theme = createMuiTheme({
     },
 })
 export default class MoreOptions extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             anchorEl: null,
             open: false,

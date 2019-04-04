@@ -62,6 +62,7 @@ export default class createNotes extends Component {
         this.handleArchive = this.handleArchive.bind(this);
         this.handleReminder = this.handleReminder.bind(this);
         this.handlePinned = this.handlePinned.bind(this);
+        this.handleImage = this.handleImage.bind(this);
     }
     /**
      * @description:it will handle the title event
@@ -129,6 +130,17 @@ export default class createNotes extends Component {
             console.log("error at handlePinned in createNotes");
         }
     }
+    /**
+     * @description:it will handle the pinned event
+     * @param {*value for pinned} value 
+     */
+    handleImage(value) {
+        try {
+            this.setState({ image: value });
+        } catch (err) {
+            console.log("error at handleImage in createNotes");
+        }
+    }
     reminderNote = () => {
         this.setState({ reminder: "" })
     }
@@ -138,7 +150,7 @@ export default class createNotes extends Component {
     handleToggle() {
         try {
             this.setState({ openNote: !this.state.openNote });
-            // console.log("pinned", this.state.openNote);
+             console.log("pinned", this.state.image);
             if (this.state.title !== '' || this.state.description !== '' || this.state.color !== "rgb(255, 255, 255)") {
                 const note = {
                     userId: localStorage.getItem('userId'),
@@ -151,6 +163,8 @@ export default class createNotes extends Component {
                     pinned: this.state.pinned,
                     trash: this.state.trash,
                 }
+                console.log("note",note);
+                
                 createNote(note)
                     .then((result) => {
                         console.log("create note result from back-end====>", result.data.data);
@@ -202,6 +216,15 @@ export default class createNotes extends Component {
             <MuiThemeProvider theme={theme}>
                 <div id="createNoteParent">
                     <Card className="createNote1" style={{ backgroundColor: this.state.color }}>
+                        <div>
+                            {this.state.image ?
+                                <img style={{ maxWidth: "100%", height: "auto" }}
+                                    src={this.state.image} alt="cardImage">
+                                </img>
+                                :
+                                null
+                            }
+                        </div>
                         <div className="createNotePinIcon">
                             <Input
                                 className="noteInputBase"
@@ -243,6 +266,8 @@ export default class createNotes extends Component {
                                 createNotePropsToTools={this.handleColor}
                                 archiveNote={this.handleArchive}
                                 archiveStatus={this.state.archive}
+                                uploadImage={this.handleImage}
+                                //uploadImage={this.props.uploadImage}
                             />
                             <Button onClick={this.handleToggle}>Close</Button>
                         </div>

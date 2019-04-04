@@ -18,7 +18,6 @@ export default class Archive extends Component {
             snackBarMessage: "",
             openSnackBar: false,
         }
-
         this.handleArchive=this.handleArchive.bind(this)
     }
   async  handleArchive (){

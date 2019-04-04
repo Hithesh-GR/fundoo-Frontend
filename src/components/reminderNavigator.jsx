@@ -69,6 +69,7 @@ export default class ReminderNavigator extends Component {
                                         trashNote={this.props.trashNote}
                                         archiveStatus={key.archive}
                                         archiveNote={this.props.archiveNote}
+                                        uploadImage={this.props.uploadImage}
                                     />
                                 </div>
                             </Card>

@@ -46,12 +46,11 @@ export default class Cards extends Component {
             open: false,
             open1: false,
             notes: [],
-            label: false
+            image: ""
         }
         this.cardsToDialogBox = React.createRef();
     }
     async handleClick(note) {
-        console.log('note data ' + note);
         console.log("note--------------------->", note);
         this.cardsToDialogBox.current.getData(note);;
         await this.setState({ open1: true })
@@ -203,14 +202,19 @@ export default class Cards extends Component {
             });
     }
     uploadImage = (value, noteId) => {
-        console.log("image:------------", value);
-        let data = new FormData();
-        data.append('image', value);
-        data.append('noteID', noteId);
-        console.log("request", data);
+        // console.log("image:--------======----", noteId);
+        // let data = new FormData();
+        // data.append('image', value);
+        // data.append('noteID', noteId);
+        // console.log("request----------------------------------", data.get("image"));
+        const data = {
+            noteID: noteId,
+            image: value
+        }
         updateImages(data)
             .then((result) => {
-                console.log("result", result.data.data)
+                console.log("result in updating note image", result.data.data);
+                localStorage.setItem('image', result.data.data);
                 let newArray = this.state.notes
                 for (let i = 0; i < newArray.length; i++) {
                     if (newArray[i]._id === noteId) {
@@ -273,7 +277,6 @@ export default class Cards extends Component {
     }
     render() {
         let notesArray = otherArray(this.state.notes);
-
         if ((this.props.searchNote !== "") && (!this.props.navigateArchived
             && !this.props.navigateReminder && !this.props.navigateTrashed)) {
             let searchNote;
@@ -362,15 +365,15 @@ export default class Cards extends Component {
                                     return (
                                         <div key={key}>
                                             <Card className={cardsView} style={{ backgroundColor: notesArray[key].color, borderRadius: "15px", border: "1px solid #dadce0" }}>
-                                                <div className= "DispCont" >
+                                                <div className="DispCont" >
                                                     <div>
-                                                        {notesArray[key].image !== "" ?
-                                                            <img style={{
-                                                                maxWidth: "100%",
-                                                                height: "auto"
-                                                            }} src={notesArray[key].image} alt="cardImage"></img>
+                                                        {notesArray[key].image ?
+                                                            <img style={{ maxWidth: "100%", height: "auto" }}
+                                                                src={notesArray[key].image} alt="cardImage">
+                                                            </img>
                                                             :
-                                                            null}
+                                                            null
+                                                        }
                                                     </div>
                                                     <div style={{ display: "flex", justifyContent: "space-between", wordBreak: "break-word" }}>
                                                         <b onClick={() => this.handleClick(notesArray[key])}> {notesArray[key].title}</b>
@@ -391,7 +394,8 @@ export default class Cards extends Component {
                                                                 onDelete={() => this.reminderNote('', notesArray[key]._id)}
                                                             />
                                                             :
-                                                            null}
+                                                            null
+                                                        }
                                                     </div>
                                                 </div>
                                                 <div id="displaycontentdiv">
@@ -423,6 +427,7 @@ export default class Cards extends Component {
                         archiveNote={this.archiveNote}
                         reminder={this.reminderNote}
                         trashNote={this.trashNote}
+                        uploadImage={this.uploadImage}
                         // noteID={notesArray[key]._id}
                         // archiveStatus={notesArray[key].archive}
                         editTitle={this.editTitle}

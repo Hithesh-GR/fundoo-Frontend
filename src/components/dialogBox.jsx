@@ -47,6 +47,7 @@ export default class DialogBox extends Component {
             title: "",
             description: "",
             color: "",
+            image: "",
             archive: false,
             _id: "",
             reminder: ""
@@ -69,13 +70,13 @@ export default class DialogBox extends Component {
         this.props.closeEditBox(e);
     }
     getData(note) {
-        console.log('dad' + note);
         console.log("note in dialog==>", note);
         if (note.title !== undefined || note.description !== undefined) {
             this.setState({
                 note: note,
                 title: note.title,
                 color: note.color,
+                image: note.image,
                 description: note.description,
                 archive: note.archive,
                 _id: note._id,
@@ -108,6 +109,10 @@ export default class DialogBox extends Component {
         this.setState({ reminder: value })
         this.props.reminder(value, noteID);
     }
+    image = (value, noteID) => {
+        this.setState({ image: value })
+        this.props.uploadImage(value, noteID);
+    }
     trashNote = (noteID) => {
         this.props.trashNote(noteID);
         this.props.closeEditBox();
@@ -126,6 +131,15 @@ export default class DialogBox extends Component {
                 // noteID={this.props.noteID}
                 >
                     <div id="dialogbox" style={{ backgroundColor: this.state.color }} >
+                        <div>
+                            {this.state.image ?
+                                <img style={{ maxWidth: "100%", height: "auto" }}
+                                    src={this.state.image} alt="cardImage">
+                                </img>
+                                :
+                                null
+                            }
+                        </div>
                         <div className="createNotePinIcon">
                             <Input
                                 className="dialogInputBase"
@@ -168,6 +182,8 @@ export default class DialogBox extends Component {
                                 archiveStatus={this.state.archive}
                                 archiveNote={this.archiveNote}
                                 trashNote={this.trashNote}
+                                //uploadImage={this.uploadImage}
+                                uploadImage={this.props.uploadImage}
                             />
                             <Button id="doneButton" onClick={this.handleToggle.bind(this)}>Close</Button>
                         </div>

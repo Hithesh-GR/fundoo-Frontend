@@ -7,7 +7,14 @@
  *****************************************************************************************/
 import React, { Component } from 'react';
 import { Tooltip } from '@material-ui/core';
+import { uploadProfilePic1 } from "../services/noteServices";
 export default class UploadImage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            image: ""
+        };
+    }
     /**
      * @description:it trigger the event and enter into our file
      */
@@ -22,14 +29,33 @@ export default class UploadImage extends Component {
      * @description:it will upload the image
      * @param {*} evt 
      */
-    uploadImage(evt) {
-        try {
-            console.log("upload image", evt.target.files[0]);
-            this.props.uploadImage(evt.target.files[0], this.props._id)
-        } catch (err) {
-            console.log("error at uploadImage");
-        }
+    // uploadImage = (evt) => {
+    //     try {
+    //         console.log("upload image", evt.target.files[0]);
+    //         this.props.uploadImage(evt.target.files[0], this.props.noteID)
+    //     } catch (err) {
+    //         console.log("error at uploadImage");
+    //     }
+    // }
+    uploadImage = (e) => {
+        let data = new FormData();
+        console.log("image:------------", e.target.files[0]);
+        data.append('image', e.target.files[0]);
+        uploadProfilePic1(data)
+            .then((result) => {
+                console.log("profile", result.data.data);
+               // localStorage.setItem('profilePic', result.data.data);
+                this.setState({
+                    image: result.data.data
+                })
+                this.props.uploadImage(this.state.image, this.props.noteID)
+                // console.log("s33333333333333333333",this.state.image);
+                
+            }).catch((err) => {
+                alert(err);
+            })
     }
+
     render() {
         return (
             <span>

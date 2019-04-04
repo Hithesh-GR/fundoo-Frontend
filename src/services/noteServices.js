@@ -162,6 +162,19 @@ export function updateImages(data) {
         }
     )
 }
+
+export function uploadProfilePic1(data) {
+    var headers = {
+        "token": localStorage.getItem("token")
+    }
+    return axios.put('/setProfilePic1',
+        data, {
+            headers: headers
+        }
+    )
+}
+
+
 /********************************************************************************/
 /**
  * 
