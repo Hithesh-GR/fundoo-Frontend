@@ -357,6 +357,8 @@ export default class Cards extends Component {
                             trashNote={this.trashNote}
                             archiveNote={this.archiveNote}
                             uploadImage={this.uploadImage}
+                            editTitle={this.editTitle}
+                            editDescription={this.editDescription}
                         />
                         :
                         <div className="CardsView" >
@@ -400,6 +402,9 @@ export default class Cards extends Component {
                                                 </div>
                                                 <div id="displaycontentdiv">
                                                     <Tools
+                                                        date={notesArray[key].reminder}
+                                                        notetitle={notesArray[key].title}
+                                                        notedescription={notesArray[key].description}
                                                         createNotePropsToTools={this.getColor}
                                                         archiveNote={this.archiveNote}
                                                         noteID={notesArray[key]._id}

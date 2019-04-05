@@ -40,6 +40,9 @@ export default class Tools extends Component {
                         parentToolsProps={setNoteTime}
                         reminder={this.props.reminder}
                         noteID={this.props.noteID}
+                        date={this.props.date}
+                        notetitle={this.props.notetitle}
+                        notedescription={this.props.notedescription}
                     />
                     <Collaborator />
                     <ColorBox

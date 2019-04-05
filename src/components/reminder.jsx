@@ -8,7 +8,8 @@
 import React, { Component } from 'react';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
-import { MenuItem, Paper, Tooltip, ListItem, createMuiTheme, MuiThemeProvider, ClickAwayListener } from '@material-ui/core'
+import { MenuItem, Paper, Tooltip, ListItem, createMuiTheme, MuiThemeProvider, ClickAwayListener,TextField,Button } from '@material-ui/core';
+import {askForPermissioToReceiveNotifications} from "../push-notification";
 const theme = createMuiTheme({
     overrides: {
         MuiMenuItem: {
@@ -37,6 +38,11 @@ export default class reminder extends Component {
         anchorEl: null,
         open: false,
         placement: null,
+        date: "",
+        snak2open: false,
+        title: "",
+        description: ""
+
     };
     /**
      * @description:it handles the onclick on reminder event
@@ -89,6 +95,46 @@ export default class reminder extends Component {
     //     console.log("weekly reminder data=====>", reminder1);
     //     this.props.reminder(reminder1, this.props.noteID)
     // }
+
+    handlesubmit = event => {
+        event.preventDefault();
+        this.handleClose();
+        console.log("datedatedatedate", this.state.date);
+        //console.log("notess in reminder==>", this.props.note);
+        this.props.reminder(this.state.date, this.props.noteID);
+
+    }
+    componentDidUpdate() {
+        console.log("reminder date in componentwillmount-->", this.props.date);
+        if (this.props.date !== undefined && this.props.date !== "") {
+            askForPermissioToReceiveNotifications(this.props.date, this.props.notetitle, this.props.notedescription)
+                .then((diff) => {
+                    console.log("difff in reminder-------", diff);
+                    setTimeout(() => {
+                        this.setState({ snak2open: true });
+                        console.log("start----------->");
+                        this.props.reminder("", this.props.noteID);
+                    }, diff);
+                })
+                .catch((err) => {
+                    console.log("error in set timeout reminder", err);
+                })
+        }
+    }
+    handleChange = name => event => {
+        this.setState({ [name]: event.target.value });
+        //console.log("datedatedatedate", this.state.date);
+    };
+
+
+
+
+
+
+
+
+
+
     render() {
         const setAMPM = this.props.parentToolsProps;
         const { anchorEl, open, placement } = this.state;
@@ -108,9 +154,25 @@ export default class reminder extends Component {
                                     <ClickAwayListener onClickAway={this.handleClose}>
                                         <div>
                                             <ListItem className="listRemindr" >Reminder:</ListItem>
+                                            <MenuItem >
+                                                <TextField
+                                                    id="datetime-local"
+                                                    //label="Next appointment"
+                                                    type="datetime-local"
+                                                    defaultValue="2019-04-05T11:28"
+                                                    // className={classes.textField}
+                                                    onChange={this.handleChange('date')}
+                                                    InputLabelProps={{
+                                                        shrink: true,
+                                                    }}
+                                                />
+                                            </MenuItem>
+
+
+
+
                                             <MenuItem className="currentDate" onClick={() => this.setTodayReminder()}>
-                                                <div>Later today</div>
-                                                <div>8:00 {setAMPM}</div>
+
                                             </MenuItem>
                                             <MenuItem className="currentDate" onClick={() => this.setTomorrowReminder()}>
                                                 <div>Tomorrow</div>
@@ -120,10 +182,15 @@ export default class reminder extends Component {
                                                 <div>Next Week</div>
                                                 <div>Mon, 8:00 AM</div>
                                             </MenuItem> */}
-                                            <MenuItem className="currentDate">
+                                            {/* <MenuItem className="currentDate">
                                                 <div>Home</div>
                                                 <div>Bangalore</div>
-                                            </MenuItem>
+                                            </MenuItem> */}
+                                            <div id="savereminder">
+                                                <Button onClick={this.handlesubmit} >
+                                                    Save
+</Button>
+                                            </div>
                                         </div>
                                     </ClickAwayListener>
                                 </Paper>

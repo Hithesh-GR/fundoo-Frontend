@@ -59,6 +59,7 @@ export default class Logout extends Component {
     handlelogout = event => {
         try {
             event.preventDefault();
+            localStorage.clear();
             this.props.props.props.history.push("/login");
         } catch (err) {
             console.log("error at registrationclick in userProfile");
@@ -70,7 +71,7 @@ export default class Logout extends Component {
     handleregister = event => {
         try {
             event.preventDefault();
-            this.props.props.props.history.push("/registration");
+           this.props.props.props.history.push("/registration");
         } catch (err) {
             console.log("error at loginclick in userProfile");
         }
@@ -131,11 +132,6 @@ export default class Logout extends Component {
         const userDetails = localStorage.getItem('username');
         // const userDetails = localStorage.getItem('email');
         const initial = userDetails.substring(0, 1);
-        if (localStorage.getItem('token1') !== "true")
-            return (
-                this.props.props.props.history.push("/login")
-            )
-        else {
             return (
                 <div>
                     <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
@@ -200,6 +196,6 @@ export default class Logout extends Component {
                     </div>
                 </div>
             );
-        }
+        
     }
 }

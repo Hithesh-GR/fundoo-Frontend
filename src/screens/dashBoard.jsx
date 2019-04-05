@@ -81,6 +81,7 @@ export default class dashBoard extends Component {
         }
     }
     render() {
+    
         const slidingCards = this.state.slideCards ? "afterSlide" : "beforeSlide"
         return (
             <div className={slidingCards}>
@@ -122,6 +123,6 @@ export default class dashBoard extends Component {
                     }
                 </div>
             </div>
-        )
+       )
     }
 }

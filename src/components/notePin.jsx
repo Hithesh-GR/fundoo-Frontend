@@ -4,6 +4,24 @@ import Tools from '../components/tools';
 import EditPin from '../components/editPin';
 import DialogBox from '../components/dialogBox';
 export default class PinAndOthers extends Component {
+    constructor() {
+        super();
+        this.state = {
+            
+            open1: false,
+        
+            
+        }
+        this.cardsToDialogBox = React.createRef();
+    }
+    async handleClick(note) {
+        console.log("note--------------------->", note);
+        this.cardsToDialogBox.current.getData(note);;
+        await this.setState({ open1: true })
+    }
+    closeEditBox = (e) => {
+        this.setState({ open1: false })
+    }
     render() {
         let cardsView = this.props.noteProps ? "listCards" : "cards";
         return (
@@ -22,7 +40,7 @@ export default class PinAndOthers extends Component {
                                             }} src={key.image} alt="cardImage"></img>
                                             : null}
                                     </div>
-                                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                    <div  onClick={() => this.handleClick(key)} style={{ display: "flex", justifyContent: "space-between" }}>
                                         <b>{key.title}</b>
                                         <EditPin
                                             cardPropsToPin={this.props.pinNote}
@@ -30,7 +48,7 @@ export default class PinAndOthers extends Component {
                                             pinStatus={key.pinned}
                                         />
                                     </div>
-                                    <div>
+                                    <div  onClick={() => this.handleClick(key)}>
                                         {key.description}
                                     </div>
                                     {key.reminder ?
@@ -58,10 +76,10 @@ export default class PinAndOthers extends Component {
                     }
                     <DialogBox
                         ispinned={this.props.ispinned}
-                        ref={this.props.cardsToDialogBox}
-                        parentProps={this.props.open1}
-                        handleEdit={this.props.handleClick}
-                        closeEditBox={this.props.closeEditBox}
+                        ref={this.cardsToDialogBox}
+                        parentProps={this.state.open1}
+                        handleEdit={this.handleClick}
+                        closeEditBox={this.closeEditBox}
                         // note={notesArray[key].note}
                         archiveNote={this.props.archiveNote}
                         reminder={this.props.reminderNote}
@@ -124,10 +142,10 @@ export default class PinAndOthers extends Component {
                     }
                     <DialogBox
                         ispinned={this.props.ispinned}
-                        ref={this.props.cardsToDialogBox}
-                        parentProps={this.props.open1}
-                        handleEdit={this.props.handleClick}
-                        closeEditBox={this.props.closeEditBox}
+                        ref={this.cardsToDialogBox}
+                        parentProps={this.state.open1}
+                        handleEdit={this.handleClick}
+                        closeEditBox={this.closeEditBox}
                         // note={notesArray[key].note}
                         archiveNote={this.props.archiveNote}
                         reminder={this.props.reminderNote}

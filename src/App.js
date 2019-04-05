@@ -6,13 +6,33 @@
  *  @since          : 23-02-2019
  ******************************************************************************/
 import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import login from "../src/screens/login";
 import registration from "../src/screens/registration";
 import forgotPassword from "../src/screens/forgotPassword";
 import resetPassword from "../src/screens/resetPassword";
 import dashBoard from "./screens/dashBoard";
-import  reminder  from './components/createNotes';
+
+/*This will rename our component to Component so that we can use it to render because React 
+requires components to be capitalized otherwise it will treat it as a normal HTML element.*/
+export const PrivateRoute = ({ component: Component, ...rest }) => (
+  /**
+  * We need to use a render prop here because now that we have matched a route we need to do some logic 
+  * to determine whether or not we should render the component that was passed in or redirect the user to
+  * another location.
+  */
+  <Route {...rest} render={props => (
+    localStorage.getItem('token') ? (
+      <Component {...props}/>
+    ) : (
+      //If user isn't logged in then we can redirect to a login page.
+      <Redirect to={{
+        pathname: '/login',
+        state: { from: props.location }
+      }}/>
+    )
+  )}/>
+)
 export default class App extends React.Component {
   render() {
     return (
@@ -24,8 +44,7 @@ export default class App extends React.Component {
             <Route path="/login" component={login}></Route>
             <Route path="/forgotPassword" component={forgotPassword}></Route>
             <Route path="/resetPassword" component={resetPassword}></Route> 
-            <Route path="/dashBoard" component={dashBoard}></Route>
-            <Route path="/reminder" component={reminder}></Route>
+            <PrivateRoute path="/dashBoard" component={dashBoard}></PrivateRoute>
           </div>
         </Router>
       </div>  
