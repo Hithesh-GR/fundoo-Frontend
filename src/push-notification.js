@@ -20,12 +20,12 @@ export const askForPermissioToReceiveNotifications = async (userdate, title, des
         // const token = await messaging.getToken();
         // console.log('token:============>', token);
         var date = new Date()
-        //console.log("date-->0", date);
+        console.log("date-->0", date);
         var date1 = new Date(userdate)
-        //console.log("date1111-->0", date1);
+        console.log("date1111-->0", date1);
         //var  compareDate = "2019-04-03 19:00:06"
         var diff = Math.abs(date1 - date);
-        //console.log("diff----->", diff);
+        console.log("diff----->", diff);
 
         setTimeout(() => {
             var data = {
