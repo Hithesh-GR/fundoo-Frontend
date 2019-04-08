@@ -1,3 +1,10 @@
+/********************************************************************************
+ *  @Purpose        : 
+ *  @file           :      
+ *  @author         : HITHESH G R
+ *  @version        : v0.1
+ *  @since          : 23-02-2019
+ *********************************************************************************/
 import React, { Component } from 'react';
 import notePerson from '../assets/images/addPerson.svg';
 import { Tooltip, createMuiTheme, MuiThemeProvider } from '@material-ui/core';

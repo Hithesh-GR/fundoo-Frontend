@@ -1,4 +1,3 @@
-
 /*****************************************************************************************************
  *  @Purpose        : Here we have to do some operations using moreOptions event.
  *  @file           : moreOptions.jsx       
