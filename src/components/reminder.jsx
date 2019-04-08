@@ -8,8 +8,10 @@
 import React, { Component } from 'react';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
-import { MenuItem, Paper, Tooltip, ListItem, createMuiTheme, MuiThemeProvider, ClickAwayListener,TextField,Button } from '@material-ui/core';
-import {askForPermissioToReceiveNotifications} from "../push-notification";
+import { Snackbar, IconButton } from '@material-ui/core';
+import { MenuItem, Paper, Tooltip, ListItem, createMuiTheme, MuiThemeProvider, ClickAwayListener, TextField, Button } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import { askForPermissioToReceiveNotifications } from "../push-notification";
 const theme = createMuiTheme({
     overrides: {
         MuiMenuItem: {
@@ -69,14 +71,14 @@ export default class reminder extends Component {
             console.log("error at handleClose in reminder");
         }
     }
-    setTodayReminder = () => {
-        this.handleClose();
-        let ampm = parseInt(new Date().getHours()) >= 8 ? "PM" : "AM";
-        var date = new Date().toDateString();
-        var reminder1 = date + ", 8 " + ampm;
-        console.log("today reminder data=====>", reminder1);
-        this.props.reminder(reminder1, this.props.noteID)
-    }
+    // setTodayReminder = () => {
+    //     this.handleClose();
+    //     let ampm = parseInt(new Date().getHours()) >= 8 ? "PM" : "AM";
+    //     var date = new Date().toDateString();
+    //     var reminder1 = date + ", 8 " + ampm;
+    //     console.log("today reminder data=====>", reminder1);
+    //     this.props.reminder(reminder1, this.props.noteID)
+    // }
     setTomorrowReminder = () => {
         this.handleClose();
         let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon"]
@@ -95,14 +97,12 @@ export default class reminder extends Component {
     //     console.log("weekly reminder data=====>", reminder1);
     //     this.props.reminder(reminder1, this.props.noteID)
     // }
-
     handlesubmit = event => {
         event.preventDefault();
         this.handleClose();
         console.log("datedatedatedate", this.state.date);
         //console.log("notess in reminder==>", this.props.note);
         this.props.reminder(this.state.date, this.props.noteID);
-
     }
     componentDidUpdate() {
         console.log("reminder date in componentwillmount-->", this.props.date);
@@ -125,16 +125,9 @@ export default class reminder extends Component {
         this.setState({ [name]: event.target.value });
         //console.log("datedatedatedate", this.state.date);
     };
-
-
-
-
-
-
-
-
-
-
+    handleClose1 = () => {
+        this.setState({ snak2open: false });
+    };
     render() {
         const setAMPM = this.props.parentToolsProps;
         const { anchorEl, open, placement } = this.state;
@@ -154,26 +147,26 @@ export default class reminder extends Component {
                                     <ClickAwayListener onClickAway={this.handleClose}>
                                         <div>
                                             <ListItem className="listRemindr" >Reminder:</ListItem>
-                                            <MenuItem >
-                                                <TextField
-                                                    id="datetime-local"
-                                                    //label="Next appointment"
-                                                    type="datetime-local"
-                                                    defaultValue="2019-04-05T11:28"
-                                                    // className={classes.textField}
-                                                    onChange={this.handleChange('date')}
-                                                    InputLabelProps={{
-                                                        shrink: true,
-                                                    }}
-                                                />
+                                            <MenuItem className="currentDate">
+                                                <div>
+                                                    <TextField
+                                                        id="datetime-local"
+                                                        type="datetime-local"
+                                                        defaultValue="2019-04-06T10:28"
+                                                        onChange={this.handleChange('date')}
+                                                        InputLabelProps={{
+                                                            shrink: true,
+                                                        }}
+                                                    />
+                                                </div>
+                                                <div >
+                                                    <Button onClick={this.handlesubmit} >
+                                                        Save
+                                                </Button>
+                                                </div>
                                             </MenuItem>
-
-
-
-
-                                            <MenuItem className="currentDate" onClick={() => this.setTodayReminder()}>
-
-                                            </MenuItem>
+                                            {/* <MenuItem className="currentDate" onClick={() => this.setTodayReminder()}>
+                                            </MenuItem> */}
                                             <MenuItem className="currentDate" onClick={() => this.setTomorrowReminder()}>
                                                 <div>Tomorrow</div>
                                                 <div>8:00 AM</div>
@@ -182,21 +175,42 @@ export default class reminder extends Component {
                                                 <div>Next Week</div>
                                                 <div>Mon, 8:00 AM</div>
                                             </MenuItem> */}
-                                            {/* <MenuItem className="currentDate">
+                                            <MenuItem className="currentDate">
                                                 <div>Home</div>
                                                 <div>Bangalore</div>
-                                            </MenuItem> */}
-                                            <div id="savereminder">
-                                                <Button onClick={this.handlesubmit} >
-                                                    Save
-</Button>
-                                            </div>
+                                            </MenuItem>
+                                            <MenuItem className="currentDate">
+                                                <div>Work</div>
+                                                <div>BridgeLabz Solutions LLP</div>
+                                            </MenuItem>
                                         </div>
                                     </ClickAwayListener>
                                 </Paper>
                             </Fade>
                         )}
                     </Popper>
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        open={this.state.snak2open}
+                        message={
+                            <div>Reminder to Note :
+                                {this.props.notetitle}
+                            </div>
+                        }
+                        action={[
+                            <Button key="undo" style={{ color: "#F1C40F" }} size="small" >
+                                UNDO
+                            </Button>,
+                            <IconButton
+                                onClick={this.handleClose1}
+                            >
+                                <CloseIcon />
+                            </IconButton>,
+                        ]}
+                    />
                 </div>
             </MuiThemeProvider>
         )

@@ -142,25 +142,25 @@ export default class login extends React.Component {
     /**
      * @description:redirect or trigger to forgotPasswordPage
      */
-    // forgotPasswordPage = e => {
-    //     try {
-    //         e.preventDefault();
-    //         this.props.history.push('/forgotPassword');
-    //     } catch (err) {
-    //         console.log("error at forgotPasswordPage in login");
-    //     }
-    // };
+    forgotPasswordPage = e => {
+        try {
+            e.preventDefault();
+            this.props.history.push('/forgotPassword');
+        } catch (err) {
+            console.log("error at forgotPasswordPage in login");
+        }
+    };
     /**
      * @description:redirect to registerpage
      */
-    // registrationclick = e => {
-    //     try {
-    //         e.preventDefault();
-    //         this.props.history.push('/registration');
-    //     } catch (err) {
-    //         console.log("error at registrationclick in login");
-    //     }
-    // };
+    registrationclick = e => {
+        try {
+            e.preventDefault();
+            this.props.history.push('/registration');
+        } catch (err) {
+            console.log("error at registrationclick in login");
+        }
+    };
     /**
      * @description:use to auto close snackBar
      */

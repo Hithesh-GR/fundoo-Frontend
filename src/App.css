@@ -193,6 +193,7 @@ input[type=emaill] {
 }
 
 /***********************for dashBoard css***************************/
+
 #CreateNote2 {
   /* height: 156px; */
   width: 500px;
@@ -425,10 +426,10 @@ element.style {
 #refreshIcon {
   margin-left: 195%;
 }
-
+/* 
 .DispCont:hover #displaycontentdiv .noteicons {
   visibility: visible;
-}
+} */
 
 .toolBtn{
   color: #202124;
@@ -658,15 +659,21 @@ element.style {
   display: flex;
   justify-content: space-around;
 }
-
+/* 
 .cards:hover .cardTools {
   visibility: visible;
   box-shadow: 2px 2px 2px 2px solid gray
-}
+} */
 
+
+.cards .cardTools {
+  visibility: visible;
+  box-shadow: 2px 2px 2px 2px solid gray
+}
+/* 
 .cards:hover .pinIcon {
   visibility: visible
-}
+} */
 
 .cardsInGrid {
   margin-right: 10px;
@@ -709,18 +716,22 @@ element.style {
   display: flex;
   justify-content: space-between;
 }
-
+/* 
 .listCards:hover .cardTools {
   visibility: visible
-}
+} */
 
+
+.listCards .cardTools {
+  visibility: visible
+} 
 .pinIcon {
   visibility: hidden;
 }
-
+/* 
 .listCards:hover .pinIcon {
   visibility: visible
-}
+} */
 
 #createNotetools {
   display: flex;
@@ -866,6 +877,7 @@ div .currentDate {
 
   .listCards {
     width: 500px;
+    height: fit-content;
     margin-left: 100px;
     margin-top: 25px;
     text-align: left;
@@ -877,6 +889,7 @@ div .currentDate {
 
   .cards {
     width: 240px;
+    height: fit-content;
     margin-top: 25px;
     /* margin-left: 5px; */
     padding-top: 15px;
@@ -923,6 +936,7 @@ div .currentDate {
 
   .listCards {
     width: 500px;
+    height: fit-content;
     margin-left: 100px;
     margin-top: 25px;
     text-align: left;
@@ -935,6 +949,7 @@ div .currentDate {
   .cards {
     width: 240px;
     margin-top: 25px;
+    height: fit-content;
     /* margin-left: 5px; */
     padding-top: 15px;
     text-align: left;
@@ -989,6 +1004,7 @@ div .currentDate {
   margin-left: 100px;
   margin-top: 25px;
   text-align: left;
+  height: fit-content;
   padding: 20px;
   border: 1px solid #dadce0;
   border-radius: 10px;
@@ -1000,6 +1016,7 @@ div .currentDate {
   margin-top: 25px;
   /* margin-left: 50px; */
   padding-top: 15px;
+  height: fit-content;
   text-align: left;
   /* right: 150px; */
   padding: 7px;
