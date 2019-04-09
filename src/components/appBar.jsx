@@ -107,6 +107,9 @@ export default class appBar extends React.Component {
     handleAppbar() {
         this.props.notePropsToApp();
     }
+    searchLabels(value) {
+        this.props.searchLabels(value)
+    }
     render() {
         // const { open } = this.state;
         return (
@@ -173,7 +176,7 @@ export default class appBar extends React.Component {
                             <DrawerMenu
                                 appBarProps={this.state.open}
                                 handleNavigation={this.props.handleNavigation}
-                                // searchLabels={(value) => this.searchLabels(value)}
+                                searchLabels={(value) => this.searchLabels(value)}
                                 makeLabelFalse={this.props.makeLabelFalse}
                             />
                         </AppBar>

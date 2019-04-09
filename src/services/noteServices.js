@@ -162,7 +162,10 @@ export function updateImages(data) {
         }
     )
 }
-
+/**
+ * 
+ * @param {*} data 
+ */
 export function uploadProfilePic1(data) {
     var headers = {
         "token": localStorage.getItem("token")
@@ -173,7 +176,20 @@ export function uploadProfilePic1(data) {
         }
     )
 }
-
+/**
+ * 
+ * @param {*} url 
+ * @param {*} data 
+ */
+export function saveLabel(url,data) {
+    return axios(url, {
+        method: "POST",
+        headers: {
+            "token": localStorage.getItem("token")
+        },
+        data:data
+    })
+}
 
 /********************************************************************************/
 /**

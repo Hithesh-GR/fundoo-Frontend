@@ -11,7 +11,7 @@ import Tools from '../components/tools';
 import ArchivedNavigator from "../components/archivedNavigator";
 import ReminderNavigator from "../components/reminderNavigator";
 import TrashNavigator from '../components/trashedNavigator';
-import { getNotes, updateColor, deleteNoteForever, updateArchiveStatus, setReminder, isTrashed, updateDescription, updateTitle, updatePin, updateImages } from '../services/noteServices';
+import { getNotes, updateColor, deleteNoteForever, updateArchiveStatus, setReminder, isTrashed, updateDescription, updateTitle, saveLabel, updatePin, updateImages } from '../services/noteServices';
 import { otherArray, archiveArray, remiderArray, trashArray, pinArray } from '../services/noteServices';
 import DialogBox from '../components/dialogBox';
 import EditPin from '../components/editPin';
@@ -46,7 +46,8 @@ export default class Cards extends Component {
             open: false,
             open1: false,
             notes: [],
-            image: ""
+            image: "",
+            label: false
         }
         this.cardsToDialogBox = React.createRef();
     }
@@ -57,6 +58,9 @@ export default class Cards extends Component {
     }
     closeEditBox = (e) => {
         this.setState({ open1: false })
+    }
+    displayLabelledCards() {
+        this.setState({ label: true })
     }
     componentDidMount() {
         getNotes()
@@ -270,6 +274,53 @@ export default class Cards extends Component {
                 alert(error)
             });
     }
+    addLabelToNote=(noteId, value)=> {
+        const addLabel = {
+            noteID: noteId,
+            label: value
+        }
+        saveLabel('/saveLabelToNote', addLabel)
+            .then((result) => {
+                
+                let newArray = this.state.notes
+                for (let i = 0; i < newArray.length; i++) {
+                    if (newArray[i]._id === noteId) {
+                        newArray[i].label = result.data.data;
+                        this.setState({
+                            notes: newArray
+                        })
+                    }
+                }
+            })
+            .catch((error) => {
+                alert(error)
+            });
+    }
+    deleteLabelFromNote=(value, noteId)=> {
+        const deleteLabel = {
+            pull: true,
+            value: value,
+            noteID: noteId
+        }
+        saveLabel('/saveLabelToNote', deleteLabel)
+            .then((result) => {
+                let newArray = this.state.notes
+                for (let i = 0; i < newArray.length; i++) {
+                    if (newArray[i]._id === noteId) {
+                        newArray[i].label = result.data.data;
+                        this.setState({
+                            notes: newArray
+                        })
+                    }
+                }
+            })
+            .catch((error) => {
+                alert(error)
+            });
+    }
+    makeLabelFalse = () => {
+        this.setState({ label: false })
+    }
     displayNewCard = (newCard) => {
         this.setState({
             notes: [...this.state.notes, newCard]
@@ -277,7 +328,7 @@ export default class Cards extends Component {
     }
     render() {
         let notesArray = otherArray(this.state.notes);
-        if ((this.props.searchNote !== "") && (!this.props.navigateArchived
+        if ((this.props.searchNote !== "" || this.state.label) && (!this.props.navigateArchived
             && !this.props.navigateReminder && !this.props.navigateTrashed)) {
             let searchNote;
             if (this.props.searchNote !== "") {
@@ -285,6 +336,9 @@ export default class Cards extends Component {
                     obj => obj.title.includes(this.props.searchNote) ||
                         obj.description.includes(this.props.searchNote)
                 )
+            } else {
+                searchNote = this.state.notes.filter(
+                    obj => obj.label.length > 0 && obj.label.find((item) => item === this.props.labelValue))
             }
             return (
                 <SearchedNotes
@@ -295,6 +349,8 @@ export default class Cards extends Component {
                     trashNote={this.trashNote}
                     archiveNote={this.archiveNote}
                     uploadImage={this.uploadImage}
+                    addLabelToNote={this.addLabelToNote}
+                    deleteLabelFromNote={this.deleteLabelFromNote}
                 />
             )
         }
@@ -310,6 +366,8 @@ export default class Cards extends Component {
                     trashNote={this.trashNote}
                     archiveNote={this.archiveNote}
                     uploadImage={this.uploadImage}
+                    addLabelToNote={this.addLabelToNote}
+                    deleteLabelFromNote={this.deleteLabelFromNote}
                 />
             )
         }
@@ -325,6 +383,8 @@ export default class Cards extends Component {
                     trashNote={this.trashNote}
                     archiveNote={this.archiveNote}
                     uploadImage={this.uploadImage}
+                    addLabelToNote={this.addLabelToNote}
+                    deleteLabelFromNote={this.deleteLabelFromNote}
                 />
             )
         }
@@ -338,6 +398,7 @@ export default class Cards extends Component {
                     noteProps={this.props.noteProps}
                     trashNote={this.trashNote}
                     deleteNote={this.deleteNote}
+                    deleteLabelFromNote={this.deleteLabelFromNote}
                 />
             )
         }
@@ -359,6 +420,8 @@ export default class Cards extends Component {
                             uploadImage={this.uploadImage}
                             editTitle={this.editTitle}
                             editDescription={this.editDescription}
+                            addLabelToNote={this.addLabelToNote}
+                            deleteLabelFromNote={this.deleteLabelFromNote}
                         />
                         :
                         <div className="CardsView" >
@@ -398,6 +461,17 @@ export default class Cards extends Component {
                                                             :
                                                             null
                                                         }
+                                                        {notesArray[key].label.length > 0 ?
+                                                            notesArray[key].label.map((key1, index) =>
+                                                                <div key={index} >
+                                                                    <Chip
+                                                                        label={key1}
+                                                                        onDelete={() => this.deleteLabelFromNote(key1, notesArray[key]._id)}
+                                                                    />
+                                                                </div>
+                                                            )
+                                                            :
+                                                            null}
                                                     </div>
                                                 </div>
                                                 <div id="displaycontentdiv">
@@ -413,6 +487,8 @@ export default class Cards extends Component {
                                                         note={notesArray[key].note}
                                                         trashNote={this.trashNote}
                                                         uploadImage={this.uploadImage}
+                                                        addLabelToNote={this.addLabelToNote}
+                                                        deleteLabelFromNote={this.deleteLabelFromNote}
                                                     />
                                                 </div>
                                             </Card>
@@ -438,6 +514,8 @@ export default class Cards extends Component {
                         editTitle={this.editTitle}
                         editDescription={this.editDescription}
                         createNotePropsToTools={this.getColor}
+                        addLabelToNote={this.addLabelToNote}
+                        deleteLabelFromNote={this.deleteLabelFromNote}
                     />
                 </MuiThemeProvider>
             );

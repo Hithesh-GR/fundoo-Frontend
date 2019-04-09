@@ -35,7 +35,7 @@ export default class SearchedNotes extends Component {
         return (
             <MuiThemeProvider theme={theme}>
                 <div>
-                    <label style={{ fontFamily: "georgia", fontSize: "18px", color: "grey" }}>SEARCHED NOTES :</label>
+                    <label style={{ fontFamily: "georgia", fontSize: "18px", color: "grey" }}> NOTES :</label>
                     <div className="CardsView" >
                         {this.props.searchNote.map((key) => {
                             return (
@@ -66,6 +66,15 @@ export default class SearchedNotes extends Component {
                                                 onDelete={() => this.props.reminder("", key._id)} />
                                             :
                                             null}
+                                        {key.label.length > 0 ?
+                                            key.label.map((key1) =>
+                                                <Chip
+                                                    label={key1}
+                                                    onDelete={() => this.props.deleteLabelFromNote(key1, key._id)}
+                                                />
+                                            )
+                                            :
+                                            null}
                                     </div>
                                     <div id="displaycontentdiv">
                                         <Tools
@@ -77,10 +86,10 @@ export default class SearchedNotes extends Component {
                                             archiveNote={this.props.archiveNote}
                                             archiveStatus={key.archive}
                                             uploadImage={this.props.uploadImage}
+                                            deleteLabelFromNote={this.props.deleteLabelFromNote}
+                                            addLabelToNote={this.props.addLabelToNote}
                                         />
-
                                     </div>
-
                                 </Card>
                             )
                         })

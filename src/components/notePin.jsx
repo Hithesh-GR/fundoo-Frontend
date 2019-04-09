@@ -14,10 +14,10 @@ export default class PinAndOthers extends Component {
     constructor() {
         super();
         this.state = {
-            
+
             open1: false,
-        
-            
+
+
         }
         this.cardsToDialogBox = React.createRef();
     }
@@ -38,7 +38,7 @@ export default class PinAndOthers extends Component {
                     {this.props.pinArray.map((key) => {
                         return (
                             <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }} >
-                                <div className= "DispCont">
+                                <div className="DispCont">
                                     <div>
                                         {key.image !== "" ?
                                             <img style={{
@@ -47,7 +47,7 @@ export default class PinAndOthers extends Component {
                                             }} src={key.image} alt="cardImage"></img>
                                             : null}
                                     </div>
-                                    <div  onClick={() => this.handleClick(key)} style={{ display: "flex", justifyContent: "space-between" }}>
+                                    <div onClick={() => this.handleClick(key)} style={{ display: "flex", justifyContent: "space-between" }}>
                                         <b>{key.title}</b>
                                         <EditPin
                                             cardPropsToPin={this.props.pinNote}
@@ -55,7 +55,7 @@ export default class PinAndOthers extends Component {
                                             pinStatus={key.pinned}
                                         />
                                     </div>
-                                    <div  onClick={() => this.handleClick(key)}>
+                                    <div onClick={() => this.handleClick(key)}>
                                         {key.description}
                                     </div>
                                     {key.reminder ?
@@ -63,6 +63,15 @@ export default class PinAndOthers extends Component {
                                             label={key.reminder}
                                             onDelete={() => this.props.reminder("", key._id)}
                                         />
+                                        :
+                                        null}
+                                    {key.label.length > 0 ?
+                                        key.label.map((key1) =>
+                                            <Chip
+                                                label={key1}
+                                                onDelete={() => this.props.deleteLabelFromNote(key1, key._id)}
+                                            />
+                                        )
                                         :
                                         null}
                                 </div>
@@ -76,6 +85,8 @@ export default class PinAndOthers extends Component {
                                         note={key}
                                         trashNote={this.props.trashNote}
                                         uploadImage={this.props.uploadImage}
+                                        deleteLabelFromNote={this.props.deleteLabelFromNote}
+                                        addLabelToNote={this.props.addLabelToNote}
                                     />
                                 </div>
                             </Card>)
@@ -103,7 +114,7 @@ export default class PinAndOthers extends Component {
                     {this.props.othersArray.map((key) => {
                         return (
                             <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }} >
-                                <div className= "DispCont">
+                                <div className="DispCont">
                                     <div>
                                         {key.image !== "" ?
                                             <img style={{
@@ -130,6 +141,15 @@ export default class PinAndOthers extends Component {
                                         />
                                         :
                                         null}
+                                    {key.label.length > 0 ?
+                                        key.label.map((key1) =>
+                                            <Chip
+                                                label={key1}
+                                                onDelete={() => this.props.deleteLabelFromNote(key1, key._id)}
+                                            />
+                                        )
+                                        :
+                                        null}
                                 </div>
                                 <div className="noteicons">
                                     <Tools
@@ -141,6 +161,8 @@ export default class PinAndOthers extends Component {
                                         archiveStatus={key.archive}
                                         trashNote={this.props.trashNote}
                                         uploadImage={this.props.uploadImage}
+                                        deleteLabelFromNote={this.props.deleteLabelFromNote}
+                                        addLabelToNote={this.props.addLabelToNote}
                                     />
                                 </div>
                             </Card>

@@ -19,12 +19,15 @@ export default class dashBoard extends Component {
             archive: false,
             trash: false,
             searchNote: "",
-            image:""
+            image:"",
+            label: ""
         }
         this.noteToCards = React.createRef();
         this.handleCardStyle = this.handleCardStyle.bind(this);
         this.slideCards = this.slideCards.bind(this);
         this.getNewNote = this.getNewNote.bind(this);
+        this.searchLabels = this.searchLabels.bind(this);
+        this.makeLabelFalse = this.makeLabelFalse.bind(this);
         this.handleNavigation = this.handleNavigation.bind(this);
         this.getSearchedNotes = this.getSearchedNotes.bind(this);
     }
@@ -63,6 +66,14 @@ export default class dashBoard extends Component {
     getSearchedNotes(value) {
         this.setState({ searchNote: value })
     }
+    searchLabels(value) {
+        this.setState({ label: value });
+        console.log("search labels", value);
+        this.noteToCards.current.displayLabelledCards();
+    }
+    makeLabelFalse() {
+        this.noteToCards.current.makeLabelFalse();
+    }
     handleNavigation(reminder, archive, trash) {
         console.log("handleNAvigation", reminder, archive, trash);
         if (reminder === true || archive === true || trash === true) {
@@ -81,7 +92,6 @@ export default class dashBoard extends Component {
         }
     }
     render() {
-    
         const slidingCards = this.state.slideCards ? "afterSlide" : "beforeSlide"
         return (
             <div className={slidingCards}>
@@ -92,6 +102,8 @@ export default class dashBoard extends Component {
                         notePropsToApp={this.handleCardStyle}
                         handleNavigation={this.handleNavigation}
                         getSearchedNotes={this.getSearchedNotes}
+                        makeLabelFalse={this.makeLabelFalse}
+                        searchLabels={this.searchLabels}
                     />
                 </div>
                 <div className="setFixedMargin">
@@ -118,6 +130,7 @@ export default class dashBoard extends Component {
                                 navigateTrashed={this.state.trash}
                                 searchNote={this.state.searchNote}
                                 uploadImage={this.state.image}
+                                labelValue={this.state.label}
                             />
                         </div>
                     }

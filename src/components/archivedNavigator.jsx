@@ -87,6 +87,15 @@ export default class ArchivedNavigator extends Component {
                                                 onDelete={() => this.props.reminder("", key._id)} />
                                             :
                                             null}
+                                        {key.label.length > 0 ?
+                                            key.label.map((key1) =>
+                                                <Chip
+                                                    label={key1}
+                                                    onDelete={() => this.props.deleteLabelFromNote(key1, key._id)}
+                                                />
+                                            )
+                                            :
+                                            null}
                                     </div>
                                     <div id="displaycontentdiv">
                                         <Tools
@@ -98,6 +107,7 @@ export default class ArchivedNavigator extends Component {
                                             archiveStatus={key.archive}
                                             archiveNote={this.props.archiveNote}
                                             uploadImage={this.props.uploadImage}
+                                            addLabelToNote={this.props.addLabelToNote}
                                         />
                                     </div>
                                 </Card>

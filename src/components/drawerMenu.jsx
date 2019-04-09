@@ -8,6 +8,8 @@
 import React, { Component } from 'react';
 import { Drawer } from '@material-ui/core';
 import { MenuItem } from '@material-ui/core';
+import EditLabel from '../components/editLabel';
+import { getLabels } from '../services/labelServices';
 export default class drawerMenu extends Component {
     constructor() {
         super();
@@ -15,8 +17,45 @@ export default class drawerMenu extends Component {
             open: false,
             navigateReminder: false,
             navigateArchived: false,
-            navigateTrashed: false
+            navigateTrashed: false,
+            label: []
         }
+        this.handleEditLabel = this.handleEditLabel.bind(this);
+        this.showLabels = this.showLabels.bind(this);
+        this.newLabels = this.newLabels.bind(this);
+    }
+    handleEditLabel() {
+        this.setState({ open: !this.state.open })
+    }
+    componentDidMount() {
+        getLabels()
+            .then((result) => {
+                this.setState({
+                    label: result
+                })
+            })
+            .catch((error) => {
+                alert(error)
+            });
+    }
+    displaySearchLabels(value) {
+        this.props.searchLabels(value)
+    }
+    showLabels(value) {
+        // let labelArr=this.state.label;
+        // if(value!==undefined){
+        //     labelArr.push(value);
+        //     this.setState({label:labelArr});
+        // }
+        this.props.
+        console.log("new lablw------------->",value);
+        
+        this.setState({
+            label: [...this.state.label, value]
+        })
+    }
+    newLabels(value) {
+        this.setState({ label: value })
     }
     async handleNotes() {
         await this.setState({
@@ -24,6 +63,7 @@ export default class drawerMenu extends Component {
             navigateArchived: false,
             navigateTrashed: false,
         })
+        this.props.makeLabelFalse();
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
     async handleReminder() {
@@ -32,6 +72,7 @@ export default class drawerMenu extends Component {
             navigateArchived: false,
             navigateTrashed: false
         })
+        this.props.makeLabelFalse();
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
     async handleArchived() {
@@ -40,6 +81,7 @@ export default class drawerMenu extends Component {
             navigateArchived: true,
             navigateTrashed: false
         })
+        this.props.makeLabelFalse();
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
     async handleTrashed() {
@@ -48,9 +90,23 @@ export default class drawerMenu extends Component {
             navigateArchived: false,
             navigateTrashed: true
         })
+        this.props.makeLabelFalse();
         this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
     }
     render() {
+        let displayLabels = this.state.label;
+        if (this.state.label !== "") {
+            displayLabels = this.state.label.map((key) =>
+                <MenuItem style={{ display: "flex", flexDirection: "row", color: "#202124", fontFamily: "Google Sans, Roboto, Arial, sans-serif", fontSize: ".875rem" }} onClick={() => this.displaySearchLabels(key.label)} key={key.label}>
+
+                    <img src={require('../assets/images/labelIcon.svg')} alt="label icon" style={{ marginRight: "50px" }} />
+
+                    <div style={{ marginRight: "50px", marginBottom: "10px", marginTop: "10px", fontWeight: "550" }}>
+                        {key.label}
+                    </div>
+                </MenuItem>
+            )
+        }
         return (
             <div>
                 <Drawer
@@ -73,7 +129,10 @@ export default class drawerMenu extends Component {
                             LABELS
                         </div>
                         <div>
-                            <MenuItem id="labelMenu">
+                            <div>
+                                {displayLabels}
+                            </div>
+                            <MenuItem id="labelMenu" onClick={this.handleEditLabel}>
                                 <img src={require('../assets/images/menuEdit.svg')} alt="edit icon"
                                     style={{ marginRight: "50px" }} />
                                 Edit Labels
@@ -91,6 +150,12 @@ export default class drawerMenu extends Component {
                         Trash
                     </MenuItem>
                 </Drawer>
+                <EditLabel
+                    newLabels={this.newLabels}
+                    label={this.state.label}
+                    showLabels={this.showLabels}
+                    drawerPropstoEditLabels={this.state.open}
+                    labelToggle={this.handleEditLabel} />
             </div>
         )
     }

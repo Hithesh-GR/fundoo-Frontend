@@ -39,7 +39,7 @@ export default class ReminderNavigator extends Component {
                     {this.props.remiderArray.map((key) => {
                         return (
                             <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }} >
-                                <div className= "DispCont" >
+                                <div className="DispCont" >
                                     <div>
                                         {key.image !== "" ?
                                             <img style={{
@@ -66,6 +66,15 @@ export default class ReminderNavigator extends Component {
                                             onDelete={() => this.props.reminder("", key._id)} />
                                         :
                                         null}
+                                    {key.label.length > 0 ?
+                                        key.label.map((key1) =>
+                                            <Chip
+                                                label={key1}
+                                                onDelete={() => this.props.deleteLabelFromNote(key1, key._id)}
+                                            />
+                                        )
+                                        :
+                                        null}
                                 </div>
                                 <div id="displaycontentdiv">
                                     <Tools
@@ -77,6 +86,8 @@ export default class ReminderNavigator extends Component {
                                         archiveStatus={key.archive}
                                         archiveNote={this.props.archiveNote}
                                         uploadImage={this.props.uploadImage}
+                                        deleteLabelFromNote={this.props.deleteLabelFromNote}
+                                        addLabelToNote={this.props.addLabelToNote}
                                     />
                                 </div>
                             </Card>
