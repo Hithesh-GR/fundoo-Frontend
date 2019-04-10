@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MenuItem, Popper, Paper, Fade, Checkbox, ClickAwayListener } from '@material-ui/core';
-import { getLabels } from '../services/labelServices';
+import { getLabels } from '../services/noteServices';
 export default class AddLabelsOnNote extends Component {
     constructor() {
         super();
@@ -21,8 +21,9 @@ export default class AddLabelsOnNote extends Component {
         getLabels()
             .then((result) => {
                 this.setState({
-                    label: result
+                    label: result.data.data
                 })
+                console.log("getLabels result from back-end", result);
             })
             .catch((error) => {
                 alert(error)

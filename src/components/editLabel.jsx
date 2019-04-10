@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Dialog, TextField, Button, createMuiTheme, MuiThemeProvider, Divider, Tooltip } from '@material-ui/core';
-import { addLabel, deleteLabel, updateLabel } from '../services/labelServices';
+import { addLabel, deleteLabel, updateLabel } from '../services/noteServices';
 import SnackBar from '../components/snackbar';
 let displayErr = "";
 const theme = createMuiTheme({
@@ -47,13 +47,11 @@ class EditLabel extends Component {
             label: value
         }
         if (label.label !== "") {
-
             addLabel('/addLabel', label)
                 .then(async (result) => {
                     console.log("label result", result);
                     this.setState({ label: "" })
                     this.props.showLabels(result.data.data);
-
                 })
                 .catch((error) => {
                     alert(error)

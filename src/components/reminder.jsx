@@ -152,7 +152,7 @@ export default class reminder extends Component {
                                                     <TextField
                                                         id="datetime-local"
                                                         type="datetime-local"
-                                                        defaultValue="2019-04-06T10:28"
+                                                        defaultValue="2019-04-10T10:28"
                                                         onChange={this.handleChange('date')}
                                                         InputLabelProps={{
                                                             shrink: true,
