@@ -281,6 +281,7 @@ export default class Cards extends Component {
         }
         saveLabel('/saveLabelToNote', addLabel)
             .then((result) => {
+                console.log("labellllllllllllll",result);
                 
                 let newArray = this.state.notes
                 for (let i = 0; i < newArray.length; i++) {

@@ -48,12 +48,11 @@ export default class drawerMenu extends Component {
             labelArr.push(value);
             this.setState({label:labelArr});
         }
-        this.props.
-        console.log("new lablw------------->",value);
+        // this.setState({
+        //     label: [...this.state.label, value]
+        // })
+        //console.log("label-----------<",this.state.label);
         
-        this.setState({
-            label: [...this.state.label, value]
-        })
     }
     newLabels(value) {
         this.setState({ label: value })
@@ -99,9 +98,7 @@ export default class drawerMenu extends Component {
         if (this.state.label !== "") {
             displayLabels = this.state.label.map((key) =>
                 <MenuItem style={{ display: "flex", flexDirection: "row", color: "#202124", fontFamily: "Google Sans, Roboto, Arial, sans-serif", fontSize: ".875rem" }} onClick={() => this.displaySearchLabels(key.label)} key={key.label}>
-
                     <img src={require('../assets/images/labelIcon.svg')} alt="label icon" style={{ marginRight: "50px" }} />
-
                     <div style={{ marginRight: "50px", marginBottom: "10px", marginTop: "10px", fontWeight: "550" }}>
                         {key.label}
                     </div>
@@ -112,6 +109,7 @@ export default class drawerMenu extends Component {
             <div>
                 <Drawer
                     variant="persistent"
+                    overflow="auto"
                     open={this.props.appBarProps}
                     width={300}
                 >
@@ -125,7 +123,7 @@ export default class drawerMenu extends Component {
                             style={{ marginRight: "50px" }} />
                         Reminders
                     </MenuItem>
-                    <div style={{ borderBottom: "1px solid lightgrey", borderTop: "1px solid lightgrey" }}>
+                    <div style={{ borderBottom: "1px solid lightgrey", borderTop: "1px solid lightgrey", overflow:"auto" }}>
                         <div style={{ padding: "3.5% 8%", fontSize: "12px", marginBottom: "15px", marginTop: "10px", fontFamily: "arial", color: "gray" }}>
                             LABELS
                         </div>
