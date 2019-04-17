@@ -7,6 +7,7 @@
  *****************************************************************************************/
 import React, { Component } from 'react';
 import { Tooltip } from '@material-ui/core';
+import { NotificationManager } from 'react-notifications';
 import { uploadProfilePic1 } from "../services/noteServices";
 export default class UploadImage extends Component {
     constructor(props) {
@@ -51,8 +52,9 @@ export default class UploadImage extends Component {
                 this.props.uploadImage(this.state.image, this.props.noteID)
                 // console.log("s33333333333333333333",this.state.image);
                 
-            }).catch((err) => {
-                alert(err);
+            }).catch((error) => {
+                NotificationManager.error(error);
+                // alert(err);
             })
     }
 

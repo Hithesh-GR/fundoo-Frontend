@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MenuItem, Popper, Paper, Fade, Checkbox, ClickAwayListener } from '@material-ui/core';
 import { getLabels } from '../services/noteServices';
+import { NotificationManager } from 'react-notifications';
 export default class AddLabelsOnNote extends Component {
     constructor() {
         super();
@@ -26,7 +27,8 @@ export default class AddLabelsOnNote extends Component {
                 console.log("getLabels result from back-end", result);
             })
             .catch((error) => {
-                alert(error)
+                NotificationManager.error(error);
+                // alert(error)
             });
     }
     showLabels = (value) => {

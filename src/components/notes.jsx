@@ -17,6 +17,7 @@ import DialogBox from '../components/dialogBox';
 import EditPin from '../components/editPin';
 import PinAndOthers from '../components/notePin';
 import SearchedNotes from '../components/searchNote';
+import { NotificationManager } from 'react-notifications';
 import '../App.css';
 // import clockIcon from '../assets/images/clockIcon.svg';
 const theme = createMuiTheme({
@@ -71,7 +72,8 @@ export default class Cards extends Component {
                 console.log("getNotes result from back-end", result);
             })
             .catch((error) => {
-                alert(error)
+                NotificationManager.error(error);
+                // alert(error)
             });
     }
     getColor = (value, noteId) => {
@@ -92,7 +94,8 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                alert(error)
+                NotificationManager.error(error);
+                // alert(error)
             });
     }
     archiveNote = (value, noteId) => {
@@ -115,7 +118,8 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                alert(error)
+                NotificationManager.error(error);
+                // alert(error)
             });
     }
     reminderNote = (value, noteId) => {
@@ -136,7 +140,8 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                alert(error)
+                NotificationManager.error(error);
+                // alert(error)
             });
     }
     editTitle = (value, noteId) => {
@@ -159,7 +164,8 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                alert(error)
+                NotificationManager.error(error);
+                // alert(error)
             });
     }
     editDescription = (value, noteId) => {
@@ -180,7 +186,8 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                alert(error)
+                NotificationManager.error(error);
+                // alert(error)
             });
     }
     trashNote = (noteId) => {
@@ -202,7 +209,8 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                alert(error)
+                NotificationManager.error(error);
+                // alert(error)
             });
     }
     uploadImage = (value, noteId) => {
@@ -251,7 +259,8 @@ export default class Cards extends Component {
 
             })
             .catch((error) => {
-                alert(error)
+                NotificationManager.error(error);
+                // alert(error)
             });
     }
     deleteNote = (noteId) => {
@@ -271,7 +280,8 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                alert(error)
+                NotificationManager.error(error);
+                // alert(error)
             });
     }
     addLabelToNote=(noteId, value)=> {
@@ -294,7 +304,8 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                alert(error)
+                NotificationManager.error(error);
+                // alert(error)
             });
     }
     deleteLabelFromNote=(value, noteId)=> {
@@ -316,7 +327,8 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                alert(error)
+                NotificationManager.error(error);
+                // alert(error)
             });
     }
     makeLabelFalse = () => {

@@ -16,6 +16,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Fade from '@material-ui/core/Fade';
 import { Button } from '@material-ui/core';
 import { uploadProfilePic } from "../services/userServices";
+import { NotificationManager } from 'react-notifications';
 import '../App.css';
 /**
 * @description:This method is used to Logout ui.. 
@@ -108,8 +109,9 @@ export default class Logout extends Component {
                 this.setState({
                     profilePic: result.data.data
                 })
-            }).catch((err) => {
-                alert(err);
+            }).catch((error) => {
+                NotificationManager.error(error);
+                // alert(err);
             })
     }
     /**

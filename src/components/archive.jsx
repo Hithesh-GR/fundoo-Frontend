@@ -52,7 +52,7 @@ export default class Archive extends Component {
         }
     };
     render() {
-        const { open } = this.state.open;
+        // const { open } = this.state.open;
         return (
             this.state.isArchived ?
                 <div>

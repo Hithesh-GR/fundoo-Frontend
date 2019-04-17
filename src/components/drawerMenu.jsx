@@ -10,6 +10,7 @@ import { Drawer } from '@material-ui/core';
 import { MenuItem } from '@material-ui/core';
 import EditLabel from '../components/editLabel';
 import { getLabels } from '../services/noteServices';
+import { NotificationManager } from 'react-notifications';
 export default class drawerMenu extends Component {
     constructor() {
         super();
@@ -36,7 +37,8 @@ export default class drawerMenu extends Component {
                 console.log("getLabels result from back-end", result);
             })
             .catch((error) => {
-                alert(error)
+                NotificationManager.error(error);
+                // alert(error)
             });
     }
     displaySearchLabels(value) {

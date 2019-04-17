@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Dialog, TextField, Button, createMuiTheme, MuiThemeProvider, Divider, Tooltip } from '@material-ui/core';
 import { addLabel, deleteLabel, updateLabel } from '../services/noteServices';
 import SnackBar from '../components/snackbar';
+import { NotificationManager } from 'react-notifications';
 let displayErr = "";
 const theme = createMuiTheme({
     overrides: {
@@ -54,7 +55,8 @@ class EditLabel extends Component {
                     this.props.showLabels(result.data.data);
                 })
                 .catch((error) => {
-                    alert(error)
+                    NotificationManager.error(error);
+                    // alert(error)
                 });
         }
         else {

@@ -12,6 +12,7 @@ import { Button } from '@material-ui/core';
 import { createNote } from '../services/noteServices';
 import EditPin from '../components/editPin';
 import UploadImage from './uploadImage';
+import { NotificationManager } from 'react-notifications';
 const theme = createMuiTheme({
     overrides: {
         MuiPaper: {
@@ -174,7 +175,8 @@ export default class createNotes extends Component {
                         this.props.getNewNote(this.state.newNote)
                     })
                     .catch((error) => {
-                        alert(error);
+                        NotificationManager.error(error);
+                        // alert(error);
                     })
                 this.setState({
                     title: "",

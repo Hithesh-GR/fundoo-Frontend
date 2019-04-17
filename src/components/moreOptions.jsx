@@ -93,7 +93,7 @@ export default class MoreOptions extends Component {
                     <Tooltip title="More Options">
                         <img src={require('../assets/images/more.svg')}
                             onClick={this.clickMoreOptions}
-                            className="moreOptionsIcon"
+                            // className="moreOptionsIcon"
                             className="toolBtn"
                             alt="more options icon" />
                     </Tooltip>
