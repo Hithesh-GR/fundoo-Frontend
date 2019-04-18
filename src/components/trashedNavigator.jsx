@@ -27,7 +27,18 @@ export default class TrashNavigator extends Component {
         let cardsView = this.props.noteProps ? "listCards" : "cards";
         return (
             <MuiThemeProvider theme={theme} >
-                <label style={{ fontFamily: "cursive", fontSize: "18px", color: "grey", marginRight: "760px" }}>TRASH</label>
+                {(this.props.trashArray).length === 0 ?
+                    <div>
+                        <div id="blurimage">
+                            <img src={require('../assets/images/menuTrash.svg')} style={{ width: "inherit" }} />
+                        </div>
+                        <div id="text" style={{ fontFamily: "georgia", color: "grey", fontSize: "30px", width: "inherit" }}>
+                            No notes in Trash
+                        </div>
+                    </div>
+                    :
+                    <label style={{ fontFamily: "cursive", fontSize: "18px", color: "grey", marginRight: "760px" }}>TRASH</label>
+                }
                 <div className="CardsView"  >
                     {this.props.trashArray.map((key) => {
                         return (

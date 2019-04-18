@@ -193,7 +193,17 @@ input[type=emaill] {
 }
 
 /***********************for dashBoard css***************************/
-
+#blurimage{
+  background-size: 120px 120px;
+    opacity: .1;
+    margin-left: 100px;
+    width: 120px;
+    margin-top: 150px
+}
+#text{
+  margin-left: 100px;
+  margin-bottom: 150px
+}
 #CreateNote2 {
   /* height: 156px; */
   width: 500px;
