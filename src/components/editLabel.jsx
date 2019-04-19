@@ -74,7 +74,6 @@ class EditLabel extends Component {
         deleteLabel(labelId)
             .then(async (result) => {
                 if (result.data.status) {
-
                     console.log("label result", result);
                     let newArray = this.props.label
                     for (let i = 0; i < newArray.length; i++) {
@@ -93,7 +92,6 @@ class EditLabel extends Component {
             .catch((error) => {
                 displayErr = "Internal Server Error";
                 this.openSnackBar.current.handleClick();
-
             });
     }
 
@@ -104,9 +102,7 @@ class EditLabel extends Component {
         }
         updateLabel(editLabel)
             .then((result) => {
-
                 console.log("success", result.data, this.props.label);
-
                 let newArray = this.props.label;
                 for (let i = 0; i < newArray.length; i++) {
                     if (newArray[i]._id === editLabel.labelID) {
@@ -115,17 +111,13 @@ class EditLabel extends Component {
                         this.setState({ labelID: "" })
                     }
                 }
-
             })
             .catch((error) => {
                 displayErr = error.message;
                 console.log("message", displayErr);
                 this.openSnackBar.current.handleClick();
-
             });
     }
-
-
     createLabel() {
         this.setState({ labelID: "" })
     }
@@ -135,11 +127,9 @@ class EditLabel extends Component {
     changeLables(id) {
         this.setState({ labelID: id })
     }
-
     handleLabel(evt) {
         this.setState({ label: evt.target.value })
     }
-
     handleToggle() {
         this.props.labelToggle()
     }
@@ -149,18 +139,12 @@ class EditLabel extends Component {
                 <div>
                     <Dialog
                         open={this.props.drawerPropstoEditLabels}
-
                     >
                         <div style={{ padding: "20px", display: "flex", flexDirection: "column" }}>
                             <div style={{ color: "#3c4043", fontWeight: "500" }}>Edit Labels</div>
-
                             <div style={{ display: "flex", justifyContent: "space-between", height: "45px" }} onClick={() => this.createLabel()}>
-
-
                                 <img src={require('../assets/images/addLabels.svg')}
                                     alt="add label plus icon" />
-
-
                                 <TextField
                                     id="editLabelTextField"
                                     placeholder="Create New Label"
@@ -175,10 +159,7 @@ class EditLabel extends Component {
                                         alt="label tick icon"
                                         onClick={() => this.addLabel(this.state.label)} />
                                 </Tooltip>
-
                             </div>
-
-
                             {this.props.label.map((key) =>
                                 this.state.labelID !== key._id ?
                                     <div onClick={() => this.changeLables(key._id)} key={key._id}
@@ -202,7 +183,6 @@ class EditLabel extends Component {
                                                     // value={this.state.editLabel}
                                                     onChange={this.handlEditLabel}
                                                 />
-
                                             </div>
                                         </div>
                                         <div><img src={require('../assets/images/tick.svg')}
@@ -220,7 +200,6 @@ class EditLabel extends Component {
                 </div>
             </MuiThemeProvider>
         )
-
     }
 }
 export default EditLabel;

@@ -31,7 +31,7 @@ const theme = createMuiTheme({
 })
 export default class SearchedNotes extends Component {
     render() {
-        let cardsView = this.props.noteProps ? "listCards" : "cards";
+        let cardsView = this.props.noteProps ? "cards" : "listCards";
         return (
             <MuiThemeProvider theme={theme}>
                 <div>

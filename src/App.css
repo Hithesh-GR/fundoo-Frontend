@@ -193,32 +193,49 @@ input[type=emaill] {
 }
 
 /***********************for dashBoard css***************************/
-#blurimage{
+#blurimage {
   background-size: 120px 120px;
-    opacity: .1;
-    margin-left: 350px;
-    width: 120px;
-    margin-top: 280px
+  opacity: .1;
+  margin-left: 350px;
+  width: 120px;
+  margin-top: 280px
 }
-#text{
+
+#text {
   margin-left: 325px;
   margin-bottom: 150px
 }
-#text1{
+
+#text1 {
   margin-left: 250px;
   margin-bottom: 150px
 }
-#blurimage2{
+
+#blurimage2 {
   background-size: 120px 120px;
-    opacity: .1;
-    margin-left: 300px;
-    width: 120px;
-    margin-top: 150px
+  opacity: .1;
+  margin-left: 300px;
+  width: 120px;
+  margin-top: 150px
 }
-#text2{
+
+#text2 {
   margin-left: 150px;
   margin-bottom: 100px
 }
+
+#text3 {
+  margin-left: 235px;
+}
+
+#blurimage3 {
+  background-size: 120px 120px;
+  opacity: .1;
+  margin-left: 300px;
+  width: 120px;
+  margin-top: 120px
+}
+
 #CreateNote2 {
   /* height: 156px; */
   width: 500px;
@@ -451,12 +468,13 @@ element.style {
 #refreshIcon {
   margin-left: 195%;
 }
+
 /* 
 .DispCont:hover #displaycontentdiv .noteicons {
   visibility: visible;
 } */
 
-.toolBtn{
+.toolBtn {
   color: #202124;
   opacity: .71;
   margin: 0 3px;
@@ -684,6 +702,7 @@ element.style {
   display: flex;
   justify-content: space-around;
 }
+
 /* 
 .cards:hover .cardTools {
   visibility: visible;
@@ -695,6 +714,7 @@ element.style {
   visibility: visible;
   box-shadow: 2px 2px 2px 2px solid gray
 }
+
 /* 
 .cards:hover .pinIcon {
   visibility: visible
@@ -710,7 +730,7 @@ element.style {
 
 .CardsView {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-wrap: wrap;
   /* float: left; */
 }
@@ -721,8 +741,15 @@ element.style {
 }
 
 .beforeSlide {
-  transition: 0.25s
+  transition: 0.25s;
 }
+/* 
+@media only screen and (max-width:375px) {
+  .beforeSlide {
+    transition: 0.25s;
+    margin-left: 250px
+  }
+} */
 
 .cardToolsClose {
   display: flex;
@@ -741,6 +768,7 @@ element.style {
   display: flex;
   justify-content: space-between;
 }
+
 /* 
 .listCards:hover .cardTools {
   visibility: visible
@@ -749,10 +777,12 @@ element.style {
 
 .listCards .cardTools {
   visibility: visible
-} 
+}
+
 .pinIcon {
   visibility: hidden;
 }
+
 /* 
 .listCards:hover .pinIcon {
   visibility: visible
@@ -849,7 +879,7 @@ div .currentDate {
   color: gray
 }
 
-@media only screen and (min-width:320px) and (max-width:535px) {
+@media only screen and (min-width:375px) and (max-width:425px) {
   #appBarIcons {
     display: flex;
     line-height: 3
@@ -921,7 +951,8 @@ div .currentDate {
     text-align: left;
     padding: 7px;
     border-radius: 10px;
-    justify-content: space-between
+    justify-content: space-between;
+    margin-left: 10px;
   }
 }
 
@@ -980,7 +1011,8 @@ div .currentDate {
     text-align: left;
     padding: 7px;
     border-radius: 10px;
-    justify-content: space-between
+    justify-content: space-between;
+    margin-left: 10px;
   }
 }
 
@@ -1046,7 +1078,8 @@ div .currentDate {
   /* right: 150px; */
   padding: 7px;
   border-radius: 10px;
-  justify-content: space-between
+  justify-content: space-between;
+  margin-left: 10px;
 }
 
 .App {

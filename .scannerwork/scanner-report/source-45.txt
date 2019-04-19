@@ -1,0 +1,82 @@
+self.__precacheManifest = [
+  {
+    "revision": "90e68fc74d3d42aa0e39c0955365c6f6",
+    "url": "/static/media/pinAfterClick.90e68fc7.svg"
+  },
+  {
+    "revision": "cc297f5f65d6e0999ddc",
+    "url": "/static/css/main.173ae30e.chunk.css"
+  },
+  {
+    "revision": "fdfcfda2d9b1bf31db52",
+    "url": "/static/js/runtime~main.fdfcfda2.js"
+  },
+  {
+    "revision": "2abb13b2abd91ef9efc7",
+    "url": "/static/js/2.2abb13b2.chunk.js"
+  },
+  {
+    "revision": "392093a0b8b7cb06ad7a34300c8941ff",
+    "url": "/static/media/archive.392093a0.svg"
+  },
+  {
+    "revision": "a5e26d41338ba6fb682e90e98aa918ce",
+    "url": "/static/media/more.a5e26d41.svg"
+  },
+  {
+    "revision": "119e8d8158e18e8f4eae8d584417a436",
+    "url": "/static/media/addPerson.119e8d81.svg"
+  },
+  {
+    "revision": "6cf61ae0327ba56b921adff8ce1198bf",
+    "url": "/static/media/reminder.6cf61ae0.svg"
+  },
+  {
+    "revision": "58b5f2af9dfe96b44850050a09ef9d4c",
+    "url": "/static/media/pallete.58b5f2af.svg"
+  },
+  {
+    "revision": "023b553f21ed87f0ca321c09b5251441",
+    "url": "/static/media/imageUpload.023b553f.svg"
+  },
+  {
+    "revision": "cc297f5f65d6e0999ddc",
+    "url": "/static/js/main.cc297f5f.chunk.js"
+  },
+  {
+    "revision": "b16d05839ceb9b896832b5fd5fa91fda",
+    "url": "/static/media/pinBeforeClick.b16d0583.svg"
+  },
+  {
+    "revision": "785cb1064ad7c99e540c20a3b437af79",
+    "url": "/static/media/note.785cb106.svg"
+  },
+  {
+    "revision": "266b9aea687a1bf3d27d2bdc81454ba2",
+    "url": "/static/media/menuReminder.266b9aea.svg"
+  },
+  {
+    "revision": "910afa944057c1f29216bf5df39d6f89",
+    "url": "/static/media/menuEdit.910afa94.svg"
+  },
+  {
+    "revision": "2620130fb5536e4f47a46f4ee72bbdf6",
+    "url": "/static/media/menuArchive.2620130f.svg"
+  },
+  {
+    "revision": "bea6de33862e11f58225014c7ada53e8",
+    "url": "/static/media/menuTrash.bea6de33.svg"
+  },
+  {
+    "revision": "6f68c3f7be3f2bec1156436b4f8b3b41",
+    "url": "/static/media/view-agenda.6f68c3f7.svg"
+  },
+  {
+    "revision": "c98bfb97a503802acc02c499685c85bc",
+    "url": "/static/media/view-grid.c98bfb97.svg"
+  },
+  {
+    "revision": "5a64fc568701f1e41bbaf22aa41addc0",
+    "url": "/index.html"
+  }
+];

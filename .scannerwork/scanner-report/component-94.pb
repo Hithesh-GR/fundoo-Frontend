@@ -1,0 +1,1 @@
+^src/components/editPin.jsx 2jsX?h

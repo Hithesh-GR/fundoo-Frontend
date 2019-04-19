@@ -24,7 +24,7 @@ const theme = createMuiTheme({
 })
 export default class TrashNavigator extends Component {
     render() {
-        let cardsView = this.props.noteProps ? "listCards" : "cards";
+        let cardsView = this.props.noteProps ? "cards" : "listCards";
         return (
             <MuiThemeProvider theme={theme} >
                 {(this.props.trashArray).length === 0 ?

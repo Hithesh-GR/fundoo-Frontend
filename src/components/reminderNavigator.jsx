@@ -31,7 +31,7 @@ const theme = createMuiTheme({
 })
 export default class ReminderNavigator extends Component {
     render() {
-        let cardsView = this.props.noteProps ? "listCards" : "cards";
+        let cardsView = this.props.noteProps ? "cards" : "listCards";
         return (
             <MuiThemeProvider theme={theme}>
                 {(this.props.remiderArray).length === 0 ?

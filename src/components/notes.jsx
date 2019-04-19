@@ -416,9 +416,23 @@ export default class Cards extends Component {
             )
         }
         else {
-            let cardsView = this.props.noteProps ? "listCards" : "cards";
+            let cardsView = this.props.noteProps ? "cards" : "listCards";
             return (
                 <MuiThemeProvider theme={theme}>
+                    {notesArray.length === 0 && pinArray(this.state.notes).length === 0 ?
+                        <div>
+                            <div id="blurimage3"  >
+                                <img src={require('../assets/images/note.svg')} alt="note icon"
+                                    style={{ width: "inherit" }}
+                                />
+                            </div>
+                            <div id="text3" style={{ fontFamily: "georgia", color: "grey", fontSize: "25px", width: "inherit" }}>
+                                Notes you add appear here
+                                    </div>
+                        </div>
+                        :
+                        null
+                    }
                     {pinArray(this.state.notes).length !== 0 ?
                         <PinAndOthers
                             createNotePropsToTools={this.getColor}
@@ -455,11 +469,14 @@ export default class Cards extends Component {
                                                     </div>
                                                     <div style={{ display: "flex", justifyContent: "space-between", wordBreak: "break-word" }}>
                                                         <b onClick={() => this.handleClick(notesArray[key])}> {notesArray[key].title}</b>
-                                                        <EditPin
-                                                            cardPropsToPin={this.pinNote}
-                                                            noteID={notesArray[key]._id}
-                                                            pinStatus={notesArray[key].pinned}
-                                                        />
+                                                        <div>
+                                                            <EditPin
+                                                                cardPropsToPin={this.pinNote}
+                                                                noteID={notesArray[key]._id}
+                                                                pinStatus={notesArray[key].pinned}
+                                                            />
+                                                        </div>
+
                                                     </div>
                                                     <div onClick={() => this.handleClick(notesArray[key])} style={{ paddingBottom: "10px", paddingTop: "10px", wordBreak: "break-word" }}>
                                                         {notesArray[key].description}

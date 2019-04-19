@@ -30,7 +30,7 @@ export default class PinAndOthers extends Component {
         this.setState({ open1: false })
     }
     render() {
-        let cardsView = this.props.noteProps ? "listCards" : "cards";
+        let cardsView = this.props.noteProps ? "cards" : "listCards";
         return (
             <div>
                 <label style={{ fontFamily: "georgia", fontSize: "15px", color: "grey", marginRight: "760px" }}>PINNED</label>
@@ -49,11 +49,13 @@ export default class PinAndOthers extends Component {
                                     </div>
                                     <div onClick={() => this.handleClick(key)} style={{ display: "flex", justifyContent: "space-between" }}>
                                         <b>{key.title}</b>
-                                        <EditPin
-                                            cardPropsToPin={this.props.pinNote}
-                                            noteID={key._id}
-                                            pinStatus={key.pinned}
-                                        />
+                                        <div>
+                                            <EditPin
+                                                cardPropsToPin={this.props.pinNote}
+                                                noteID={key._id}
+                                                pinStatus={key.pinned}
+                                            />
+                                        </div>
                                     </div>
                                     <div onClick={() => this.handleClick(key)}>
                                         {key.description}
@@ -93,7 +95,7 @@ export default class PinAndOthers extends Component {
                     })
                     }
                     <DialogBox
-                        ispinned={this.props.ispinned}
+                        // ispinned={this.props.ispinned}
                         ref={this.cardsToDialogBox}
                         parentProps={this.state.open1}
                         handleEdit={this.handleClick}
@@ -109,7 +111,10 @@ export default class PinAndOthers extends Component {
                         createNotePropsToTools={this.props.getColor}
                     />
                 </div>
-                <label style={{ fontFamily: "georgia", fontSize: "15px", color: "grey", marginRight: "760px" }}>OTHERS</label>
+                {this.props.othersArray !== 0 ?
+                    <label style={{ fontFamily: "georgia", fontSize: "15px", color: "grey", marginRight: "760px" }}>OTHERS</label>
+                    :
+                    null}
                 <div className="CardsView">
                     {this.props.othersArray.map((key) => {
                         return (
@@ -125,11 +130,13 @@ export default class PinAndOthers extends Component {
                                     </div>
                                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                                         <b>{key.title}</b>
-                                        <EditPin
-                                            cardPropsToPin={this.props.pinNote}
-                                            noteID={key._id}
-                                            pinStatus={key.pinned}
-                                        />
+                                        <div>
+                                            <EditPin
+                                                cardPropsToPin={this.props.pinNote}
+                                                noteID={key._id}
+                                                pinStatus={key.pinned}
+                                            />
+                                        </div>
                                     </div>
                                     <div>
                                         {key.description}
@@ -170,7 +177,7 @@ export default class PinAndOthers extends Component {
                     })
                     }
                     <DialogBox
-                        ispinned={this.props.ispinned}
+                        // ispinned={this.props.ispinned}
                         ref={this.cardsToDialogBox}
                         parentProps={this.state.open1}
                         handleEdit={this.handleClick}

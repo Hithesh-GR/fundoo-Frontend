@@ -1,0 +1,1 @@
+Dsrc/components/cardsView.jsx 2jsX6h
