@@ -284,15 +284,15 @@ export default class Cards extends Component {
                 // alert(error)
             });
     }
-    addLabelToNote=(noteId, value)=> {
+    addLabelToNote = (noteId, value) => {
         const addLabel = {
             noteID: noteId,
             label: value
         }
         saveLabel('/saveLabelToNote', addLabel)
             .then((result) => {
-                console.log("labellllllllllllll",result);
-                
+                console.log("labellllllllllllll", result);
+
                 let newArray = this.state.notes
                 for (let i = 0; i < newArray.length; i++) {
                     if (newArray[i]._id === noteId) {
@@ -308,7 +308,7 @@ export default class Cards extends Component {
                 // alert(error)
             });
     }
-    deleteLabelFromNote=(value, noteId)=> {
+    deleteLabelFromNote = (value, noteId) => {
         const deleteLabel = {
             pull: true,
             value: value,

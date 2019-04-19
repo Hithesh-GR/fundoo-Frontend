@@ -196,13 +196,28 @@ input[type=emaill] {
 #blurimage{
   background-size: 120px 120px;
     opacity: .1;
-    margin-left: 100px;
+    margin-left: 350px;
+    width: 120px;
+    margin-top: 280px
+}
+#text{
+  margin-left: 325px;
+  margin-bottom: 150px
+}
+#text1{
+  margin-left: 250px;
+  margin-bottom: 150px
+}
+#blurimage2{
+  background-size: 120px 120px;
+    opacity: .1;
+    margin-left: 300px;
     width: 120px;
     margin-top: 150px
 }
-#text{
-  margin-left: 100px;
-  margin-bottom: 150px
+#text2{
+  margin-left: 150px;
+  margin-bottom: 100px
 }
 #CreateNote2 {
   /* height: 156px; */

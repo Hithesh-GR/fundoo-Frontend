@@ -196,6 +196,20 @@ export default class createNotes extends Component {
     render() {
         return (!this.state.openNote ?
             <MuiThemeProvider theme={theme}>
+            {/* {(this.props.notesArray).length === 0 ?
+                        <div>
+                            <div id="blurimage2"  >
+                                <img src={require('../assets/images/note.svg')} alt="note icon"
+                                    style={{ width: "inherit" }}
+                                />
+                            </div>
+                            <div id="text2" style={{ fontFamily: "georgia", color: "grey", fontSize: "25px", width: "inherit" }}>
+                                Notes you add appear here
+                                    </div>
+                        </div>
+                        :
+                        <label style={{ fontFamily: "cursive", fontSize: "18px", color: "grey", marginRight: "760px" }}>REMINDERS</label>
+                    } */}
                 <div id="createNoteParent">
                     <Card className="createNote">
                         <div className="staticCreateNote">

@@ -29,10 +29,12 @@ export default class TrashNavigator extends Component {
             <MuiThemeProvider theme={theme} >
                 {(this.props.trashArray).length === 0 ?
                     <div>
-                        <div id="blurimage">
-                            <img src={require('../assets/images/menuTrash.svg')} style={{ width: "inherit" }} />
+                        <div id="blurimage"  >
+                            <img src={require('../assets/images/menuTrash.svg')} alt="trashIcon"
+                                style={{ width: "inherit" }}
+                            />
                         </div>
-                        <div id="text" style={{ fontFamily: "georgia", color: "grey", fontSize: "30px", width: "inherit" }}>
+                        <div id="text" style={{ fontFamily: "georgia", color: "grey", fontSize: "25px", width: "inherit" }}>
                             No notes in Trash
                         </div>
                     </div>

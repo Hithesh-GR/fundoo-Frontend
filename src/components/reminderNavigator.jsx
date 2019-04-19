@@ -34,7 +34,20 @@ export default class ReminderNavigator extends Component {
         let cardsView = this.props.noteProps ? "listCards" : "cards";
         return (
             <MuiThemeProvider theme={theme}>
-                <label style={{ fontFamily: "georgia", fontSize: "18px", color: "grey", marginRight: "760px" }}>REMINDERS</label>
+                {(this.props.remiderArray).length === 0 ?
+                    <div>
+                        <div id="blurimage2"  >
+                            <img src={require('../assets/images/menuReminder.svg')} alt="reminder icon"
+                                style={{ width: "inherit" }}
+                            />
+                        </div>
+                        <div id="text2" style={{ fontFamily: "georgia", color: "grey", fontSize: "25px", width: "inherit" }}>
+                            Notes with upcoming reminders appear here
+                        </div>
+                    </div>
+                    :
+                    <label style={{ fontFamily: "cursive", fontSize: "18px", color: "grey", marginRight: "760px" }}>REMINDERS</label>
+                }
                 <div className="CardsView" >
                     {this.props.remiderArray.map((key) => {
                         return (

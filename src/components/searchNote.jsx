@@ -35,7 +35,15 @@ export default class SearchedNotes extends Component {
         return (
             <MuiThemeProvider theme={theme}>
                 <div>
-                    <label style={{ fontFamily: "georgia", fontSize: "18px", color: "grey" }}> NOTES :</label>
+                    {(this.props.searchNote).length === 0 ?
+                        <div>
+                            <div id="text1" style={{ fontFamily: "georgia", color: "grey", fontSize: "25px", width: "inherit" }}>
+                            No matching results.
+                        </div>
+                        </div>
+                        :
+                        <label style={{ fontFamily: "cursive", fontSize: "18px", color: "grey", marginRight: "760px" }}>SearchedNotes</label>
+                    }
                     <div className="CardsView" >
                         {this.props.searchNote.map((key) => {
                             return (

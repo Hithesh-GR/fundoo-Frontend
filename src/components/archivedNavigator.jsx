@@ -55,7 +55,20 @@ export default class ArchivedNavigator extends Component {
         return (
             <MuiThemeProvider theme={theme}>
                 <div>
-                    <label style={{ fontFamily: "georgia", fontSize: "18px", color: "grey", marginRight: "760px" }}>ARCHIVE</label>
+                    {(this.props.archiveArray).length === 0 ?
+                        <div>
+                            <div id="blurimage"  >
+                                <img src={require('../assets/images/menuArchive.svg')} alt="archive icon"
+                                    style={{ width: "inherit" }}
+                                />
+                            </div>
+                            <div id="text1" style={{ fontFamily: "georgia", color: "grey", fontSize: "25px", width: "inherit" }}>
+                                Your archived notes appear here
+                        </div>
+                        </div>
+                        :
+                        <label style={{ fontFamily: "cursive", fontSize: "18px", color: "grey", marginRight: "760px" }}>ARCHIVE</label>
+                    }
                     <div className="CardsView">
                         {this.props.archiveArray.map((key) => {
                             return (
