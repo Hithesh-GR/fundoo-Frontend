@@ -19,7 +19,7 @@ export default class dashBoard extends Component {
             archive: false,
             trash: false,
             searchNote: "",
-            image:"",
+            image: "",
             label: ""
         }
         this.noteToCards = React.createRef();
@@ -56,24 +56,47 @@ export default class dashBoard extends Component {
      * @param {*get new card or note} newCard 
      */
     getNewNote(newCard) {
-        console.log("new card", newCard);
         try {
             this.noteToCards.current.displayNewCard(newCard);
         } catch (err) {
             console.log("error at getNewNote in dashBoard");
         }
     }
+    /**
+     * @description:it display the searched notes
+     * @param {*searched notes value} value 
+     */
     getSearchedNotes(value) {
-        this.setState({ searchNote: value })
+        try {
+            this.setState({ searchNote: value })
+        } catch (err) {
+            console.log("error at getSearchedNotes in dashBoard");
+        }
     }
+    /**
+     * @description:it display the labels
+     * @param {*labels value} value 
+     */
     searchLabels(value) {
-        this.setState({ label: value });
-        console.log("search labels", value);
-        this.noteToCards.current.displayLabelledCards();
+        try {
+            this.setState({ label: value });
+            this.noteToCards.current.displayLabelledCards();
+        } catch (err) {
+            console.log("error at searchLabels in dashBoard");
+        }
     }
+    /**
+     * 
+     */
     makeLabelFalse() {
         this.noteToCards.current.makeLabelFalse();
     }
+    /**
+     * 
+     * @param {*} reminder 
+     * @param {*} archive 
+     * @param {*} trash 
+     */
     handleNavigation(reminder, archive, trash) {
         console.log("handleNAvigation", reminder, archive, trash);
         if (reminder === true || archive === true || trash === true) {
@@ -136,6 +159,6 @@ export default class dashBoard extends Component {
                     }
                 </div>
             </div>
-       )
+        )
     }
 }

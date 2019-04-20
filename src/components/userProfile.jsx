@@ -15,7 +15,7 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Tooltip from '@material-ui/core/Tooltip';
 import Fade from '@material-ui/core/Fade';
 import { Button } from '@material-ui/core';
-import { uploadProfilePic } from "../services/userServices";
+import { uploadProfilePic, deleteredis } from "../services/userServices";
 import { NotificationManager } from 'react-notifications';
 import '../App.css';
 /**
@@ -55,24 +55,31 @@ export default class Logout extends Component {
         }
     };
     /**
-    * @description:it will redirect to registration page
+    * @description:it will redirect to login page
     */
     handlelogout = event => {
-        try {
-            event.preventDefault();
-            localStorage.clear();
-            this.props.props.props.history.push("/login");
-        } catch (err) {
-            console.log("error at registrationclick in userProfile");
+        event.preventDefault();
+        var data = {
+            email: localStorage.getItem('email'),
+            userId: localStorage.getItem('userId')
         }
-    };
+        console.log("data in logout-->", data);
+        deleteredis(data)
+            .then((result) => {
+                console.log("result at handlelogout in userprofile", result);
+                localStorage.clear();
+                this.props.props.props.history.push("/login");
+            }).catch((err) => {
+                console.log("error at registrationclick in userProfile", err);
+            })
+    }
     /**
-     * @description:it will redirect to login page
+     * @description:it will redirect to registration page
      */
     handleregister = event => {
         try {
             event.preventDefault();
-           this.props.props.props.history.push("/registration");
+            this.props.props.props.history.push("/registration");
         } catch (err) {
             console.log("error at loginclick in userProfile");
         }
@@ -134,70 +141,70 @@ export default class Logout extends Component {
         const userDetails = localStorage.getItem('username');
         // const userDetails = localStorage.getItem('email');
         const initial = userDetails.substring(0, 1);
-            return (
-                <div>
-                    <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
-                        {({ TransitionProps }) => (
-                            <Fade {...TransitionProps} timeout={350}>
-                                <Paper style={{ width: "100%", marginLeft: "10%" }}>
-                                    <ClickAwayListener onClickAway={this.handleToggle}>
-                                        <div style={{ width: "280px", padding: "15px", marginTop: "5px" }}>
-                                            <div id="userProfileDetails">
-                                                <Tooltip title="Change Profile">
-                                                    <Avatar style={{ width: "100px", height: "100px", marginTop: "8px", backgroundColor: "blur" }}
-                                                        onClick={() => { this.triggerInputFile() }}>
-                                                        {this.state.profilePic !== "" ?
-                                                            <img style={{
-                                                                width: "-webkit-fill-available",
-                                                                height: "-webkit-fill-available"
-                                                            }} src={this.state.profilePic} alt="change Profile pic"></img>
-                                                            :
-                                                            <b style={{ fontSize: "33px" }}>{initial}</b>
-                                                        }
-                                                        <input ref={fileInput => this.fileInput = fileInput}
-                                                            type="file" style={{ 'display': 'none' }}
-                                                            className="uploadImage"
-                                                            onChange={(evt) => this.uploadImage(evt)}
-                                                        />
-                                                    </Avatar>
-                                                </Tooltip>
-                                                <span style={{ marginTop: "10%", marginLeft: "12%" }}>
-                                                    <b>   {userDetails}   </b>
-                                                    {localStorage.getItem('email')}
-                                                </span>
-                                            </div>
-                                            <Divider />
-                                            <div id="profilebutton">
-                                                <Button
-                                                    onClick={this.handleregister}>Add account</Button>
-                                                <Button
-                                                    onClick={this.handlelogout}>Sign out</Button>
-                                            </div>
+        return (
+            <div>
+                <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
+                    {({ TransitionProps }) => (
+                        <Fade {...TransitionProps} timeout={350}>
+                            <Paper style={{ width: "100%", marginLeft: "10%" }}>
+                                <ClickAwayListener onClickAway={this.handleToggle}>
+                                    <div style={{ width: "280px", padding: "15px", marginTop: "5px" }}>
+                                        <div id="userProfileDetails">
+                                            <Tooltip title="Change Profile">
+                                                <Avatar style={{ width: "100px", height: "100px", marginTop: "8px", backgroundColor: "blur" }}
+                                                    onClick={() => { this.triggerInputFile() }}>
+                                                    {this.state.profilePic !== "" ?
+                                                        <img style={{
+                                                            width: "-webkit-fill-available",
+                                                            height: "-webkit-fill-available"
+                                                        }} src={this.state.profilePic} alt="change Profile pic"></img>
+                                                        :
+                                                        <b style={{ fontSize: "33px" }}>{initial}</b>
+                                                    }
+                                                    <input ref={fileInput => this.fileInput = fileInput}
+                                                        type="file" style={{ 'display': 'none' }}
+                                                        className="uploadImage"
+                                                        onChange={(evt) => this.uploadImage(evt)}
+                                                    />
+                                                </Avatar>
+                                            </Tooltip>
+                                            <span style={{ marginTop: "10%", marginLeft: "12%" }}>
+                                                <b>   {userDetails}   </b>
+                                                {localStorage.getItem('email')}
+                                            </span>
                                         </div>
-                                    </ClickAwayListener>
-                                </Paper>
-                            </Fade>
-                        )}
-                    </Popper>
-                    <div className="iconButton">
-                        <IconButton id="userProfileIcon">
-                            <Tooltip
-                                title={"Fundoo Account   :" + localStorage.getItem('username')}>
-                                <Avatar style={{ width: "35px", height: "35px", backgroundColor: "blur" }} onClick={this.handleClick('bottom-end')} >
-                                    {this.state.profilePic !== "" ?
-                                        <img style={{
-                                            width: "-webkit-fill-available",
-                                            height: "-webkit-fill-available"
-                                        }} src={this.state.profilePic} alt="change Profile pic"></img>
-                                        :
-                                        initial
-                                    }
-                                </Avatar>
-                            </Tooltip>
-                        </IconButton>
-                    </div>
+                                        <Divider />
+                                        <div id="profilebutton">
+                                            <Button
+                                                onClick={this.handleregister}>Add account</Button>
+                                            <Button
+                                                onClick={this.handlelogout}>Sign out</Button>
+                                        </div>
+                                    </div>
+                                </ClickAwayListener>
+                            </Paper>
+                        </Fade>
+                    )}
+                </Popper>
+                <div className="iconButton">
+                    <IconButton id="userProfileIcon">
+                        <Tooltip
+                            title={"Fundoo Account   :" + localStorage.getItem('username')}>
+                            <Avatar style={{ width: "35px", height: "35px", backgroundColor: "blur" }} onClick={this.handleClick('bottom-end')} >
+                                {this.state.profilePic !== "" ?
+                                    <img style={{
+                                        width: "-webkit-fill-available",
+                                        height: "-webkit-fill-available"
+                                    }} src={this.state.profilePic} alt="change Profile pic"></img>
+                                    :
+                                    initial
+                                }
+                            </Avatar>
+                        </Tooltip>
+                    </IconButton>
                 </div>
-            );
-        
+            </div>
+        );
+
     }
 }

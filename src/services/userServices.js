@@ -39,10 +39,10 @@ export function resetPassword(password, token) {
     return axios.post(`/resetPassword/${token}`, {
         'password': password
     }, {
-        headers: {
-            'token': token
-        }
-    })
+            headers: {
+                'token': token
+            }
+        })
 }
 /**
  * 
@@ -57,4 +57,12 @@ export function uploadProfilePic(data) {
             headers: headers
         }
     )
+}
+
+export function deleteredis(data) {
+    // console.log("hai data", data);
+    return axios.post('/logout', data, {
+        headers: { 'token': localStorage.getItem('token') }
+
+    })
 }

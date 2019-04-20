@@ -104,7 +104,8 @@ export default class login extends React.Component {
             else {
                 var data = {
                     email: this.state.email,
-                    password: this.state.password
+                    password: this.state.password,
+                    userId:localStorage.getItem('userId')
                 }
                 userLogin(data)
                     .then((response) => {

@@ -892,103 +892,12 @@ div .currentDate {
   line-height: 3;
   color: gray
 }
-@media only screen and (min-width:1080px) and (max-width:2280px) {
-  
-  .watermark {
-    margin-left: 300px;
-    margin-top: 200px
-  }
-
-  #refreshIcon {
-    display: none;
-  }
-
-  #appBarIcons {
-    display: flex;
-    line-height: 3
-  }
-
-  #appBarMenuAndTitle {
-    display: flex;
-    line-height: 3
-  }
-
-  #userProfileIcon {
-    margin-left: 0px
-  }
-
-  #inputRoot {
-    color: black;
-    width: 100px;
-  }
-
-  #searchBar {
-    background: none;
-    border: none
-  }
-
-  #popperid {
-    height: 12%;
-    width: 104%
-  }
-
-  #papperlogout {
-    width: 10%;
-  }
-
-  #searchInputBase {
-    display: contents;
-  }
-
-  .setFixedMargin {
-    margin-left: auto;
-    max-width: 800px;
-  }
-
-  #createNoteParent {
-    margin-left: 5px
-  }
-
-  #cardsViewDiv {
-    margin-left: 0%;
-    background-color: #194ce6;
-  }
-
-  #cardViewIcon {
-    display: none
-  }
-
-  .listCards {
-    width: 500px;
-    height: fit-content;
-    margin-left: 100px;
-    margin-top: 25px;
-    text-align: left;
-    padding: 20px;
-    border: 1px solid #dadce0;
-    border-radius: 10px;
-    justify-content: space-between
-  }
-
-  .cards {
-    width: 240px;
-    height: fit-content;
-    margin-top: 25px;
-    /* margin-left: 5px; */
-    padding-top: 15px;
-    text-align: left;
-    padding: 7px;
-    border-radius: 10px;
-    justify-content: space-between;
-    margin-left: 10px;
-  }
-}
 
 @media only screen and (min-width:320px) and (max-width:375px) {
-  .watermark {
+  /* .watermark {
     margin-left: 300px;
     margin-top: 200px
-  }
+  } */
 
   #refreshIcon {
     display: none;
@@ -1074,6 +983,84 @@ div .currentDate {
     margin-left: 10px;
   }
 }
+
+@media only screen and (min-width:375px) and (max-width:425px) {
+  #appBarIcons {
+    display: flex;
+    line-height: 3
+  }
+
+  #appBarMenuAndTitle {
+    display: flex;
+    line-height: 3
+  }
+
+  #userProfileIcon {
+    margin-left: 0px
+  }
+
+  #searchBar {
+    background: none;
+    border: none
+  }
+
+  #popperid {
+    height: 12%;
+    width: 104%
+  }
+
+  #papperlogout {
+    width: 10%;
+  }
+
+  #searchInputBase {
+    display: none
+  }
+
+  .setFixedMargin {
+    margin-left: auto;
+    max-width: 800px;
+  }
+
+  #createNoteParent {
+    margin-left: 5px
+  }
+
+  #cardsViewDiv {
+    margin-left: 0%;
+    background-color: #194ce6;
+  }
+
+  #cardViewIcon {
+    display: none
+  }
+
+  .listCards {
+    width: 500px;
+    height: fit-content;
+    margin-left: 100px;
+    margin-top: 25px;
+    text-align: left;
+    padding: 20px;
+    border: 1px solid #dadce0;
+    border-radius: 10px;
+    justify-content: space-between
+  }
+
+  .cards {
+    width: 240px;
+    height: fit-content;
+    margin-top: 25px;
+    /* margin-left: 5px; */
+    padding-top: 15px;
+    text-align: left;
+    padding: 7px;
+    border-radius: 10px;
+    justify-content: space-between;
+    margin-left: 10px;
+  }
+}
+
 
 @media only screen and (min-width:425px) and (max-width:768px) {
   #appBarIcons {
@@ -1081,10 +1068,11 @@ div .currentDate {
     line-height: 3
   }
 
+  /* 
   .watermark {
     margin-left: 50px;
     margin-top: 100px
-  }
+  } */
 
   #refreshIcon {
     display: none;
@@ -1157,16 +1145,17 @@ div .currentDate {
   }
 }
 
-@media only screen and (min-width:1024px) {
+@media only screen and (min-width:1024px) and (max-width:1440px) {
   #appBarIcons {
     display: flex;
     line-height: 3
   }
 
+  /* 
   .watermark {
     margin-left: 50px;
     margin-top: 100px
-  }
+  } */
 
   #inputRoot {
     color: black;
