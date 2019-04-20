@@ -41,19 +41,5 @@
     "enzyme-adapter-react-16": "^1.10.0",
     "jest": "^24.1.0",
     "jest-enzyme": "^7.0.1"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
-      "!**/node_modules/**",
-      "!build/**"
-    ],
-    "coverageReporters": [
-      "lcov",
-      "text"
-    ]
-  },
-  "jest-junit": {
-    "output": "test-results/test-report.junit.xml"
   }
 }
