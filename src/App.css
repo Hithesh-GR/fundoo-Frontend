@@ -5,7 +5,7 @@
   flex-direction: column;
   padding: 20px 40px;
   border-radius: 10px;
-  box-shadow: 0px 0px 5px #555;
+  box-shadow: 0px 0px 1px #555;
   background-color: #fff;
   /* margin: 10% 0px 0px 30%; */
   margin-left: auto;
@@ -109,7 +109,7 @@ input[type=email] {
   flex-direction: column;
   padding: 20px 40px;
   border-radius: 10px;
-  box-shadow: 0px 0px 5px #555;
+  box-shadow: 0px 0px 0px #555;
   background-color: #fff;
   /* margin: 10% 0px 0px 30%; */
   margin-left: auto;
@@ -193,47 +193,43 @@ input[type=emaill] {
 }
 
 /***********************for dashBoard css***************************/
+.watermark {
+  margin-left: 300px;
+  margin-top: 250px
+}
+
 #blurimage {
   background-size: 120px 120px;
   opacity: .1;
-  margin-left: 350px;
   width: 120px;
-  margin-top: 280px
 }
 
 #text {
-  margin-left: 325px;
-  margin-bottom: 150px
+  margin-left: -15px;
 }
 
 #text1 {
-  margin-left: 250px;
-  margin-bottom: 150px
+  margin-left: -80px;
 }
 
 #blurimage2 {
   background-size: 120px 120px;
   opacity: .1;
-  margin-left: 300px;
   width: 120px;
-  margin-top: 150px
 }
 
 #text2 {
-  margin-left: 150px;
-  margin-bottom: 100px
+  margin-left: -130px;
 }
 
 #text3 {
-  margin-left: 235px;
+  margin-left: -60px;
 }
 
 #blurimage3 {
   background-size: 120px 120px;
   opacity: .1;
-  margin-left: 300px;
   width: 120px;
-  margin-top: 120px
 }
 
 #CreateNote2 {
@@ -279,14 +275,13 @@ input[type=emaill] {
   position: center;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.04);
-  margin-right: 0px;
   margin-left: 70px;
   width: 50%;
-  padding: 8px 90px
+  padding: 10px 50px
 }
 
 .searchIcon {
-  width: 72px;
+  /* width: 72px;
   height: 100%;
   margin-top: -15px;
   margin-left: -90px;
@@ -294,16 +289,34 @@ input[type=emaill] {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: gray; */
   color: gray;
+  opacity: 0.7;
+  /* width: 72px; */
+  width: fit-content;
+  height: 50%;
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-Left: -40px;
 }
 
 .searchField {
   margin-left: 0px;
 }
 
-.inputRoot {
+#inputRoot {
   color: black;
-  width: 100%;
+  width: 500px;
+
+  /* color: 'inherit';
+  width: 500%;
+  background-color: #e0e0e0;
+  margin-left: 2%;
+  overflow: hidden;
+  border-radius: 10px;  */
 }
 
 .appList {
@@ -743,6 +756,7 @@ element.style {
 .beforeSlide {
   transition: 0.25s;
 }
+
 /* 
 @media only screen and (max-width:375px) {
   .beforeSlide {
@@ -879,7 +893,16 @@ div .currentDate {
   color: gray
 }
 
-@media only screen and (min-width:375px) and (max-width:425px) {
+@media only screen and (min-width:320px) and (max-width:375px) {
+  .watermark {
+    margin-left: 300px;
+    margin-top: 250px
+  }
+
+  #refreshIcon {
+    display: none;
+  }
+
   #appBarIcons {
     display: flex;
     line-height: 3
@@ -892,6 +915,11 @@ div .currentDate {
 
   #userProfileIcon {
     margin-left: 0px
+  }
+
+  #inputRoot {
+    color: black;
+    width: 100px;
   }
 
   #searchBar {
@@ -909,7 +937,7 @@ div .currentDate {
   }
 
   #searchInputBase {
-    display: none
+    display: contents;
   }
 
   .setFixedMargin {
@@ -956,10 +984,19 @@ div .currentDate {
   }
 }
 
-@media only screen and (min-width:536px) and (max-width:600px) {
+@media only screen and (min-width:425px) and (max-width:768px) {
   #appBarIcons {
     display: flex;
     line-height: 3
+  }
+
+  #refreshIcon {
+    display: none;
+  }
+
+  #inputRoot {
+    color: black;
+    width: 170px;
   }
 
   #appBarMenuAndTitle {
@@ -977,7 +1014,15 @@ div .currentDate {
   }
 
   #searchInputBase {
-    display: none
+    display: contents;
+    /* padding-Top: "theme.spacing.unit";
+      padding-Right: "theme.spacing.unit";
+      padding-Bottom: "theme.spacing.unit";
+      padding-Left: 47px;
+      margin-Left: 5%;
+      margin-Top: 3px;
+      transition: "theme.transitions.create("width")";
+      width: 100% */
   }
 
   .setFixedMargin {
@@ -1016,10 +1061,15 @@ div .currentDate {
   }
 }
 
-@media only screen and (min-width:601px) and (max-width:774px) {
+@media only screen and (min-width:1024px) {
   #appBarIcons {
     display: flex;
     line-height: 3
+  }
+
+  #inputRoot {
+    color: black;
+    width: 300px;
   }
 
   #appBarMenuAndTitle {
@@ -1037,7 +1087,7 @@ div .currentDate {
   }
 
   #searchInputBase {
-    display: none
+    display: contents;
   }
 
   .setFixedMargin {

@@ -28,7 +28,7 @@ export default class TrashNavigator extends Component {
         return (
             <MuiThemeProvider theme={theme} >
                 {(this.props.trashArray).length === 0 ?
-                    <div>
+                    <div className="watermark">
                         <div id="blurimage"  >
                             <img src={require('../assets/images/menuTrash.svg')} alt="trashIcon"
                                 style={{ width: "inherit" }}

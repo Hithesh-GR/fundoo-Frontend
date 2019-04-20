@@ -420,7 +420,7 @@ export default class Cards extends Component {
             return (
                 <MuiThemeProvider theme={theme}>
                     {notesArray.length === 0 && pinArray(this.state.notes).length === 0 ?
-                        <div>
+                        <div className="watermark">
                             <div id="blurimage3"  >
                                 <img src={require('../assets/images/note.svg')} alt="note icon"
                                     style={{ width: "inherit" }}

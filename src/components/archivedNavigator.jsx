@@ -56,7 +56,7 @@ export default class ArchivedNavigator extends Component {
             <MuiThemeProvider theme={theme}>
                 <div>
                     {(this.props.archiveArray).length === 0 ?
-                        <div>
+                        <div className="watermark">
                             <div id="blurimage"  >
                                 <img src={require('../assets/images/menuArchive.svg')} alt="archive icon"
                                     style={{ width: "inherit" }}

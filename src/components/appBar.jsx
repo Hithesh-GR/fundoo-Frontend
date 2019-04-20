@@ -142,11 +142,11 @@ export default class appBar extends React.Component {
                                     </div>
                                     <div className="searchField">
                                         <InputBase
-                                            id="searchInputBase"
+                                            // id="searchInputBase"
                                             value={this.state.searchNote}
                                             onChange={this.handleSearchBar}
                                             placeholder="Search"
-                                            className="inputRoot"
+                                            id="inputRoot"
                                         />
                                     </div>
                                 </div>

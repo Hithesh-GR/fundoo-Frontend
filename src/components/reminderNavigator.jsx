@@ -35,7 +35,7 @@ export default class ReminderNavigator extends Component {
         return (
             <MuiThemeProvider theme={theme}>
                 {(this.props.remiderArray).length === 0 ?
-                    <div>
+                    <div className="watermark">
                         <div id="blurimage2"  >
                             <img src={require('../assets/images/menuReminder.svg')} alt="reminder icon"
                                 style={{ width: "inherit" }}

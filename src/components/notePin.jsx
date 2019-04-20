@@ -14,10 +14,7 @@ export default class PinAndOthers extends Component {
     constructor() {
         super();
         this.state = {
-
             open1: false,
-
-
         }
         this.cardsToDialogBox = React.createRef();
     }
@@ -95,7 +92,7 @@ export default class PinAndOthers extends Component {
                     })
                     }
                     <DialogBox
-                        // ispinned={this.props.ispinned}
+                        ispinned={this.props.ispinned}
                         ref={this.cardsToDialogBox}
                         parentProps={this.state.open1}
                         handleEdit={this.handleClick}
@@ -177,7 +174,7 @@ export default class PinAndOthers extends Component {
                     })
                     }
                     <DialogBox
-                        // ispinned={this.props.ispinned}
+                        ispinned={this.props.ispinned}
                         ref={this.cardsToDialogBox}
                         parentProps={this.state.open1}
                         handleEdit={this.handleClick}

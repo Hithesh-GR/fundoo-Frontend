@@ -37,7 +37,7 @@ export default class SearchedNotes extends Component {
                 <div>
                     {(this.props.searchNote).length === 0 ?
                         <div>
-                            <div id="text1" style={{ fontFamily: "georgia", color: "grey", fontSize: "25px", width: "inherit" }}>
+                            <div style={{ fontFamily: "georgia", color: "grey", fontSize: "25px", width: "inherit",marginLeft:"50px" }}>
                             No matching results.
                         </div>
                         </div>
