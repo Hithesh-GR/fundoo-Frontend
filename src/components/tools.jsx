@@ -11,7 +11,7 @@ import ColorBox from '../components/colorBox';
 import UploadImage from '../components/uploadImage';
 import Archive from '../components/archive';
 import MoreOptions from '../components/moreOptions';
-// import Collaborator from '../components/collaborator';
+import Collaborator from '../components/collaborator';
 export default class Tools extends Component {
     constructor(props) {
         super(props);
@@ -44,7 +44,10 @@ export default class Tools extends Component {
                         notetitle={this.props.notetitle}
                         notedescription={this.props.notedescription}
                     />
-                    {/* <Collaborator /> */}
+                    <Collaborator
+                        noteId={this.props.noteID}
+                        collabs={this.props.collab}
+                        owner={this.props.owner} />
                     <ColorBox
                         handleToggle={this.handleToggle}
                         toolsPropsToColorpallete={this.props.createNotePropsToTools}

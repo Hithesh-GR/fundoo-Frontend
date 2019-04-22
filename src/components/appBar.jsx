@@ -71,7 +71,7 @@ export default class appBar extends React.Component {
         super(props);
         this.state = {
             left: false,
-            open: false,
+            open: true,
             searchNote: ""
         };
         this.handleSearchBar = this.handleSearchBar.bind(this);

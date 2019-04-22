@@ -15,7 +15,7 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Tooltip from '@material-ui/core/Tooltip';
 import Fade from '@material-ui/core/Fade';
 import { Button } from '@material-ui/core';
-import { uploadProfilePic, deleteredis } from "../services/userServices";
+import { uploadProfilePic } from "../services/userServices";
 import { NotificationManager } from 'react-notifications';
 import '../App.css';
 /**
@@ -58,21 +58,30 @@ export default class Logout extends Component {
     * @description:it will redirect to login page
     */
     handlelogout = event => {
-        event.preventDefault();
-        var data = {
-            email: localStorage.getItem('email'),
-            userId: localStorage.getItem('userId')
+        try {
+            event.preventDefault();
+            localStorage.clear();
+            this.props.props.props.history.push("/login");
+        } catch (err) {
+            console.log("error at registrationclick in userProfile");
         }
-        console.log("data in logout-->", data);
-        deleteredis(data)
-            .then((result) => {
-                console.log("result at handlelogout in userprofile", result);
-                localStorage.clear();
-                this.props.props.props.history.push("/login");
-            }).catch((err) => {
-                console.log("error at registrationclick in userProfile", err);
-            })
-    }
+    };
+    // handlelogout = event => {
+    //     event.preventDefault();
+    //     var data = {
+    //         email: localStorage.getItem('email'),
+    //         userId: localStorage.getItem('userId')
+    //     }
+    //     console.log("data in logout-->", data);
+    //     deleteredis(data)
+    //         .then((result) => {
+    //             console.log("result at handlelogout in userprofile", result);
+    //             localStorage.clear();
+    //             this.props.props.props.history.push("/login");
+    //         }).catch((err) => {
+    //             console.log("error at registrationclick in userProfile", err);
+    //         })
+    // }
     /**
      * @description:it will redirect to registration page
      */

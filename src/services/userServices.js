@@ -58,11 +58,10 @@ export function uploadProfilePic(data) {
         }
     )
 }
+// export function deleteredis(data) {
+//     // console.log("hai data", data);
+//     return axios.post('/logout', data, {
+//         headers: { 'token': localStorage.getItem('token') }
 
-export function deleteredis(data) {
-    // console.log("hai data", data);
-    return axios.post('/logout', data, {
-        headers: { 'token': localStorage.getItem('token') }
-
-    })
-}
+//     })
+// }

@@ -115,7 +115,7 @@ export default class dashBoard extends Component {
         }
     }
     render() {
-        const slidingCards = this.state.slideCards ? "afterSlide" : "beforeSlide"
+        const slidingCards = this.state.slideCards ? "beforeSlide" : "afterSlide"
         return (
             <div className={slidingCards}>
                 <div >

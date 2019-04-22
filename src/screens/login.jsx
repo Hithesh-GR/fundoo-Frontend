@@ -105,7 +105,7 @@ export default class login extends React.Component {
                 var data = {
                     email: this.state.email,
                     password: this.state.password,
-                    userId:localStorage.getItem('userId')
+                    // userId:localStorage.getItem('userId') (if we use redis for login then only use this)
                 }
                 userLogin(data)
                     .then((response) => {
