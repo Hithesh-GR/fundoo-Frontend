@@ -45,9 +45,10 @@ export default class Tools extends Component {
                         notedescription={this.props.notedescription}
                     />
                     <Collaborator
-                        noteId={this.props.noteID}
+                        noteID={this.props.noteID}
                         collabs={this.props.collab}
-                        owner={this.props.owner} />
+                        owner={this.props.owner}
+                    />
                     <ColorBox
                         handleToggle={this.handleToggle}
                         toolsPropsToColorpallete={this.props.createNotePropsToTools}

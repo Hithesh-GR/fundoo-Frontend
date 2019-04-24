@@ -6,7 +6,7 @@
  *  @since          : 23-02-2019
  *****************************************************************************************************/
 import React, { Component } from 'react';
-import { Card, Chip, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { Card, Chip, MuiThemeProvider, createMuiTheme, Avatar, Tooltip } from '@material-ui/core';
 import Tools from '../components/tools';
 import ArchivedNavigator from "../components/archivedNavigator";
 import ReminderNavigator from "../components/reminderNavigator";
@@ -291,8 +291,6 @@ export default class Cards extends Component {
         }
         saveLabel('/saveLabelToNote', addLabel)
             .then((result) => {
-                console.log("labellllllllllllll", result);
-
                 let newArray = this.state.notes
                 for (let i = 0; i < newArray.length; i++) {
                     if (newArray[i]._id === noteId) {
@@ -481,6 +479,32 @@ export default class Cards extends Component {
                                                     <div onClick={() => this.handleClick(notesArray[key])} style={{ paddingBottom: "10px", paddingTop: "10px", wordBreak: "break-word" }}>
                                                         {notesArray[key].description}
                                                     </div >
+                                                    {/* <div style={{ display: "flex", flexDirection: "row" }}>
+                                                        {notesArray[key].collab.length > 0 ?
+                                                            notesArray[key].collab.map((collabKey, index) => {
+                                                                if (notesArray[key].owner.firstName !== "") {
+                                                                    return (
+                                                                        <div style={{ margin: "3px" }} key={index} >
+                                                                            {collabKey.username !== localStorage.getItem('email') && notesArray[key].owner !== undefined ?
+                                                                                <Tooltip title={collabKey.firstName + " " + collabKey.lastName + " (" + collabKey.username + ")"}>
+                                                                                    <Avatar style={{ height: "30px", width: "30px", backgroundColor: "rgb(0,0,0,.10)" }}>
+                                                                                        {collabKey.firstName.substring(0, 1)}
+                                                                                    </Avatar>
+                                                                                </Tooltip>
+                                                                                :
+                                                                                <Tooltip title={notesArray[key].owner.firstName + " " + notesArray[key].owner.lastName + " (" + notesArray[key].owner.username + ")"}>
+                                                                                    <Avatar style={{ height: "30px", width: "30px", backgroundColor: "rgb(0,0,0,.10)" }}>
+                                                                                        {notesArray[key].owner.firstName.substring(0, 1)}
+                                                                                    </Avatar>
+                                                                                </Tooltip>
+                                                                            }
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                            })
+                                                            : null
+                                                        }
+                                                    </div> */}
                                                     <div>
                                                         {/* <img src={clockIcon} alt="clockIcon" /> */}
                                                         {notesArray[key].reminder ?
@@ -493,7 +517,7 @@ export default class Cards extends Component {
                                                         }
                                                         {notesArray[key].label.length > 0 ?
                                                             notesArray[key].label.map((key1, index) =>
-                                                                <div key={index} >
+                                                                <div key={index}>
                                                                     <Chip
                                                                         label={key1}
                                                                         onDelete={() => this.deleteLabelFromNote(key1, notesArray[key]._id)}
@@ -501,12 +525,15 @@ export default class Cards extends Component {
                                                                 </div>
                                                             )
                                                             :
-                                                            null}
+                                                            null
+                                                        }
                                                     </div>
                                                 </div>
                                                 <div id="displaycontentdiv">
                                                     <Tools
                                                         date={notesArray[key].reminder}
+                                                        collab={notesArray[key].collab}
+                                                        owner={notesArray[key].owner}
                                                         notetitle={notesArray[key].title}
                                                         notedescription={notesArray[key].description}
                                                         createNotePropsToTools={this.getColor}
