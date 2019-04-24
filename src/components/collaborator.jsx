@@ -42,7 +42,7 @@ export default class Collaborator extends Component {
     saveCollab() {
         if (this.state.inputCollab !== "") {
             let collabData = this.state.collabs.filter(obj => obj.username === this.state.inputCollab);
-            console.log("collabData", collabData, this.props.noteID);
+            console.log("collabData=========>", collabData, this.props.noteID);
             let newArray = [];
             newArray.push(collabData[0]);
             this.setState({
@@ -51,7 +51,7 @@ export default class Collaborator extends Component {
             });
             const data = {
                 noteID: this.props.noteID,
-                collabID: collabData[0]._id
+                collabID: collabData[0].user_id
             }
             saveCollabs('/saveCollaborator', data)
                 .then((result) => {
@@ -95,7 +95,7 @@ export default class Collaborator extends Component {
                 if (this.props.collabs !== undefined && this.props.collabs.length > 0 && this.props.owner !== undefined) {
                     let newArray = [];
                     let owner = {
-                        _id: this.props.owner._id,
+                        userId: this.props.owner.user_id,
                         firstName: this.props.owner.firstName,
                         lastName: this.props.owner.lastName + " (Owner)",
                         username: this.props.owner.username
@@ -119,13 +119,12 @@ export default class Collaborator extends Component {
     render() {
         const userDetails = localStorage.getItem('username');
         const mailId = localStorage.getItem('email');
-        const initial = userDetails.substring(0, 1).toUpperCase();
+        const initial = userDetails.substring(0, 1);
         let collaborators = this.state.collabSelection;
         let collabDetails = collaborators.map((key) =>
             <div style={{ display: "flex", flexDirection: "row", paddingLeft: "10px", paddingTop: "10px", width: "530px" }}>
                 <Avatar>{key.firstName.substring(0, 1)}</Avatar>
                 <div style={{ display: "flex", flexDirection: "column", paddingLeft: "18px", paddingTop: "8px" }}>
-
                     <div style={{ fontSize: "13px", fontFamily: "'Roboto',arial,sans-serif", fontWeight: "700" }}>
                         {key.firstName + " " + key.lastName}
                     </div>
@@ -154,6 +153,7 @@ export default class Collaborator extends Component {
                         {this.props.collabs === 0 ?
                             <div style={{ display: "flex", flexDirection: "row", paddingLeft: "10px", paddingTop: "10px", width: "530px" }}>
                                 <Avatar>{initial}</Avatar>
+
                                 <div style={{ display: "flex", flexDirection: "column", paddingLeft: "18px", paddingTop: "8px" }}>
                                     <div style={{ fontSize: "13px", fontFamily: "'Roboto',arial,sans-serif", fontWeight: "700" }}>
                                         {userDetails}
@@ -177,6 +177,16 @@ export default class Collaborator extends Component {
                                 value={this.state.inputCollab}
                                 onChange={this.handleInputCollab}
                             />
+                            {/* <Input
+                               
+    
+                                placeholder="Person or email to share with"
+                                onKeyUp={() => { this.handleSearch(this.state.word) }}
+                                value={this.state.word}
+                                onClick={this.handleClick}
+                                onChange={(event) => this.setState({ word: event.target.value })}
+                            /> */}
+
                         </div>
                         <div style={{ display: "flex", paddingBottom: "10px", paddingTop: "10px", backgroundColor: "#EEEEEE" }}>
                             <div style={{ marginLeft: "330px" }} >

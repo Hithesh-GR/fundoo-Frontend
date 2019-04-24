@@ -479,7 +479,7 @@ export default class Cards extends Component {
                                                     <div onClick={() => this.handleClick(notesArray[key])} style={{ paddingBottom: "10px", paddingTop: "10px", wordBreak: "break-word" }}>
                                                         {notesArray[key].description}
                                                     </div >
-                                                    {/* <div style={{ display: "flex", flexDirection: "row" }}>
+                                                    <div style={{ display: "flex", flexDirection: "row" }}>
                                                         {notesArray[key].collab.length > 0 ?
                                                             notesArray[key].collab.map((collabKey, index) => {
                                                                 if (notesArray[key].owner.firstName !== "") {
@@ -504,7 +504,7 @@ export default class Cards extends Component {
                                                             })
                                                             : null
                                                         }
-                                                    </div> */}
+                                                    </div>
                                                     <div>
                                                         {/* <img src={clockIcon} alt="clockIcon" /> */}
                                                         {notesArray[key].reminder ?

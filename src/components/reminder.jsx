@@ -105,7 +105,7 @@ export default class reminder extends Component {
         this.props.reminder(this.state.date, this.props.noteID);
     }
     componentDidUpdate() {
-        console.log("reminder date in componentwillmount-->", this.props.date);
+        console.log("reminder date in componentDidUpdate-->", this.props.date);
         if (this.props.date !== undefined && this.props.date !== "") {
             askForPermissioToReceiveNotifications(this.props.date, this.props.notetitle, this.props.notedescription)
                 .then((diff) => {

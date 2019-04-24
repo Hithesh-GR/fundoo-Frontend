@@ -1,9 +1,10 @@
 import firebase from 'firebase';
 import axios from 'axios';
 require('dotenv').config();
+
 export const initializeFirebase = () => {
     firebase.initializeApp({
-        messagingSenderId: process.env.messagingSenderId
+        messagingSenderId: "702217838877"
     });
     navigator.serviceWorker
         .register('/my-sw.js')
@@ -15,10 +16,10 @@ export const initializeFirebase = () => {
 export const askForPermissioToReceiveNotifications = async (userdate, title, description) => {
     try {
         console.log("userdateuserdateuserdate==>", userdate);
-        // const messaging = firebase.messaging();
-        // await messaging.requestPermission();
-        // const token = await messaging.getToken();
-        // console.log('token:============>', token);
+        const messaging = firebase.messaging();
+        await messaging.requestPermission();
+        const token = await messaging.getToken();
+        console.log('token:============>', token);
         var date = new Date()
         //console.log("date-->0", date);
         var date1 = new Date(userdate)
@@ -35,12 +36,13 @@ export const askForPermissioToReceiveNotifications = async (userdate, title, des
                     // "click_action": "http://localhost:3000/",
                     // "icon": "http://url-to-an-icon/icon.png"
                 },
-                // "to": token
-                "to": process.env.token
+                "to": token
+                // "to": process.env.token
             }
             passmessage(data)
         }, diff);
-        return diff;
+       return diff;
+        
     } catch (error) {
         console.error("errorrrrrrrrrrrrrrrrrr", error);
     }
