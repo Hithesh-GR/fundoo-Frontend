@@ -2,12 +2,7 @@ import * as firebase from "firebase";
 import { pushNotification } from "../../client/src/services/noteServices";
 export const initializeFirebase = () => {
   firebase.initializeApp({
-    apiKey: "AIzaSyC55mGE8UWZJtEFUdcFFFbMsCFCjieUyzg",
-    authDomain: "pushnotification-4e632.firebaseapp.com",
-    databaseURL: "https://pushnotification-4e632.firebaseio.com",
-    projectId: "pushnotification-4e632",
-    storageBucket: "pushnotification-4e632.appspot.com",
-    messagingSenderId: "702217838877"
+    
   });
   // use other service worker
   navigator.serviceWorker.register("/my-sw.js").then(registration => {
