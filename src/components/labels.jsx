@@ -24,7 +24,7 @@ export default class AddLabelsOnNote extends Component {
                 this.setState({
                     label: result.data.data
                 })
-                console.log("getLabels result from back-end", result);
+                // console.log("getLabels result from back-end", result);
             })
             .catch((error) => {
                 NotificationManager.error(error);
@@ -32,8 +32,7 @@ export default class AddLabelsOnNote extends Component {
             });
     }
     showLabels = (value) => {
-        console.log("show lablesssssssssss",value);
-        
+        // console.log("show lablesssssssssss",value);
         this.setState({
             label: [...this.state.label, value]
         })
@@ -50,8 +49,6 @@ export default class AddLabelsOnNote extends Component {
         this.props.addLabelToNote(noteID, label)
     }
     render() {
-        console.log("this.state.lable-->",this.state.label);
-        
         let displayLabels = this.state.label;
         if (this.state.label !== "") {
             displayLabels = this.state.label.map((key) =>

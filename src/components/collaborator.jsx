@@ -33,7 +33,8 @@ export default class Collaborator extends Component {
             collabs: [],
             collabSelection: [],
             inputCollab: "",
-            collabSuggestions: []
+            collabSuggestions: [],
+            list: []
         }
         this.handleColab = this.handleColab.bind(this);
         this.handleInputCollab = this.handleInputCollab.bind(this);
@@ -51,7 +52,7 @@ export default class Collaborator extends Component {
             });
             const data = {
                 noteID: this.props.noteID,
-                collabID: collabData[0].user_id
+                collabUserID: collabData[0].user_id
             }
             saveCollabs('/saveCollaborator', data)
                 .then((result) => {
@@ -72,7 +73,6 @@ export default class Collaborator extends Component {
         this.setState({
             open: !this.state.open
         });
-        // alert("Invalid user")
     }
 
     handleInputCollab(e) {
@@ -95,9 +95,9 @@ export default class Collaborator extends Component {
                 if (this.props.collabs !== undefined && this.props.collabs.length > 0 && this.props.owner !== undefined) {
                     let newArray = [];
                     let owner = {
-                        userId: this.props.owner.user_id,
+                        _id: this.props.owner._id,
                         firstName: this.props.owner.firstName,
-                        lastName: this.props.owner.lastName + " (Owner)",
+                        lastName: this.props.owner.lastName + "(Owner)",
                         username: this.props.owner.username
                     }
                     newArray.push(owner)
@@ -150,10 +150,9 @@ export default class Collaborator extends Component {
                         >
                             Collaborators</DialogTitle>
                         <Divider />
-                        {this.props.collabs === 0 ?
+                        {this.state.collabs !== 0 ?
                             <div style={{ display: "flex", flexDirection: "row", paddingLeft: "10px", paddingTop: "10px", width: "530px" }}>
                                 <Avatar>{initial}</Avatar>
-
                                 <div style={{ display: "flex", flexDirection: "column", paddingLeft: "18px", paddingTop: "8px" }}>
                                     <div style={{ fontSize: "13px", fontFamily: "'Roboto',arial,sans-serif", fontWeight: "700" }}>
                                         {userDetails}
@@ -177,16 +176,6 @@ export default class Collaborator extends Component {
                                 value={this.state.inputCollab}
                                 onChange={this.handleInputCollab}
                             />
-                            {/* <Input
-                               
-    
-                                placeholder="Person or email to share with"
-                                onKeyUp={() => { this.handleSearch(this.state.word) }}
-                                value={this.state.word}
-                                onClick={this.handleClick}
-                                onChange={(event) => this.setState({ word: event.target.value })}
-                            /> */}
-
                         </div>
                         <div style={{ display: "flex", paddingBottom: "10px", paddingTop: "10px", backgroundColor: "#EEEEEE" }}>
                             <div style={{ marginLeft: "330px" }} >

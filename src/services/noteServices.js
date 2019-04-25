@@ -26,7 +26,7 @@ export function createNote(data) {
  * @description:To get the created notes
  */
 export function getNotes() {
-    console.log("*----get notes from front-end----*");
+    // console.log("*----get notes from front-end----*");
     return axios.get('/getNotes', {
         headers: {
             "token": localStorage.getItem("token")
@@ -187,7 +187,7 @@ export function addLabel(url,data) {
     })
 }
 export function getLabels() {
-    console.log("*----get labels from front-end----*");
+    // console.log("*----get labels from front-end----*");
     return axios.get('/getLabels', {
         headers: {
             "token": localStorage.getItem("token")
@@ -243,6 +243,15 @@ export function getCollabDetails(url) {
             "token": localStorage.getItem("token")
         }
     })
+}
+export function pushNotification(data) {
+    console.log("create note call",data);
+    return axios.post( "/pushNotification",data,{
+        headers: {
+            "token": localStorage.getItem("token")
+        },
+      
+     } )
 }
 
 /********************************************************************************/

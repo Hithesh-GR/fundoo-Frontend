@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 import CreateNote from '../components/createNotes';
 import Notes from '../components/notes';
 import AppbarComponent from '../components/appBar';
+import { askForPermissioToReceiveNotifications } from '../pushnotification';
 export default class dashBoard extends Component {
     constructor(props) {
         super(props);
@@ -91,6 +92,9 @@ export default class dashBoard extends Component {
     makeLabelFalse() {
         this.noteToCards.current.makeLabelFalse();
     }
+    componentWillMount = () => {
+        askForPermissioToReceiveNotifications();
+      };
     /**
      * 
      * @param {*} reminder 

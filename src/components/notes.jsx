@@ -17,7 +17,6 @@ import DialogBox from '../components/dialogBox';
 import EditPin from '../components/editPin';
 import PinAndOthers from '../components/notePin';
 import SearchedNotes from '../components/searchNote';
-import { NotificationManager } from 'react-notifications';
 import '../App.css';
 // import clockIcon from '../assets/images/clockIcon.svg';
 const theme = createMuiTheme({
@@ -69,10 +68,10 @@ export default class Cards extends Component {
                 this.setState({
                     notes: result.data.data
                 })
-                console.log("getNotes result from back-end", result);
+                // console.log("getNotes result from back-end", result);
             })
             .catch((error) => {
-                NotificationManager.error(error);
+                console.log(error);
                 // alert(error)
             });
     }
@@ -94,7 +93,7 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                NotificationManager.error(error);
+                console.log(error);
                 // alert(error)
             });
     }
@@ -118,7 +117,7 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                NotificationManager.error(error);
+                console.log(error);
                 // alert(error)
             });
     }
@@ -140,7 +139,7 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                NotificationManager.error(error);
+                console.log(error);
                 // alert(error)
             });
     }
@@ -164,7 +163,7 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                NotificationManager.error(error);
+                console.log(error);
                 // alert(error)
             });
     }
@@ -186,7 +185,7 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                NotificationManager.error(error);
+                console.log(error);
                 // alert(error)
             });
     }
@@ -209,7 +208,7 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                NotificationManager.error(error);
+                console.log(error);
                 // alert(error)
             });
     }
@@ -259,7 +258,7 @@ export default class Cards extends Component {
 
             })
             .catch((error) => {
-                NotificationManager.error(error);
+                console.log(error);
                 // alert(error)
             });
     }
@@ -280,7 +279,7 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                NotificationManager.error(error);
+                console.log(error);
                 // alert(error)
             });
     }
@@ -302,7 +301,7 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                NotificationManager.error(error);
+                console.log(error);
                 // alert(error)
             });
     }
@@ -325,7 +324,7 @@ export default class Cards extends Component {
                 }
             })
             .catch((error) => {
-                NotificationManager.error(error);
+                console.log(error);
                 // alert(error)
             });
     }

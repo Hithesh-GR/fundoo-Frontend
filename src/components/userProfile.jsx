@@ -18,6 +18,8 @@ import { Button } from '@material-ui/core';
 import { uploadProfilePic } from "../services/userServices";
 import { NotificationManager } from 'react-notifications';
 import '../App.css';
+import  {deletePushToken}  from '../pushnotification';
+
 /**
 * @description:This method is used to Logout ui.. 
 */
@@ -60,6 +62,8 @@ export default class Logout extends Component {
     handlelogout = event => {
         try {
             event.preventDefault();
+            deletePushToken();
+
             localStorage.clear();
             this.props.props.props.history.push("/login");
         } catch (err) {
