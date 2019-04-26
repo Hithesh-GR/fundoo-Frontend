@@ -52,7 +52,7 @@ export default class Collaborator extends Component {
             });
             const data = {
                 noteID: this.props.noteID,
-                collabUserID: collabData[0].user_id
+                collabUserID: collabData[0]._id
             }
             saveCollabs('/saveCollaborator', data)
                 .then((result) => {
