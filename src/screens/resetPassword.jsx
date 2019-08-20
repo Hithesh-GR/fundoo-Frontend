@@ -14,7 +14,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
-import { resetPassword } from "../services/userServices";
+import { resetPassword } from "../services/userServices.js";
 import "../App.css";
 export default class ResetPassword extends React.Component {
     constructor(props) {
@@ -31,7 +31,7 @@ export default class ResetPassword extends React.Component {
     /**
      * @description:it handles to change the states
      */
-    handleChange = prop => event => {
+    handleChange (prop,event) {
         try {
             this.setState({ [prop]: event.target.value });
         } catch (err) {
@@ -41,7 +41,7 @@ export default class ResetPassword extends React.Component {
     /**
      * @description:it will displays the entered password 
      */
-    handleClickShowPassword = () => {
+    handleClickShowPassword () {
         try {
             this.setState(state => ({ showPassword: !state.showPassword }));
         } catch (err) {
@@ -51,7 +51,7 @@ export default class ResetPassword extends React.Component {
     /**
      * @description:it will displays the entered password 
      */
-    handleClickShowPassword1 = () => {
+    handleClickShowPassword1 () {
         try {
             this.setState(state => ({ showPassword1: !state.showPassword1 }));
         } catch (err) {
@@ -61,7 +61,7 @@ export default class ResetPassword extends React.Component {
     /**
      * @description:it handles the enter button from keyboard
      */
-    handleEnter = event => {
+    handleEnter (event) {
         try {
             if (event.key === 'Enter') {
                 event.preventDefault();
@@ -74,7 +74,7 @@ export default class ResetPassword extends React.Component {
     /**
     * @description:it will submit the entered password and checks the all the conditions
     */
-    handleSubmit = event => {
+    handleSubmit (event) {
         try {
             event.preventDefault();
             if (this.state.password === "") {
@@ -132,7 +132,7 @@ export default class ResetPassword extends React.Component {
     /**
      * @description:it will resets the page or form if we entered wrong fields
      */
-    resetForm = () => {
+    resetForm () {
         try {
             this.setState(this.baseState);
         } catch (err) {
@@ -142,7 +142,7 @@ export default class ResetPassword extends React.Component {
     /**
      * @description:use to auto close snackBar
      */
-    handleSnackClose = () => {
+    handleSnackClose () {
         try {
             this.setState({
                 openSnackBar: false

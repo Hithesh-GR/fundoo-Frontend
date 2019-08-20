@@ -7,11 +7,11 @@
  *****************************************************************************************/
 import React, { Component } from 'react';
 import { Input, Card, createMuiTheme, MuiThemeProvider, Chip } from '@material-ui/core'
-import Tools from './tools';
+import Tools from './tools.jsx';
 import { Button } from '@material-ui/core';
-import { createNote } from '../services/noteServices';
-import EditPin from '../components/editPin';
-import UploadImage from './uploadImage';
+import { createNote } from '../services/noteServices.js';
+import EditPin from '../components/editPin.jsx';
+import UploadImage from './uploadImage.jsx';
 import { NotificationManager } from 'react-notifications';
 const theme = createMuiTheme({
     overrides: {
@@ -142,7 +142,7 @@ export default class createNotes extends Component {
             console.log("error at handleImage in createNotes");
         }
     }
-    reminderNote = () => {
+    reminderNote () {
         this.setState({ reminder: "" })
     }
     /**

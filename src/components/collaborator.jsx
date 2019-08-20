@@ -8,7 +8,7 @@
 import React, { Component } from 'react';
 import notePerson from '../assets/images/addPerson.svg';
 import { Avatar, Dialog, DialogTitle, Button, Divider, Input, Tooltip } from '@material-ui/core';
-import { getCollabDetails, saveCollabs } from '../services/noteServices';
+import { getCollabDetails, saveCollabs } from '../services/noteServices.js';
 // const theme = createMuiTheme({
 //     overrides: {
 //         MuiDialog: {

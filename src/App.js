@@ -6,12 +6,12 @@
  *  @since          : 23-02-2019
  ******************************************************************************/
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import login from "../src/screens/login";
-import registration from "../src/screens/registration";
-import forgotPassword from "../src/screens/forgotPassword";
-import resetPassword from "../src/screens/resetPassword";
-import dashBoard from "./screens/dashBoard";
+import { BrowserRouter as Router, Route, Redirect,Switch } from "react-router-dom";
+import registration from "./screens/registration.jsx";
+import forgotPassword from "./screens/forgotPassword.jsx";
+import resetPassword from "./screens/resetPassword.jsx";
+import Login from './screens/login.jsx';
+import DashBoard from './screens/dashBoard.jsx';
 
 /*This will rename our component to Component so that we can use it to render because React 
 requires components to be capitalized otherwise it will treat it as a normal HTML element.*/
@@ -21,6 +21,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
   * to determine whether or not we should render the component that was passed in or redirect the user to
   * another location.
   */
+ <Switch>
   <Route {...rest} render={props => (
     localStorage.getItem('token') ? (
       <Component {...props}/>
@@ -32,19 +33,23 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
       }}/>
     )
   )}/>
+  </Switch>
 )
+
 export default class App extends React.Component {
   render() {
     return (
       <div>
         <Router>
           <div>
+          <Switch>
             <Route path="/registration" component={registration}></Route>
-            <Route path="/" exact component={login}></Route>
-            <Route path="/login" component={login}></Route>
+            <Route path="/" exact component={Login}></Route>
+            <Route path="/login" component={Login}></Route>
             <Route path="/forgotPassword" component={forgotPassword}></Route>
             <Route path="/resetPassword" component={resetPassword}></Route> 
-            <PrivateRoute path="/dashBoard" component={dashBoard}></PrivateRoute>
+            <PrivateRoute path="/dashBoard" component={DashBoard}></PrivateRoute>
+          </Switch>
           </div>
         </Router>
       </div>  

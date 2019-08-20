@@ -7,8 +7,8 @@
  *********************************************************************************/
 import React, { Component } from 'react';
 import { Dialog, Input, Button, MuiThemeProvider, createMuiTheme, Chip } from '@material-ui/core';
-import Tools from '../components/tools';
-import EditPin from '../components/editPin';
+import Tools from '../components/tools.jsx';
+import EditPin from '../components/editPin.jsx';
 const theme = createMuiTheme({
     overrides: {
         MuiDialog: {
@@ -93,38 +93,38 @@ export default class DialogBox extends Component {
         }
     }
 
-    closeDialogPopper = (e) => {
+    closeDialogPopper (e) {
         this.props.closeEditBox(e);
     }
 
-    reminder1 = () => {
+    reminder1  ()  {
         this.setState({ reminder: "" })
         this.props.reminder('', this.state._id)
     }
-    createNotePropsToTools = (value, noteID) => {
+    createNotePropsToTools  (value, noteID)  {
         this.setState({ color: value })
         this.props.createNotePropsToTools(value, noteID)
 
     }
-    archiveNote = (value, noteID) => {
+    archiveNote (value, noteID)  {
         console.log("archive value in dialog========>", value);
         this.setState({ archive: value })
         this.props.archiveNote(value, noteID)
         this.props.closeEditBox();
     }
-    reminder = (value, noteID) => {
+    reminder (value, noteID)  {
         this.setState({ reminder: value })
         this.props.reminder(value, noteID);
     }
-    image = (value, noteID) => {
+    image (value, noteID)  {
         this.setState({ image: value })
         this.props.uploadImage(value, noteID);
     }
-    trashNote = (noteID) => {
+    trashNote (noteID)  {
         this.props.trashNote(noteID);
         this.props.closeEditBox();
     }
-    ispinned = (value, noteID) => {
+    ispinned  (value, noteID) {
         this.setState({ pinned: value })
         this.props.ispinned(value, noteID);
     }

@@ -42,7 +42,7 @@ export default class Archive extends Component {
     /**
     * @description:use to auto close snackBar
     */
-    handleSnackClose = () => {
+    handleSnackClose ()  {
         try {
             this.setState({
                 openSnackBar: false

@@ -6,12 +6,12 @@
  *  @since          : 23-02-2019
  *****************************************************************************************/
 import React, { Component } from 'react';
-import Reminder from '../components/reminder';
-import ColorBox from '../components/colorBox';
-import UploadImage from '../components/uploadImage';
-import Archive from '../components/archive';
-import MoreOptions from '../components/moreOptions';
-import Collaborator from '../components/collaborator';
+import Reminder from '../components/reminder.jsx';
+import ColorBox from '../components/colorBox.jsx';
+import UploadImage from '../components/uploadImage.jsx';
+import Archive from '../components/archive.jsx';
+import MoreOptions from '../components/moreOptions.jsx';
+import Collaborator from '../components/collaborator.jsx';
 export default class Tools extends Component {
     constructor(props) {
         super(props);

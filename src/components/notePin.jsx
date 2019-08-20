@@ -7,9 +7,9 @@
  *********************************************************************************/
 import React, { Component } from 'react';
 import { Card, Chip } from '@material-ui/core';
-import Tools from '../components/tools';
-import EditPin from '../components/editPin';
-import DialogBox from '../components/dialogBox';
+import Tools from '../components/tools.jsx';
+import EditPin from '../components/editPin.jsx';
+import DialogBox from '../components/dialogBox.jsx';
 export default class PinAndOthers extends Component {
     constructor() {
         super();
@@ -23,7 +23,7 @@ export default class PinAndOthers extends Component {
         this.cardsToDialogBox.current.getData(note);;
         await this.setState({ open1: true })
     }
-    closeEditBox = (e) => {
+    closeEditBox (e) {
         this.setState({ open1: false })
     }
     render() {

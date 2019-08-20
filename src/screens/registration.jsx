@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
-import { userRegister } from "../services/userServices";
+import { userRegister } from "../services/userServices.js";
 import CloseIcon from '@material-ui/icons/Close';
 import Snackbar from '@material-ui/core/Snackbar';
 import "../App.css";
@@ -33,7 +33,7 @@ export default class registration extends React.Component {
     /**
     * @description:Takes the firstname
     */
-    handleuserfirstNameChange = event => {
+    handleuserfirstNameChange (event) {
         try {
             const firstName = event.target.value;
             this.setState({ firstName: firstName });
@@ -44,7 +44,7 @@ export default class registration extends React.Component {
     /**
      * @description:takes the lastname
      */
-    handleuserlastNameChange = event => {
+    handleuserlastNameChange (event) {
         try {
             const lastName = event.target.value;
             this.setState({ lastName: lastName });
@@ -55,7 +55,7 @@ export default class registration extends React.Component {
     /**
      * @description:takes the email
      */
-    handleuserEmailChange = event => {
+    handleuserEmailChange(event) {
         try {
             const email = event.target.value;
             this.setState({ email: email });
@@ -66,7 +66,7 @@ export default class registration extends React.Component {
     /**
      * @description:it will displays the entered password 
      */
-    handleClickShowPassword = () => {
+    handleClickShowPassword () {
         try {
             this.setState(state => ({ showPassword: !state.showPassword }));
         } catch (err) {
@@ -76,7 +76,7 @@ export default class registration extends React.Component {
     /**
      * @description:it handles to change the states
      */
-    handleChange = prop => event => {
+    handleChange (prop,event){
         try {
             this.setState({ [prop]: event.target.value });
         } catch (err) {
@@ -86,7 +86,7 @@ export default class registration extends React.Component {
     /**
      * @description:it handles the enter button from keyboard
      */
-    handleEnter = event => {
+    handleEnter (event) {
         try {
             if (event.key === 'Enter') {
                 event.preventDefault();
@@ -99,7 +99,7 @@ export default class registration extends React.Component {
     /**
      * @description:it will submit the registration page, after all field are filled and checks the all the conditions
      */
-    handleSubmit = event => {
+    handleSubmit (event) {
         try {
             event.preventDefault();
             if (this.state.firstName === "") {
@@ -174,7 +174,7 @@ export default class registration extends React.Component {
     /**
      * @description:it will redirect to loginpage
      */
-    loginclick = event => {
+    loginclick (event) {
         try {
             event.preventDefault();
             this.props.history.push("/login");
@@ -185,7 +185,7 @@ export default class registration extends React.Component {
     /**
      * @description:use to auto close snackBar
      */
-    handleSnackClose = () => {
+    handleSnackClose  ()  {
         try {
             this.setState({
                 openSnackBar: false

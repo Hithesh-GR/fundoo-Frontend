@@ -7,7 +7,7 @@
  *********************************************************************************/
 import React, { Component } from 'react';
 import { Card, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import TrashOptions from '../components/trashOption';
+import TrashOptions from '../components/trashOption.jsx';
 const theme = createMuiTheme({
     overrides: {
         MuiChip: {

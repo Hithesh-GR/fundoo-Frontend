@@ -13,9 +13,9 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { Tooltip, MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu'
-import DrawerMenu from '../components/drawerMenu';
-import CardsView from "../components/cardsView";
-import UserProfile from "../components/userProfile";
+import DrawerMenu from '../components/drawerMenu.jsx';
+import CardsView from "../components/cardsView.jsx";
+import UserProfile from "../components/userProfile.jsx";
 import "../App.css";
 const theme = createMuiTheme({
     overrides: {
@@ -80,7 +80,7 @@ export default class appBar extends React.Component {
     /**
      * @description:it will toggle the menu bar
      */
-    handleToggle = () => {
+    handleToggle () {
         try {
             this.props.slideCards();
             this.setState({ open: !this.state.open });
@@ -128,7 +128,7 @@ export default class appBar extends React.Component {
                                     </div>
                                 </div>
                                 <div className="keepImage">
-                                    <img src={require("../assets/images/keep_48dp.png")}
+                                    <img src={require("../assets/images/fundooKeep.png")}
                                         alt="" />
                                 </div>
                                 <div className="fundoTitle">

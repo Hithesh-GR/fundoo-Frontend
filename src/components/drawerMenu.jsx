@@ -8,8 +8,8 @@
 import React, { Component } from 'react';
 import { Drawer } from '@material-ui/core';
 import { MenuItem } from '@material-ui/core';
-import EditLabel from '../components/editLabel';
-import { getLabels } from '../services/noteServices';
+import EditLabel from '../components/editLabel.jsx';
+import { getLabels } from '../services/noteServices.js';
 export default class drawerMenu extends Component {
     constructor() {
         super();

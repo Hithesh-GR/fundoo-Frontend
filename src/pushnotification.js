@@ -1,5 +1,5 @@
 import * as firebase from "firebase";
-import { pushNotification } from "../../client/src/services/noteServices";
+import { pushNotification } from "../src/services/noteServices.js";
 export const initializeFirebase = () => {
   firebase.initializeApp({
     

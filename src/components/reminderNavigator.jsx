@@ -7,8 +7,8 @@
  *********************************************************************************/
 import React, { Component } from 'react';
 import { Card, Chip, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
-import EditPin from '../components/editPin';
-import Tools from '../components/tools';
+import EditPin from '../components/editPin.jsx';
+import Tools from '../components/tools.jsx';
 const theme = createMuiTheme({
     overrides: {
         MuiChip: {

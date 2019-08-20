@@ -7,7 +7,7 @@
  *****************************************************************************************************/
 import React, { Component } from 'react';
 import { MenuItem, Popper, Paper, Fade, Tooltip, ClickAwayListener, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
-import AddLabelsOnNote from "../components/labels";
+import AddLabelsOnNote from "../components/labels.jsx";
 const theme = createMuiTheme({
     overrides: {
         MuiPaper: {
@@ -52,7 +52,7 @@ export default class MoreOptions extends Component {
     /**
      * @description:it will handle trashed notes
      */
-    handleTrashedNote = () => {
+    handleTrashedNote () {
         try {
             this.closeLabelPopper();
             this.props.trashNote(this.props.noteID);
@@ -63,7 +63,7 @@ export default class MoreOptions extends Component {
     /**
      * @description:it will close the color popper box
      */
-    closeLabelPopper = () => {
+    closeLabelPopper () {
         try {
             this.setState({
                 open: false
@@ -75,7 +75,7 @@ export default class MoreOptions extends Component {
     /**
      * @description:it will handle add label to notes
      */
-    handleLabelsOnNote = (event) => {
+    handleLabelsOnNote (event) {
         try {
             this.setState({
                 open: false

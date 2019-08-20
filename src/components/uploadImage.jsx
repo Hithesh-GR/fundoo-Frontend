@@ -8,7 +8,7 @@
 import React, { Component } from 'react';
 import { Tooltip } from '@material-ui/core';
 import { NotificationManager } from 'react-notifications';
-import { uploadProfilePic1 } from "../services/noteServices";
+import { uploadProfilePic1 } from "../services/noteServices.js";
 export default class UploadImage extends Component {
     constructor(props) {
         super(props);
@@ -38,7 +38,7 @@ export default class UploadImage extends Component {
     //         console.log("error at uploadImage");
     //     }
     // }
-    uploadImage = (e) => {
+    uploadImage (e)  {
         let data = new FormData();
         console.log("image:------------", e.target.files[0]);
         data.append('image', e.target.files[0]);

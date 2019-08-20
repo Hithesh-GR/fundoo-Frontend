@@ -6,11 +6,11 @@
  *  @since          : 23-02-2019
  *****************************************************************************************/
 import React, { Component } from 'react';
-import CreateNote from '../components/createNotes';
-import Notes from '../components/notes';
-import AppbarComponent from '../components/appBar';
-import { askForPermissioToReceiveNotifications } from '../pushnotification';
-export default class dashBoard extends Component {
+import CreateNote from '../components/createNotes.jsx';
+import Notes from '../components/notes.jsx';
+import AppbarComponent from '../components/appBar.jsx';
+import { askForPermissioToReceiveNotifications } from '../pushnotification.js';
+export default class DashBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -92,7 +92,7 @@ export default class dashBoard extends Component {
     makeLabelFalse() {
         this.noteToCards.current.makeLabelFalse();
     }
-    componentWillMount = () => {
+    componentWillMount () {
         askForPermissioToReceiveNotifications();
       };
     /**

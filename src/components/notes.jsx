@@ -7,16 +7,16 @@
  *****************************************************************************************************/
 import React, { Component } from 'react';
 import { Card, Chip, MuiThemeProvider, createMuiTheme, Avatar, Tooltip } from '@material-ui/core';
-import Tools from '../components/tools';
-import ArchivedNavigator from "../components/archivedNavigator";
-import ReminderNavigator from "../components/reminderNavigator";
-import TrashNavigator from '../components/trashedNavigator';
-import { getNotes, updateColor, deleteNoteForever, updateArchiveStatus, setReminder, isTrashed, updateDescription, updateTitle, saveLabel, updatePin, updateImages } from '../services/noteServices';
-import { otherArray, archiveArray, remiderArray, trashArray, pinArray } from '../services/noteServices';
-import DialogBox from '../components/dialogBox';
-import EditPin from '../components/editPin';
-import PinAndOthers from '../components/notePin';
-import SearchedNotes from '../components/searchNote';
+import Tools from '../components/tools.jsx';
+import ArchivedNavigator from "../components/archivedNavigator.jsx";
+import ReminderNavigator from "../components/reminderNavigator.jsx";
+import TrashNavigator from '../components/trashedNavigator.jsx';
+import { getNotes, updateColor, deleteNoteForever, updateArchiveStatus, setReminder, isTrashed, updateDescription, updateTitle, saveLabel, updatePin, updateImages } from '../services/noteServices.js';
+import { otherArray, archiveArray, remiderArray, trashArray, pinArray } from '../services/noteServices.js';
+import DialogBox from '../components/dialogBox.jsx';
+import EditPin from '../components/editPin.jsx';
+import PinAndOthers from '../components/notePin.jsx';
+import SearchedNotes from '../components/searchNote.jsx';
 import '../App.css';
 // import clockIcon from '../assets/images/clockIcon.svg';
 const theme = createMuiTheme({
@@ -56,7 +56,7 @@ export default class Cards extends Component {
         this.cardsToDialogBox.current.getData(note);;
         await this.setState({ open1: true })
     }
-    closeEditBox = (e) => {
+    closeEditBox() {
         this.setState({ open1: false })
     }
     displayLabelledCards() {
@@ -75,7 +75,7 @@ export default class Cards extends Component {
                 // alert(error)
             });
     }
-    getColor = (value, noteId) => {
+    getColor (value, noteId)  {
         const color = {
             noteID: noteId,
             color: value
@@ -97,7 +97,7 @@ export default class Cards extends Component {
                 // alert(error)
             });
     }
-    archiveNote = (value, noteId) => {
+    archiveNote  (value, noteId)  {
         const isArchived = {
             noteID: noteId,
             archive: value
@@ -121,7 +121,7 @@ export default class Cards extends Component {
                 // alert(error)
             });
     }
-    reminderNote = (value, noteId) => {
+    reminderNote  (value, noteId)  {
         const reminder = {
             noteID: noteId,
             reminder: value
@@ -143,7 +143,7 @@ export default class Cards extends Component {
                 // alert(error)
             });
     }
-    editTitle = (value, noteId) => {
+    editTitle  (value, noteId)  {
         const title = {
             noteID: noteId,
             title: value
@@ -167,7 +167,7 @@ export default class Cards extends Component {
                 // alert(error)
             });
     }
-    editDescription = (value, noteId) => {
+    editDescription (value, noteId)  {
         const description = {
             noteID: noteId,
             description: value
@@ -189,7 +189,7 @@ export default class Cards extends Component {
                 // alert(error)
             });
     }
-    trashNote = (noteId) => {
+    trashNote  (noteId)  {
         const trash = {
             noteID: noteId
         }
@@ -212,7 +212,7 @@ export default class Cards extends Component {
                 // alert(error)
             });
     }
-    uploadImage = (value, noteId) => {
+    uploadImage  (value, noteId)  {
         // console.log("image:--------======----", noteId);
         // let data = new FormData();
         // data.append('image', value);
@@ -237,7 +237,7 @@ export default class Cards extends Component {
                 }
             })
     }
-    pinNote = (value, noteId) => {
+    pinNote  (value, noteId)  {
         const isPinned = {
             noteID: noteId,
             pinned: value
@@ -262,7 +262,7 @@ export default class Cards extends Component {
                 // alert(error)
             });
     }
-    deleteNote = (noteId) => {
+    deleteNote  (noteId) {
         const obj = {
             noteID: noteId,
         }
@@ -283,7 +283,7 @@ export default class Cards extends Component {
                 // alert(error)
             });
     }
-    addLabelToNote = (noteId, value) => {
+    addLabelToNote  (noteId, value) {
         const addLabel = {
             noteID: noteId,
             label: value
@@ -305,7 +305,7 @@ export default class Cards extends Component {
                 // alert(error)
             });
     }
-    deleteLabelFromNote = (value, noteId) => {
+    deleteLabelFromNote  (value, noteId) {
         const deleteLabel = {
             pull: true,
             value: value,
@@ -328,10 +328,10 @@ export default class Cards extends Component {
                 // alert(error)
             });
     }
-    makeLabelFalse = () => {
+    makeLabelFalse  () {
         this.setState({ label: false })
     }
-    displayNewCard = (newCard) => {
+    displayNewCard (newCard) {
         this.setState({
             notes: [...this.state.notes, newCard]
         })

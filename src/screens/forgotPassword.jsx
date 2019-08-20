@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import { forgotPassword } from "../services/userServices";
+import { forgotPassword } from "../services/userServices.js";
 import "../App.css";
 export default class ForgotPassword extends React.Component {
     constructor(props) {
@@ -26,7 +26,7 @@ export default class ForgotPassword extends React.Component {
     /**
      * @description:it will takes the forgot password user email
      */
-    handleEmailChange = event => {
+    handleEmailChange (event)  {
         try {
             const email = event.target.value;
             this.setState({ email: email });
@@ -37,7 +37,7 @@ export default class ForgotPassword extends React.Component {
     /**
      * @description:it handles the enter button from keyboard
      */
-    handleEnter = event => {
+    handleEnter  (event) {
         try {
             if (event.key === 'Enter') {
                 event.preventDefault();
@@ -50,7 +50,7 @@ export default class ForgotPassword extends React.Component {
     /**
      * @description:it will submit the forgotPasswordPage and checks all the conditions
      */
-    handleSubmit = event => {
+    handleSubmit (event)  {
         try {
             event.preventDefault();
             if (this.state.email === "") {
@@ -93,7 +93,7 @@ export default class ForgotPassword extends React.Component {
     /**
      * @description:use to auto close snackBar
      */
-    handleSnackClose = () => {
+    handleSnackClose () {
         try {
             this.setState({
                 openSnackBar: false
@@ -105,7 +105,7 @@ export default class ForgotPassword extends React.Component {
     /**
      * @description:it will redirect to loginpage
      */
-    loginclick = event => {
+    loginclick (event) {
         try {
             event.preventDefault();
             this.props.history.push("/login");

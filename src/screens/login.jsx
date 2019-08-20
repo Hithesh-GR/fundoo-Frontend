@@ -14,10 +14,10 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Snackbar from '@material-ui/core/Snackbar';
-import { userLogin } from "../services/userServices";
+import { userLogin } from "../services/userServices.js";
 import "../App.css";
 const jwt = require('jsonwebtoken');
-export default class login extends React.Component {
+ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,7 +31,7 @@ export default class login extends React.Component {
     /**
      * @description:Takes the registered user emailID
      */
-    handleEmailChange = event => {
+    handleEmailChange (event) {
         try {
             const email = event.target.value;
             this.setState({ email: email });
@@ -42,7 +42,7 @@ export default class login extends React.Component {
     /**
      * @description:Takes the registered user password 
      */
-    handleChange = prop => event => {
+    handleChange (prop,event) {
         try {
             this.setState({ [prop]: event.target.value });
         } catch (err) {
@@ -52,7 +52,7 @@ export default class login extends React.Component {
     /**
      * @description:it will displays the entered password 
      */
-    handleClickShowPassword = () => {
+    handleClickShowPassword () {
         try {
             this.setState(state => ({ showPassword: !state.showPassword }));
         } catch (err) {
@@ -62,7 +62,7 @@ export default class login extends React.Component {
     /**
      * @description:it handles the enter button from keyboard
      */
-    handleEnter = event => {
+    handleEnter (event) {
         try {
             if (event.key === 'Enter') {
                 event.preventDefault();
@@ -75,7 +75,7 @@ export default class login extends React.Component {
     /**
      * @description:it will submit the login page and checks all the conditions
      */
-    handleSubmit = event => {
+    handleSubmit (event) {
         try {
             event.preventDefault();
             if (!this.state.email) {
@@ -143,7 +143,7 @@ export default class login extends React.Component {
     /**
      * @description:redirect or trigger to forgotPasswordPage
      */
-    forgotPasswordPage = e => {
+    forgotPasswordPage  (e) {
         try {
             e.preventDefault();
             this.props.history.push('/forgotPassword');
@@ -154,7 +154,7 @@ export default class login extends React.Component {
     /**
      * @description:redirect to registerpage
      */
-    registrationclick = e => {
+    registrationclick (e) {
         try {
             e.preventDefault();
             this.props.history.push('/registration');
@@ -165,7 +165,7 @@ export default class login extends React.Component {
     /**
      * @description:use to auto close snackBar
      */
-    handleSnackClose = () => {
+    handleSnackClose () {
         try {
             this.setState({
                 openSnackBar: false
@@ -286,6 +286,6 @@ export default class login extends React.Component {
         );
     }
 }
-export { login };
+export default Login;
 
 

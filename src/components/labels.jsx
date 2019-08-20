@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MenuItem, Popper, Paper, Fade, Checkbox, ClickAwayListener } from '@material-ui/core';
-import { getLabels } from '../services/noteServices';
+import { getLabels } from '../services/noteServices.js';
 import { NotificationManager } from 'react-notifications';
 export default class AddLabelsOnNote extends Component {
     constructor() {
@@ -12,7 +12,7 @@ export default class AddLabelsOnNote extends Component {
             label: []
         }
     }
-    addLabelPopup = () => {
+    addLabelPopup () {
         this.setState(state => ({
             anchorEl: this.props.anchorEl,
             open: !state.open,
@@ -31,7 +31,7 @@ export default class AddLabelsOnNote extends Component {
                 // alert(error)
             });
     }
-    showLabels = (value) => {
+    showLabels (value) {
         // console.log("show lablesssssssssss",value);
         this.setState({
             label: [...this.state.label, value]

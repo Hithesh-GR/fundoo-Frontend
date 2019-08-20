@@ -8,9 +8,9 @@
 import React, { Component } from 'react';
 import { Card, MuiThemeProvider, createMuiTheme, Chip, Snackbar, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import EditPin from '../components/editPin';
-import Tools from '../components/tools';
-import DialogBox from '../components/dialogBox';
+import EditPin from '../components/editPin.jsx';
+import Tools from '../components/tools.jsx';
+import DialogBox from '../components/dialogBox.jsx';
 const theme = createMuiTheme({
     overrides: {
         MuiChip: {
@@ -41,7 +41,7 @@ export default class ArchivedNavigator extends Component {
     /**
     * @description:use to auto close snackBar
     */
-    handleSnackClose = () => {
+    handleSnackClose () {
         try {
             this.setState({
                 openSnackBar: false

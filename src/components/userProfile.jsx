@@ -15,10 +15,10 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Tooltip from '@material-ui/core/Tooltip';
 import Fade from '@material-ui/core/Fade';
 import { Button } from '@material-ui/core';
-import { uploadProfilePic } from "../services/userServices";
+import { uploadProfilePic } from "../services/userServices.js";
 import { NotificationManager } from 'react-notifications';
 import '../App.css';
-import  {deletePushToken}  from '../pushnotification';
+import  {deletePushToken}  from '../pushnotification.js';
 
 /**
 * @description:This method is used to Logout ui.. 
@@ -36,7 +36,7 @@ export default class Logout extends Component {
     /**
     * @description:it will toggle or reback the event
     */
-    handleToggle = () => {
+    handleToggle () {
         try {
             this.setState(state => ({ open: !state.open }));
         } catch (err) {
@@ -46,7 +46,7 @@ export default class Logout extends Component {
     /**
      * @description:it will close the current action event
      */
-    handleClose = event => {
+    handleClose (event) {
         try {
             if (this.anchorEl.contains(event.target)) {
                 return;
@@ -59,7 +59,7 @@ export default class Logout extends Component {
     /**
     * @description:it will redirect to login page
     */
-    handlelogout = event => {
+    handlelogout (event) {
         try {
             event.preventDefault();
             deletePushToken();
@@ -89,7 +89,7 @@ export default class Logout extends Component {
     /**
      * @description:it will redirect to registration page
      */
-    handleregister = event => {
+    handleregister (event) {
         try {
             event.preventDefault();
             this.props.props.props.history.push("/registration");
@@ -100,7 +100,7 @@ export default class Logout extends Component {
     /**
      * @description:it trigger the event and enter into our file
      */
-    triggerInputFile = () => {
+    triggerInputFile ()  {
         try {
             this.fileInput.click();
         } catch (err) {
@@ -118,7 +118,7 @@ export default class Logout extends Component {
      * @description:it will upload the image
      * @param {*} e
      */
-    uploadImage = (e) => {
+    uploadImage (e)  {
         let data = new FormData();
         console.log("image:------------", e.target.files[0]);
         data.append('image', e.target.files[0]);
@@ -137,7 +137,7 @@ export default class Logout extends Component {
     /**
      * @description:it will open the userProfile
      */
-    handleClick = placement => event => {
+    handleClick (placement,event) {
         try {
             const { currentTarget } = event;
             this.setState(state => ({

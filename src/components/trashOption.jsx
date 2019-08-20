@@ -34,7 +34,7 @@ export default class TrashOptions extends Component {
                     we can select add the labels and delete notes operations
      * @param {*open the more options event} event 
      */
-    clickMoreOptions = (event) => {
+    clickMoreOptions  (event)  {
         try {
             const { currentTarget } = event;
             this.setState(state => ({
@@ -49,7 +49,7 @@ export default class TrashOptions extends Component {
     /**
     * @description:it will close the color popper box
     */
-    closeLabelPopper = () => {
+    closeLabelPopper  ()  {
         try {
             this.setState({
                 open: false
@@ -58,12 +58,12 @@ export default class TrashOptions extends Component {
             console.log("error at closeLabelPopper in trashOption");
         }
     }
-    handleRestore = () => {
+    handleRestore  ()  {
         this.closeLabelPopper();
         this.props.restore(this.props.noteID)
 
     }
-    handleDelete = () => {
+    handleDelete  ()  {
         this.closeLabelPopper();
         this.props.deleteNote(this.props.noteID)
     }
